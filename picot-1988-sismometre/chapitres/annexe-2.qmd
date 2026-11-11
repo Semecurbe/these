@@ -1,0 +1,41 @@
+# Annexe 2 — Bruit généré lors du traitement du signal modulé {.unnumbered}
+
+**Bruit de démodulation — Contribution du bruit des amplificateurs
+suiveur-inverseur avant commutation.**
+
+En utilisant le principe de superposition pour le schéma de la figure A.2.1 et en
+considérant séparément les entrées de chacun des deux amplificateurs, le
+générateur de bruit $e_n^2$ d'un amplificateur génèrera en sortie un bruit
+transitant par le « mode commun » de valeur en entrée
+$\left(\dfrac{e_n}{2}\right)^2$, ainsi qu'une source de « mode différentiel »
+$e_n^2$. Ces sources de bruit des amplificateurs de l'étage de démodulation
+génèreront donc, en plus du bruit à la fréquence transposée, un bruit de même
+fréquence.
+
+**Bruits basse-fréquence générés :**
+
+*+ Bruit basse-fréquence provenant du bruit à la fréquence porteuse.*
+
+À une source de densité spectrale de valeur $e_n^2$ en entrée à la fréquence
+porteuse, correspond en entrée un bruit de mode commun
+$\left(\dfrac{e_n}{2}\right)^2$ à la fréquence porteuse, ce qui donne, par
+application des résultats du 2.2.2.3, un bruit en sortie filtrée
+$2\cdot\left(\dfrac{e_n}{2}\right)^2$ à la fréquence $f = 0$
+(Gain $\dfrac{\pi}{2}$)
+
+<!-- p. 213 -->
+
+*+ Bruit basse-fréquence provenant du mode différentiel :*
+
+Pour une source de densité spectrale de valeur $e_n^2$ en entrée en
+basse-fréquence :
+
+- bruit de mode différentiel $e_n^2$ en basse fréquence
+- bruit en sortie des portes $\dfrac{e_n^2}{2^2}$ en basse fréquence
+- bruit en sortie filtrée $\left(\dfrac{\pi}{2}\right)^2\cdot\left(\dfrac{1}{2}\right)^2 e_n^2$
+  en basse fréquence
+
+Pour deux sources bruyantes décorrélées de même valeur, les densités spectrales
+sont multipliées par 2.
+
+![**Figure A.2.1** — Amplificateur différentiel de démodulation ($V_{mc} = \frac{V_1+V_2}{2}$ ; $\Delta V = V_1 - V_2$ ; $V_s = (f_1+f_2)\circledast V_{mc} + (f_1-f_2)\circledast\Delta V$).](../figures/generees/fig-a2-1){width=90% fig-scap="Figure A.2.1 — Amplificateur différentiel de démodulation"}

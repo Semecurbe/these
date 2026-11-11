@@ -1,0 +1,86 @@
+# 6 — Conclusions
+
+<!-- p. 196 -->
+
+Cette étude a conduit à une analyse approfondie de la conception d'un capteur
+asservi large bande à grande dynamique, faible bruit.
+
+Pour ce faire, on a procédé à :
+
+1°) — une évaluation des caractéristiques du matériel existant,
+
+2°) — une analyse des éléments fondamentaux intervenant dans la dynamique d'un
+capteur (courbe de réponse — influence des paramètres mécaniques et
+électroniques sur le bruit).
+
+Ces études ont mis en lumière les trois directions de recherche suivantes :
+
+- conception d'une suspension mécanique longue période, miniature, à
+  caractéristiques améliorées,
+- amélioration du bruit électronique de la chaîne de mesure des déplacements,
+  afin d'obtenir un bruit intrinsèque, en longues périodes inférieur au bruit de
+  fond sismique minimum connu,
+- recherche de solutions originales permettant d'obtenir un capteur large bande.
+
+<!-- p. 197 -->
+
+Les principaux résultats obtenus ont été les suivants :
+
+- mise en place d'un outil de conception de suspension à lame,
+- au niveau de la conception générale, un nouveau type de sismomètre (le
+  sismomètre mixte bi-capteurs) présente une solution originale pour concilier
+  les bonnes caractéristiques du capteur électrodynamique conventionnel et les
+  performances en longues périodes du capteur asservi, à condition de disposer
+  d'une base mécanique « large bande » (i.e suspension mécanique longue période
+  avec une fréquence parasite suffisamment haute),
+- l'analyse, théorique et expérimentale, des sources de bruit de la chaîne de
+  mesure des déplacements, a permis la définition et le test d'un nouveau LVDT et
+  de son électronique, avec des performances de bruit améliorées de 30 dB
+  environ, par rapport aux valeurs initiales. Ce LVDT — aujourd'hui adopté par le
+  LDG — associé aux suspensions mécaniques LPZ 12 s et LPH, a permis la
+  réalisation d'un capteur, de bruit intrinsèque électronique inférieur au bruit
+  des meilleures stations sismiques rapporté dans la littérature.
+
+  Son test en station, à Lormes, a d'ailleurs permis d'effectuer des analyses
+  spectrales montrant un bruit longue période, d'un niveau extrêmement faible
+  qui, jusqu'alors, masqué par un bruit instrumental résiduel, n'avait jamais été
+  atteint.
+
+<!-- p. 198 -->
+
+Concernant le capteur de déplacement, l'étude plus systématique, portant sur la
+conception d'un LVDT « optimisé » (et non plus sur l'amélioration d'un capteur
+existant) n'a pu être menée à terme, du fait des problèmes suivants :
+
+- absence de modèle « fin » du LVDT permettant de rendre compte des phénomènes
+  observés (en particulier concernant les résultats de bruit),
+- difficulté d'expérimentation en fixant, de manière indépendante, les
+  différents paramètres (ceci n'aurait pu être résolu que grâce à une refonte
+  complète de l'électronique),
+- grande finesse des phénomènes observés (en particulier pour le niveau de
+  tension résiduelle),
+- lourdeur des réalisations matérielles, due à la fois au soin nécessaire à
+  l'obtention de la précision recherchée, mais aussi à la gamme des fréquences
+  étudiées (durée de mesure très élevée).
+
+Par ailleurs, le niveau des améliorations déjà obtenues, la possibilité théorique
+de réduction de ce bruit en basse fréquence par augmentation de la période
+mécanique de la suspension, ainsi que l'existence d'autres facteurs limitatifs
+prépondérants, ont conduits à privilégier, dans cette étude, le test en station
+du capteur sismique complet.
+
+<!-- p. 199 -->
+
+Afin de continuer le travail entrepris, les directions d'évolution devraient
+être :
+
+- Au niveau mécanique :
+  - désensibilisation mécanique des suspensions aux sollicitations parasites
+    (pour les suspensions existantes),
+  - approfondissement de l'analyse des suspensions à lame,
+  - miniaturisation et suppression des fréquences parasites.
+- Au niveau électronique, test du sismomètre bi-capteurs.
+- Recherche d'une identification et d'une évaluation quantitative des signaux
+  parasites longue période (enregistrement de la température interne du
+  sismomètre, analyse des contraintes ..., et recherche des corrélations avec
+  les signaux « sismiques » sur les périodes sismiquement calmes).

@@ -1,0 +1,35 @@
+\input{_preambule}
+\newcommand{\mecanisme}[1][0]{% suspension miniature dans un cadre 2.6 x 2
+  \draw (0,0.15) rectangle (2.6,2.2);
+  \draw (-0.15,0.15) -- (2.75,0.15);
+  \foreach \x in {0.05,2.55} \draw (\x,0.15) -- (\x-0.08,0) -- (\x+0.08,0) -- cycle;
+  \begin{scope}[rotate around={#1:(0.35,0.8)}]
+    \draw[ressort, decoration={amplitude=1mm, segment length=1mm}] (0.4,1.85) -- (1.45,0.85);
+    \draw (0.35,0.8) -- (1.95,0.8);
+    \draw (1.9,0.68) rectangle (2.2,0.92);
+    \foreach \p in {(0.4,1.85),(0.35,0.8),(1.45,0.8)}
+      {\draw[fill=white] \p circle (0.07); \fill \p circle (0.02);}
+  \end{scope}}
+\begin{document}
+\begin{tikzpicture}[font=\small]
+  \draw (-0.6,0) -- (9.2,0);
+  \draw (2.6,4.0) -- (6.9,4.0) node[right] {Horizontale};
+  \begin{scope}[shift={(3.2,3.85)}] \mecanisme \draw[<-] (2.25,0.8) -- (2.65,0.8); \end{scope}
+  % rotation du bâti sans équilibrage
+  \begin{scope}[shift={(0.1,0)}, rotate=6]
+    \mecanisme \draw[<-] (2.25,0.8) -- (2.75,0.8);
+  \end{scope}
+  \draw (0.1,0.08) -- (1.2,0.08);
+  \draw (1.0,0.08) arc (0:6:0.9); \node[font=\scriptsize] at (1.25,0.22) {$\varepsilon$};
+  \node[align=center, below] at (1.2,-0.15) {rotation du bâti\\sans équilibrage};
+  \node[fill=white] at (4.6,0) {Horizontale};
+  % rotation du bras par équilibrage
+  \begin{scope}[shift={(6.3,-0.15)}]
+    \mecanisme[6]
+    \draw[dash dot] (0.35,0.8) -- (2.6,0.8);
+    \draw[->] (2.45,0.8) -- (2.45,1.0);
+    \node[right, font=\scriptsize] at (2.55,0.92) {$\varepsilon$};
+  \end{scope}
+  \node[align=center, below] at (7.6,-0.15) {rotation du bras\\par équilibrage};
+\end{tikzpicture}
+\end{document}

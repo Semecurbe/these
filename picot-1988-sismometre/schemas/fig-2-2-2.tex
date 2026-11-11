@@ -1,0 +1,39 @@
+\input{_preambule}
+\begin{document}
+\begin{tikzpicture}[font=\small]
+  \node[somme] (s) at (0,0) {};
+  \node[bloc] (h) at (1.9,0) {$H_m(j\omega)$};
+  \node[above] at (h.north) {sismomètre};
+  \node[bloc, font=\footnotesize] (mod) at (4.6,0) {Modulation};
+  \node[gain] (amp) at (6.3,0) {};
+  \node[bloc, font=\footnotesize, align=center] (dem) at (8.0,0) {Démodu-\\lation};
+  \node[cadre, fit=(mod) (dem), inner sep=5pt] (td) {};
+  \node[above, font=\footnotesize] at (td.north) {Transducteur déplacement et amplificateur};
+  \draw[decorate, decoration={brace, amplitude=5pt}] ([yshift=5mm]td.north west) -- ([yshift=5mm]td.north east)
+     node[midway, above=5pt] {$\alpha_0 A$};
+  \node[gain] (sor) at (10.6,0) {};
+  \node[above=1mm, align=center, font=\footnotesize] at (sor.north) {Amplificateur\\de sortie};
+  \draw[->] (-1.6,0) node[left, align=right] {accélération du\\sol \quad $-\gamma_i$} -- (s) node[above left, pos=0.85] {\scriptsize$+$};
+  \draw[->] (s) -- (h);
+  \draw[->] (h) -- node[above] {$x$} (mod);
+  \node[below, align=center, font=\footnotesize] at (3.3,-0.08) {Déplacement\\mesuré};
+  \draw[->] (mod) -- (amp); \draw[->] (amp) -- (dem); \draw[->] (dem) -- (sor);
+  \draw (sor.east) -- ++(0.4,0) node[circle, fill, inner sep=1.2pt] {} node[below] {$V_0$};
+  % contre-réaction
+  \coordinate (n) at (9.6,0); \fill (n) circle (1.4pt);
+  \node[bloc, minimum width=2.4cm, minimum height=1.6cm] (rc) at (6.9,-2.3) {};
+  \RparC{(6.9,-2.3)}{2.0}{0.7}
+  \node[font=\footnotesize] at (6.9,-1.7) {$R_f$};
+  \node[font=\footnotesize] at (6.9,-2.92) {$C_f$};
+  \node[bloc, minimum width=1.6cm, minimum height=1.4cm] (bob) at (3.4,-2.3) {};
+  \draw[bobine] (3.4,-1.85) -- (3.4,-2.65);
+  \fill[pattern=north east lines] (3.15,-2.75) rectangle (3.65,-2.9);
+  \node[left, align=right, font=\footnotesize] at (bob.west) {bobine +\\aimant};
+  \draw[->] (n) |- (rc.east);
+  \draw[->] (rc.west) -- node[above] {$i_f$} (bob.east);
+  \node[below, align=center, font=\footnotesize] at (4.95,-2.55) {courant\\de contre-\\réaction};
+  \draw[->] (bob.north) |- (0,-1.15) -- (s.south) node[below left, pos=0.8] {\scriptsize$-$};
+  \node[align=left, anchor=west, font=\footnotesize] at (0.05,-1.6) {accélération de\\contre-réaction $\gamma_f$};
+  \draw[decorate, decoration={brace, amplitude=5pt, mirror}] (2.4,-3.6) -- (8.2,-3.6) node[midway, below=5pt] {$\beta$};
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,11 @@
+\input{_preambule}
+\begin{document}
+\begin{tikzpicture}
+  \node[bloc, minimum width=1.9cm, minimum height=1.2cm] (h) at (0,0) {$H(j2\pi f)$};
+  \draw[->] (-3.6,0) -- (h) node[pos=0.2, above] {$S_x$};
+  \node[left] at (-3.7,0) {Bruit};
+  \node[below] at (-2.2,-0.1) {densité spectrale};
+  \draw[->] (h) -- (2.8,0) node[above] {$S_y$};
+  \node at (1.6,-1.1) {$S_y(f) = |H(j2\pi f)|^2\, S_x(f)$};
+\end{tikzpicture}
+\end{document}

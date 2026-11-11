@@ -1,0 +1,113 @@
+# Présentation {.unnumbered}
+
+::: {.callout-note appearance="simple" icon=false}
+## Note sur cette édition
+
+Cette édition est une transcription intégrale de la thèse de Docteur-Ingénieur
+de Jean-Daniel Picot, soutenue le 13 janvier 1988 à l'Université Pierre et
+Marie Curie (Paris 6) et préparée au Laboratoire de Détection et de Géophysique
+(cote BIUS Jussieu : T Paris 6 (1988) 480).
+
+- Le texte, les équations et les tableaux sont reproduits sans modification de
+  fond. La numérotation des paragraphes, des figures, des tableaux et des
+  équations est celle de l'original.
+- Les corrections de l'errata ont été reportées dans le texte et dans les
+  figures.
+- Toutes les figures ont été redessinées : les schémas en TikZ, les graphiques
+  avec matplotlib, à partir des formules du texte ou de courbes numérisées sur
+  l'original.
+- Les références bibliographiques sont reproduites telles qu'elles figurent
+  dans l'original.
+:::
+
+## Résumé {.unnumbered}
+
+Une synthèse des principes de conception des sismomètres verticaux, miniatures,
+large bande, asservis, a été menée afin de réaliser un capteur faible bruit à
+grande dynamique. L'étude mécanique comporte des résultats concernant une
+suspension à lame. S'appuyant sur une discussion du bruit et de la dynamique,
+nous proposons un nouveau type de capteur, le «&nbsp;sismomètre mixte
+bi-capteurs&nbsp;».
+
+Une chaîne de mesure de déplacements (LVDT + électronique), faible bruit, a été
+développée, mise en œuvre sur des capteurs asservis. Les analyses spectrales
+effectuées lors de son test, à la station sismique de Lormes, ont permis de
+mettre en évidence un très faible niveau de bruit.
+
+[**Mots-clés&nbsp;:** sismomètre vertical miniature · sismomètre asservi à
+grande dynamique · sismomètre large bande · sismomètre mixte bi-capteurs ·
+suspension à lame · LVDT faible bruit · bruit instrumental et sismique ·
+bruit longue période.]{.mots-cles}
+
+::: {.content-visible when-format="html"}
+## Composition du jury {.unnumbered}
+
+Thèse soutenue le 13 janvier 1988 devant la commission composée de&nbsp;:
+
+| Membre du jury | Qualité |
+|:---|:---|
+| M. Garnier | Président |
+| M. Auvray | Examinateur |
+| M. Drouin | Examinateur |
+| M. Loyer | Examinateur |
+| M. Mechler | Examinateur |
+:::
+
+## Remerciements {.unnumbered}
+
+Cette thèse est le fruit de plus de deux années de travail au Laboratoire de
+Détection et de Géophysique (L.D.G. — Bruyères-le-Châtel).
+
+Monsieur M. Loyer, Chef du L.D.G. a accepté de m'accueillir au sein de ce
+laboratoire et m'a fait l'honneur de participer au Jury&nbsp;: je l'en remercie
+très sincèrement.
+
+J'exprime ma gratitude à Monsieur le Professeur M. Garnier d'avoir accepté de
+diriger ces recherches, et le remercie vivement pour le temps qu'il m'a
+consacré.
+
+Je remercie Messieurs les Professeurs J. Auvray, M. Drouin, P. Mechler, de
+m'avoir fait l'honneur de participer au Jury.
+
+J'exprime ma reconnaissance au L.D.G. et au Groupe ETUDES pour leur
+participation dans cette étude. Je remercie, en particulier, Messieurs A. Le Roy,
+G. Claque et D. Fouquet pour le suivi qu'ils ont apporté à ce travail.
+
+Je remercie Monsieur F. Lebouvier (Compiègne Science Industrie) pour sa
+contribution à l'étude du capteur à lame.
+
+Que tous ceux qui m'ont aidé et soutenu, tout au long de ce travail, trouvent
+ici ma reconnaissance.
+
+J'exprime mes remerciements, tout particuliers, à Madame M. Botineau, pour sa
+patience et sa gentillesse dans le lourd travail de dactylographie de ce
+document, et à Monsieur F. Guillois pour sa contribution à la réalisation des
+figures.
+
+Enfin, je remercie Mademoiselle V. Picot pour le soin qu'elle a apporté dans la
+relecture de ce document.
+
+## Errata {.unnumbered}
+
+Les corrections suivantes, signalées dans l'errata joint à l'original, ont été
+reportées dans le texte et dans les figures (les numéros de page renvoient à la
+pagination de l'original)&nbsp;:
+
+| Page | Correction |
+|:--|:----------|
+| 23 | remplacer le double signe «&nbsp;−&nbsp;−&nbsp;» de l'équation linéarisée par un seul «&nbsp;−&nbsp;» |
+| 32 | remplacer $mgd$ par $mgr_G$ |
+| 55 | remplacer $1.59 \times 10^{2}$ par $1.59 \times 10^{-2}$ dans le tableau 2.1.1 (courbe −2) |
+| 67 | figure 2.2.1, courbe de réponse&nbsp;: la zone de mesure de la vitesse du sol correspond aux fréquences supérieures à $f_n$ ; lire «&nbsp;réponse optimum&nbsp;» au lieu de «&nbsp;réponse critique&nbsp;» |
+| 72, 73 | remplacer $\tau_f$ par $\tau_D$ |
+| 85 | figure 2.2.8 (2)&nbsp;: lire $f_n$ au lieu de $f_m$ |
+
+```{=latex}
+\cleardoublepage
+\renewcommand*\contentsname{Table des matières}
+{\setcounter{tocdepth}{2}\tableofcontents}
+\renewcommand*\listfigurename{Liste des figures}
+\listoffigures
+\let\mainmatter\quartomainmatter
+\mainmatter
+```

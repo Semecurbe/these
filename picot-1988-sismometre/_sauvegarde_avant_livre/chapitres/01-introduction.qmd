@@ -1,0 +1,221 @@
+# 1 — Introduction — Généralités
+
+<!-- p. 4 -->
+
+## 1.1 — Introduction
+
+Le Laboratoire de Détection et de Géophysique (LDG) conçoit et exploite des
+capteurs sismiques pour son réseau de stations de mesures géophysiques. Il
+dispose de capteurs « courte période » et « longue période » performants mais de
+grandes dimensions. Le LDG souhaite, tant pour ses besoins propres que pour ses
+activités de valorisation, réaliser un capteur vertical « large bande » de
+dimensions plus faibles. La recherche de la miniaturisation vise à disposer d'un
+capteur apte à être utilisé en puits de forage, de manière à s'affranchir d'un
+éventuel bruit excédentaire de surface.
+
+Ce capteur devra couvrir une gamme de fréquences allant du continu jusqu'à 50 Hz
+environ, en résolvant le bruit sismique à la fois dans les courtes et longues
+périodes. Ses performances devront être, si possible, aussi bonnes que celles
+des capteurs verticaux « courte » et « longue » périodes (cf. 1.2.2).
+
+Actuellement, les capteurs miniatures large bande se rapprochant de ce cahier
+des charges sont très peu nombreux : Usher et Burch (1977 et 1978) ont développé
+des capteurs miniatures large bande mais orientés dans leur conception vers une
+utilisation autour de 1 s. Wielandt et Streckeisen ont présenté, en 1982, un
+capteur miniature adapté à une utilisation longue période qui, selon ses
+concepteurs (*The Leaf Spring Seismometer — Design and Performances* (1982)), est
+un capteur vertical miniature à électronique large bande « résolvant les bruits
+sismiques au moins entre 0.2 s et 500 s ». Ce capteur comporte deux
+originalités, l'une au niveau mécanique consistant en une suspension utilisant
+un ressort à lame remplaçant le dispositif classique de Lacoste ; l'autre au
+niveau électronique résidant dans la présence d'une double boucle de contre
+réaction. Le capteur Wielandt nous semblant intéressant par les performances
+annoncées, nous avons procédé
+<!-- p. 5 -->
+à une évaluation plus complète de ce capteur, de manière à enrichir nos idées
+pour la conception d'un capteur miniature.
+
+On pourra citer également, parmi les capteurs miniatures, les capteurs GEOTECH
+de la série 36000, destinés à une utilisation en puits mais de conception
+générale plus classique.
+
+Après quelques rappels de base, on abordera successivement dans cette étude, les
+problèmes généraux liés au capteur proprement dit, les problèmes généraux
+découlant de son électronique, et l'analyse des problèmes de bruit, avant de
+détailler les résultats obtenus sur le capteur en fonctionnement.
+
+On notera, dès à présent, qu'une difficulté importante dans la réalisation des
+mesures tient à la bande de fréquence étudiée, qui s'étend jusqu'à des périodes
+de plusieurs centaines de secondes (jusqu'à 400 s pour les analyses de bruit) :
+ceci nécessite des temps de stabilisation de plusieurs heures, et les mesures
+peuvent atteindre des durées proches d'une journée. Ceci est encore aggravé par
+la nécessité de répéter les mesures pour obtenir un degré de confiance
+suffisant.
+
+<!-- p. 6 -->
+
+## 1.2 — Généralités
+
+### 1.2.1 — Définitions de base
+
+Un capteur sismique est un dispositif capable d'enregistrer les mouvements du
+sol. Les sismomètres à inertie, les plus utilisés, sont constitués d'une masse,
+mobile par rapport au support dont on veut mesurer le mouvement, formant un
+oscillateur mécanique amorti. Le déplacement relatif (au support) de la masse,
+fournit une mesure (cf. 2.0) :
+
+- du déplacement du sol, aux fréquences supérieures à la fréquence propre du
+  sismomètre,
+- proportionnelle à l'accélération du support aux fréquences inférieures (i.e.
+  aux périodes supérieures à la période propre).
+
+Les sismomètres sont usuellement nommés suivant leur axe sensible, capteur
+« vertical » ou « horizontal ». Il est à remarquer que ces deux familles de
+capteurs ont généralement une constitution mécanique différente, dans le cas des
+capteurs à forte sensibilité devant « résoudre » les plus faibles signaux : en
+effet, les capteurs verticaux doivent supporter, dans leur position de repos,
+l'accélération de la gravité qui dépasse très largement (plus de $10^4$ fois) les
+accélérations maximales mesurées avec ces appareils. De ce fait, dans les
+sismomètres verticaux, on a recours à des dispositifs de « suspension »
+particuliers pour compenser la gravité (cf. parag. 2.1) ; le plus connu de ces
+dispositifs est la suspension de Lacoste (paragraphe 2.1.1).
+
+<!-- p. 7 -->
+
+La période des ondes sismiques d'intérêt se situe principalement autour de 1 s
+et 20 s, alors qu'il existe un pic de bruit microsismique très élevé aux
+alentours de 6 s. Par suite, les premières générations de sismomètres construits
+ont été historiquement de deux types, du fait de la difficulté de réalisation
+d'un capteur couvrant le spectre à la fois autour de 1 s et 20 s : les
+sismomètres « Courte Période » (C.P. ou S.P.) destinés à étudier la bande autour
+de 1 s, et les sismomètres « Longue Période » (L.P.) couvrant plus spécialement
+la bande autour de 20 s. Aujourd'hui, une nouvelle génération de capteurs dits
+« Large Bande » (L.B. ou W.B.) permet de couvrir à la fois les deux bandes. Par
+ailleurs, de nombreuses études théoriques géophysiques ont étendu les zones
+d'intérêt vers les longues périodes ; de même, les méthodes récentes de
+détermination de magnitude utilisent aujourd'hui des mesures à des périodes de
+plus de 100 s, ceci explique le fait qu'un réseau tel que GEOSCOPE ait adopté
+une bande passante en accélération de 150 s à 3600 s.
+
+Deux types de transducteurs sont associés, en général, au capteur mécanique
+définissant deux familles de sismomètres :
+
+- les sismomètres dits « électrodynamiques conventionnels » ou sismomètres
+  « vitesse » sont équipés d'un transducteur « vitesse » — i.e. mesurant la
+  vitesse relative de la masse par rapport au bâti —. Usuellement, le
+  transducteur vitesse est constitué d'une bobine mobile dans le champ d'un
+  aimant fixe.
+- les sismomètres type « déplacement » — parmi lesquels le sismomètre dit
+  « asservi » ou à équilibre de force (« force balance seismometer » ou
+  « feedback seismometer ») — utilisent un transducteur de déplacement, en
+  général un Transformateur Différentiel Linéaire Variable (LVDT) ou un capteur
+  capacitif. Celui-ci délivre un signal proportionnel au déplacement de la masse
+  par rapport au bâti. Dans les capteurs « asservis » ce signal est envoyé en
+  contre-réaction pour stabiliser le système (l'analyse détaillée de ces
+  capteurs est présentée au paragraphe 2.2).
+
+<!-- p. 8 -->
+
+### 1.2.2 — Quelques ordres de grandeur
+
+Les signaux sismiques correspondent, en général, à de très faibles mouvements.
+
+Par suite de l'existence de plusieurs modes de propagation des ondes, différents
+types d'ondes caractérisés par des périodes particulières pourront être
+observés. Un séisme est caractérisé par deux magnitudes :
+
+- la magnitude de volume $M_b$, calculée à partir de l'amplitude des ondes de
+  compression P (période autour de 1 s en général),
+- la magnitude de surface $M_s$, mesurée à partir de l'amplitude des ondes de
+  Rayleigh (période de 20 s).
+
+Les valeurs des déplacements $A$ en µm (crête à crête) à une période $T$ (en s),
+observées à une distance angulaire $\Delta$ (en degrés) sont données par les
+relations de Gutenberg :
+
+$$
+M_b = \log \frac{A}{T} + Q(\Delta, h)
+$$
+
+où $Q$ est un coefficient (fourni par des tables) dépendant de la profondeur $h$
+du séisme et de la distance $\Delta$ (pour $T$ autour de 1 s).
+
+$$
+M_s = \log \frac{A}{T} + 1.66 \log \Delta + 2.82
+$$
+
+pour $T$ limitée entre 18 et 22 s (formule proposée par Gutenberg et citée par
+Melton (1976)).
+
+<!-- p. 9 -->
+
+Pour situer les ordres de grandeur, nous prendrons quelques exemples
+schématiques. Examinons l'effet de différents [séismes]{.underline}
+intervenant à de [faibles profondeurs]{.underline} ($\approx$ 60 km), observés
+à une [distance de 36 degrés]{.underline} environ, soit 4000 km.
+
+- un « petit » séisme ($M_b = 5$, $M_s = 4.5$) produit à 1 s des déplacements du
+  sol (onde P) d'amplitude 45 nm$_{cc}$ (soit une accélération de $\approx$
+  1.8 µm s$^{-2}$), et des déplacements à 20 s (ondes de surface) d'environ
+  2.5 µm$_{cc}$ (soit une accélération de 0.25 µm s$^{-2}$). De tels séismes
+  interviennent avec une fréquence de quelques milliers par an.
+
+- un séisme « moyen » ($M_b = 6$, $M_s = 6.5$), pouvant cependant être
+  meurtrier, intervient avec une fréquence de quelques dizaines par an. Il
+  produira à $\Delta$ = 36 deg. des déplacements de l'ordre de 0.45 µm$_{cc}$ à
+  1 s (soit $\approx$ 18 µm s$^{-2}$), et des déplacements d'environ
+  250 µm$_{cc}$ à 20 s (soit 25 µm s$^{-2}$).
+
+- un séisme « très fort » ($M_b = 7$, $M_s = 8.5$), qui ne se produit qu'à une
+  fréquence approximative de quelques dizaines par siècle, se traduit par des
+  mouvements de l'ordre de :
+  - 4.5 µm$_{cc}$ à 1 s (soit 180 µm s$^{-2}$)
+  - 25 mm$_{cc}$ à 20 s (soit 2.5 mm s$^{-2}$)
+
+**Limites basses des signaux observés :**
+
+Au contraire, pour des séismes locaux, l'observation ne sera possible qu'à des
+distances assez faibles, et lorsque les conditions d'observation sont bonnes :
+par exemple, un séisme $M_b = 3$, de faible profondeur, ne provoquera à
+2000 km ($\Delta$ = 18 deg), entre 0.2 et 0.5 s, que des déplacements de
+l'ordre de 1 nm$_{cc}$ (accélération à 0,4 s = 0.22 µm s$^{-2}_{cc}$ ou
+$\approx$ 80 nm s$^{-2}$ RMS).
+
+<!-- p. 10 -->
+
+Comparons ces signaux aux niveaux de bruit représentés à la figure 1.1. Cette
+figure montre les densités spectrales de bruit, observées dans les stations
+sismiques, telles que le mentionne le rapport IRIS (1984).
+
+Pour comparer ces densités spectrales à des signaux, il faut tenir compte de la
+bande de fréquence d'observation. Considérons un filtre d'un octave autour de
+0,35 Hz ($\Delta f$ = 2 Hz), la puissance de bruit généré, dans la bande
+considérée, par un bruit sismique de −160 dB réf. 1 m s$^{-2}/\sqrt{\text{Hz}}$
+($\gamma^* = 10^{-8}$ m s$^{-2}/\sqrt{\text{Hz}}$) sera :
+
+$$
+2~\text{Hz} \times \left(10^{-8}~\text{m s}^{-2}/\sqrt{\text{Hz}}\right)^2
+$$
+
+soit une valeur RMS de bruit de $1.4 \times 10^{-8}$ m s$^{-2}$
+(−157 dB m s$^{-2}$).
+
+Cette valeur est à comparer avec la valeur du signal généré par le séisme
+précédent, soit 80 nm s$^{-2}$ RMS. Comme la plage de bruit, dans ces
+fréquences, est supérieure à 40 dB, on voit que le bruit sismique pourra masquer
+les signaux d'un tel séisme.
+
+Une autre limitation dans les signaux observables est apportée par le bruit
+instrumental. Le bruit instrumental de quelques capteurs est également porté sur
+la figure 1.1 :
+
+- capteur ZM 500 : capteur vertical courte période, électrodynamique
+  conventionnel (période propre 1 s),
+- capteur LPZ 12 : capteur vertical longue période, conventionnel, de période
+  propre 12 s,
+- 1^er^ modèle de capteur horizontal longue période asservi (période propre
+  mécanique 12 s, période apparente 1 s) — version 1985 —
+
+<!-- p. 11 -->
+
+![Fig. 1.1 — Performances de bruit recherchées pour le capteur large bande.](figures/generees/fig-1-1){width=100%}

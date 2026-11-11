@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>5&nbsp; Perspectives d’évolution – Étude d'un sismomètre vertical, miniature, asservi, large bande, à grande dynamique</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapitres/06-conclusions.html" rel="next">
+<link href="../chapitres/04-application.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-9441525fbf0580c0fd63f04cdcee687d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Pas de résultats",
+    "search-matching-documents-text": "documents trouvés",
+    "search-copy-link-title": "Copier le lien vers la recherche",
+    "search-hide-matches-text": "Cacher les correspondances additionnelles",
+    "search-more-match-text": "correspondance de plus dans ce document",
+    "search-more-matches-text": "correspondances de plus dans ce document",
+    "search-clear-button-title": "Effacer",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Annuler",
+    "search-submit-button-title": "Envoyer",
+    "search-label": "Recherche"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapitres/05-perspectives.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Perspectives d’évolution</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Recherche" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Étude d’un sismomètre vertical, miniature, asservi, large bande, à grande dynamique</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Recherche"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Présentation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/01-introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction — Généralités</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/02-elements-theoriques.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Éléments d’analyse théorique</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/03-transducteur.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Étude et réalisation d’un transducteur déplacement faible bruit et de son électronique associée</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/04-application.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Application des améliorations obtenues et performances avec les capteurs L.D.G. (LPH-A et LPZ-A)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/05-perspectives.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Perspectives d’évolution</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/06-conclusions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Conclusions</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Références bibliographiques</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Annexes</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Basculer la section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/annexe-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Annexe 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/annexe-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Annexe 2 — Bruit généré lors du traitement du signal modulé</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Sur cette page</h2>
+   
+  <ul>
+  <li><a href="#sismomètre-mixte-bi-capteurs" id="toc-sismomètre-mixte-bi-capteurs" class="nav-link active" data-scroll-target="#sismomètre-mixte-bi-capteurs">5.1 Sismomètre mixte bi-capteurs</a></li>
+  <li><a href="#éléments-particuliers-pour-la-réalisation-dun-capteur-miniature" id="toc-éléments-particuliers-pour-la-réalisation-dun-capteur-miniature" class="nav-link" data-scroll-target="#éléments-particuliers-pour-la-réalisation-dun-capteur-miniature">5.2 Éléments particuliers pour la réalisation d’un capteur miniature</a>
+  <ul class="collapse">
+  <li><a href="#introduction-généralités" id="toc-introduction-généralités" class="nav-link" data-scroll-target="#introduction-généralités">5.2.1 Introduction — généralités</a></li>
+  <li><a href="#conséquences-sur-la-conception-du-capteur" id="toc-conséquences-sur-la-conception-du-capteur" class="nav-link" data-scroll-target="#conséquences-sur-la-conception-du-capteur">5.2.2 Conséquences sur la conception du capteur</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Perspectives d’évolution</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<!-- p. 182 -->
+<section id="sismomètre-mixte-bi-capteurs" class="level2">
+<h2 class="anchored" data-anchor-id="sismomètre-mixte-bi-capteurs">5.1 Sismomètre mixte bi-capteurs</h2>
+<p><strong>But&nbsp;:</strong></p>
+<p>Ce sismomètre vise à concilier dans un seul capteur les caractéristiques intéressantes du bruit électronique&nbsp;:</p>
+<ul>
+<li>en courtes périodes pour les capteurs conventionnels,</li>
+<li>en longues périodes pour les capteurs asservis.</li>
+</ul>
+<p><strong>Principe&nbsp;:</strong></p>
+<p>Son principe consiste à associer à une base mécanique type longue période, deux transducteurs déplacement et vitesse.</p>
+<ul>
+<li>Le transducteur déplacement est utilisé pour réaliser une réduction de période propre ainsi qu’un amortissement dynamique non dissipatif. Il permet, en outre, de récupérer un signal longue période faible bruit.</li>
+<li>Le transducteur vitesse est utilisé pour une mesure faible bruit dans la gamme courte période.</li>
+</ul>
+<p>Dans sa réalisation la plus simple, le capteur comporte deux voies «&nbsp;indépendantes&nbsp;» de mesure (fig.&nbsp;5.1.1)</p>
+<!-- p. 183 -->
+<p><strong>Courbes de réponse&nbsp;:</strong></p>
+<p>Voie déplacement&nbsp;:</p>
+<p><span class="math display">\[
+\frac{V_1}{\gamma_i}(s = j\omega) = \frac{H_m(j\omega)\,\alpha_1}{1 + H_m(j\omega)\,\alpha_1\beta} = \frac{\alpha_1 H_m(j\omega)}{1 + L(j\omega)}
+\]</span></p>
+<p><span class="math display">\[
+\frac{x}{\gamma_i}(s = j\omega) = \frac{H_m(j\omega)}{1 + L(j\omega)}
+\]</span></p>
+<p>Voie vitesse&nbsp;:</p>
+<p><span class="math display">\[
+\frac{V_2}{\gamma_i}(s = j\omega) = \frac{H_m(j\omega)\,\alpha_2\cdot s}{1 + L(j\omega)} = \frac{\alpha_2\cdot s}{\alpha_1}\,\frac{V_1}{\gamma_i}(s = j\omega)
+\]</span></p>
+<p>Les courbes de réponse pour <span class="math inline">\(\alpha_1\)</span> = cte et <span class="math inline">\(\alpha_2\)</span> = cte sont représentées à la figure 5.1.2 (représentation asymptotique).</p>
+<p>Pour la voie 1, la réponse est analogue à celle d’un capteur asservi classique, de période propre et d’amortissement libre <span class="math inline">\(T_m\)</span> et <span class="math inline">\(\xi_m\)</span>.</p>
+<p>Pour la voie 2, la réponse est celle d’un capteur de caractéristiques en régime libre <span class="math inline">\(T_0\)</span> et <span class="math inline">\(\xi_0\)</span>, correspondant aux caractéristiques de l’asservissement.</p>
+<!-- p. 184 -->
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../figures/generees/fig-5-1-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure 5.1.1 — Schéma du sismomètre «&nbsp;mixte&nbsp;»."><img src="../figures/generees/fig-5-1-1.svg" class="img-fluid figure-img" style="width:80.0%" data-fig-scap="Figure 5.1.1 — Schéma du sismomètre «&nbsp;mixte&nbsp;»" alt="Figure 5.1.1 — Schéma du sismomètre «&nbsp;mixte&nbsp;»."></a></p>
+<figcaption><strong>Figure 5.1.1</strong> — Schéma du sismomètre «&nbsp;mixte&nbsp;».</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../figures/generees/fig-5-1-2.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure 5.1.2 — Courbes de réponse du sismomètre mixte."><img src="../figures/generees/fig-5-1-2.svg" class="img-fluid figure-img" style="width:55.0%" data-fig-scap="Figure 5.1.2 — Courbes de réponse du sismomètre mixte" alt="Figure 5.1.2 — Courbes de réponse du sismomètre mixte."></a></p>
+<figcaption><strong>Figure 5.1.2</strong> — Courbes de réponse du sismomètre mixte.</figcaption>
+</figure>
+</div>
+<!-- p. 185 -->
+<p><strong>Conséquence sur la dynamique&nbsp;:</strong></p>
+<p>Le capteur disposant de deux voies, celles-ci auront à priori des propriétés dynamiques distinctes&nbsp;:</p>
+<p><em>Signaux maximums admissibles&nbsp;:</em></p>
+<p>Pour la voie <span class="math inline">\(V_1\)</span>, les signaux admissibles seront fixés classiquement par l’étage de sortie (éventuellement par les éléments en aval de <span class="math inline">\(V_1\)</span>).</p>
+<p><span class="math display">\[
+\gamma_{Mad_1}(j\omega) = \frac{V_{1Mad}}{H_{i_1}(j\omega)}
+\]</span></p>
+<p>Pour la voie <span class="math inline">\(V_2\)</span>, deux types de saturation peuvent intervenir, celle liée à la branche <span class="math inline">\(V_2\)</span> (dépendant directement de la sensibilité en sortie <span class="math inline">\(V_2\)</span>), et celle liée à la saturation au niveau de l’asservissement, correspondant à la saturation de l’étage <span class="math inline">\(\alpha_1\)</span>&nbsp;:</p>
+<p><span class="math display">\[
+\gamma_{Mad_2}(j\omega) = \operatorname{Min}\left(\frac{V_{2Mad}}{H_{i_2}(j\omega)}, \frac{V_{1Mad}}{H_{i_1}(j\omega)}\right)
+\]</span></p>
+<p>Une illustration de ceci apparaît à la figure 5.1.3.</p>
+<!-- p. 186 -->
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../figures/generees/fig-5-1-3.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure 5.1.3 — Signal maximum admissible (en accélération) d’un capteur mixte."><img src="../figures/generees/fig-5-1-3.svg" class="img-fluid figure-img" style="width:70.0%" data-fig-scap="Figure 5.1.3 — Signal maximum admissible" alt="Figure 5.1.3 — Signal maximum admissible (en accélération) d’un capteur mixte."></a></p>
+<figcaption><strong>Figure 5.1.3</strong> — Signal maximum admissible (en accélération) d’un capteur mixte.</figcaption>
+</figure>
+</div>
+<p><strong>Analyse du bruit électronique&nbsp;:</strong></p>
+<p>Il est important de noter que&nbsp;:</p>
+<ul>
+<li>le bruit généré par l’étage d’amplification de la voie vitesse n’amène pas de bruit sur la voie déplacement (sous réserve de négliger le bruit en courant de l’amplificateur de tête de la voie <span class="math inline">\(V_2\)</span>).</li>
+<li>le bruit engendré sur la voie déplacement au niveau de la boucle crée, non seulement un bruit en sortie «&nbsp;déplacement&nbsp;» <span class="math inline">\(V_1\)</span>, mais également en sortie «&nbsp;vitesse&nbsp;» <span class="math inline">\(V_2\)</span> du fait du déplacement parasite généré au niveau de la masse.</li>
+<li>la notion de bruit équivalent en entrée (i.e.&nbsp;par définition bruit en sortie/sensibilité) s’applique différemment pour les 2 voies <span class="math inline">\(V_1\)</span> et <span class="math inline">\(V_2\)</span>.</li>
+</ul>
+<!-- p. 187 -->
+<p><em>Remarques</em>&nbsp;: Pour alléger les notations, on raisonnera ici sur des sources de signaux. Pour obtenir les résultats concernant le bruit, simplement remplacer les signaux par la valeur RMS des bruits. Appliquons le principe de superposition&nbsp;:</p>
+<ul>
+<li><p>Soit <span class="math inline">\(\epsilon'\)</span> le bruit équivalent en entrée de l’amplificateur transducteur <span class="math inline">\(\alpha_2\)</span>&nbsp;:</p>
+<p>La source <span class="math inline">\(\epsilon'\)</span> amènera en sortie <span class="math inline">\(V_1\)</span> et <span class="math inline">\(V_2\)</span> les bruits&nbsp;:</p>
+<p><span class="math display">\[
+\begin{cases}
+V_{2\epsilon'} = \alpha_2\,\epsilon' \\
+V_{1\epsilon'} = 0
+\end{cases}
+\]</span></p>
+<p><span class="math display">\[
+|(\gamma_{\epsilon'})_2| = \left|\frac{1 + L(s)}{H_m(s)\cdot s}\right||\epsilon'|
+= \left|\frac{\alpha_1}{H_{BF}(s)\cdot s}\right||\epsilon'|
+\]</span></p>
+<p>(terme classique correspondant à un sismomètre vitesse de caractéristiques correspondant à celles du capteur en régime asservi).</p>
+<p><span class="math display">\[
+(\gamma_{\epsilon'})_1 = 0
+\]</span></p></li>
+<li><p>Soit <span class="math inline">\(\epsilon\)</span> le bruit équivalent en entrée du capteur de déplacement&nbsp;:</p>
+<p><span class="math display">\[
+|V_{1\epsilon}| = \left|\frac{\alpha_1}{1 + L(s)}\right||\epsilon| \qquad\text{(terme classique)}
+\]</span></p>
+<p><span class="math display">\[
+|V_{2\epsilon}| = \left|\frac{\alpha_1\beta\,H_m(s)\cdot s\cdot\alpha_2}{1 + L(s)}\right||\epsilon_\alpha|
+= \left|\frac{L(s)}{1 + L(s)}\,s\,\alpha_2\right||\epsilon|
+\]</span></p></li>
+</ul>
+<!-- p. 188 -->
+<p>Le bruit équivalent en entrée, engendré par cette source, est&nbsp;:</p>
+<p><span class="math display">\[
+|(\gamma_\epsilon)_1| = \left|\frac{1}{H_m(s)}\right||\epsilon| \qquad\text{pour la voie } V_1
+\]</span></p>
+<p><span class="math display">\[
+|(\gamma_\epsilon)_2| = \left|\frac{L(s)\,s\alpha_2}{H_m(s)\,s\alpha_2}\right||\epsilon|
+= \left|\frac{L(s)}{H_m(s)}\right||\epsilon| = |\alpha_1\beta(s)|\,|\epsilon|
+\qquad\text{pour la voie } V_2
+\]</span></p>
+<p>Par suite</p>
+<p><span class="math display">\[
+\boxed{|(\gamma_\epsilon)_2| = |L(s)|\cdot|(\gamma_\epsilon)_1|}
+\]</span></p>
+<p>Cette relation montre que&nbsp;:</p>
+<ul>
+<li><em>Aux périodes où l’asservissement impose la courbe de réponse</em> (<span class="math inline">\(L \gg 1\)</span>), c’est-à-dire essentiellement en longues périodes, le bruit de l’étage de tête généré par l’asservissement aura un effet (en terme de signal/bruit) amplifié dans le rapport <span class="math inline">\(L(s)\)</span>. Ce qui signifie que la voie «&nbsp;vitesse&nbsp;» — sans même tenir compte de son bruit propre — sera plus bruyante que la voie «&nbsp;déplacement&nbsp;» en longues périodes. Néanmoins, excepté autour de la période centrale <span class="math inline">\(T_0\)</span>, le bruit équivalent en entrée <span class="math inline">\((\gamma_\epsilon)_2\)</span> sera négligeable devant le bruit propre <span class="math inline">\((\gamma_{\epsilon'})_2\)</span> de cette voie qui croît de 20 dB par décade plus rapidement, en longues périodes (cf. courbes fig.&nbsp;5.1.4).</li>
+</ul>
+<!-- p. 189 -->
+<ul>
+<li>Aux périodes plus faibles (pour <span class="math inline">\(T &lt; T_0\)</span>), le rapport entre <span class="math inline">\((\gamma_\epsilon)_2\)</span> et <span class="math inline">\((\gamma_\epsilon)_1\)</span> est inverse car <span class="math inline">\(|L| &lt; 1\)</span> et le rapport <span class="math inline">\(\dfrac{(\gamma_\epsilon)_2}{(\gamma_\epsilon)_1}\)</span> va décroître asymptotiquement de 20 dB par décade (cf.&nbsp;figure 5.1.4). Le bruit propre <span class="math inline">\((\gamma_{\epsilon'})_2\)</span> de la voie vitesse <span class="math inline">\(V_2\)</span> sera à peu près comparable au bruit <span class="math inline">\((\gamma_\epsilon)_2\)</span> (en tous cas, de rapport à peu près constant avec la fréquence en courtes périodes). De ce fait, le bruit global, en courtes périodes, sera à peu près comparable à celui d’un capteur CP classique et donc nettement meilleur que celui d’un capteur asservi classique (voie <span class="math inline">\(V_1\)</span>). Pour un capteur de période nominale 1 s, en régime asservi, nous pouvons espérer un gain de 20 dB environ à 10 Hz (pour la voie <span class="math inline">\(V_2\)</span>).</li>
+</ul>
+<p><em>Remarques&nbsp;:</em></p>
+<ul>
+<li>Si l’on modifie la période mécanique <span class="math inline">\(T_m\)</span>, en conservant une même période <span class="math inline">\(T_0\)</span>, le bruit <span class="math inline">\((\gamma_\epsilon)_2\)</span> ne sera pratiquement pas affecté (sous réserve que <span class="math inline">\(T_m\)</span> reste assez grand devant <span class="math inline">\(T_0\)</span>)&nbsp;: c’est uniquement le bruit <span class="math inline">\((\gamma_\epsilon)_1\)</span> qui sera modifié. Comme le bruit <span class="math inline">\((\gamma_{\epsilon'})_2\)</span> ne dépend également que des caractéristiques en boucle fermée <em>vues de la sortie vitesse <span class="math inline">\(V_2\)</span></em>, les performances de <em>bruit ne dépendront</em> pratiquement <em>pas de la période propre <span class="math inline">\(T_m\)</span></em> (en dehors du bruit «&nbsp;thermique&nbsp;» qui dépend de <span class="math inline">\(T_m\)</span> et <span class="math inline">\(\xi_m\)</span>). De ce fait, pour minimiser le bruit de la voie <span class="math inline">\(V_2\)</span> aux périodes intermédiaires, il sera préférable d’augmenter légèrement <span class="math inline">\(T_0\)</span>.</li>
+</ul>
+<!-- p. 190 -->
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../figures/generees/fig-5-1-4.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figure 5.1.4 — Signaux maximaux et bruits des voies V_1 et V_2 du sismomètre mixte."><img src="../figures/generees/fig-5-1-4.svg" class="img-fluid figure-img" style="width:85.0%" data-fig-scap="Figure 5.1.4 — Signaux maximaux et bruits des voies $V_1$ et $V_2$ du sismomètre mixte" alt="Figure 5.1.4 — Signaux maximaux et bruits des voies V_1 et V_2 du sismomètre mixte."></a></p>
+<figcaption><strong>Figure 5.1.4</strong> — Signaux maximaux et bruits des voies <span class="math inline">\(V_1\)</span> et <span class="math inline">\(V_2\)</span> du sismomètre mixte.</figcaption>
+</figure>
+</div>
+<!-- p. 191 -->
+<p><strong>Remarques&nbsp;:</strong></p>
+<p>Dans une seconde phase, on pourrait chercher à tirer partie des caractéristiques de faible bruit de la voie <span class="math inline">\(V_1\)</span> en longues périodes, ainsi que de la voie <span class="math inline">\(V_2\)</span> en courtes périodes, en fabriquant un signal composite par sommation des signaux <span class="math inline">\(V_1\)</span> et <span class="math inline">\(V_2\)</span> (convenablement filtrés&nbsp;: passe-haut pour la voie <span class="math inline">\(V_2\)</span> — passe-bas pour la voie <span class="math inline">\(V_1\)</span>).</p>
+<p>La courbe de réponse obtenue pourrait être du type vitesse-accélération (vitesse en courte période et accélération en longue période).</p>
+<p>Cependant, cette solution, bien que séduisante, soulève de nombreux problèmes de réalisation (réglages des gains et des courbes de réponse, tests, risques d’intéractions parasites entre les voies …)</p>
+<p><strong>Éléments pour la réalisation&nbsp;:</strong></p>
+<p>Le sismomètre mixte bi-capteur doit comporter trois transducteurs&nbsp;:</p>
+<ul>
+<li><p>transducteur déplacement → tension&nbsp;: type LVDT faible bruit</p></li>
+<li><p>transducteur vitesse → tension&nbsp;: type bobine aimant.</p>
+<p>Celui-ci ne devra pas générer d’amortissement comme dans le cas du capteur conventionnel. Pour éviter l’amortissement électrodynamique, la bobine devra attaquer la très haute impédance de l’entrée positive d’un amplificateur opérationnel.</p></li>
+<li><p>transducteur courant (ou tension) → force&nbsp;: type bobine aimant.</p>
+<p>Pour éviter les phénomènes de couplage parasite, on utilisera pour les transducteurs vitesse et force deux bobines plongeant dans <em>deux aimants distincts</em>.</p></li>
+</ul>
+<!-- p. 192 -->
+<p>La bobine du transducteur vitesse devra avoir un produit <span class="math inline">\(B\cdot\ell\)</span> (i.e.&nbsp;champ magnétique × longueur) élevé, de manière à disposer d’un «&nbsp;gain&nbsp;» propre aussi élevé que possible (de l’ordre de 1000 N/A devrait convenir). L’amplificateur devra être choisi avec de très bonnes caractéristiques de bruit (en particulier faible courant de bruit à cause de la forte impédance de la bobine) et de dérive (exemple OPA 111 BM).</p>
+<p>La bobine du transducteur force devra disposer d’un <span class="math inline">\(B\ell\)</span> plus faible pour respecter la condition <span class="math inline">\(B\ell \ll \alpha_1\)</span>, et pourra utiliser un aimant de plus faible taille.</p>
+<p><strong>Conclusion&nbsp;:</strong></p>
+<p>Le sismomètre mixte bi-capteur doit permettre de concilier, en un seul capteur, les performances de bruit du capteur asservi en longues périodes et du capteur conventionnel courte période sans modification trop importante des capteurs existants.</p>
+<p>Cependant, ces possibilités se traduisent par une dynamique maximale proche de celle du capteur asservi et donc en retrait par rapport au capteur conventionnel en longue période.</p>
+<!-- p. 193 -->
+</section>
+<section id="éléments-particuliers-pour-la-réalisation-dun-capteur-miniature" class="level2">
+<h2 class="anchored" data-anchor-id="éléments-particuliers-pour-la-réalisation-dun-capteur-miniature">5.2 Éléments particuliers pour la réalisation d’un capteur miniature</h2>
+<section id="introduction-généralités" class="level3">
+<h3 class="anchored" data-anchor-id="introduction-généralités">5.2.1 Introduction — généralités</h3>
+<p>Comme on l’a déjà signalé au paragraphe 2, la conception d’un capteur vertical miniature, capable d’opérer dans le domaine des longues périodes, est délicate.</p>
+<p>Considérons, pour simplifier, un capteur obtenu par une homothétie de rapport ½ (dans le plan vertical). Plaçons nous, pour simplifier, dans le cas d’un pendule de Lacoste. On notera avec le symbole ’ les caractéristiques du nouveau capteur&nbsp;:</p>
+<p><span class="math display">\[
+r_{G'} = r_G/2
+\]</span></p>
+<p>Supposons que l’angle d’inclinaison <span class="math inline">\(\delta\)</span> n’est pas affecté, dans ce cas, la période <span class="math inline">\(T_m = 2\pi\sqrt{\dfrac{r_G}{g}\cdot\dfrac{\sin\beta}{\sin\delta}}\)</span> (cf. Annexe I) devient <span class="math inline">\(T_{m'} = T_m/\sqrt2\)</span></p>
+<p>La sensibilité en accélération <span class="math inline">\(\left|\dfrac{x_G}{\gamma_i}\right|\)</span> en longue période <span class="math inline">\(\left(\dfrac{T_m^2}{4\pi^2}\right)\)</span> est alors divisée par 2.</p>
+<p><em>NB</em>&nbsp;: La compensation de la variation de période propre peut être effectuée en modifiant l’angle <span class="math inline">\(\delta\)</span> (inclinaison du capteur)&nbsp;; comme <span class="math inline">\(\delta\)</span> petit, <span class="math inline">\(\delta = \operatorname{tg}\delta = \dfrac{I_\Omega}{mg\,r_G}\cdot\dfrac{4\pi^2}{T^2}\)</span>, l’angle <span class="math inline">\(\delta\)</span> devrait être divisé par 2. Ceci réduit la marge de réglage (par exemple pour le LPZ 12 s <span class="math inline">\(\delta\)</span> = 0.383 deg (= 6.7 mrad)). Cette diminution d’angle s’accompagnerait par une augmentation des termes non linéaires provenant des imperfections de réglage de longueur nulle.</p>
+<!-- p. 194 -->
+<p>Au niveau des efforts à l’équilibre&nbsp;:</p>
+<p><span class="math display">\[
+mg\,r_G = k\,a_1 a_2\sin\alpha \quad (= k\,a_1 a_2\cos\delta)
+\]</span></p>
+<p>Si l’on utilise une géométrie homothétique et des masses volumiques identiques, on aura (sans réduction de taille, suivant l’axe de rotation)&nbsp;:</p>
+<p><span class="math display">\[
+m' = m/4 \qquad k' = k/2
+\]</span></p>
+<p>Les forces seront divisées par 4 et les couples par 8.</p>
+<p>On voit ainsi que l’action des efforts parasites (forces électrostatiques, couples parasites produits par un pivot à lame, …) sera augmentée.</p>
+<p>Par ailleurs, comme le signale <span class="citation" data-cites="melton1976">Melton (<a href="references.html#ref-melton1976" role="doc-biblioref">1976</a>)</span>, l’action des divers mécanismes d’amortissement dissipatif se trouve renforcée&nbsp;:</p>
+<ul>
+<li>hystérésis mécanique,</li>
+<li>action des courants de Foucault,</li>
+<li>amortissement électrodynamique.</li>
+</ul>
+<p>En particulier, le bruit de Johnson (de valeur RMS <span class="math inline">\(\left(16\pi\,k_BT\cdot\dfrac{I_\Omega}{mr_G^2}\cdot\dfrac{\xi_m}{m\,T_m}\right)^{1/2}\)</span>) pourra devenir critique, si <span class="math inline">\(m\)</span> et <span class="math inline">\(T_m\)</span> sont diminués, tandis que <span class="math inline">\(\xi_m\)</span> est en général augmenté.</p>
+<p>À titre d’exemple, avec les hypothèses précédentes, si on considère un couple d’amortissement dissipatif inchangé <span class="math inline">\(\Phi\dot\varphi\)</span>,</p>
+<!-- p. 195 -->
+<p>l’amortissement réduit <span class="math inline">\(\xi'_m\)</span> sera alors&nbsp;:</p>
+<p><span class="math display">\[
+\xi'_m = \frac{\Phi}{2\,I_{\Omega'}\,\omega_{m'}}, \quad\text{de sorte que}\quad
+\frac{\xi'_m}{T_{m'}} \approx \frac{16\,\xi_m}{T_m}
+\quad\left(= \frac{1}{4\pi}\,\frac{\Phi}{I_\Omega}\right)
+\]</span></p>
+<p>De ce fait, la valeur RMS du bruit de Johnson serait multipliée par 8 (= √(16 × 4))</p>
+</section>
+<section id="conséquences-sur-la-conception-du-capteur" class="level3">
+<h3 class="anchored" data-anchor-id="conséquences-sur-la-conception-du-capteur">5.2.2 Conséquences sur la conception du capteur</h3>
+<p>Un capteur miniature, large bande, à grande dynamique, utilisant l’électronique large bande développée dans cette étude, devra intégrer les éléments suivants&nbsp;:</p>
+<ul>
+<li>Compte-tenu de la marge actuelle existant entre le bruit électronique longue période et le bruit sismique minimum connu (et également la limitation actuelle issue du bruit de l’étage de sortie), la période propre mécanique pourra, du point de vue du bruit électronique, être réduite jusqu’à une valeur minimum de 4 à 5 s. Cette réduction de période pourra permettre de conserver une «&nbsp;marge de stabilité&nbsp;» raisonnable.</li>
+<li>Au niveau mécanique, les besoins de stabilité des caractéristiques sont au moins aussi sévères que pour les suspensions classiques&nbsp;:
+<ul>
+<li>le capteur doit être compensé thermiquement,</li>
+<li>la suspension doit être intégrée dans une enceinte-bâti étanche et très rigide, afin d’être mise sous vide.</li>
+</ul></li>
+<li>L’électronique pourra intégrer dans la boucle d’asservissement un correcteur P + I (celui-ci permet, en réduisant les déplacements de la masse en longues périodes, de faire face aux problèmes de non linéarité mécanique).</li>
+</ul>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-agnew1978" class="csl-entry" role="listitem">
+Agnew, D. C., et J. Berger. 1978. <span>«&nbsp;Vertical seismic noise at very low frequencies&nbsp;»</span>. <em>J. Geophys. Res.</em> 83: 5420‑24.
+</div>
+<div id="ref-brune1959" class="csl-entry" role="listitem">
+Brune, J. N., et J. E. Olivier. 1959. <span>«&nbsp;The seismic noise at the Earth’s surface&nbsp;»</span>. <em>Bull. Seismol. Soc. Amer.</em> 49: 349‑53.
+</div>
+<div id="ref-fix1973" class="csl-entry" role="listitem">
+Fix, J. E. 1973. <span>«&nbsp;Theoretical and observed noise in a high sensivity long-period seismogram&nbsp;»</span>. <em>Bull. Seismol. Soc. Amer.</em> 63: 1979‑98.
+</div>
+<div id="ref-fouquet1986" class="csl-entry" role="listitem">
+Fouquet, D. 1986. <em>Compte-rendu de la mission d’installation de la station longue période de Pamatai</em>. Rapport interne. Laboratoire de Détection et de Géophysique.
+</div>
+<div id="ref-herbin1982" class="csl-entry" role="listitem">
+Herbin, E. 1982. <span>«&nbsp;The resolution of seismic instruments in treaty verification research&nbsp;»</span>. <em>Bull. Seismol. Soc. Amer.</em> 72: 561‑67.
+</div>
+<div id="ref-iris1984" class="csl-entry" role="listitem">
+IRIS. 1984. <em>Science plan for a new Global Seismographic Network</em>. Incorporated Research Institutions for Seismology.
+</div>
+<div id="ref-melton1971" class="csl-entry" role="listitem">
+Melton, B. S. 1971. <span>«&nbsp;The <span>LaCoste</span> suspension: principles and practice&nbsp;»</span>. <em>Geophys. J. Roy. astr. Soc.</em> 22: 521‑43.
+</div>
+<div id="ref-melton1976" class="csl-entry" role="listitem">
+Melton, B. S. 1976. <span>«&nbsp;The sensivity and dynamic range of inertial seismographs&nbsp;»</span>. <em>Revs. Geophys. Space Phys.</em> 14: 93‑116.
+</div>
+<div id="ref-usher1978" class="csl-entry" role="listitem">
+Usher, M. J., C. Guralp, et R. F. Burch. 1978. <span>«&nbsp;The design of miniature wideband seismometers&nbsp;»</span>. <em>Geophys. J. Roy. astr. Soc.</em> 55: 605‑13.
+</div>
+<div id="ref-weinstein1965" class="csl-entry" role="listitem">
+Weinstein, M. D. 1965. <span>«&nbsp;Flexure pivot bearings&nbsp;»</span>. <em>Mach. Des.</em> 37: 136‑57.
+</div>
+<div id="ref-wielandt1982" class="csl-entry" role="listitem">
+Wielandt, E., et G. Strieckeisen. 1982. <span>«&nbsp;The leaf-spring seismometer: design and performance&nbsp;»</span>. <em>Bull. Seismol. Soc. Amer.</em> 72: 2349‑67.
+</div>
+</div>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copié");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copié");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapitres/04-application.html" class="pagination-link" aria-label="Application des améliorations obtenues et performances avec les capteurs L.D.G. (LPH-A et LPZ-A)">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Application des améliorations obtenues et performances avec les capteurs L.D.G. (LPH-A et LPZ-A)</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapitres/06-conclusions.html" class="pagination-link" aria-label="Conclusions">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Conclusions</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

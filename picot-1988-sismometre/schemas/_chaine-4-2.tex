@@ -1,0 +1,42 @@
+% Synoptique commun aux figures 4.2.2 et 4.2.4 (inclus par fig-4-2-2b.tex et fig-4-2-4a.tex)
+\newcommand{\miniboite}[3]{% centre, tracé dans un repère local 0..1.8 x 0..1.0, titre
+  \begin{scope}[shift={#1}]
+    \draw (-1.0,-0.65) rectangle (1.0,0.65);
+    \begin{scope}[shift={(-0.9,-0.5)}, font=\scriptsize] #2 \end{scope}
+    \node[below, align=center, font=\footnotesize] at (0,-0.7) {#3};
+  \end{scope}}
+% \chaine{gain capteur}{tracé du dernier filtre}{titre du dernier filtre}{texte de sortie}
+\newcommand{\chaine}[4]{%
+  \draw[dashed] (-0.4,-3.0) rectangle (7.0,1.3);
+  \node[above right, font=\footnotesize] at (-0.35,-3.0) {SISMOMÈTRE};
+  \draw[->] (-1.4,0) -- (0.3,0); \node[above, font=\footnotesize] at (-0.8,0) {accélération};
+  \fill (0.3,0) circle (1.3pt);
+  \node[bloc, font=\footnotesize, minimum width=1.4cm, minimum height=0.7cm] (sis) at (1.6,0) {sismomètre};
+  \draw (0.3,0) -- (sis.west);
+  \pic (tr) at (3.1,0) {transducteur};
+  \node[gain, minimum size=7mm] (am) at (4.3,0) {};
+  \draw (sis.east) -- (tr-o); \draw (tr-e) -- (am.west); \draw (am.east) -- (5.2,0);
+  \node[above, font=\footnotesize] at (4.8,0) {$V_0$};
+  \node[bloc, minimum width=1.2cm, minimum height=0.8cm] (rc) at (1.8,-1.1) {};
+  \RparC{(1.8,-1.1)}{1.0}{0.4}
+  \pic (tb) at (0.3,-1.1) {transducteur};
+  \draw (5.2,0) |- (rc.east); \draw (rc.west) -- (tb-e); \draw[->] (0.3,-0.86) -- (0.3,-0.05);
+  \begin{scope}[shift={(2.9,-2.6)}, font=\scriptsize]
+    \draw (0,-0.2) rectangle (3.6,0.9);
+    \draw (0.1,0.55) -- (1.7,0.55) -- (2.4,-0.1);
+    \node at (0.85,0.25) {#1}; \node[above] at (1.75,0.55) {1 s}; \node at (2.25,0.3) {(2)};
+    \node at (3.05,0.35) {$\left|\dfrac{V_0}{\gamma_{sd}}\right|$};
+  \end{scope}
+  \miniboite{(6.0,0)}{\draw (0,0.1) -- (0.3,0.6) -- (1.5,0.6) -- (1.8,0.1); \node[above] at (0.9,0.6) {40 dB};
+     \node[font=\tiny] at (0.4,0.12) {400 s}; \node[font=\tiny] at (1.45,0.12) {10,8 Hz};}{Passe-bande\\10,9 Hz}
+  \draw (5.2,0) -- (5.0,0); \draw (7.0,0) -- (7.6,0);
+  \node[above, font=\scriptsize, align=center] at (7.35,0.03) {sortie\\G1000};
+  \miniboite{(8.6,0)}{\draw (0,0.1) -- (0.9,0.75) -- (1.8,0.1); \node[above] at (0.9,0.75) {60 s};
+     \node at (1.5,0.75) {20 s}; \node at (1.45,0.2) {0 dB};}{Passe-haut 60 s\\+ intégrateur}
+  \draw (9.6,0) -- (10.2,0);
+  \miniboite{(11.2,0)}{\draw (0,0.5) -- (0.15,0.65) -- (1.0,0.65) -- (1.8,0.1);
+     \node at (0.4,0.85) {4000 s}; \node at (1.25,0.85) {400 s}; \node at (1.45,0.55) {20 s}; \node at (1.45,0.15) {0 dB};}{Intégrateur/\\dérivateur}
+  \draw (12.2,0) -- (12.8,0);
+  \miniboite{(13.8,0)}{#2}{#3}
+  \draw[->] (14.8,0) -- (15.4,0);
+  \node[align=center, font=\footnotesize, anchor=north] at (13.8,-1.6) {#4};}

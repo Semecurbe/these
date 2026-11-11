@@ -1,0 +1,40 @@
+\input{_preambule}
+\begin{document}
+\begin{tikzpicture}[x=0.06cm, y=0.06cm, font=\small]
+  % repères (mm) : O en (0,-24), K en (-132,-20), Omega en (-59,0), G en (-105,0)
+  \coordinate (O) at (0,-24); \coordinate (K) at (-132,-20);
+  \coordinate (W) at (-59,0); \coordinate (G) at (-105,0);
+  % verticales
+  \draw[axe] (-132,-20) -- (-132,50) node[above] {Verticale};
+  \draw[axe] (0,-24) -- (0,50) node[above] {Verticale};
+  \node[right] (rep) at (12,42) {Lame au repos}; \draw[->] (rep.west) -- (0.5,38);
+  % lame déformée
+  % lame déformée : données numérisées de la fig. 2.1.6 (repère : O en (0,-24))
+  \draw[line width=1pt] plot[smooth] coordinates {(-132.0,-19.9) (-131.2,-17.0) (-130.5,-13.8) (-129.8,-10.6) (-129.2,-7.4) (-128.3,-4.4) (-126.7,-1.6) (-125.1,1.1) (-123.4,3.9) (-121.6,6.5) (-119.4,8.8) (-117.3,11.1) (-115.0,13.3) (-112.7,15.2) (-110.2,17.1) (-107.7,18.7) (-105.1,20.4) (-102.4,21.7) (-99.7,23.0) (-96.9,24.1) (-94.1,25.2) (-91.3,26.1) (-88.3,26.8) (-85.4,27.5) (-82.4,28.1) (-79.3,28.5) (-76.2,28.8) (-73.0,29.0) (-69.8,29.1) (-66.6,29.1) (-63.5,28.9) (-60.4,28.6) (-57.3,28.2) (-54.3,27.6) (-51.3,27.0) (-48.4,26.3) (-45.4,25.5) (-42.6,24.5) (-39.8,23.5) (-37.0,22.4) (-34.3,21.1) (-31.6,19.8) (-29.0,18.3) (-26.4,16.7) (-23.9,15.0) (-21.4,13.2) (-19.0,11.2) (-16.7,9.1) (-14.4,6.9) (-12.4,4.5) (-10.3,2.0) (-8.5,-0.5) (-6.8,-3.2) (-5.1,-5.9) (-4.0,-8.9) (-2.6,-11.8) (-1.7,-14.9) (-0.9,-18.0) (-0.6,-21.3) (-0.2,-24.5)};
+  \node (ld) at (-70,45) {Lame déformée}; \draw[->] (ld.south) -- (-70,31);
+  % bras
+  \draw[line width=0.8pt] (K) -- (W) -- (G);
+  \fill ($(G)+(-1.5,-2)$) rectangle ($(G)+(1.5,2)$);
+  \node[above] at (G) {$G$}; \node[below] at ($(G)+(0,-1.5)$) {$M$};
+  \node[above] at (W) {$\Omega$};
+  \node[below right] at (K) {$K$}; \node[below left] at (O) {$O$};
+  \fill[pattern=north east lines] (-3,-27) rectangle (4,-24);
+  % angles droits
+  \draw (-132,-12) arc (90:160:6); \node[left] at (-131,0) {$90^\circ$};
+  \draw (6,-24) arc (0:90:6); \node[right] at (7,-18) {$90^\circ$};
+  % cotes
+  \draw[cote] (-150,-20) -- (-150,0) node[midway, left] {$20 \pm 1$};
+  \draw[dotted] (-150,0) -- (-110,0);
+  \draw[cote] (12,-24) -- (12,0) node[midway, right] {$24 \pm 1$};
+  \draw[dotted] (12,0) -- (-55,0);
+  \draw[cote] (-59,-34) -- (0,-34) node[midway, above] {$59 \pm 3$};
+  \draw[cote] (-132,-42) -- (0,-42) node[midway, below] {$132 \pm 0.5$};
+  % section
+  \begin{scope}[shift={(-185,35)}]
+    \node[above right] at (0,8) {Section};
+    \fill[pattern=north east lines] (0,0) rectangle (24,3); \draw (0,0) rectangle (24,3);
+    \draw[cote] (0,-4) -- (24,-4) node[midway, below] {$b$};
+    \draw[cote] (-4,0) -- (-4,3) node[midway, left] {$h$};
+  \end{scope}
+\end{tikzpicture}
+\end{document}

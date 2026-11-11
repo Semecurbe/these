@@ -1,0 +1,839 @@
+<!-- p. 89 -->
+
+## 2.3 — Bruit et dynamique
+
+### 2.3.0 — Introduction
+
+Le problème de la dynamique et du bruit est d'une grande complexité, dans son
+ensemble, car il fait intervenir de nombreuses sources de bruit et des
+mécanismes assez complexes. On appellera « bruit » tout ce qui perturbe le
+signal (phénomène aléatoire ou non aléatoire). Concernant le bruit, il est
+indispensable de ne pas perdre de vue l'impossibilité de mesures directes, sur
+site, du bruit instrumental dans les conditions réelles de fonctionnement, du
+fait de l'existence du bruit sismique.
+
+De manière classique, on recourt, pour évaluer le bruit électronique d'un
+capteur, à une mesure capteur bloqué. Si cette méthode, appliquée à un capteur
+conventionnel électrodynamique, donne des résultats représentatifs du bruit
+électronique en fonctionnement normal, il n'en est pas de même pour le capteur
+asservi du fait de la boucle d'asservissement. En effet, l'asservissement
+modifiant la courbe de réponse du capteur, il affecte également les bruits. Pour
+un capteur asservi, une mesure capteur bloqué n'est représentative que du bruit
+de la chaîne de mesure des déplacements de la mesure.
+
+Par ailleurs, l'approche souvent retenue consistant à évaluer bruit sismique et
+instrumental, par autocorrélation des bruits observés sur deux capteurs, n'est
+pas totalement satisfaisante : en effet, le bruit « sismique », ainsi mis en
+lumière, peut faire intervenir des bruits découlant en réalité des sensibilités
+parasites (car ces sensibilités parasites peuvent produire des « bruits
+instrumentaux » (partiellement) cohérents).
+
+<!-- p. 90 -->
+
+### 2.3.1 — Signaux admissibles par le capteur
+
+Généralement, les signaux maximaux admissibles sont liés à la courbe de réponse
+du capteur et la limitation s'opère au niveau du dernier étage d'amplification.
+De ce fait, les signaux maximaux en entrée ont la forme de l'inverse de la
+courbe de réponse.
+
+Pour le capteur asservi ne comportant pas d'éléments actifs dans la
+contre-réaction, le signal maximum admissible est fixé par la sensibilité en
+boucle fermée et en particulier par la fréquence nominale d'asservissement
+plutôt que par la fréquence propre naturelle. Ceci permet un accroissement de la
+dynamique, dans les longues périodes, de 40 dB, par décade de diminution de la
+période propre (par exemple, pour $T_m$ = 12 s et $T_0$ = 1 s, on permet un
+accroissement de $\left(\frac{12}{1}\right)^2 \sim$ 43 dB des signaux tolérables
+aux périodes supérieures à 12 s par rapport à un fonctionnement en régime
+libre).
+
+La figure 2.3.1 permet de comparer les signaux maximaux tolérés par un capteur
+classique électrodynamique et un capteur asservi.
+
+<!-- p. 91 -->
+
+![Figure 2.3.1 — Comparaison des signaux maximaux admissibles tolérés par un capteur électrodynamique et un capteur asservi.](figures/generees/fig-2-3-1){width=95%}
+
+Le LPZ-12s est un capteur conventionnel Longue Période (période propre mécanique
+12 s, sortie corrigée électroniquement selon la réponse d'un capteur 60 s).
+
+Le LPH-A est un capteur asservi large bande (période propre mécanique 12 s,
+période nominale en régime asservi 1 s).
+
+La réponse de ces 2 capteurs est identique à 20 s : 1 V/mm.
+
+Le ZM 500 est un capteur conventionnel courte période (période propre 1 s) ; les
+2 courbes correspondent à deux valeurs de sensibilité (sortie « gain 1 » :
+$7.2\cdot10^5$ V/m$^{-1}$ et sortie « 1/512 » : 1400 V/m s$^{-1}$ aux
+fréquences supérieures à 1 Hz). La tension maximale prise en compte
+(4 V$_{CC}$) correspond au niveau des transmissions courte période utilisées au
+LDG.
+
+<!-- p. 92 -->
+
+### 2.3.2 — Analyse de bruit
+
+#### 2.3.2.1 — Quelques éléments théoriques sur la représentation des signaux aléatoires et des bruits
+
+Les quelques éléments présentés ici ne constituent pas une approche formelle.
+Nous nous contenterons du rappel (sans démonstration) de quelques notions et
+résultats importants pour une bonne compréhension des analyses de bruit.
+
+L'observation d'une source de bruit électronique révèle à la fois une
+irrégularité de détail et une certaine homogénéité. Pour parvenir à décrire de
+tels phénomènes, une représentation probabiliste s'impose. Pour cela, on
+considère non pas une unique source de bruit, mais l'ensemble $E$ infini des
+sources de bruit identiques placées dans les mêmes conditions. On peut alors
+voir chaque signal mesuré $x(t,i)$ — pour $i \in \{1, 2, 3 \ldots\}$ — comme le
+résultat d'un tirage aléatoire, parmi un ensemble probabilisé, de fonctions du
+temps. On appellera cet ensemble probabilisé un « processus aléatoire ».
+
+À chaque instant $t_1$ (fixé), on peut définir une densité de probabilité
+$p(\chi, t_1)$ de la variable aléatoire $x(t_1, E)$, ainsi que les différents
+moments $E\left[x^k(t_1)\right] = \int x^k\,p(\chi, t_1)\,d\chi$
+
+($E[v]$ désignant l'espérance de la variable aléatoire $v$, c'est-à-dire la
+moyenne statistique).
+
+- On supposera que les bruits sont des [processus aléatoires stationnaires
+  d'ordre 2]{.underline}, c'est-à-dire que $p(\chi, t)$ et les deux moments
+  $E[x(t)]$ et $E[x^2(t)]$ sont indépendants du temps.
+
+<!-- p. 93 -->
+
+*Remarque :*
+
+Pratiquement, la plupart des processus stationnaires rencontrés sont
+« Gaussiens », c'est-à-dire que leur densité de probabilité est de la forme :
+
+$$
+p(\chi) = \frac{1}{\sqrt{2\pi}}\cdot\frac{1}{\sigma_x}\exp\left(-\frac{(\chi - E[x])^2}{2\sigma_x^2}\right)
+$$
+
+où $\sigma_x^2 = E\left[(x - E[x])^2\right]$ désigne la variance.
+
+- On supposera le processus « [ergodique]{.underline} » : c'est-à-dire que les
+  moyennes d'ensemble $E[x^k]$ et les moyennes temporelles sur une réalisation
+  quelconque $i$
+
+  $$
+  \overline{x^k(t,i)} = \lim_{T\to\infty}\left(\frac{1}{T}\cdot\int_{-T/2}^{+T/2} x^k(t,i)\,dt\right)
+  $$
+
+  sont identiques ($k$ = 1 à 2).
+
+Cette propriété permet de réaliser des [analyses en utilisant]{.underline}, non
+plus comme en théorie, $n$ systèmes ($n \to \infty$) identiques, mais [un seul
+système]{.underline}.
+
+**Principales notions utilisées :**
+
+- Moyenne : notée $\bar x$ pour la moyenne temporelle (ou $E[x]$ pour la
+  moyenne statistique)
+
+  $E[x(t)] = \bar x$ si $x$ ergodique.
+
+<!-- p. 94 -->
+
+- Moyenne quadratique $\overline{x^2}$ :
+
+  Elle s'identifie à la variance $\sigma_x^2$ si la variable est centrée (i.e.
+  $\bar x = 0$). On utilise également la racine de la moyenne quadratique
+  $(\overline{x^2})^{1/2}$ dite valeur efficace du signal (ou valeur RMS).
+
+- Fonction d'autocorrélation :
+
+  Le processus étant stationnaire, la moyenne $E[x(t)\cdot x(t+\tau)]$ est
+  indépendante du temps $t$. Elle est appelée fonction d'autocorrélation et
+  notée $\Gamma_x(\tau)$.
+
+  Pour un processus ergodique :
+
+  $$
+  \Gamma_x(\tau) = \lim_{T\to\infty}\frac{1}{T}\int_{-T/2}^{T/2} x(t)\,x(t+\tau)\,dt
+  $$
+
+*Propriétés :*
+
+- la fonction d'autocorrélation est une fonction symétrique
+  ($\Gamma_x(-\tau) = \Gamma_x(\tau)$), continue et
+  $\Gamma_x(0) = \sigma_x^2 + (\bar x)^2$
+- Pour des processus aléatoires stationnaires $x_1$, $x_2$, et sans corrélation
+  mutuelle (i.e. indépendants), il y a additivité des fonctions
+  d'autocorrélation
+
+  $$
+  \Gamma_{(x_1 + x_2)}(t) = \Gamma_{x_1}(t) + \Gamma_{x_2}(t)
+  $$
+
+<!-- p. 95 -->
+
+- Analyse harmonique d'un processus stationnaire — Théorème de Wiener
+  Khintchine :
+
+  De même que pour les signaux déterministes, on associe à $x$ sa transformée de
+  Fourier notée $X(\nu)$ qui est une fonction aléatoire d'une variable réelle
+  $\nu$ (= fréquence) :
+
+  $$
+  X(\nu) = \mathrm{TF}(x)(\nu) = \int_{-\infty}^{+\infty}\exp(-2\pi j\,\nu t)\,x(t)\,dt
+  $$
+
+  $$
+  x(t) = \int_{-\infty}^{+\infty}\exp(2\pi j\,\nu t)\,X(\nu)\,d\nu
+  $$
+
+  [Le théorème de Wiener Khintchine]{.underline} montre que la [transformée de
+  Fourier de la fonction d'autocorrélation]{.underline} est égale à la moyenne
+  du carré du module de la transformée de Fourier du processus $x(t)$ :
+
+  $$
+  \mathrm{TF}(\Gamma_x)(\nu) = E\left[|X(\nu)|^2\right]
+  \quad\left(= \text{par définition } E\left[|\mathrm{TF}(x)(\nu)|^2\right]\right)
+  $$
+
+  C'est [la densité spectrale de puissance]{.underline}.
+
+- Réponse à un filtre linéaire — Filtre formeur :
+
+  Soit un filtre linéaire de transmittance $H(s)$ et de réponse impulsionnelle
+  $h(t)$
+
+  ![Filtre linéaire : $y = x \circledast h$, où $\circledast$ représente le produit de convolution.](figures/generees/fig-2-3-filtre){width=60%}
+
+<!-- p. 96 -->
+
+  L'ensemble des réponses aux réalisations $x(t)$ du processus aléatoire
+  $x(t,E)$ sera un processus stationnaire de fonction d'autocorrélation :
+
+  $$
+  \Gamma_y(\tau) = \Gamma_x(\tau) * h(\tau) * h(-\tau)
+  $$
+
+  (où $*$ désigne le produit de convolution)
+
+  En passant aux transformées de Fourier notées TF( ) il vient :
+
+  $$
+  \mathrm{TF}(\Gamma_y)(\nu) = \mathrm{TF}(\Gamma_x)(\nu)\cdot|H(j2\pi\nu)|^2
+  $$
+
+  $$
+  \boxed{|Y(\nu)|^2 = |X(\nu)|^2\cdot|H(j2\pi\nu)|^2}
+  $$
+
+- On appelle bruit blanc, un bruit de densité spectrale constante pour toutes
+  les fréquences. Un bruit de densité spectrale quelconque peut être considéré
+  comme la transformation d'un bruit blanc par un filtre linéaire de
+  transmittance $H_{formeur}(s)$ tel que la relation précédente soit vérifiée.
+  Ce filtre est appelé filtre « Formeur ».
+
+*Remarques :*
+
+- En électronique, on utilise en général une densité spectrale de puissance
+  unilatère (dite encore monolatère) pour les seules fréquences $f$ positives :
+
+  ![Bruit de densité spectrale $S_x$ traversant un filtre $H(j2\pi f)$ : $S_y(f) = |H(j2\pi f)|\cdot S_x(f)$.](figures/generees/fig-2-3-densite){width=60%}
+
+<!-- p. 97 -->
+
+  densité spectrale monolatère
+
+  $$
+  S_x(f) = 2\int_{-\infty}^{+\infty}\exp(-2\pi j f\tau)\,\Gamma_x(\tau)\,d\tau
+  \qquad\text{pour } f \geq 0
+  $$
+
+  $S_x(f)$ représente le double de la densité spectrale bilatère ; mais on ne
+  considère pas les fréquences négatives ($S_x(f) = 0$ pour $f < 0$).
+
+  Par suite, $\displaystyle\Gamma_x(\tau) = \int_0^\infty S_x(f)\cos(2\pi f\tau)\,df$
+
+- L'unité utilisée pour les signaux en tension sera 1 V²/Hz, soit encore pour
+  une échelle logarithmique en $10\log(S_x(f))$, des dB référés à 1 V²/Hz
+  (encore notés dB(V²/Hz) ou parfois dB(V/√Hz) en prenant une échelle
+  logarithmique se référant à des signaux et non à des puissances).
+
+- La transformée de Fourier étant linéaire, pour des processus indépendants, les
+  densités spectrales s'ajouteront de la même manière que les fonctions
+  d'autocorrélation (principe de superposition).
+
+<!-- p. 98 -->
+
+**Représentation d'un bruit bande étroite :**
+
+Ce type de représentation est utilisé lorsque l'on limite la bande de
+transmission dans les problèmes de modulation.
+
+On montre que dans ce cas, le bruit peut être mis sous la forme :
+
+$$
+n(t) = n_c(t)\cos\omega_0 t - n_s(t)\sin\omega_0 t
+$$
+
+(ou bien encore : $n(t) = \nu(t)\cos(\omega_0 t + \psi(t))$)
+
+où $n_c$ et $n_s$ sont des bruits basse fréquence indépendants.
+
+Si $n$ est gaussien, $n_c$ et $n_s$ le sont également.
+
+Si $n$ est centré, $n_c$ et $n_s$ le sont.
+
+$$
+\overline{n^2(t)} = \overline{n_c^2(t)} = \overline{n_s^2(t)}
+$$
+
+Si $n$ est un bruit de densité spectrale passe-bande rectangulaire $N_0/2$
+centré autour de $f_0$, les densités spectrales de $n_c$ et $n_s$ seront égales
+pour $f < B/2$ (figure 2.3.2)
+
+![Figure 2.3.2 — Représentation d'un bruit bande étroite (bruit bande étroite et décomposition).](figures/generees/fig-2-3-2){width=60%}
+
+<!-- p. 99 -->
+
+#### 2.3.2.2 — Quelques rappels concernant le bruit électronique
+
+On se contentera de citer, pour mémoire, les principaux résultats utilisés dans
+l'étude de bruit électronique. Dans ce paragraphe, la notion de bruit se
+référera toujours aux phénomènes aléatoires.
+
+Sauf spécification, toutes les densités spectrales représentées par la suite
+concerneront des densités spectrales monolatères.
+
+L'analyse électronique utilise deux types de représentation des sources de
+bruit :
+
+- générateur de tension de bruit $e_n^*$
+- générateur de courant de bruit $i_n^*$
+
+Ces générateurs seront parfois identifiés à leur valeur, notée simplement $e_n$
+ou $i_n$.
+
+Un dipole réel peut être représenté par un dipole idéal possédant en série un
+générateur de bruit $e_n^*$, ou un générateur de courant de bruit $i_n^*$ en
+parallèle. L'équivalence de représentation est donnée par
+$S_e(f) = |Z^2|\,S_i(f)$
+
+![Fig. 2.3.3 — Représentation du bruit d'un dipole ou quadripole.](figures/generees/fig-2-3-3){width=75%}
+
+Un quadripole réel peut être représenté, suivant le schéma de la figure 2.3.3,
+comme un quadripole idéal disposant à son entrée :
+
+- d'un générateur de tension de bruit ($e_n^*$) placé « en série »
+- d'un générateur de courant de bruit ($i_n^*$) placé en parallèle.
+
+<!-- p. 100 -->
+
+**Principales sources de bruit** (composants passifs — composants actifs)
+
+- Bruit « thermique » (« Johnson Noise ») des résistances — Théorème de
+  Nyquist :
+
+  - Le générateur de bruit associé à une résistance pure $R$ est un générateur
+    de bruit blanc, de densité spectrale de courant (spectre monolatère)
+    $S_i(f) = \dfrac{4kT}{R}$
+
+    où $k$ = constante de Boltzmann $\approx 1.38\cdot10^{-23}$ J/K ; $T$ =
+    température absolue
+
+    Par exemple, la densité spectrale de tension d'une résistance de 1 kΩ est à
+    25 °C d'environ (4 nV/√Hz)²
+
+  - Toute admittance complexe $Y = G + j\beta$ engendre un bruit blanc de
+    densité spectrale identique à celle engendrée par la partie réelle $G$ de
+    $Y$ :
+
+    $$
+    S_i(f) = 4kGT
+    $$
+
+    En circuit, la densité spectrale de tension aux bornes de l'impédance
+    $Z = Y^{-1} = R + jX$ s'écrit
+
+    $$
+    S_e(f) = 4kT\,\mathrm{Re}(Z) = 4kRT
+    $$
+
+    (où Re désigne la partie réelle). La source de bruit thermique associée à
+    $Z$ sera notée $e_{th}^*(Z)$
+
+- Bruit des amplificateurs et bruit basse fréquence :
+
+  Outre l'existence de bruits thermiques, les amplificateurs, et autres
+  composants actifs, produisent des bruits de génération-recombinaison, et des
+  bruits de grenaille (blanc), et des bruits dits de « scintillation », de
+  densité spectrale variant approximativement en $1/f$.
+
+<!-- p. 101 -->
+
+![Exemple : bruit d'un amplificateur complet ($H_- = \left(\frac{Z_f}{Z_{s-}}\right)$ ; $H_+ = \left(1 + \frac{Z_f}{Z_{s-}}\right)$).](figures/generees/fig-2-3-ampli){width=80%}
+
+Bruit en sortie :
+
+$$
+\begin{aligned}
+e_{no}^2 ={}& \left(1 + \frac{Z_f}{Z_{s-}}\right)^2\cdot e_{th}^{*2}(Z_{s+})
++ \left(\frac{Z_f}{Z_{s-}}\right)^2 e_{th}^{*2}(Z_{s-}) + e_{th}^{*2}(Z_f) \\
+&+ \left(1 + \frac{Z_f}{Z_{s-}}\right)^2\cdot\left(e_n^2 + i_n^2\left(\frac{Z_f\,Z_{s-}}{Z_f + Z_{s-}}\right)^2 + i_n^2 Z_{s+}^2\right)
+\end{aligned}
+$$
+
+![Fig. 2.3.4 — Représentation des différentes sources de bruit ramenées en entrée, intervenant dans un amplificateur opérationnel.](figures/generees/fig-2-3-4){width=75%}
+
+<!-- p. 102 -->
+
+Le bruit des amplificateurs comporte une composante de bruit blanc et également
+une [composante basse fréquence]{.underline} ayant une densité spectrale de
+puissance en $1/f$.
+
+C'est cette composante basse fréquence qui prédominera dans les applications
+« longue période ».
+
+- Bruit excédentaire des résistances :
+
+  C'est un bruit de type $1/f$ qui intervient pour les résistances assurant une
+  polarisation (i.e. parcourue par un courant continu). Son écart type est
+  proportionnel à la tension continue $V_c$ aux bornes de la résistance.
+
+  Densité spectrale de tension : $S_e(f)^{1/2} = \left(\dfrac{K}{f}\right)^{1/2} V_c$
+
+  On définit l'indice de bruit IB comme le rapport de l'écart type du bruit
+  généré à la tension continue, exprimé généralement en µV/V ou en décibel (20
+  fois le logarithme du rapport de tension).
+
+  On a alors : $S_e(f)^{1/2} = \dfrac{0.66\cdot\text{IB}}{f^{1/2}}\cdot V_c$
+
+  IB ou K caractérisent le type de résistances utilisées (IB varie grosso modo
+  suivant la technologie de 0 à −40 dB).
+
+- En général, les autres sources de bruits ne seront pas considérées.
+
+<!-- p. 103 -->
+
+#### 2.3.2.3 — Résultats concernant la théorie de la modulation-démodulation
+
+Ces résultats seront utilisés lors de l'étude de bruit.
+
+On ne traite ici que le cas d'une « modulation sans porteuse » (modulation
+produit) et on supposera, pour simplifier, que la porteuse est sinusoïdale.
+
+![Fig. 2.3.5 — Schéma de la modulation-démodulation produit.](figures/generees/fig-2-3-5){width=95%}
+
+| | |
+|---|---|
+| $s(t)$ | signal basse fréquence |
+| $m(t)$ | signal modulé (haute fréquence) $= s(t)\cdot p(t)$ |
+| $p(t)$ | porteuse de modulation $= A\cos\omega_0 t$, $\omega_0 = 2\pi f_0$ |
+| $m'(t)$ | signal modulé transformé $= B(t)\cos(\omega_0 t + \varphi(t))$ |
+| $p'(t)$ | porteuse de démodulation $= A'\cos(\omega_0 t)$ |
+| $d(t)$ | signal démodulé réel. |
+| $d_0(t)$ | $\dfrac{A'B(t)}{2}\cos\varphi + \dfrac{A'B(t)}{2}\cos(2\omega_0 t + \varphi)$ : signal démodulé idéal (sans bruit) |
+| $f(t)$ | signal démodulé filtré. |
+
+<!-- p. 104 -->
+
+Dans le cas où la transformation du signal se réduit à un gain $G$
+
+$$
+B(t) = A\cdot G\cdot s(t)
+$$
+
+on retrouvera en sortie, après filtrage passe-bas éliminant la composante de
+fréquence à $2f_0$, un signal à l'image du signal d'entrée :
+
+$$
+f(t) = \frac{AA'G}{2}\cos\varphi\cdot s(t)
+$$
+
+*Cas idéal :* La représentation spectrale des signaux est schématisée à la
+figure 2.3.6.
+
+![Fig. 2.3.6 — Module de la Transformée de Fourier des signaux (porteuse et signal d'entrée ; signal modulé ; signal démodulé).](figures/generees/fig-2-3-6){width=90%}
+
+La densité spectrale de puissance correspond au carré du module de la
+transformée de Fourier des signaux.
+
+<!-- p. 105 -->
+
+*Cas avec bruit :*
+
+Hypothèses :
+
+- Bruit blanc à l'entrée de la démodulation (additionnel) de densité spectrale
+  bilatère $\gamma_n = N_0/2$ (i.e. unilatère $N_0$).
+- On suppose qu'il y a préfiltrage passe-bas rectangulaire avant démodulation.
+
+  Dans ce cas, on a vu au paragraphe 2.3.2.1 que ce bruit peut être décomposé
+  sous la forme de :
+
+  $$
+  n(t) = n_c\cos\omega_0 t - n_s\sin\omega_0 t = \nu(t)\cdot\cos(\omega_0 t + \psi(t))
+  $$
+
+  où $n_c$ et $n_s$ ont des densités spectrales $\gamma_{nc}$ et $\gamma_{ns}$
+  identiques (cf. fig. 2.3.7).
+
+  Le signal démodulé s'écrit alors :
+
+  $$
+  d(t) = d_0(t) + \frac{A'}{2}\,n_c(t) + A_L\,\nu(t)\cos(4\pi f_0 t + \psi(t))
+  $$
+
+  On montre que l'on recueille alors en sortie filtrée une densité spectrale :
+
+  - de signal : $\gamma_f = \dfrac{A'^2\cos^2\varphi}{4}\,\gamma_B(f)\,|H_d(f)|^2$
+  - de bruit : $\gamma_{nf} = \dfrac{A'^2}{4}\,\gamma_{nc}\,|H_d(f)|^2$
+
+<!-- p. 106 -->
+
+![Fig. 2.3.7 — Décomposition d'un bruit bande étroite.](figures/generees/fig-2-3-7){width=60%}
+
+**Application de ces résultats à l'étude de bruit du 3.2.2**
+
+![Fig. 2.3.8 — Application du modèle de bruit à l'électronique utilisée (amplificateur, démodulateur, filtre passe-bas).](figures/generees/fig-2-3-8){width=85%}
+
+Considérons un bruit bande étroite, autour de la fréquence porteuse de densité
+spectrale bilatère $N_0/2$ (au point P) : avec les notations précédentes
+$A' = \dfrac{4}{\pi}$, $|H_d(0)| = \dfrac{\pi}{2}$
+
+la densité spectrale bilatère en sortie P' sera :
+
+$$
+\gamma_{nf} = \left(\frac{4}{\pi}\right)^2\cdot\frac{1}{4}\cdot\left(\frac{\pi}{2}\right)^2\cdot\gamma_{nc}
+= 2\cdot\left(\frac{N_0}{2}\right) = N_0
+$$
+
+La densité spectrale unilatère sera donc $2N_0$, soit le double de la valeur du
+bruit en sortie de l'amplificateur, à la fréquence porteuse (i.e. la densité
+spectrale est augmentée de 3 dB entre les points P et P').
+
+<!-- p. 107 -->
+
+#### 2.3.2.4 — Bruit d'un capteur sismique
+
+De nombreux éléments interviennent pour limiter les mesures des capteurs
+sismiques tels que :
+
+- les signaux parasites générés par les sensibilités aux perturbations externes,
+  telles que température et pression,
+- les mécanismes de bruit proprement dits.
+
+D'un point de vue expérimental, on appellera « bruit » tout phénomène aléatoire
+ou non qui perturbe le signal sismique.
+
+Pour les mécanismes de bruit, reprenant les analyses de Melton (76), les
+limitations fondamentales à la sensibilité du sismomètre proviennent :
+
+- des bruits thermiques type « Johnson » provenant des mécanismes de
+  dissipation, tant au niveau électromécanique (résistance d'amortissement),
+  qu'au niveau purement mécanique,
+- des bruits électriques générés par la chaîne de mesure et ses transducteurs.
+
+Pour les sismomètres asservis, on retiendra que si l'on exclut le bruit propre
+des éléments de contre-réaction, [le bruit « ramené en entrée » des éléments de
+la chaîne directe n'est pas affecté par la contre-réaction]{.underline} (voir
+fig. 2.3.9). En supposant, de plus, que le bruit propre de la contre-réaction
+est décorrélé du bruit de la chaîne directe, le bruit total est obtenu en
+utilisant le principe de superposition.
+
+<!-- p. 108 -->
+
+![Fig. 2.3.9 — Contribution des sources de bruit situées dans la chaîne directe et dans la contre réaction (capteur réel ; capteur idéal avec équivalent en entrée aux sources $\varepsilon_1^*, \varepsilon_2^*, \varepsilon_3^*$). Le bruit équivalent en entrée est obtenu très simplement en utilisant le principe de superposition.](figures/generees/fig-2-3-9){width=95%}
+
+<!-- p. 109 -->
+
+**Bruit de « Johnson »**
+
+De même que dans un capteur électronique la dissipation introduite par une
+résistance génère un bruit « thermique », dans le capteur sismique, les
+mécanismes de dissipation électromécanique ou mécanique associés au phénomène
+d'amortissement vont créer un bruit analogue. D'après Melton (76), la densité
+spectrale d'accélération équivalente à ce bruit blanc est donnée par :
+
+$$
+16\pi\,k_B T\left(\frac{\xi_d}{T_m M}\right)
+$$
+
+pour le sismomètre linéaire, où :
+
+| | |
+|---|---|
+| $k_B$ | constante de Boltzmann |
+| $T$ | température absolue |
+| $M$, $T_m$, $\xi_d$ | masse, période propre et coefficient d'amortissement dissipatif du sismomètre. |
+
+À $T$ = 290 K, $16\pi k_B T = 2{,}01\times10^{-19}$ kg m² s$^{-2}$
+
+Cependant, aucune démonstration n'a été proposée pour justifier que ce bruit a
+la densité spectrale d'un bruit « blanc ». L'analyse qui suit présente un essai
+de justification de ces résultats.
+
+*Modèle du bruit de Johnson d'origine électromécanique ou mécanique*
+
+La modélisation, schématisée à la figure 2.3.10, repose sur l'hypothèse de
+l'équivalence entre l'amortissement dissipatif mécanique et l'amortissement
+électromagnétique (utilisé dans les capteurs conventionnels). Le capteur amorti
+réel est assimilé à un capteur parfait, muni d'un transducteur bobine-aimant
+idéal, amorti par une résistance d'amortissement $R_{am}$. La mise en équation de
+ce modèle, réalisé pour une suspension mécanique type « sismomètre rotatif » est
+la suivante :
+
+<!-- p. 110 -->
+
+![Fig. 2.3.10 — Modèle du sismomètre rotatif pour le bruit de Johnson.](figures/generees/fig-2-3-10){width=85%}
+
+Le calcul direct de la transmittance en boucle fermée donne :
+
+$$
+\frac{x}{\gamma_i} = \frac{-\alpha_m}{s^2 + \omega_m^2 + \alpha_m\beta_m\beta'_m s}
+$$
+
+De sorte que l'équivalence du modèle avec le sismomètre réel est obtenue pour :
+
+$$
+2\xi_d\,\omega_m = \alpha_m\,\beta_m\,\beta'_m
+$$
+
+c'est-à-dire
+
+$$
+\beta_m^2 = \frac{2\xi_d\,\omega_m}{M}\cdot\frac{I_\Omega}{Mr_G^2}\cdot R_{am}
+$$
+
+Examinons l'effet d'un générateur de courant parasite $i_b^*$ (Fig. 2.3.11) sur
+le sismomètre :
+
+![Fig. 2.3.11 — Action d'un bruit en courant ($i_b^*$ de densité spectrale $4k_BT/R_{am}$).](figures/generees/fig-2-3-11){width=70%}
+
+<!-- p. 111 -->
+
+L'analyse élémentaire des transmittances montre que le déplacement généré par
+une telle source est donné par :
+
+$$
+\frac{x^*(s)}{i_b^*(s)} = \frac{\beta_m H_{mid}}{1 + H_{mid}\,\beta_m\,\beta'_m s} = \beta_m H_m
+$$
+
+De ce fait, cette source de bruit a le même effet qu'une accélération du sol :
+
+$$
+\gamma^*(s) = -\beta_m\,i_b^*(s)
+$$
+
+L'analyse de bruit du modèle idéal fait apparaître une unique source de bruit
+$R_{am}$, de densité spectrale de bruit en courant :
+
+$$
+S_i(f) = \frac{4k_BT}{R_{am}}
+$$
+
+Par suite, la densité spectrale de bruit équivalent en accélération est donnée
+par :
+
+$$
+S\gamma_{eq}(f) = |\beta_m|^2\,S_i(f)
+$$
+
+soit
+
+$$
+S\gamma_{eq} = \beta_m^2\,\frac{4k_BT}{R_{am}} = 8\xi_d\,\omega_m\,\frac{I_\Omega}{Mr_G^2}\,k_BT
+$$
+
+$$
+\boxed{S\gamma_{eq}(f) = 16\pi\,k_BT\,\frac{I_\Omega}{Mr_G^2}\cdot\frac{\xi_d}{MT_m}}
+$$
+
+Finalement, cette analyse permet donc de voir que le bruit généré par le
+mécanisme de dissipation est bien un bruit blanc et de calculer sa densité
+spectrale.
+
+<!-- p. 112 -->
+
+*Remarques :*
+
+- En reprenant les notations du 2.0.3, en notant $-\Phi_d\dot\varphi$ le couple
+  d'amortissement dissipatif total, et compte tenu de la relation
+  $\xi_d = \dfrac{\Phi_d}{2I_\Omega\omega_m}$, la relation précédente s'écrit :
+
+  $$
+  \boxed{S\gamma_{eq} = 4k_BT\cdot\frac{\Phi_d}{Mr_G^2}}
+  $$
+
+- Ceci montre que, [pour un couple d'amortissement dissipatif fixé]{.underline},
+  si on modifie la période propre (par exemple par inclinaison du capteur), la
+  densité spectrale de [bruit de Johnson]{.underline} reste
+  [inchangée]{.underline}.
+
+**Analyse des autres sources de bruit :**
+
+On utilisera la méthode illustrée à la figure 2.3.9 pour chacune des sources de
+bruit et on appliquera le principe de superposition.
+
+Comme le plus souvent en électronique, c'est le bruit des étages de tête qui
+prédominera dans les sismomètres. De ce fait, le type de capteur utilisé,
+vitesse-déplacement, sera déterminant pour la forme des courbes de bruit
+équivalent en entrée.
+
+On peut distinguer deux cas :
+
+<!-- p. 113 -->
+
+*Sismomètre conventionnel*
+
+Le bruit équivalent en entrée (accélération) est obtenu en divisant simplement
+la densité spectrale, par le carré du module de la réponse en accélération des
+éléments situés avant la source de bruit :
+
+$$
+S_\gamma^* = \left|\frac{s^2 + 2\xi\omega_m s + \omega_m^2}{s}\right|^2 S_{vitesse}^*
+$$
+
+*Sismomètre asservi*
+
+Suivant leur place à l'intérieur de la boucle, les sources de bruit auront un
+effet distinct en sortie (figure 2.3.9) en boucle ouverte et en boucle fermée.
+
+Examinons l'effet de 3 sources de bruit typiques :
+
+- bruit provenant du capteur de déplacement, de densité spectrale de
+  déplacement $S_x$ notée encore $(x^*)^2$
+- bruit provenant de la contre-réaction, de densité spectrale équivalente en
+  entrée de contre-réaction : $S_f$, notée encore $(\epsilon_f^*)^2$
+- bruit de l'étage de sortie (situé hors de la boucle), de densité spectrale en
+  entrée de l'étage : $S_0$, notée $(\epsilon_0^*)^2$ (bruit en tension).
+
+<!-- p. 114 -->
+
+La densité spectrale d'accélération équivalente $S_\gamma$, notée encore
+$(\gamma^*)^2$, sera alors donnée par :
+
+$$
+\begin{aligned}
+(\gamma^*)^2 ={}& \left|\frac{s^2 + 2\xi_m\omega_m s + \omega_m^2}{\alpha_m}\right|^2\cdot(x^*)^2 \\
+&+ |H_f|^2\cdot(\epsilon_f^*)^2 \\
+&+ \left|\frac{s^2 + 2\xi_0\omega_0 s + \omega_0^2}{\alpha}\right|^2\cdot(\epsilon_0^*)^2
+\end{aligned}
+$$
+
+- Pour minimiser le bruit, on recourra le plus souvent à une contre-réaction
+  passive (en général action proportionnelle + dérivée).
+- Pour réduire le bruit basse-fréquence, on utilisera une amplification du
+  signal modulé par une porteuse.
+- On remarquera que la contre-réaction atténue les valeurs RMS du bruit de
+  chaîne directe dans le rapport $\left(\dfrac{\omega_m}{\omega_0}\right)^2$ en
+  continu, ce qui nécessitera un soin très particulier pour les étages de sortie
+  (situés hors de la boucle).
+
+On trouvera, aux figures 2.3.13 et 4.1.1, l'illustration des courbes de bruit
+électronique.
+
+<!-- p. 115 -->
+
+**Sensibilités aux signaux parasites et perturbations :**
+
+Les sensibilités aux signaux parasites, même compensées, peuvent amener des
+dérives. Les mécanismes de ces dérives peuvent être complexes et difficiles à
+compenser directement. Pour une bonne interprétation des résultats de bruit, il
+est indispensable d'évaluer expérimentalement la sensibilité du capteur à ces
+perturbations et il serait souhaitable de mieux connaître, grâce à des capteurs
+de température et de pression disposés dans la cuve, le champ des perturbations
+auquel est soumis le capteur.
+
+On notera cependant, qu'il est possible de minimiser l'influence de ces
+perturbations en les « filtrant », c'est-à-dire en entourant le capteur de
+protections :
+
+- cuve rigide étanche → filtrage de la pression et la température
+- isolation thermique → filtrage de la température
+
+#### 2.3.2.5 — Évaluations du bruit sismique minimal
+
+Outre le bruit instrumental, le bruit sismique est un facteur prépondérant pour
+l'utilisation et la conception d'un sismomètre à grande « sensibilité ». On
+recherchera naturellement, lors de la conception, à disposer d'un capteur dont
+le niveau de bruit instrumental se situe en-dessous du bruit sismique minimal.
+
+La littérature dans le domaine du bruit sismique est très étendue ;
+malheureusement on trouvera des différences considérables dans les résultats,
+suivant les sources. Citons parmi les sources Brune et Oliver (1959), Fix
+(1973), Melton (1976) et plus récemment, Agnew et Berger (1978), Herbin (1982)
+et Wielandt (1983).
+
+Le bruit sismique minimal est mal connu, plus particulièrement aux très longues
+périodes. Ceci résulte principalement d'une mauvaise connaissance du bruit
+instrumental et des sensibilités du capteur aux efforts parasites, créées par
+les variations de température et pression. La figure 2.3.12 montre quelques
+courbes de bruit sismique dérivées de celles présentées par quelques auteurs
+cités. Ces courbes sont présentées en terme de densité spectrale (monolatère)
+d'accélération.
+
+<!-- p. 116 -->
+
+![Fig. 2.3.12 — Spectres de bruit sismique : densité spectrale d'accélération (= carré de l'accélération de bruit rapportée à une bande de fréquence de 1 Hz).](figures/generees/fig-2-3-12){width=95%}
+
+Les courbes m et M situent, d'après le rapport IRIS (1984), le bruit sismique
+que l'on peut observer dans des stations sismiques — la courbe m n'étant
+observable que dans quelques sites calmes — La courbe QCAZ (Queen Creek
+Arizona), provenant des données de Fix (1972), correspond à des mesures dans
+une mine. La courbe « LAJITAS », transposée ici en accélération, résulte des
+observations de Herbin (1982) dans la station particulièrement calme de
+Lajitas, Texas.
+
+<!-- p. 117 -->
+
+#### 2.3.2.6 — Conséquences sur la conception d'un capteur large bande à grande dynamique
+
+La figure 2.3.13 regroupe quelques courbes de bruit typiques de capteurs
+conventionnels courte période et longue période et d'un capteur asservi ainsi
+que les courbes des signaux admissibles maximaux.
+
+Ces courbes montrent que :
+
+- Les capteurs électrodynamiques conventionnels sont inaptes à une utilisation
+  en longues périodes faible bruit (les considérations de stabilité et de
+  linéarité limitent très fortement les possibilités d'augmentation de la
+  période propre). Cependant, leurs performances sont bonnes en courtes
+  périodes.
+
+- Les capteurs asservis permettant de modifier la période nominale du capteur,
+  leur période propre mécanique peut être choisie suffisamment grande, sans
+  préjudice sur la linéarité et la dynamique maximale — fixée par la période
+  propre nominale en régime asservi — pour permettre d'excellentes
+  caractéristiques de bruits en longue période. Une limitation est cependant
+  apportée par la possibilité mécanique de réalisations mécaniques « stables »
+  (i.e. de caractéristiques constantes). De ce fait, le transducteur
+  déplacement utilisé devra avoir de très bonnes caractéristiques de bruit
+  propre. Pour les courtes périodes (au-dessus de quelques hertz), ce type de
+  capteur est par nature plus « bruyant » que le capteur conventionnel. Une
+  utilisation large bande nécessite là aussi un transducteur déplacement très
+  performant.
+
+<!-- p. 118 -->
+
+![Fig. 2.3.13 — Exemples de courbe de bruit et de dynamique maximale pour quelques sismomètres.](figures/generees/fig-2-3-13){width=95%}
+
+<!-- p. 119 -->
+
+Cette figure montre les spectres de bruit instrumental (échelle de droite) et
+les signaux maximaux admissibles (échelle de gauche), pour différents capteurs.
+Les niveaux horizontaux représentent des niveaux d'accélération équivalente,
+alors que les droites inclinées se réfèrent à des niveaux de déplacement
+équivalent. Les signaux, comme les bruits, sont tracés en termes de signal
+équivalent en entrée.
+
+Le ZM 500 est un capteur courte période vertical conventionnel, de période
+propre 1 s (la limitation haute des signaux représentée correspond au niveau
+toléré par les transmissions courte période 4 V$_{CC}$ ; et les signaux maximaux
+correspondant à deux valeurs de gain sont indiqués).
+
+Le LPZ 12s est un sismomètre longue période vertical conventionnel, de période
+propre 12 s, corrigé électroniquement à 60 s.
+
+Le LPH A est un sismomètre horizontal large bande asservi (période propre
+mécanique 12 s — période nominale 1 s) utilisant l'électronique large bande
+présentée au paragraphe 3.
+
+Pour chaque capteur, deux courbes (asymptotiques) de bruit sont tracées
+représentant l'accélération de bruit de Johnson, ainsi que le bruit
+électronique équivalent en entrée.

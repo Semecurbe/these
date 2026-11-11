@@ -1,0 +1,24 @@
+\input{_preambule}
+\begin{document}
+\begin{tikzpicture}[font=\small]
+  \coordinate (W) at (0,0);
+  \def\phiz{9} \def\alp{78}
+  \coordinate (O) at (\alp:3.6);
+  \coordinate (K) at (\phiz:2.9);
+  \coordinate (G) at (\phiz:4.3);
+  \draw[axe] (0,-0.3) -- (0,4.4) node[left] {$V$};
+  \draw[dash dot, ->] (-0.3,0) -- (5.5,0) node[below] {$H$};
+  \draw[trait mixte] (W) -- (\alp:4.4);
+  \draw (W) -- (O);
+  \draw[line width=1.1pt] (W) -- (G);
+  \draw[ressort, decoration={amplitude=1.3mm, segment length=1.3mm}] (O) -- (K);
+  \foreach \p in {O,K,G} \fill (\p) circle (2pt);
+  \node[left] at (W) {$\Omega$}; \node[above left] at (O) {$O$}; \node[below] at (K) {$K$};
+  \node[above] at (G) {$G$}; \node[right] at ($(G)+(0.15,0)$) {position d'équilibre};
+  \draw[->] (0,2.2) arc (90:\alp:2.2); \node at (84:2.45) {$\delta$};
+  \draw[->] (\phiz:1.6) arc (\phiz:\alp:1.6); \node at (45:1.85) {$\beta$};
+  \draw[->] (0:0.8) arc (0:\alp:0.8); \node at (40:0.55) {$\alpha$};
+  \draw[->] (0:2.2) arc (0:\phiz:2.2); \node at (4:2.45) {$\varphi_0$};
+  \node[align=left, anchor=west] at (6.0,2.4) {$\varphi$ = angle $(\Omega H, \Omega G)$\\$\alpha$ = angle $(\Omega H, \Omega O)$};
+\end{tikzpicture}
+\end{document}

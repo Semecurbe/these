@@ -1,0 +1,46 @@
+\input{_preambule}
+\newcommand{\creneau}[3]{% origine, suite de niveaux (pas 0.3), étiquette
+  \begin{scope}[shift={#1}]
+    \def\x{0}\def\prev{0}
+    \foreach \y [count=\i] in {#2} {
+      \pgfmathsetmacro{\xa}{(\i-1)*0.3}\pgfmathsetmacro{\xb}{\i*0.3}
+      \draw (\xa,\y*0.4) -- (\xb,\y*0.4);
+      \ifnum\i>1 \pgfmathsetmacro{\yp}{\prevy}\draw (\xa,\yp*0.4) -- (\xa,\y*0.4); \fi
+      \xdef\prevy{\y}}
+    \node[left, font=\footnotesize] at (-0.1,0) {#3};
+  \end{scope}}
+\begin{document}
+\begin{tikzpicture}[font=\small]
+  \draw[dashed] (-1.2,0.85) -- (-0.3,0.85);
+  \draw (-0.3,1.9) -- (2.1,1.9) (-0.3,0) -- (2.1,0) (-0.3,1.9) -- (-0.3,0);
+  \draw (2.6,1.65) node[op amp, noinv input up, scale=0.8] (a1) {};
+  \draw (2.6,0.25) node[op amp, noinv input up, scale=0.8] (a2) {};
+  \node[draw, circle, inner sep=0.5pt, font=\scriptsize] at (2.6,1.0) {1};
+  \node[draw, circle, inner sep=0.5pt, font=\scriptsize] at (2.6,-0.4) {2};
+  \draw (2.1,1.9) |- (a1.+); \draw (2.1,0) |- (a2.-);
+  \draw (a1.-) -- ++(-0.3,0); \draw (a2.+) -- ++(-0.3,0);
+  \draw[->] (0.4,-1.0) -- (0.4,1.9) node[pos=0.75, right] {$V_1$};
+  \draw[->] (1.2,-1.0) -- (1.2,0) node[pos=0.5, right] {$V_2$};
+  \draw (0.4,-1.0) node[ground] {} (1.2,-1.0) node[ground] {};
+  % commutateur
+  \draw (4.0,-1.0) rectangle (5.2,2.6);
+  \draw (a1.out) -- (4.6,1.65) -- (4.6,1.0); \fill (4.6,1.0) circle (1.2pt);
+  \draw (a2.out) -- (4.6,0.25) -- (4.6,0.55); \fill (4.6,0.55) circle (1.2pt);
+  \draw (4.6,1.0) -- (4.95,0.75); \fill (4.95,0.75) circle (1.2pt);
+  \draw[dashed] (4.8,0.85) -- (4.8,-1.6);
+  \draw (4.35,-1.95) -- (4.35,-1.65) -- (4.6,-1.65) -- (4.6,-1.95) -- (4.85,-1.95) -- (4.85,-1.65) -- (5.1,-1.65) -- (5.1,-1.95) -- (5.35,-1.95);
+  \draw (4.95,0.75) -- (6.6,0.75);
+  \draw[->] (5.9,-1.0) -- (5.9,0.75) node[pos=0.6, right] {$V_s$}; \draw (5.9,-1.0) node[ground] {};
+  \node[bloc, align=center] (f) at (7.3,0.75) {Filtre\\$G = \dfrac{\pi}{2}$};
+  \draw (f.east) -- (8.6,0.75);
+  % relations
+  \node[align=left, anchor=north west] at (-0.6,-1.5) {$V_{mc} = \dfrac{V_1+V_2}{2}$\\[3pt]$\Delta V = V_1 - V_2$};
+  \node[align=left, anchor=north west] at (1.6,-2.4) {$V_s = (f_1+f_2)\circledast V_{mc} + (f_1-f_2)\circledast\Delta V$\\[3pt]$V_s = (f_1+f_2)\circledast V_{mc} + \Delta V$};
+  % créneaux
+  \creneau{(8.7,-1.0)}{0,1,0,1,0}{$f_1(t)$}
+  
+  \creneau{(8.7,-2.0)}{0,-1,0,-1,0}{$f_2(t)$}
+  
+  \creneau{(8.7,-3.2)}{-1,1,-1,1,-1}{$(f_1+f_2)(t)$}
+\end{tikzpicture}
+\end{document}

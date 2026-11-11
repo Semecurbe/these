@@ -1,0 +1,113 @@
+project:
+  type: book
+  output-dir: _book
+  render:
+    - index.qmd
+    - chapitres/*.qmd
+  # Les figures sont produites hors de Quarto : python3 construire_figures.py
+  resources:
+    - figures/generees/*.svg
+
+lang: fr
+
+book:
+  title: "Étude d'un sismomètre vertical, miniature, asservi, large bande, à grande dynamique"
+  subtitle: "Thèse de Docteur-Ingénieur — Université Pierre et Marie Curie (Paris 6), 1988"
+  author:
+    - name: Jean-Daniel Picot
+      affiliations:
+        - name: Laboratoire de Détection et de Géophysique
+          city: Bruyères-le-Châtel
+  date: "1988-01-13"
+  date-format: "D MMMM YYYY"
+  output-file: picot-1988-sismometre
+  search: true
+  page-navigation: true
+  chapters:
+    - index.qmd
+    - chapitres/01-introduction.qmd
+    - chapitres/02-elements-theoriques.qmd
+    - chapitres/03-transducteur.qmd
+    - chapitres/04-application.qmd
+    - chapitres/05-perspectives.qmd
+    - chapitres/06-conclusions.qmd
+    - chapitres/references.qmd
+  appendices:
+    - chapitres/annexe-1.qmd
+    - chapitres/annexe-2.qmd
+
+# Métadonnées de la page de titre (gabarit tex/before-body.tex)
+these:
+  universite: "Université Pierre et Marie Curie — Paris 6"
+  laboratoire: "Laboratoire de Détection et de Géophysique — Bruyères-le-Châtel"
+  diplome: "Thèse présentée pour l'obtention du diplôme de Docteur-Ingénieur"
+  specialite: "Spécialité : Automatique"
+  soutenance: "Soutenue le 13 janvier 1988 devant le jury composé de :"
+  jury:
+    - nom: "M. Garnier"
+      role: "Président"
+    - nom: "M. Auvray"
+      role: "Examinateur"
+    - nom: "M. Drouin"
+      role: "Examinateur"
+    - nom: "M. Loyer"
+      role: "Examinateur"
+    - nom: "M. Mechler"
+      role: "Examinateur"
+  edition: "Transcription numérique avec figures redessinées"
+
+bibliography: references.bib
+nocite: |
+  @*
+
+number-sections: true
+number-depth: 1          # seuls les chapitres sont numérotés automatiquement ;
+                         # les numéros de paragraphes (2.1, 2.1.2…) sont ceux de l'original
+toc: true
+toc-depth: 3
+fig-align: center
+
+format:
+  html:
+    theme:
+      light: [cosmo, style/these.scss]
+    default-image-extension: svg
+    html-math-method: mathjax
+    lightbox: true
+    toc-title: "Sur cette page"
+    reference-location: margin
+    citations-hover: true
+    footnotes-hover: true
+    smooth-scroll: true
+    anchor-sections: true
+    fig-cap-location: bottom
+    tbl-cap-location: top
+  pdf:
+    documentclass: scrbook
+    classoption:
+      - oneside
+      - open=any
+      - chapterprefix=true
+      - headings=normal
+      - 11pt
+    papersize: a4
+    geometry:
+      - top=2.8cm
+      - bottom=2.8cm
+      - inner=2.8cm
+      - outer=2.5cm
+      - headsep=0.8cm
+    pdf-engine: lualatex
+    default-image-extension: pdf
+    fig-pos: "htbp"
+    linestretch: 1.12
+    toc-depth: 3
+    colorlinks: true
+    linkcolor: "blue!45!black"
+    citecolor: "blue!45!black"
+    urlcolor: "blue!45!black"
+    template-partials:
+      - tex/before-body.tex
+      - tex/toc.tex
+    include-in-header:
+      - tex/preambule.tex

@@ -1,0 +1,11 @@
+\input{_preambule}
+\begin{document}
+\begin{tikzpicture}
+  \node[bloc, minimum width=1.6cm, minimum height=1.3cm, align=center] (h) at (0,0) {$H(s)$\\$h(t)$};
+  \node[above] at (h.north) {Transmittance : $H(s)$};
+  \node[below] at (h.south) {réponse impulsionnelle : $h(t)$};
+  \draw[->] (-2.4,0) node[left] {$x$} -- (h);
+  \draw[->] (h) -- (2.4,0) node[right] {$y$};
+  \node[align=left, anchor=north west] at (-0.3,-1.25) {$y = x \circledast h$\\où $\circledast$ représente le produit de convolution};
+\end{tikzpicture}
+\end{document}

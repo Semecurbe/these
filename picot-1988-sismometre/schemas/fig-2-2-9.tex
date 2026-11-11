@@ -1,0 +1,54 @@
+\input{_preambule}
+\newcommand{\boitier}[4]{% #1 centre, #2 nom, #3 : 1 = R//C, 0 = R seul, #4 courant
+  \node[bloc, minimum width=2.8cm, minimum height=1.7cm] (#2) at #1 {};
+  \draw[dashed] ($#1+(-0.55,0.85)$) -- ($#1+(-0.55,-0.85)$);
+  \draw[bobine] ($#1+(-0.95,0.35)$) -- ($#1+(-0.95,-0.45)$);
+  \fill[pattern=north east lines] ($#1+(-1.15,-0.5)$) rectangle ($#1+(-0.75,-0.62)$);
+  \node[font=\scriptsize] at ($#1+(-0.8,0.5)$) {#4};
+  \ifnum#3=1
+    \RparC{($#1+(0.4,0)$)}{2.0}{0.75}
+    \node[font=\scriptsize] at ($#1+(0.4,0.68)$) {$R_f$};
+    \node[font=\scriptsize] at ($#1+(0.4,-0.68)$) {$C_f$};
+  \else
+    \resistance{($#1+(-0.55,0)$)}{($#1+(1.4,0)$)}
+    \node[font=\scriptsize] at ($#1+(0.4,-0.4)$) {$R_f$};
+  \fi}
+\begin{document}
+\begin{tikzpicture}[font=\small]
+  \node[somme] (s1) at (0,0) {};
+  \node[somme] (s2) at (0.9,0) {};
+  \node[bloc] (h) at (2.5,0) {$H_m$};
+  \pic (t) at (4.3,0) {transducteur}; \node[above=2.5mm, align=center] at (4.3,0) {Capteur\\déplacement};
+  \node[gain] (a) at (5.6,0) {};
+  \draw[->] (-1.0,0) node[left] {$\gamma_i$} -- (s1) node[above left, pos=0.8] {\scriptsize$-$};
+  \draw[->] (s1) -- (s2) node[above left, pos=0.8] {\scriptsize$+$};
+  \draw[->] (s2) -- (h); \draw (h) -- (t-o); \draw[->] (t-e) -- (a);
+  \coordinate (nb) at (6.9,0); \fill (nb) circle (1.4pt);
+  \draw (a.east) -- (9.6,0) node[circle, draw, inner sep=1.2pt] {} node[right, align=left] {Sortie\\BRB};
+  \node[above] at (8.5,0) {$V_{BRB}$};
+  % intégrateur
+  \node[bloc, minimum width=1.1cm, minimum height=1.1cm] (int) at (8.5,-1.6) {};
+  \draw (8.15,-1.95) .. controls (8.5,-1.95) and (8.5,-1.25) .. (8.85,-1.25);
+  \node[right, align=left] at (9.1,-1.6) {Intégrateur\\actif};
+  \draw (8.5,0) -- (int.north);
+  \draw (int.south) -- (8.5,-4.5);
+  \draw (6.9,-4.5) -- (9.6,-4.5) node[circle, draw, inner sep=1.2pt] {} node[right, align=left] {Sortie\\LP};
+  \node[above] at (8.9,-4.5) {$V_{LP}$};
+  % boucle P + D
+  \boitier{(5.3,-2.4)}{pd}{1}{$i_1$}
+  \pic (b1) at (2.2,-2.4) {transducteur};
+  \node[below=2.5mm, align=center, font=\footnotesize] at (2.2,-2.4) {Bobine\\aimant 1};
+  \draw[->] (nb) |- (pd.east);
+  \draw[->] (pd.west) -- node[above] {$i_1$} (b1-e);
+  \draw[->] (b1-o) -| (s2.south) node[below left, pos=0.97] {\scriptsize$+$};
+  \node[align=left, font=\footnotesize, anchor=west] at (1.0,-1.15) {Contre\\réaction\\P+D};
+  % boucle I
+  \boitier{(5.3,-4.5)}{ii}{0}{$i_2$}
+  \pic (b2) at (2.2,-4.5) {transducteur};
+  \node[below=2.5mm, align=center, font=\footnotesize] at (2.2,-4.5) {Bobine\\aimant 2};
+  \draw[->] (6.9,-4.5) -- (ii.east);
+  \draw[->] (ii.west) -- node[above] {$i_2$} (b2-e);
+  \draw[->] (b2-o) -| (s1.south) node[below left, pos=0.98] {\scriptsize$+$};
+  \node[align=right, font=\footnotesize, left] at (-0.1,-1.3) {Contre\\réaction\\I};
+\end{tikzpicture}
+\end{document}

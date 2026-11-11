@@ -1,0 +1,40 @@
+\input{_preambule}
+\newcommand{\lvdt}{% primaire et secondaires, bornes : (S+) (PM) (S-) en coordonnées locales
+  \draw (0,1.8) node[ocirc] {} -- (0.5,1.8) to[L] (0.5,0) -- (0,0) node[ocirc] {};
+  \node[left] at (-0.1,1.8) {$\sim$ $+E$}; \node[left] at (-0.1,0) {$\backsim$ $-E$};
+  \draw (1.1,2.0) to[L] (1.1,1.0); \draw (1.1,0.8) to[L] (1.1,-0.2);
+  \draw (1.1,2.0) -- (2.0,2.0); \draw (1.1,1.0) -- (1.1,0.8); \draw (1.1,-0.2) -- (2.0,-0.2);
+  \draw (1.1,0.9) -- (1.6,0.9);}
+\begin{document}
+\begin{tikzpicture}[font=\small]
+  % --- montage symétrique ---
+  \begin{scope}
+    \lvdt
+    \node[above] at (2.0,2.0) {S$+$}; \node[below] at (2.0,-0.2) {S$-$}; \node[above] at (1.75,0.9) {PM};
+    \draw[dashed] (1.6,0.9) to[R] (3.0,0.9) -- (3.0,0.7) node[ground] {};
+    \draw (4.8,0.9) node[op amp, noinv input up] (a1) {};
+    \draw (2.0,2.0) -- (3.4,2.0) |- (a1.+);
+    \draw (2.0,-0.2) -- (3.4,-0.2) |- (a1.-);
+    \draw (a1.out) -- (6.8,0.9) node[ocirc] {};
+    \draw (a1.down) -- ++(0,-0.8) coordinate (r1) -- (6.8,-0.6 |- r1) -- (6.8,0.75);
+    \draw (r1) node[ground] {};
+    \node[above, align=center] at (4.8,1.6) {Amplificateur\\différentiel};
+    \node[right] at (7.3,0.4) {1 — Montage symétrique};
+  \end{scope}
+  % --- montage dissymétrique ---
+  \begin{scope}[shift={(0,-4.3)}]
+    \lvdt
+    \node[above] at (2.0,2.0) {S$+$}; \node[below right] at (1.15,0.75) {PM};
+    \draw (2.0,-0.2) -- (2.4,-0.2) node[ground] {};
+    \node[right] at (1.25,-0.05) {S$-$};
+    \draw (4.8,0.9) node[op amp, noinv input up] (a2) {};
+    \draw (2.0,2.0) -- (3.4,2.0) |- (a2.+);
+    \draw (a2.-) -- (3.6,0.65) to[R] (2.8,0.65) -- (2.8,0.45) node[ground] {};
+    \draw (3.6,0.65) |- (4.8,-0.3) to[R] (6.4,-0.3) |- (a2.out);
+    \draw (a2.out) -- (6.8,0.9) node[ocirc] {};
+    \draw (6.8,0.75) -- (6.8,-0.8) -- (5.6,-0.8) node[ground] {};
+    \node[above, align=center] at (4.8,1.6) {Amplificateur\\opérationnel};
+    \node[right] at (7.3,0.4) {2 — Montage dissymétrique};
+  \end{scope}
+\end{tikzpicture}
+\end{document}

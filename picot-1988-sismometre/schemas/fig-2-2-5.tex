@@ -1,0 +1,11 @@
+\input{_preambule}
+\begin{document}
+\begin{tikzpicture}[font=\small]
+  \draw (0,0) to[L, l_=$Z_b$, *-*] (0,2.4)
+        to[R, l=$Z_f$, -*] (3.2,2.4)
+        to[V, v<=$U$, invert] (3.2,0) -- (0,0);
+  \draw (3.2,0) node[ground] {};
+  \node[right] at (3.3,2.4) {Sortie démodulateur};
+  \draw[->] (0.55,1.75) -- (0.55,0.9) node[midway, right] {$i_f$};
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,21 @@
+courbe,periode_s,db
+ZM 500 (électronique),0.01,-151.5
+ZM 500 (électronique),1,-190
+ZM 500 (électronique),100,-130
+ZM 500 (Johnson),0.01,-187.5
+ZM 500 (Johnson),10,-188
+LPZ 12 s (électronique),1,-190
+LPZ 12 s (électronique),12,-201
+LPZ 12 s (électronique),1000,-142.5
+LPZ 12 s (Johnson),0.5,-202.5
+LPZ 12 s (Johnson),700,-202
+LPH asservi 1985 (électronique),0.012,-101
+LPH asservi 1985 (électronique),1,-158
+LPH asservi 1985 (électronique),3,-172
+LPH asservi 1985 (électronique),8.5,-186
+LPH asservi 1985 (électronique),11,-189
+LPH asservi 1985 (électronique),30,-184
+LPH asservi 1985 (électronique),100,-179.5
+LPH asservi 1985 (électronique),1000,-167.5
+LPH asservi (Johnson),0.1,-219
+LPH asservi (Johnson),1000,-219

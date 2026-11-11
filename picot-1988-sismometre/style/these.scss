@@ -1,0 +1,63 @@
+/*-- scss:defaults --*/
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Source+Sans+3:wght@400;600;700&display=swap');
+
+$font-family-serif: "Source Serif 4", "Iowan Old Style", Georgia, serif;
+$font-family-sans-serif: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+$font-family-base: $font-family-serif;
+$headings-font-family: $font-family-sans-serif;
+$font-size-root: 17px;
+$line-height-base: 1.6;
+
+$primary: #1f4e79;
+$link-color: #1f4e79;
+$body-color: #1d1d1b;
+$headings-color: #1b2b3a;
+$headings-font-weight: 600;
+$toc-color: #1f4e79;
+$sidebar-fg: #3a3a38;
+$code-color: #7a2e0e;
+
+/*-- scss:rules --*/
+body { font-feature-settings: "kern", "liga", "onum"; }
+main.content p, main.content li { hyphens: auto; text-align: justify; }
+main.content figcaption, main.content .callout li { text-align: left; }
+.sidebar, .sidebar-navigation, #TOC, nav#TOC { font-family: $font-family-sans-serif; }
+
+h1.title { font-size: 2.1rem; line-height: 1.25; }
+.quarto-title .subtitle { font-family: $font-family-sans-serif; color: #555; font-size: 1.15rem; }
+h2 { margin-top: 2.6rem; padding-bottom: .3rem; border-bottom: 1px solid #e3e2de; }
+h3 { margin-top: 2rem; }
+h4, h5 { margin-top: 1.6rem; }
+.chapter-number { color: #8a8984; font-weight: 400; margin-right: .2em; }
+
+/* figures et légendes */
+.quarto-figure { margin: 2rem 0 2.2rem; }
+.quarto-figure img, figure img { background: #fff; }
+figcaption, .figure-caption {
+  font-family: $font-family-sans-serif;
+  font-size: .9rem;
+  line-height: 1.45;
+  color: #4a4a47;
+  text-align: left;
+  margin-top: .6rem;
+}
+figcaption strong { color: #1b2b3a; }
+
+/* tableaux */
+table { font-size: .92rem; }
+.table { margin: 1.4rem auto; }
+.table caption, caption { caption-side: top; font-family: $font-family-sans-serif; font-size: .9rem; color: #4a4a47; }
+thead th { border-bottom: 2px solid #1b2b3a !important; }
+
+/* équations */
+mjx-container[display="true"] { margin: 1.1em 0 !important; overflow-x: auto; overflow-y: hidden; }
+
+/* encadrés */
+.callout { font-size: .95rem; }
+
+/* paragraphes-titres de l'original (« Mise en équation : ») */
+p > strong:first-child:last-child { font-family: $font-family-sans-serif; color: #1b2b3a; }
+
+/* page de titre de l'index */
+.these-jury table { width: auto; margin: 0; }
+.mots-cles { font-family: $font-family-sans-serif; font-size: .92rem; color: #4a4a47; }

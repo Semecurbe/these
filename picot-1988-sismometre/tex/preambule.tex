@@ -1,0 +1,43 @@
+% Préambule LaTeX de la version PDF (classe KOMA scrbook)
+
+% --- légendes : les numéros de figures et tableaux sont ceux de l'original,
+%     écrits dans le texte des légendes ; pas de numérotation automatique
+\usepackage{caption}
+\captionsetup{font=small, labelformat=empty, justification=justified,
+  singlelinecheck=true, margin=0.6cm, skip=6pt}
+\captionsetup[table]{position=top}
+
+% --- titres
+\addtokomafont{disposition}{\color{black!85}}
+\addtokomafont{chapterprefix}{\mdseries\large\color{black!60}}
+\addtokomafont{chapter}{\Huge}
+\RedeclareSectionCommand[beforeskip=0pt, afterskip=2.2\baselineskip]{chapter}
+\RedeclareSectionCommand[beforeskip=-2\baselineskip plus -1ex minus -.2ex,
+  afterskip=0.8\baselineskip]{section}
+
+% --- en-têtes et pieds de page
+\usepackage[automark, headsepline=0.4pt]{scrlayer-scrpage}
+\clearpairofpagestyles
+\automark[chapter]{chapter}
+\ohead{\headmark}
+\ofoot*{\pagemark}
+\setkomafont{pageheadfoot}{\normalfont\small\color{black!65}}
+\setkomafont{pagenumber}{\normalfont\small}
+
+% --- table des matières et liste des figures plus aérées
+\RedeclareSectionCommand[tocindent=0pt]{chapter}
+
+
+% --- typographie
+\clubpenalty=10000
+\widowpenalty=10000
+\raggedbottom
+
+% --- numérotation : seuls les chapitres sont numérotés par LaTeX ; les numéros
+%     de paragraphes de l'original font partie des titres
+\AtBeginDocument{\setcounter{secnumdepth}{0}}
+
+% --- liste des figures : les numéros sont dans les légendes courtes
+\captionsetup{listformat=empty}
+\DeclareTOCStyleEntry[numwidth=0pt, indent=0pt, beforeskip=.15em]{tocline}{figure}
+\DeclareTOCStyleEntry[numwidth=0pt, indent=0pt]{tocline}{table}

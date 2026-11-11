@@ -1,0 +1,372 @@
+# Perspectives d'évolution
+
+<!-- p. 182 -->
+
+## 5.1 Sismomètre mixte bi-capteurs
+
+**But :**
+
+Ce sismomètre vise à concilier dans un seul capteur les caractéristiques
+intéressantes du bruit électronique :
+
+- en courtes périodes pour les capteurs conventionnels,
+- en longues périodes pour les capteurs asservis.
+
+**Principe :**
+
+Son principe consiste à associer à une base mécanique type longue période, deux
+transducteurs déplacement et vitesse.
+
+- Le transducteur déplacement est utilisé pour réaliser une réduction de période
+  propre ainsi qu'un amortissement dynamique non dissipatif. Il permet, en
+  outre, de récupérer un signal longue période faible bruit.
+- Le transducteur vitesse est utilisé pour une mesure faible bruit dans la gamme
+  courte période.
+
+Dans sa réalisation la plus simple, le capteur comporte deux voies
+« indépendantes » de mesure (fig. 5.1.1)
+
+<!-- p. 183 -->
+
+**Courbes de réponse :**
+
+Voie déplacement :
+
+$$
+\frac{V_1}{\gamma_i}(s = j\omega) = \frac{H_m(j\omega)\,\alpha_1}{1 + H_m(j\omega)\,\alpha_1\beta} = \frac{\alpha_1 H_m(j\omega)}{1 + L(j\omega)}
+$$
+
+$$
+\frac{x}{\gamma_i}(s = j\omega) = \frac{H_m(j\omega)}{1 + L(j\omega)}
+$$
+
+Voie vitesse :
+
+$$
+\frac{V_2}{\gamma_i}(s = j\omega) = \frac{H_m(j\omega)\,\alpha_2\cdot s}{1 + L(j\omega)} = \frac{\alpha_2\cdot s}{\alpha_1}\,\frac{V_1}{\gamma_i}(s = j\omega)
+$$
+
+Les courbes de réponse pour $\alpha_1$ = cte et $\alpha_2$ = cte sont
+représentées à la figure 5.1.2 (représentation asymptotique).
+
+Pour la voie 1, la réponse est analogue à celle d'un capteur asservi classique,
+de période propre et d'amortissement libre $T_m$ et $\xi_m$.
+
+Pour la voie 2, la réponse est celle d'un capteur de caractéristiques en régime
+libre $T_0$ et $\xi_0$, correspondant aux caractéristiques de l'asservissement.
+
+<!-- p. 184 -->
+
+![**Figure 5.1.1** — Schéma du sismomètre « mixte ».](../figures/generees/fig-5-1-1){width=80% fig-scap="Figure 5.1.1 — Schéma du sismomètre « mixte »"}
+
+![**Figure 5.1.2** — Courbes de réponse du sismomètre mixte.](../figures/generees/fig-5-1-2){width=55% fig-scap="Figure 5.1.2 — Courbes de réponse du sismomètre mixte"}
+
+<!-- p. 185 -->
+
+**Conséquence sur la dynamique :**
+
+Le capteur disposant de deux voies, celles-ci auront à priori des propriétés
+dynamiques distinctes :
+
+*Signaux maximums admissibles :*
+
+Pour la voie $V_1$, les signaux admissibles seront fixés classiquement par
+l'étage de sortie (éventuellement par les éléments en aval de $V_1$).
+
+$$
+\gamma_{Mad_1}(j\omega) = \frac{V_{1Mad}}{H_{i_1}(j\omega)}
+$$
+
+Pour la voie $V_2$, deux types de saturation peuvent intervenir, celle liée à
+la branche $V_2$ (dépendant directement de la sensibilité en sortie $V_2$), et
+celle liée à la saturation au niveau de l'asservissement, correspondant à la
+saturation de l'étage $\alpha_1$ :
+
+$$
+\gamma_{Mad_2}(j\omega) = \operatorname{Min}\left(\frac{V_{2Mad}}{H_{i_2}(j\omega)}, \frac{V_{1Mad}}{H_{i_1}(j\omega)}\right)
+$$
+
+Une illustration de ceci apparaît à la figure 5.1.3.
+
+<!-- p. 186 -->
+
+![**Figure 5.1.3** — Signal maximum admissible (en accélération) d'un capteur mixte.](../figures/generees/fig-5-1-3){width=70% fig-scap="Figure 5.1.3 — Signal maximum admissible"}
+
+**Analyse du bruit électronique :**
+
+Il est important de noter que :
+
+- le bruit généré par l'étage d'amplification de la voie vitesse n'amène pas de
+  bruit sur la voie déplacement (sous réserve de négliger le bruit en courant de
+  l'amplificateur de tête de la voie $V_2$).
+- le bruit engendré sur la voie déplacement au niveau de la boucle crée, non
+  seulement un bruit en sortie « déplacement » $V_1$, mais également en sortie
+  « vitesse » $V_2$ du fait du déplacement parasite généré au niveau de la
+  masse.
+- la notion de bruit équivalent en entrée (i.e. par définition bruit en
+  sortie/sensibilité) s'applique différemment pour les 2 voies $V_1$ et $V_2$.
+
+<!-- p. 187 -->
+
+*Remarques* : Pour alléger les notations, on raisonnera ici sur des
+sources de signaux. Pour obtenir les résultats concernant le bruit, simplement
+remplacer les signaux par la valeur RMS des bruits. Appliquons le principe de
+superposition :
+
+- Soit $\epsilon'$ le bruit équivalent en entrée de l'amplificateur transducteur
+  $\alpha_2$ :
+
+  La source $\epsilon'$ amènera en sortie $V_1$ et $V_2$ les bruits :
+
+  $$
+  \begin{cases}
+  V_{2\epsilon'} = \alpha_2\,\epsilon' \\
+  V_{1\epsilon'} = 0
+  \end{cases}
+  $$
+
+  $$
+  |(\gamma_{\epsilon'})_2| = \left|\frac{1 + L(s)}{H_m(s)\cdot s}\right||\epsilon'|
+  = \left|\frac{\alpha_1}{H_{BF}(s)\cdot s}\right||\epsilon'|
+  $$
+
+  (terme classique correspondant à un sismomètre vitesse de caractéristiques
+  correspondant à celles du capteur en régime asservi).
+
+  $$
+  (\gamma_{\epsilon'})_1 = 0
+  $$
+
+- Soit $\epsilon$ le bruit équivalent en entrée du capteur de déplacement :
+
+  $$
+  |V_{1\epsilon}| = \left|\frac{\alpha_1}{1 + L(s)}\right||\epsilon| \qquad\text{(terme classique)}
+  $$
+
+  $$
+  |V_{2\epsilon}| = \left|\frac{\alpha_1\beta\,H_m(s)\cdot s\cdot\alpha_2}{1 + L(s)}\right||\epsilon_\alpha|
+  = \left|\frac{L(s)}{1 + L(s)}\,s\,\alpha_2\right||\epsilon|
+  $$
+
+<!-- p. 188 -->
+
+Le bruit équivalent en entrée, engendré par cette source, est :
+
+$$
+|(\gamma_\epsilon)_1| = \left|\frac{1}{H_m(s)}\right||\epsilon| \qquad\text{pour la voie } V_1
+$$
+
+$$
+|(\gamma_\epsilon)_2| = \left|\frac{L(s)\,s\alpha_2}{H_m(s)\,s\alpha_2}\right||\epsilon|
+= \left|\frac{L(s)}{H_m(s)}\right||\epsilon| = |\alpha_1\beta(s)|\,|\epsilon|
+\qquad\text{pour la voie } V_2
+$$
+
+Par suite
+
+$$
+\boxed{|(\gamma_\epsilon)_2| = |L(s)|\cdot|(\gamma_\epsilon)_1|}
+$$
+
+Cette relation montre que :
+
+- *Aux périodes où l'asservissement impose la courbe de réponse*
+  ($L \gg 1$), c'est-à-dire essentiellement en longues périodes, le bruit de
+  l'étage de tête généré par l'asservissement aura un effet (en terme de
+  signal/bruit) amplifié dans le rapport $L(s)$. Ce qui signifie que la voie
+  « vitesse » — sans même tenir compte de son bruit propre — sera plus bruyante
+  que la voie « déplacement » en longues périodes. Néanmoins, excepté autour de
+  la période centrale $T_0$, le bruit équivalent en entrée $(\gamma_\epsilon)_2$
+  sera négligeable devant le bruit propre $(\gamma_{\epsilon'})_2$ de cette voie
+  qui croît de 20 dB par décade plus rapidement, en longues périodes (cf.
+  courbes fig. 5.1.4).
+
+<!-- p. 189 -->
+
+- Aux périodes plus faibles (pour $T < T_0$), le rapport entre
+  $(\gamma_\epsilon)_2$ et $(\gamma_\epsilon)_1$ est inverse car $|L| < 1$ et le
+  rapport $\dfrac{(\gamma_\epsilon)_2}{(\gamma_\epsilon)_1}$ va décroître
+  asymptotiquement de 20 dB par décade (cf. figure 5.1.4). Le bruit propre
+  $(\gamma_{\epsilon'})_2$ de la voie vitesse $V_2$ sera à peu près comparable
+  au bruit $(\gamma_\epsilon)_2$ (en tous cas, de rapport à peu près constant
+  avec la fréquence en courtes périodes). De ce fait, le bruit global, en
+  courtes périodes, sera à peu près comparable à celui d'un capteur CP classique
+  et donc nettement meilleur que celui d'un capteur asservi classique (voie
+  $V_1$). Pour un capteur de période nominale 1 s, en régime asservi, nous
+  pouvons espérer un gain de 20 dB environ à 10 Hz (pour la voie $V_2$).
+
+*Remarques :*
+
+- Si l'on modifie la période mécanique $T_m$, en conservant une même période
+  $T_0$, le bruit $(\gamma_\epsilon)_2$ ne sera pratiquement pas affecté (sous
+  réserve que $T_m$ reste assez grand devant $T_0$) : c'est uniquement le bruit
+  $(\gamma_\epsilon)_1$ qui sera modifié. Comme le bruit $(\gamma_{\epsilon'})_2$
+  ne dépend également que des caractéristiques en boucle fermée *vues de la
+  sortie vitesse $V_2$*, les performances de *bruit ne
+  dépendront* pratiquement *pas de la période propre
+  $T_m$* (en dehors du bruit « thermique » qui dépend de $T_m$ et
+  $\xi_m$). De ce fait, pour minimiser le bruit de la voie $V_2$ aux périodes
+  intermédiaires, il sera préférable d'augmenter légèrement $T_0$.
+
+<!-- p. 190 -->
+
+![**Figure 5.1.4** — Signaux maximaux et bruits des voies $V_1$ et $V_2$ du sismomètre mixte.](../figures/generees/fig-5-1-4){width=85% fig-scap="Figure 5.1.4 — Signaux maximaux et bruits des voies $V_1$ et $V_2$ du sismomètre mixte"}
+
+<!-- p. 191 -->
+
+**Remarques :**
+
+Dans une seconde phase, on pourrait chercher à tirer partie des caractéristiques
+de faible bruit de la voie $V_1$ en longues périodes, ainsi que de la voie $V_2$
+en courtes périodes, en fabriquant un signal composite par sommation des signaux
+$V_1$ et $V_2$ (convenablement filtrés : passe-haut pour la voie $V_2$ —
+passe-bas pour la voie $V_1$).
+
+La courbe de réponse obtenue pourrait être du type vitesse-accélération (vitesse
+en courte période et accélération en longue période).
+
+Cependant, cette solution, bien que séduisante, soulève de nombreux problèmes de
+réalisation (réglages des gains et des courbes de réponse, tests, risques
+d'intéractions parasites entre les voies ...)
+
+**Éléments pour la réalisation :**
+
+Le sismomètre mixte bi-capteur doit comporter trois transducteurs :
+
+- transducteur déplacement → tension : type LVDT faible bruit
+- transducteur vitesse → tension : type bobine aimant.
+
+  Celui-ci ne devra pas générer d'amortissement comme dans le cas du capteur
+  conventionnel. Pour éviter l'amortissement électrodynamique, la bobine devra
+  attaquer la très haute impédance de l'entrée positive d'un amplificateur
+  opérationnel.
+- transducteur courant (ou tension) → force : type bobine aimant.
+
+  Pour éviter les phénomènes de couplage parasite, on utilisera pour les
+  transducteurs vitesse et force deux bobines plongeant dans *deux aimants
+  distincts*.
+
+<!-- p. 192 -->
+
+La bobine du transducteur vitesse devra avoir un produit $B\cdot\ell$ (i.e. champ
+magnétique × longueur) élevé, de manière à disposer d'un « gain » propre aussi
+élevé que possible (de l'ordre de 1000 N/A devrait convenir). L'amplificateur
+devra être choisi avec de très bonnes caractéristiques de bruit (en particulier
+faible courant de bruit à cause de la forte impédance de la bobine) et de dérive
+(exemple OPA 111 BM).
+
+La bobine du transducteur force devra disposer d'un $B\ell$ plus faible pour
+respecter la condition $B\ell \ll \alpha_1$, et pourra utiliser un aimant de plus
+faible taille.
+
+**Conclusion :**
+
+Le sismomètre mixte bi-capteur doit permettre de concilier, en un seul capteur,
+les performances de bruit du capteur asservi en longues périodes et du capteur
+conventionnel courte période sans modification trop importante des capteurs
+existants.
+
+Cependant, ces possibilités se traduisent par une dynamique maximale proche de
+celle du capteur asservi et donc en retrait par rapport au capteur conventionnel
+en longue période.
+
+<!-- p. 193 -->
+
+## 5.2 Éléments particuliers pour la réalisation d'un capteur miniature
+
+### 5.2.1 Introduction — généralités
+
+Comme on l'a déjà signalé au paragraphe 2, la conception d'un capteur vertical
+miniature, capable d'opérer dans le domaine des longues périodes, est délicate.
+
+Considérons, pour simplifier, un capteur obtenu par une homothétie de rapport ½
+(dans le plan vertical). Plaçons nous, pour simplifier, dans le cas d'un pendule
+de Lacoste. On notera avec le symbole ' les caractéristiques du nouveau
+capteur :
+
+$$
+r_{G'} = r_G/2
+$$
+
+Supposons que l'angle d'inclinaison $\delta$ n'est pas affecté, dans ce cas, la
+période $T_m = 2\pi\sqrt{\dfrac{r_G}{g}\cdot\dfrac{\sin\beta}{\sin\delta}}$ (cf.
+Annexe I) devient $T_{m'} = T_m/\sqrt2$
+
+La sensibilité en accélération $\left|\dfrac{x_G}{\gamma_i}\right|$ en longue
+période $\left(\dfrac{T_m^2}{4\pi^2}\right)$ est alors divisée par 2.
+
+*NB* : La compensation de la variation de période propre peut être
+effectuée en modifiant l'angle $\delta$ (inclinaison du capteur) ; comme $\delta$
+petit, $\delta = \operatorname{tg}\delta = \dfrac{I_\Omega}{mg\,r_G}\cdot\dfrac{4\pi^2}{T^2}$,
+l'angle $\delta$ devrait être divisé par 2. Ceci réduit la marge de réglage (par
+exemple pour le LPZ 12 s $\delta$ = 0.383 deg (= 6.7 mrad)). Cette diminution
+d'angle s'accompagnerait par une augmentation des termes non linéaires provenant
+des imperfections de réglage de longueur nulle.
+
+<!-- p. 194 -->
+
+Au niveau des efforts à l'équilibre :
+
+$$
+mg\,r_G = k\,a_1 a_2\sin\alpha \quad (= k\,a_1 a_2\cos\delta)
+$$
+
+Si l'on utilise une géométrie homothétique et des masses volumiques identiques,
+on aura (sans réduction de taille, suivant l'axe de rotation) :
+
+$$
+m' = m/4 \qquad k' = k/2
+$$
+
+Les forces seront divisées par 4 et les couples par 8.
+
+On voit ainsi que l'action des efforts parasites (forces électrostatiques,
+couples parasites produits par un pivot à lame, ...) sera augmentée.
+
+Par ailleurs, comme le signale @melton1976, l'action des divers mécanismes
+d'amortissement dissipatif se trouve renforcée :
+
+- hystérésis mécanique,
+- action des courants de Foucault,
+- amortissement électrodynamique.
+
+En particulier, le bruit de Johnson (de valeur RMS
+$\left(16\pi\,k_BT\cdot\dfrac{I_\Omega}{mr_G^2}\cdot\dfrac{\xi_m}{m\,T_m}\right)^{1/2}$)
+pourra devenir critique, si $m$ et $T_m$ sont diminués, tandis que $\xi_m$ est
+en général augmenté.
+
+À titre d'exemple, avec les hypothèses précédentes, si on considère un couple
+d'amortissement dissipatif inchangé $\Phi\dot\varphi$,
+
+<!-- p. 195 -->
+
+l'amortissement réduit $\xi'_m$ sera alors :
+
+$$
+\xi'_m = \frac{\Phi}{2\,I_{\Omega'}\,\omega_{m'}}, \quad\text{de sorte que}\quad
+\frac{\xi'_m}{T_{m'}} \approx \frac{16\,\xi_m}{T_m}
+\quad\left(= \frac{1}{4\pi}\,\frac{\Phi}{I_\Omega}\right)
+$$
+
+De ce fait, la valeur RMS du bruit de Johnson serait multipliée par 8
+(= √(16 × 4))
+
+### 5.2.2 Conséquences sur la conception du capteur
+
+Un capteur miniature, large bande, à grande dynamique, utilisant l'électronique
+large bande développée dans cette étude, devra intégrer les éléments suivants :
+
+- Compte-tenu de la marge actuelle existant entre le bruit électronique longue
+  période et le bruit sismique minimum connu (et également la limitation
+  actuelle issue du bruit de l'étage de sortie), la période propre mécanique
+  pourra, du point de vue du bruit électronique, être réduite jusqu'à une valeur
+  minimum de 4 à 5 s. Cette réduction de période pourra permettre de conserver
+  une « marge de stabilité » raisonnable.
+- Au niveau mécanique, les besoins de stabilité des caractéristiques sont au
+  moins aussi sévères que pour les suspensions classiques :
+  - le capteur doit être compensé thermiquement,
+  - la suspension doit être intégrée dans une enceinte-bâti étanche et très
+    rigide, afin d'être mise sous vide.
+- L'électronique pourra intégrer dans la boucle d'asservissement un correcteur
+  P + I (celui-ci permet, en réduisant les déplacements de la masse en longues
+  périodes, de faire face aux problèmes de non linéarité mécanique).

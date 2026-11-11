@@ -1,0 +1,37 @@
+\input{_preambule}
+\begin{document}
+\begin{tikzpicture}
+  \draw[line width=1pt] (0,0) rectangle (8.4,4.6);
+  \coordinate (K) at (0.75,0.45);
+  \coordinate (W) at (4.7,2.2);
+  \coordinate (G) at (2.4,2.2);
+  \coordinate (O) at (7.4,0.15);
+  % lame
+  \draw[line width=0.9pt] (K) .. controls (1.2,4.9) and (7.6,5.2) .. (7.4,0.35);
+  % encastrements
+  \fill[pattern=north east lines] ($(K)+(-0.22,-0.12)$) rectangle ($(K)+(0.2,0.12)$);
+  \draw ($(K)+(-0.22,-0.12)$) rectangle ($(K)+(0.2,0.12)$);
+  \fill[pattern=north east lines] (7.2,0) rectangle (7.6,0.3);
+  \draw (7.2,0) rectangle (7.6,0.3);
+  % bras
+  \draw[line width=0.8pt] ($(K)+(0.1,0.08)$) -- ($(W)+(-0.05,0.05)$) -- (G) -- ++(0,-0.08) -- ($(W)+(-0.05,-0.1)$) -- ($(K)+(0.15,-0.06)$);
+  \draw (G) circle (0.06);
+  % support du pivot
+  \draw (W) -- (4.4,0) (W) -- (5.0,0);
+  \node[pivot, minimum size=3mm] at (W) {}; \fill (W) circle (0.7pt);
+  \draw (0.95,1.5) arc (70:110:0.9);
+  \draw (0.55,0.9) arc (150:200:1.0);
+  % étiquettes
+  \node[above left] at ($(K)+(-0.1,0.05)$) {$K$};
+  \node[right] at (7.6,0.45) {$O$};
+  \node[right] at ($(W)+(0.12,0)$) {$\Omega$};
+  \node[left] at (G) {$G$};
+  \node[align=center, above] at (2.9,2.3) {Centre de\\masse};
+  \node[align=center, above] at (5.7,2.3) {Pivot sans\\frottement};
+  \node[align=center] at (6.25,0.65) {encastrement\\« fixe »};
+  \node[align=left, anchor=east] at (-0.15,0.9)
+    {encastrement\\mobile de la\\lame dans\\le bras};
+  \node (b) at (3.2,-0.9) {bras}; \draw[->] (b.north) -- (2.9,1.25);
+  \node (bt) at (6.0,-0.75) {bâti}; \draw[->] (bt.north) -- (6.2,0);
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,18 @@
+courbe,periode_s,db
+Bruit 1/f en boucle ouverte (rappel),430,-40
+Bruit 1/f en boucle ouverte (rappel),1,-66.3
+Étage de tête en boucle ouverte (rappel),351,-64
+Étage de tête en boucle ouverte (rappel),1,-64
+Bruit de l'amplificateur de sortie,501,-73.2
+Bruit de l'amplificateur de sortie,0.1,-110.7
+Bruit excédentaire,389,-85
+Bruit excédentaire,12,-100
+Bruit excédentaire,1,-66.8
+Bruit excédentaire,0.1,-77.1
+Bruit de l'étage de tête,389,-106.8
+Bruit de l'étage de tête,12,-106.8
+Bruit de l'étage de tête,1,-64
+Bruit de l'étage de tête,0.1,-64
+Majoration du bruit thermique de sortie,389,-90.1
+Majoration du bruit thermique de sortie,27,-113
+Majoration du bruit thermique de sortie,6.5,-113

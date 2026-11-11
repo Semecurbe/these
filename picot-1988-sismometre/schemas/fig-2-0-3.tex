@@ -1,0 +1,47 @@
+\input{_preambule}
+\begin{document}
+\begin{tikzpicture}[font=\footnotesize, scale=1.25]
+  % bâti
+  \draw[line width=1pt] (0,0) rectangle (5.4,3.3);
+  \coordinate (O) at (1.1,1.65);
+  \draw (O) -- (O |- 0,0);
+  % horizontale liée au bâti
+  \draw[dash dot, ->] (O) -- (7.4,1.65);
+  % bras incliné de phi
+  \coordinate (G) at ($(O)+(10:3.0)$);
+  \draw[line width=1.1pt] (O) -- ($(O)+(10:3.6)$);
+  \node[draw, fill=white, minimum width=6mm, minimum height=3.2mm, rotate=10] at (G) {};
+  \fill (G) circle (1.2pt);
+  \node[above=2.5mm] at (G) {$G$};
+  \draw[->] ($(O)+(0:1.5)$) arc (0:10:1.5);
+  \node at ($(O)+(4:1.25)$) {$\varphi$};
+  % axe sensible x
+  \draw[axe] (3.4,1.0) -- (3.4,3.0) node[right] {$x$};
+  \fill (3.4,1.65) circle (1.2pt);
+  % pivot et dispositif de rappel
+  \node[pivot, minimum size=5mm] at (O) {};
+  \node at (O) {$+$};
+  \node[below right=-1pt] at (O) {$\Omega$};
+  % repère absolu
+  \draw[axe] (7.4,-0.6) -- (7.4,3.9) node[right] {Verticale};
+  \fill (7.4,1.65) circle (1.4pt);
+  \node[left] at (7.35,1.95) {$z_e$};
+  \node[right, align=left] at (7.5,1.65) {Horizontale\\liée au bâti};
+  \draw[axe] (7.4,-0.6) -- (8.4,-0.6);
+  \node[left, align=right] at (7.3,-0.5) {Repère\\absolu fixe};
+  % légendes
+  \node[align=left, anchor=south west] (bras) at (0.6,4.0)
+    {Bras mobile autour du pivot $\Omega$\\
+     \;-- de centre de masse $G$ (masse $m$)\\
+     \;-- de moment d'inertie $I_\Omega$ par rapport\\
+     \;\phantom{--} à l'axe de rotation $\Omega$};
+  \draw[->] (1.8,4.0) -- ($(O)+(10:1.6)$);
+  \node[align=center, anchor=east] (rap) at (-0.4,2.2)
+    {Dispositif de rappel\\visco-élastique\\(constante de couple $C$)};
+  \draw[->] (rap.east) -- ++(0.9,-0.4) -- ($(O)+(-0.27,0)$);
+  \node[anchor=north] (bati) at (2.0,-0.6) {Bâti support du bras};
+  \draw[->] (bati.north) -- (2.6,0);
+  \node[align=left, anchor=west] at (9.0,2.9)
+    {$\varphi$ : angle d'inclinaison\\du bras $\Omega G$ par rapport\\à l'horizontale.};
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,189 @@
+# 4 — Application des améliorations obtenues et performances avec les capteurs L.D.G. (LPH-A et LPZ-A)
+
+<!-- p. 170 -->
+
+## 4.1 — Les capteurs LDG LBH-A et LPZ-A
+
+Les principales caractéristiques de ces capteurs sont résumées dans le tableau
+suivant :
+
+| CAPTEUR | LPZ-A | LBH-A |
+|---|---|---|
+| Période propre | valeur nominale $T_m$ = 12 s | valeur nominale $T_m$ = 12 s |
+| Type de capteur | Vertical — Lacoste classique | Horizontal — Pendule incliné |
+| Particularités | pivots à « pointes et saphirs » ; ressort compensé (1 ressort élinvar / 1 ressort acier) | pivots à « pointes et saphirs » ; capteur sous vide |
+| Masse principale | $\approx$ 2.52 kg | $\approx$ 2.1 kg |
+| Distance du pivot principal au centre de masse | $\Omega G$ $\approx$ 239 mm | $\approx$ 193 mm |
+| Gains mécaniques | LVDT : 390/239 ; contre-réaction : 345/239 | 1 ; 1 |
+| | très faible amortissement mécanique | très faible amortissement mécanique |
+| 1^er^ mode parasite | $f$ $\approx$ 3.5 Hz, battement du ressort | $f$ $\approx$ 65 Hz, torsion du bras |
+| Courbe de réponse type | accélération & déplacement (sortie V1) : $T_0$ = 1 s ; $\xi_0$ = 0.707 ; $T \leq$ 1 s : $V/x = 4\times10^5$ V/m ; $T \geq$ 1 s : $V/\gamma = 1.013\times10^4$ V/m s$^{-2}$ | idem |
+| Transducteur déplacement | LVDT faible bruit (cf. 3) | LVDT faible bruit (cf. 3) |
+| Contre-réaction | Action P+D $\tau_D$ $\approx$ 1.41 | Action P+D $\tau_D$ $\approx$ 1.41 |
+| Limitation de la bande | $\approx$ 10 Hz | $\approx$ 100 Hz |
+| *Sensibilités parasites résiduelles (en quasi statique) :* | | |
+| — en pression | variation de la poussée d'Archimède $\approx$ $1.4\times10^{-8}$ m s$^{-2}$/0.1 mbar en continu | $\leq$ 0.1 µrad/100 mbar (expérimental) ~ $10^{-8}$ m s$^{-2}$/0.1 mbar |
+| — en température | $\approx$ $1.4\times10^{-8}$ m s$^{-2}$/10$^{-3}$ °C, dérive du ressort | ? |
+| Autres : — inclinométrie | | 1 µrad correspond à 1 µg |
+
+<!-- p. 171 -->
+
+Les résultats obtenus en électronique ont permis :
+
+- de remplacer le capteur conventionnel longue période par un capteur asservi,
+- d'améliorer les performances de bruit du prototype de capteur asservi
+  vertical.
+
+Dans un premier temps, la diminution de bruit électronique a laissé apparaître,
+en période calme, des perturbations mécaniques liées à une sensibilité parasite
+en pression des capteurs. Ce phénomène a pû être diminué sur les capteurs
+horizontaux en analysant le mécanisme d'action des variations de pression.
+
+L'électronique large bande du capteur asservi n'a pu être testée dans toute la
+bande, sur les capteurs verticaux, du fait des limitations en courtes périodes,
+amenées par les résonances parasites.
+
+[NB]{.underline} : Cependant, il est à noter que l'électronique du capteur
+asservi présenterait théoriquement de moins bonnes performances de bruit, en
+très courtes périodes, que celle du capteur conventionnel électrodynamique.
+
+<!-- p. 172 -->
+
+![Fig. 4.1.1 — Spectres de bruit instrumental électronique (déduits des analyses spectrales, capteur bloqué, et de l'étude du paragraphe 3) en terme de densité spectrale d'accélération.](figures/generees/fig-4-1-1){width=95%}
+
+<!-- p. 173 -->
+
+## 4.2 — Résultats en station
+
+Le test de l'électronique des capteurs asservis a été réalisé, en station, par
+comparaison avec un capteur conventionnel utilisant une base mécanique identique
+($T_m$ = 12 s), les signaux étant corrigés pour avoir des courbes de réponses
+identiques sur les 2 capteurs :
+
+La comparaison directe des signaux (figure 4.2.1), de même que la comparaison
+des analyses spectrales (Fig. 4.2.2), laisse apparaître une diminution
+substantielle du bruit enregistré.
+
+![Fig. 4.2.1 — Comparaison des sismomètres LDG LPZ-A et LPZ-12 s. Vitesse sortie, gain 40.000, bande 18-60 s ($4\cdot10^6$ V/m × $10^{-2}$ m/V sur l'enregistreur). 1 carreau représente 20 s en horizontal, et 12.5 µm dans la bande en vertical.](figures/generees/fig-4-2-1){width=95%}
+
+<!-- p. 174 -->
+
+![](figures/generees/fig-4-2-2a){width=85% fig-alt="fig-4-2-2 (partie 1)"}
+
+![Figure 4.2.2 — Comparaison des capteurs LPZ-12 s (vitesse) et LPZ-A : analyses spectrales en station (analyse spectrale Lormes 23/4/86, sortie enregistrement graphique « gain 40 000 », filtre 18 s) et chaîne de mesure utilisée.](figures/generees/fig-4-2-2b){width=95%}
+
+<!-- p. 175 -->
+
+Des analyses faites en utilisant des relectures de signaux (capteurs LPZ-A) sur
+des périodes calmes, ont permis d'évaluer un spectre de bruit « minimum » de la
+station de LORMES — Il faut noter que, du fait des sensibilités parasites
+résiduelles, la recherche de périodes « calmes » est indispensable pour
+l'obtention de spectres significatifs en terme de bruit
+[sismique]{.underline} —. Ces analyses ont été confrontées aux spectres
+présentés dans la littérature et au bruit électronique calculé correspondant aux
+résultats de l'étude de bruit.
+
+Ces résultats sont présentés aux figures 4.2.3 (1) et (2), tandis que les
+conditions de mesure et la courbe de réponse correspondant aux enregistrements
+apparaissent à la figure 4.2.4. Du fait des filtres utilisés, le spectre n'est
+significatif qu'aux périodes supérieures à 10 s environ. L'analyse de la figure
+4.2.3. appelle les remarques suivantes :
+
+- le spectre mesuré se situe notablement au-dessus des spectres de bruit
+  électronique calculé,
+- le spectre obtenu avec les capteurs asservis en longues périodes est très
+  proche des spectres de bruit sismique les plus faibles, tels que Lajitas
+  (E. Herbin — 82), dans la bande 30-400 s. Pourtant, ce spectre a été obtenu
+  dans une station de surface, et non en utilisant un capteur placé en puits.
+
+<!-- p. 176 -->
+
+![Figure 4.2.3 — Analyses spectrales de bruit avec sismomètre LPZ asservi (LPZ-A, relecture des signaux 27/4/86 17H30 – 22H10, sortie PCM gain 1000 ; comparaison avec les spectres de bruit sismique de référence).](figures/generees/fig-4-2-3){width=90%}
+
+<!-- p. 177 -->
+
+![](figures/generees/fig-4-2-4a){width=85% fig-alt="fig-4-2-4 (partie 1)"}
+
+![Fig. 4.2.4 — Schéma de la chaîne utilisée pour les analyses spectrales de bruit avec le capteur LPZ-A (synoptique chaîne longue période, asservi, utilisée pour analyse spectrale), et courbe de réponse (sortie PCM gain 1000 : courbe de réponse en accélération).](figures/generees/fig-4-2-4b){width=95%}
+
+<!-- p. 178 -->
+
+En très basse fréquence, le faible niveau de bruit a permis l'observation de la
+marée terrestre, comme l'atteste l'enregistrement gain 1000 en accélération à
+partir de la voie continue gain 10. Sur la figure 4.2.5, la marée terrestre
+apparaît superposée à la dérive continue des capteurs (on remarque, pour les
+capteurs E-W et W-E, que la dérive se fait pratiquement en opposition (dérive
+d'inclinométrie du bloc ?)).
+
+![Fig. 4.2.5 — Observation de la marée terrestre. Sortie « continu » — « gain 1000 » accélération. Défilement 1.566 carreau/heure. Signaux : 1 carreau représente $10^{-6}$ m s$^{-2}$/V · 1 V/cm · 0.5 cm = 0.5 µm s$^{-2}$ $\approx$ 0.05 µg. Remarque : rapport de réduction du tirage 0.36.](figures/generees/fig-4-2-5){width=95%}
+
+<!-- p. 179 -->
+
+**Comparaison avec les capteurs GEOSCOPE :**
+
+La comparaison, en longues périodes, des capteurs LDG équipés avec
+l'électronique large bande, et des capteurs du réseau Géoscope (capteur
+Wielandt et Streickeisen) a été menée à la station de Pamatai, dans des
+conditions d'environnement difficiles (variations de température et de pression
+élevées).
+
+La comparaison, en longues périodes, des capteurs verticaux montre que le
+capteur Géoscope (capteurs à lames, cf. Wielandt-82-) sous vide est moins
+bruyant que le capteur LPZ-A (qui n'est pas sous vide). Le bruit excédentaire
+provient vraisemblablement des variations de pression supportées par le capteur
+(celles-ci peuvent résulter des variations directes de la pression à
+l'extérieur de la cuve ou, dans le cas d'une cuve étanche, des variations de
+température extérieure). Les ordres de grandeur des perturbations (analyses de
+D. Fouquet, 1986) sont en accord avec l'amplitude des bruits observés.
+
+À l'inverse, la comparaison des signaux des capteurs horizontaux, utilisant
+sensiblement une même électronique que celle des capteurs verticaux, est à
+l'avantage des capteurs LDG en (très) longue période. Dans ce cas, les
+meilleures caractéristiques des capteurs LDG résultent vraisemblablement de
+leurs caractéristiques excellentes de sensibilité à la pression ($\leq$ 0.1 µrad/mbar
+soit $\approx$ 1 µm s$^{-2}$/mbar).
+
+<!-- p. 180 -->
+
+![Fig. 4.2.6 — Comparaison avec capteur GEOSCOPE. LPZ-A : sortie V$_1$ + filtre passe bande 2^è^ ordre 150 s – 3600 s + filtre passe-bas 6^è^ ordre 30 s. Sismomètre GEOSCOPE : même courbe de réponse. NB : rapport de réduction photocopie 72 %.](figures/generees/fig-4-2-6){width=95%}
+
+<!-- p. 181 -->
+
+## 4.3 — Interprétation des résultats
+
+**Bruit en longues périodes :**
+
+L'interprétation complète des résultats précédents nécessiterait une
+« identification » des sources de bruit ou de perturbation parasite. Le LDG a
+déjà effectué, pour les suspensions longue période, des analyses qualitatives et
+quantitatives en statique, sur l'influence de la température et de la pression.
+Ces études ont d'ailleurs permis de réduire la sensibilité à la pression
+(capteur LPH) et à la température (LPZ).
+
+L'analyse des résultats en station a montré que les capteurs verticaux, qui ne
+sont pas actuellement dans une enceinte sous vide, restent sensibles aux
+variations de pression. On a pu mettre en évidence une corrélation entre les
+variations de pression au niveau de la cave et les signaux mesurés, et également
+entre les périodes de faible bruit sismique et les périodes de stabilité de la
+pression atmosphérique (cf. D. Fouquet, rapport interne LDG, 1986).
+
+L'ensemble de ces résultats, tant pour les capteurs horizontaux que verticaux,
+même si les possibilités d'interprétation ne sont pas uniques, permettent de
+penser que les analyses spectrales (en longue période) durant les phases les
+plus calmes ne correspondent
+
+- ni à un bruit de nature sismique,
+- ni à un bruit instrumental intrinsèque (c'est à dire, pas à un bruit de nature
+  électronique ou électromécanique).
+
+Néanmoins, l'absence de connaissances quantitatives des champs de perturbation
+réels affectant les capteurs ne permettent pas de tirer des conclusions
+définitives.
+
+**Bruit en très courtes périodes :**
+
+Des analyses spectrales en « courtes périodes » ont mis en évidence la
+limitation du capteur asservi dans le domaine des hautes fréquences (capteur
+horizontal). La comparaison des capteurs asservis et du capteur conventionnel
+ont permis de confirmer la prééminence du bruit instrumental pour ce capteur,
+aux fréquences au-delà de quelques Hz (5 Hz environ).

@@ -1,0 +1,16 @@
+courbe,periode_s,db
+Bruit 1/f excédentaire (mesuré),347,-40.9
+Bruit 1/f excédentaire (mesuré),0.1,-77.5
+Bruit mesuré (blanc),1.8,-64.4
+Bruit mesuré (blanc),0.1,-64.6
+Bruit théorique étage de tête (G = 54.3 dB),347,-65.8
+Bruit théorique étage de tête (G = 54.3 dB),0.1,-66.2
+Bruit théorique filtre 10.8 Hz,387,-63.9
+Bruit théorique filtre 10.8 Hz,1.03,-90.3
+Bruit théorique filtre 10.8 Hz (prolongement),1.03,-90.3
+Bruit théorique filtre 10.8 Hz (prolongement),0.104,-100.6
+Bruit théorique amplificateur de sortie (V2),402,-73.7
+Bruit théorique amplificateur de sortie (V2),0.1,-110.7
+Majoration du bruit thermique de l'étage de sortie (V2),347,-90.6
+Majoration du bruit thermique de l'étage de sortie (V2),27,-113.3
+Majoration du bruit thermique de l'étage de sortie (V2),0.1,-113.7

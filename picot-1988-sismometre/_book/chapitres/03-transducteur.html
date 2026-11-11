@@ -1,0 +1,1716 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>3&nbsp; Étude et réalisation d’un transducteur déplacement faible bruit et de son électronique associée – Étude d'un sismomètre vertical, miniature, asservi, large bande, à grande dynamique</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapitres/04-application.html" rel="next">
+<link href="../chapitres/02-elements-theoriques.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-9441525fbf0580c0fd63f04cdcee687d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Pas de résultats",
+    "search-matching-documents-text": "documents trouvés",
+    "search-copy-link-title": "Copier le lien vers la recherche",
+    "search-hide-matches-text": "Cacher les correspondances additionnelles",
+    "search-more-match-text": "correspondance de plus dans ce document",
+    "search-more-matches-text": "correspondances de plus dans ce document",
+    "search-clear-button-title": "Effacer",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Annuler",
+    "search-submit-button-title": "Envoyer",
+    "search-label": "Recherche"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating slimcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapitres/03-transducteur.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Étude et réalisation d’un transducteur déplacement faible bruit et de son électronique associée</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Recherche" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Étude d’un sismomètre vertical, miniature, asservi, large bande, à grande dynamique</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Recherche"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Présentation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/01-introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction — Généralités</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/02-elements-theoriques.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Éléments d’analyse théorique</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/03-transducteur.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Étude et réalisation d’un transducteur déplacement faible bruit et de son électronique associée</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/04-application.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Application des améliorations obtenues et performances avec les capteurs L.D.G. (LPH-A et LPZ-A)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/05-perspectives.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Perspectives d’évolution</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/06-conclusions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Conclusions</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Références bibliographiques</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Annexes</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Basculer la section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/annexe-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Annexe 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/annexe-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Annexe 2 — Bruit généré lors du traitement du signal modulé</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Sur cette page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">3.0 Introduction</a></li>
+  <li><a href="#analyse-du-lvdt" id="toc-analyse-du-lvdt" class="nav-link" data-scroll-target="#analyse-du-lvdt">3.1 Analyse du LVDT</a>
+  <ul class="collapse">
+  <li><a href="#analyse-macroscopique" id="toc-analyse-macroscopique" class="nav-link" data-scroll-target="#analyse-macroscopique">3.1.1 Analyse macroscopique</a></li>
+  <li><a href="#constitution-du-lvdt-référence-e.e.-herceg-76" id="toc-constitution-du-lvdt-référence-e.e.-herceg-76" class="nav-link" data-scroll-target="#constitution-du-lvdt-référence-e.e.-herceg-76">3.1.2 Constitution du LVDT (Référence E.E. Herceg (76))</a></li>
+  <li><a href="#principales-caractéristiques-dun-lvdt" id="toc-principales-caractéristiques-dun-lvdt" class="nav-link" data-scroll-target="#principales-caractéristiques-dun-lvdt">3.1.3 Principales caractéristiques d’un LVDT</a></li>
+  </ul></li>
+  <li><a href="#électronique-de-mesure-associée-au-lvdt" id="toc-électronique-de-mesure-associée-au-lvdt" class="nav-link" data-scroll-target="#électronique-de-mesure-associée-au-lvdt">3.2 Électronique de mesure associée au LVDT</a>
+  <ul class="collapse">
+  <li><a href="#principe-et-schéma" id="toc-principe-et-schéma" class="nav-link" data-scroll-target="#principe-et-schéma">3.2.1 Principe et schéma</a></li>
+  <li><a href="#analyse-du-bruit-instrumental" id="toc-analyse-du-bruit-instrumental" class="nav-link" data-scroll-target="#analyse-du-bruit-instrumental">3.2.2 Analyse du bruit instrumental</a></li>
+  <li><a href="#bruit-excédentaire-du-lvdt" id="toc-bruit-excédentaire-du-lvdt" class="nav-link" data-scroll-target="#bruit-excédentaire-du-lvdt">3.2.3 Bruit excédentaire du LVDT</a></li>
+  </ul></li>
+  <li><a href="#analyse-du-bruit-propre-du-lvdt" id="toc-analyse-du-bruit-propre-du-lvdt" class="nav-link" data-scroll-target="#analyse-du-bruit-propre-du-lvdt">3.3 Analyse du bruit propre du LVDT</a>
+  <ul class="collapse">
+  <li><a href="#influence-des-paramètres-de-base-niveau-et-fréquence-dexcitation" id="toc-influence-des-paramètres-de-base-niveau-et-fréquence-dexcitation" class="nav-link" data-scroll-target="#influence-des-paramètres-de-base-niveau-et-fréquence-dexcitation">3.3.1 Influence des paramètres de base — niveau et fréquence d’excitation</a></li>
+  <li><a href="#analyses-affinées-autour-dun-lvdt-optimisé-faible-bruit" id="toc-analyses-affinées-autour-dun-lvdt-optimisé-faible-bruit" class="nav-link" data-scroll-target="#analyses-affinées-autour-dun-lvdt-optimisé-faible-bruit">3.3.2 Analyses affinées autour d’un LVDT optimisé faible bruit</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Étude et réalisation d’un transducteur déplacement faible bruit et de son électronique associée</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<!-- p. 120 -->
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">3.0 Introduction</h2>
+<p>La première génération de capteurs asservis du L.D.G. (capteurs horizontaux asservis), développée autour d’un transducteur à LVDT standard, avait dégagé l’ossature d’une électronique faible bruit. Cependant, les études n’avaient pas permis une identification précise des sources de bruit. L’étude entreprise ici a conduit, dans un premier temps, à l’identification de chacune des sources de bruit, et a mis en lumière l’existence d’un bruit excédentaire en «&nbsp;1/f&nbsp;» apporté par le LVDT proprement dit. L’amélioration du LVDT a amené un gain de plus de 30 dB sur ce bruit électronique Longue Période, et l’optimisation de l’électronique a permis, pour les bandes considérées, de conserver une amélioration du bruit électronique, en bande fermée, de 25 dB environ du continu jusqu’à quelques Hz.</p>
+</section>
+<section id="analyse-du-lvdt" class="level2">
+<h2 class="anchored" data-anchor-id="analyse-du-lvdt">3.1 Analyse du LVDT</h2>
+<p>Le LVDT (Linear Variable Differential Transformer) ou Transformateur Différentiel Variable Linéaire est un transducteur déplacement qui a pour intérêts&nbsp;: une facilité de mise en oeuvre, une bonne compacité, une électronique de traitement limité, une excellente linéarité, une excellente résolution, un hystérésis très faible et une sensibilité à l’environnement faible.</p>
+<!-- p. 121 -->
+<section id="analyse-macroscopique" class="level3">
+<h3 class="anchored" data-anchor-id="analyse-macroscopique">3.1.1 Analyse macroscopique</h3>
+<p>Le LVDT est constitué de trois enroulements&nbsp;: un primaire central et deux secondaires identiques de part et d’autre, câblés en opposition, et d’un noyau mobile agissant sur l’équilibre des secondaires, suivant le schéma de la figure 3.1.1. La tension recueillie pour le transformateur idéal serait exactement proportionnelle à la position (<span class="math inline">\(r = 0\)</span>). Sur le transformateur réel, on constate que l’amplitude ne passe pas par zéro mais qu’il existe une tension résiduelle <span class="math inline">\(rV_{I0}\)</span>. Ceci correspond à une tension en quadrature (capacités et couplages parasites…). Cette tension, qui limiterait la résolution (à <span class="math inline">\(x \approx r/\alpha\)</span>) dans le cas d’une démodulation passive, est éliminée en procédant à une détection synchrone (en réalité avec un déphasage <span class="math inline">\(\varphi\)</span> par rapport au primaire).</p>
+<p><strong>Démodulation sinusoïdale&nbsp;:</strong></p>
+<p>Elle est réalisée en multipliant par <span class="math inline">\(\cos(\omega t + \varphi)\)</span> le signal issu des secondaires&nbsp;:</p>
+<p><span class="math display">\[
+\Delta V_{II} = V_{I0}\,\alpha x\cos(\omega t + \varphi) + r\,V_{I0}\sin(\omega t + \varphi)
+\]</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\Delta V_{II}}{V_{I0}}(x) &amp;= \alpha x\cos^2(\omega t + \varphi) + r\cos(\omega t + \varphi)\sin(\omega t + \varphi) \\
+&amp;= \underbrace{\frac{\alpha x}{2}}_{\text{composante linéaire}}
++ \underbrace{\frac{\alpha x}{2}\cdot\cos(2\omega t + 2\varphi) - \frac{1}{2}\,r\sin(2\omega t + 2\varphi)}_{\text{composante haute fréquence éliminée par filtrage passe-bas}}
+\end{aligned}
+\]</span></p>
+<!-- p. 122 -->
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../figures/generees/fig-3-1-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure 3.1.1 — Schéma de principe du LVDT. Cas idéal&nbsp;: \Delta V_{II} = \alpha V_{I0}\,x\cos(\omega t + \varphi)&nbsp;; cas réel&nbsp;: \Delta V_{II} = \alpha V_{I0}\,x\cos(\omega t + \varphi) + rV_{I0}\sin(\omega t + \varphi)."><img src="../figures/generees/fig-3-1-1.svg" class="img-fluid figure-img" style="width:85.0%" data-fig-scap="Figure 3.1.1 — Schéma de principe du LVDT" alt="Figure 3.1.1 — Schéma de principe du LVDT. Cas idéal&nbsp;: \Delta V_{II} = \alpha V_{I0}\,x\cos(\omega t + \varphi)&nbsp;; cas réel&nbsp;: \Delta V_{II} = \alpha V_{I0}\,x\cos(\omega t + \varphi) + rV_{I0}\sin(\omega t + \varphi)."></a></p>
+<figcaption><strong>Figure 3.1.1</strong> — Schéma de principe du LVDT. Cas idéal&nbsp;: <span class="math inline">\(\Delta V_{II} = \alpha V_{I0}\,x\cos(\omega t + \varphi)\)</span>&nbsp;; cas réel&nbsp;: <span class="math inline">\(\Delta V_{II} = \alpha V_{I0}\,x\cos(\omega t + \varphi) + rV_{I0}\sin(\omega t + \varphi)\)</span>.</figcaption>
+</figure>
+</div>
+<!-- p. 123 -->
+<p><strong>En pratique</strong>, la démodulation est faite en multipliant le signal <span class="math inline">\(\Delta V_{II}\)</span> par le signal carré de période <span class="math inline">\(T\)</span> égal à ± 1, puis en filtrant (passe-bas) le signal&nbsp;:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../figures/generees/fig-3-carre.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Signal de démodulation (signal carré ± 1)."><img src="../figures/generees/fig-3-carre.svg" class="img-fluid figure-img" style="width:35.0%" data-fig-scap="Signal de démodulation" alt="Signal de démodulation (signal carré ± 1)."></a></p>
+<figcaption>Signal de démodulation (signal carré ± 1).</figcaption>
+</figure>
+</div>
+<p>dont le développement en série de Fourier est&nbsp;:</p>
+<p><span class="math display">\[
+\underbrace{\frac{4}{\pi}\cos(\omega(t+\tau))}_{\text{fondamental}}
+\underbrace{- \frac{1}{3}\cos(3\omega(t+\tau)) + \frac{1}{5}\cos(5\omega(t+\tau)) + \frac{(-1)^k}{2k+1}\cos((2k+1)\omega(t+\tau)) + \ldots}_{\text{Harmoniques}}
+\]</span></p>
+<p>(où <span class="math inline">\(\tau = \pi/\omega\)</span>)</p>
+<p>Avec ce type de démodulation, toute fréquence autre que <span class="math inline">\(f_e\)</span>, <span class="math inline">\(3f_e\)</span>, <span class="math inline">\(5f_e\)</span>, <span class="math inline">\((2k+1)f_e\)</span> (harmoniques impaires) produira en sortie un battement haute fréquence, de valeur moyenne nulle, éliminée après filtrage passe-bas.</p>
+<p>On ne recueillera, après filtrage, que le fondamental et les harmoniques impairs (avec une atténuation proportionnelle à leur rang). Pour éliminer la contribution de ces harmoniques, on procèdera à une amplification sélective (avec filtrage passe-bas pour atténuer les harmoniques).</p>
+<!-- p. 124 -->
+</section>
+<section id="constitution-du-lvdt-référence-e.e.-herceg-76" class="level3">
+<h3 class="anchored" data-anchor-id="constitution-du-lvdt-référence-e.e.-herceg-76">3.1.2 Constitution du LVDT (Référence E.E. Herceg (76))</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../figures/generees/fig-3-1-1b.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure 3.1.1 — Schéma du LVDT."><img src="../figures/generees/fig-3-1-1b.svg" class="img-fluid figure-img" style="width:70.0%" data-fig-scap="Figure 3.1.1 — Schéma du LVDT" alt="Figure 3.1.1 — Schéma du LVDT."></a></p>
+<figcaption><strong>Figure 3.1.1</strong> — Schéma du LVDT.</figcaption>
+</figure>
+</div>
+<p>On recherche, en général, une symétrisation la plus grande possible du système.</p>
+<p><strong>Constitution classique d’un LVDT&nbsp;:</strong></p>
+<ul>
+<li>Le noyau cylindrique est constitué classiquement d’un alliage Fe-Ni.</li>
+<li>L’enveloppe est généralement en acier inoxydable, à haute perméabilité. Elle assure&nbsp;:
+<ul>
+<li>un blindage magnétique,</li>
+<li>une réduction des courants de Foucault sur les éléments mécaniques,</li>
+<li>une réduction des tensions induites par des champs magnétiques externes et une réduction des effets magnétiques externes du LVDT,</li>
+<li>une augmentation de la sensibilité et des tensions produites</li>
+</ul></li>
+</ul>
+<!-- p. 125 -->
+</section>
+<section id="principales-caractéristiques-dun-lvdt" class="level3">
+<h3 class="anchored" data-anchor-id="principales-caractéristiques-dun-lvdt">3.1.3 Principales caractéristiques d’un LVDT</h3>
+<ul>
+<li><p><strong>Sensibilité</strong>&nbsp;: Elle dépend des caractéristiques géométriques du LVDT, du rapport de transformation I/II, des caractéristiques du noyau et du blindage, et également de la fréquence d’excitation (en général, variations de <span class="math inline">\(\approx\)</span> 10 % dans une plage allant de quelques centaines de Hz à 10 kHz). Elle varie proportionnellement à l’excitation et est spécifiée pour une forte résistance de charge.</p></li>
+<li><p><strong>Linéarité</strong>&nbsp;: La caractéristique d’un LVDT est, en général, quasi linéaire dans une large plage mais elle s’incurve légèrement lorsqu’on élargit la plage. Les valeurs typiques standards sont inférieures à 0,25 % de la plage nominale.</p></li>
+<li><p><strong>Résolution</strong>&nbsp;: Le LVDT opérant par couplage magnétique, sa résolution est idéalement quasi infinie, limitée en pratique par la résolution de l’électronique associée. En pratique, la limite de résolution n’a pu être mise en évidence et la résolution pratique est amenée par le bruit électronique.</p></li>
+<li><p><strong>Tension de zéro (ou résiduelle)</strong></p>
+<p>Elle peut provenir principalement de deux causes&nbsp;:</p>
+<ul>
+<li>tensions harmoniques&nbsp;: résultant de non linéarités ou d’imperfections magnétiques, mais surtout de composantes harmoniques de l’excitation, qui ne s’annulent pas en même temps que le fondamental.</li>
+<li>tensions de quadrature&nbsp;: résultant de différences d’angle de phase sur chacun des secondaires (différence de capacité parasite entre chacun des secondaires et le primaire, ou dissymétries).</li>
+</ul></li>
+</ul>
+<!-- p. 126 -->
+<p>La valeur de cette tension est déterminante pour le choix du LVDT, dans le cas du sismomètre&nbsp;; en effet, on souhaite utiliser un gain important au niveau du signal modulé, de manière à réduire la contribution du bruit en 1/f.&nbsp;Par exemple, pour une excitation de <span class="math inline">\(\approx\)</span> 10 V<span class="math inline">\(_{cc}\)</span> avec un gain de tête de 500, pour obtenir une tension résiduelle de 1 V<span class="math inline">\(_{cc}\)</span>, on devra obtenir au moins un rapport <span class="math inline">\(\dfrac{\Delta U_{II}}{U_I}\)</span> résid. de <span class="math inline">\(2\times10^{-4}\)</span> soit −74 dB.</p>
+<p>En pratique, pour parvenir à de tels niveaux, il a fallu soigner la symétrie du montage (y compris pour le noyau). On voit donc qu’à priori, il serait meilleur de pratiquer un montage électrique symétrique, en amplifiant symétriquement les tensions issues des secondaires grâce à un amplificateur différentiel (cf.&nbsp;Fig. 3.1.3). Avec une mesure symétrique, un facteur résiduel (<span class="math inline">\(\dfrac{\Delta U_{II}}{U_I}\)</span> résid.) bien meilleur (jusqu’à −95 dB environ) a pu être obtenu. Malheureusement, un taux de réjection de mode commun, aussi élevé pour des forts signaux à des fréquences de quelques kHz, est très difficile à obtenir, du fait des non linéarités de l’amplificateur pour les forts signaux (pour une application très faible bruit)&nbsp;; et on a pu observer une déformation importante du signal lors des essais avec amplificateur différentiel. On pourrait y remédier en utilisant un amplificateur différentiel alimenté par des tensions plus élevées, par exemple ± 100 V.</p>
+<p>Le montage adopté utilise donc un montage dissymétrique référé à la masse au niveau du secondaire. On notera, par ailleurs, que la tension résiduelle dépend de la fréquence d’excitation.</p>
+<!-- p. 127 -->
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../figures/generees/fig-3-1-3.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figure 3.1.3 — Amplificateurs des signaux issus du LVDT (1&nbsp;: montage symétrique&nbsp;; 2&nbsp;: montage dissymétrique)."><img src="../figures/generees/fig-3-1-3.svg" class="img-fluid figure-img" style="width:85.0%" data-fig-scap="Figure 3.1.3 — Amplificateurs des signaux issus du LVDT" alt="Figure 3.1.3 — Amplificateurs des signaux issus du LVDT (1&nbsp;: montage symétrique&nbsp;; 2&nbsp;: montage dissymétrique)."></a></p>
+<figcaption><strong>Figure 3.1.3</strong> — Amplificateurs des signaux issus du LVDT (1&nbsp;: montage symétrique&nbsp;; 2&nbsp;: montage dissymétrique).</figcaption>
+</figure>
+</div>
+<p>L’excitation est réalisée de manière symétrique pour optimiser les symétries. L’amplification peut être faite de manière symétrique pour respecter le maximum de symétrie (cas 1), le point milieu PM étant ou non relié à la masse. Dans ce cas, on amplifie chacun des deux signaux secondaires.</p>
+<p>Dans le cas 2, les secondaires sont opposés directement et le point milieu doit être laissé flottant. C’est directement le signal différentiel qui est amplifié, mais le montage est moins symétrique.</p>
+<!-- p. 128 -->
+<p><strong>Caractéristiques d’utilisation</strong></p>
+<p><em>Fréquence d’excitation&nbsp;:</em></p>
+<ul>
+<li>Elle agit, faiblement, sur la sensibilité ainsi que sur la linéarité, et plus sensiblement sur la tension de zéro.</li>
+<li>Elle modifie l’angle de phase.</li>
+<li>Elle est déterminante sur les impédances (pratiquement, les impédances d’entrée et de sortie croissent avec la fréquence d’excitation).</li>
+</ul>
+<p><em>Impédances du LVDT&nbsp;:</em></p>
+<p>Impédance d’entrée&nbsp;:</p>
+<ul>
+<li>Elle est importante car elle détermine le courant d’entrée. Le couplage primaire/secondaire étant assez «&nbsp;lâche&nbsp;», ce sont principalement les caractéristiques du primaire (nombre de tours, Ø du fil et matériaux) qui la déterminent.</li>
+</ul>
+<p>Impédance du secondaire (impédance de source)&nbsp;:</p>
+<ul>
+<li>Elle est liée principalement aux caractéristiques du secondaire et aux caractéristiques du circuit magnétique. On verra qu’elle est importante pour le bruit de l’amplificateur de tête.</li>
+</ul>
+<p>Au-dessus de quelques kHz, ces impédances sont principalement inductives.</p>
+<p>Dans la plage linéaire de variation du noyau, ces impédances sont pratiquement constantes.</p>
+<!-- p. 129 -->
+</section>
+</section>
+<section id="électronique-de-mesure-associée-au-lvdt" class="level2">
+<h2 class="anchored" data-anchor-id="électronique-de-mesure-associée-au-lvdt">3.2 Électronique de mesure associée au LVDT</h2>
+<section id="principe-et-schéma" class="level3">
+<h3 class="anchored" data-anchor-id="principe-et-schéma">3.2.1 Principe et schéma</h3>
+<p>La figure 3.2.1 montre le principe retenu pour l’électronique de mesure (et de contre-réaction) associée au LVDT.</p>
+<p><em>Excitation&nbsp;:</em></p>
+<p>Elle est assurée par un oscillateur à quartz dont la fréquence est ensuite divisée par 2<sup>7</sup> = 128, au moyen d’un diviseur de fréquence. Ce type d’oscillateur a été choisi pour <em>sa bonne stabilité</em> (meilleure que <span class="math inline">\(10^{-4}\)</span> autour de 1 s) indispensable pour une application faible bruit.</p>
+<p>Les signaux carrés générés sont utilisés pour commuter des références de tension (nécessité d’un faible bruit en amplitude).</p>
+<p>Les signaux carrés sont mis en forme par filtrage second ordre passe-bas, dont la fréquence de coupure est fixée à <span class="math inline">\(0{,}7\,f_e\)</span>.</p>
+<p>L’excitation est appliquée en symétrique au primaire du LVDT.</p>
+<p><em>Amplification sélective&nbsp;:</em></p>
+<p>Les signaux du LVDT proviennent des secondaires, câblés en opposition (un des secondaires étant référé à la masse, le point milieu étant conservé flottant). Ils sont amplifiés et filtrés (passe-bas 1<sup>er</sup> ordre de fréquence de coupure <span class="math inline">\(f_c = 1.25\,f_e\)</span>) par un amplificateur faible bruit (ampli OP 27) de gain à <span class="math inline">\(f = f_e\)</span> de 250 à 500.</p>
+<!-- p. 130 -->
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../figures/generees/fig-3-2-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Figure 3.2.1 — Principe de l’électronique de mesure et de contre-réaction associée au LVDT."><img src="../figures/generees/fig-3-2-1.svg" class="img-fluid figure-img" style="width:100.0%" data-fig-scap="Figure 3.2.1 — Principe de l'électronique de mesure et de contre-réaction associée au LVDT" alt="Figure 3.2.1 — Principe de l’électronique de mesure et de contre-réaction associée au LVDT."></a></p>
+<figcaption><strong>Figure 3.2.1</strong> — Principe de l’électronique de mesure et de contre-réaction associée au LVDT.</figcaption>
+</figure>
+</div>
+<!-- p. 131 -->
+<p><em>Démodulation&nbsp;:</em></p>
+<p>Le signal amplifié est démodulé, par une porte analogique (7512-A.D.), en commutant les sorties de l’amplificateur, sur les entrées d’un étage différentiel.</p>
+<p>Le signal logique de commande de démodulation provient d’une sortie d’une PROM adressée à partir des signaux d’horloge provenant des sorties du diviseur de fréquence (<span class="math inline">\(f_{quartz}/2, \ldots, f_{quartz}/2^7\)</span>). La PROM permet de compenser les déphasages divers (filtres divers et angle de phase du LVDT). La résolution en phase ainsi obtenue est de <span class="math inline">\(\dfrac{2\pi}{2^7}\)</span>, soit environ 2.8 deg.</p>
+<p>Ce type de commande a été préféré à la solution, plus classique, d’un signal de commande généré par un comparateur à partir du signal d’entrée du LVDT. En effet, cette solution élimine l’influence du bruit en amplitude, et permet de conserver la stabilité et le faible bruit en phase de l’oscillateur à quartz.</p>
+<p>Un filtrage passe-bas 2<sup>ème</sup> ordre (<span class="math inline">\(f_c\)</span> = 108 Hz pour les capteurs LBH et 10.8 Hz pour les LPZ) de gain <span class="math inline">\(\frac{\pi}{2} \approx 1.57\)</span>, élimine la composante haute fréquence et achève la démodulation.</p>
+<p>Le schéma détaillé de l’électronique (incluant les éléments de sortie et de contre réaction) apparaît à la figure 3.2.2.</p>
+<!-- p. 132 -->
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../figures/generees/fig-3-2-2.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Figure 3.2.2 — Schéma de l’électronique (Laboratoire de Géophysique, carte SIS-ASSER, repère ET/CAP/LP/01586, 09/86)."><img src="../figures/generees/fig-3-2-2.svg" class="img-fluid figure-img" style="width:100.0%" data-fig-scap="Figure 3.2.2 — Schéma de l'électronique" alt="Figure 3.2.2 — Schéma de l’électronique (Laboratoire de Géophysique, carte SIS-ASSER, repère ET/CAP/LP/01586, 09/86)."></a></p>
+<figcaption><strong>Figure 3.2.2</strong> — Schéma de l’électronique (Laboratoire de Géophysique, carte SIS-ASSER, repère ET/CAP/LP/01586, 09/86).</figcaption>
+</figure>
+</div>
+<!-- p. 133 -->
+</section>
+<section id="analyse-du-bruit-instrumental" class="level3">
+<h3 class="anchored" data-anchor-id="analyse-du-bruit-instrumental">3.2.2 Analyse du bruit instrumental</h3>
+<p>On présentera ici l’analyse théorique du bruit de la chaîne de mesure de déplacement de la figure 3.2.2. Celle-ci sera confrontée aux mesures expérimentales au paragraphe suivant.</p>
+<p>Le gain de tête et le niveau d’excitation ne correspondent pas exactement aux valeurs standards des sismomètres en fonctionnement, mais correspondent aux valeurs des analyses spectrales présentées.</p>
+<p>Le LVDT pris en compte ici est le LVDT faible bruit, mis au point à l’issue de cette étude.</p>
+<p><strong>Caractéristiques de l’électronique&nbsp;:</strong></p>
+<table class="caption-top table">
+<tbody>
+<tr class="odd">
+<td></td>
+<td>Fréquence d’excitation</td>
+<td>4 kHz</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Gain de tête mesuré</td>
+<td>G = 520 (54.3 dB)</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Niveau d’excitation</td>
+<td>12.9 dBV<span class="math inline">\(_{RMS}\)</span> (4.4 V<span class="math inline">\(_{RMS}\)</span>)</td>
+</tr>
+<tr class="even">
+<td>LVDT</td>
+<td>Impédance du LVDT à 4 kHz</td>
+<td>2,26 kΩ</td>
+</tr>
+<tr class="odd">
+<td>LVDT</td>
+<td>Résistance ohmique du secondaire</td>
+<td>1,4 kΩ</td>
+</tr>
+<tr class="even">
+<td>LVDT</td>
+<td>Sensibilité approximative</td>
+<td>128 mV/mm/V au primaire</td>
+</tr>
+</tbody>
+</table>
+<p>L’étude de bruit complète, rigoureuse, étant fastidieuse, on ne présentera les détails de celle-ci que pour les étages amenant les bruits les plus élevés en sortie. On supposera, de plus, que&nbsp;:</p>
+<ul>
+<li>l’impédance de sortie de chaque étage est négligeable,</li>
+<li>les sources de bruit sont supposées décorrélées.</li>
+</ul>
+<!-- p. 134 -->
+<p>Les caractéristiques de bruit des amplificateurs OP27-FJ et OPA111 BM sont résumées dans le tableau suivant&nbsp;:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>OP 27 - F typique</th>
+<th>OP 27 - F maximum</th>
+<th>OPA 111 BM typique</th>
+<th>OPA 111 BM maximum</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Bruit en tension&nbsp;:</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>1 kHz</td>
+<td>3 nV/√Hz</td>
+<td>3.8 nV/√Hz</td>
+<td>7 nV/√Hz</td>
+<td>12 nV/√Hz</td>
+</tr>
+<tr class="odd">
+<td>10 s</td>
+<td><span class="math inline">\(\approx\)</span> 16 nV/√Hz</td>
+<td></td>
+<td>300 nV/√Hz</td>
+<td>600 nV/√Hz</td>
+</tr>
+<tr class="even">
+<td>Fréquence de coude</td>
+<td>2.7 Hz</td>
+<td></td>
+<td><span class="math inline">\(\approx\)</span> 20 Hz</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><strong>Bruit en courant&nbsp;:</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>1 kHz</td>
+<td>0.4 pA/√Hz</td>
+<td>0.6 pA/√Hz</td>
+<td>0.4 fA/√Hz</td>
+<td>0.6 fA/√Hz</td>
+</tr>
+<tr class="odd">
+<td>10 s</td>
+<td>17 pA/√Hz</td>
+<td></td>
+<td>0.4 fA/√Hz</td>
+<td>0.6 fA/√Hz</td>
+</tr>
+<tr class="even">
+<td>Fréquence de coude</td>
+<td><span class="math inline">\(\approx\)</span> 140 Hz</td>
+<td></td>
+<td>&gt; 0.1 Hz</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Les caractéristiques de bruit seront calculées à partir des valeurs typiques.</p>
+<!-- p. 135 -->
+<p><strong>BRUIT EN SORTIE DE CHAÎNE, EN BOUCLE OUVERTE</strong></p>
+<p><em>Gain de tête</em></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../figures/generees/fig-3-2-gaintete.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Étage de tête&nbsp;: R_- = 787 Ω&nbsp;; R_f = 715 kΩ&nbsp;; C_f = 47 pF&nbsp;; gain effectif à 4 kHz&nbsp;: 520."><img src="../figures/generees/fig-3-2-gaintete.svg" class="img-fluid figure-img" style="width:45.0%" data-fig-scap="Étage de tête" alt="Étage de tête&nbsp;: R_- = 787 Ω&nbsp;; R_f = 715 kΩ&nbsp;; C_f = 47 pF&nbsp;; gain effectif à 4 kHz&nbsp;: 520."></a></p>
+<figcaption>Étage de tête&nbsp;: <span class="math inline">\(R_-\)</span> = 787 Ω&nbsp;; <span class="math inline">\(R_f\)</span> = 715 kΩ&nbsp;; <span class="math inline">\(C_f\)</span> = 47 pF&nbsp;; gain effectif à 4 kHz&nbsp;: 520.</figcaption>
+</figure>
+</div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Source de bruit</th>
+<th style="text-align: right;">Bruit équivalent en entrée</th>
+<th style="text-align: right;">Bruit équivalent en sortie</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><em>Bruit de Johnson</em></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(R_-\)</span></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;">1840 nV/√Hz</td>
+</tr>
+<tr class="odd">
+<td>Re(<span class="math inline">\(Z_f\)</span>) <span class="math inline">\(\approx\)</span> 417 kΩ</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;">81 nV/√Hz</td>
+</tr>
+<tr class="even">
+<td>Re(<span class="math inline">\(Z_+\)</span>) <span class="math inline">\(\approx\)</span> 1.42 kΩ</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;">2480 nV/√Hz</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: right;">5.97 nV/√Hz</td>
+<td style="text-align: right;">3089 nV/√Hz</td>
+</tr>
+<tr class="even">
+<td><em>Bruit en courant</em></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(Z_{s-}\,i_n\)</span> = 0.4 pA × 787 Ω</td>
+<td style="text-align: right;">0.3 nV/√Hz</td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(Z_{s+}\,i_n\)</span> = 0.4 pA × 2.26 kΩ</td>
+<td style="text-align: right;">0.9 nV/√Hz</td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="odd">
+<td><em>Bruit en tension</em></td>
+<td style="text-align: right;">3 nV/√Hz</td>
+<td style="text-align: right;"></td>
+</tr>
+</tbody>
+</table>
+<p>Bruit total en sortie de l’étage&nbsp;: <span class="math inline">\(\approx\)</span> 3460 nV/√Hz (soit −109.2 dB réf. 1 V/√Hz) — bruit bande étroite autour de 4 kHz).</p>
+<p><em>Effet en sortie V1&nbsp;:</em></p>
+<p>Gain de démodulation <span class="math inline">\(\left(\dfrac{\pi}{2}\cdot\sqrt2\right)\cdot 1.57 = \sqrt2\)</span></p>
+<p>Le bruit analysé en sortie V1 aura une densité spectrale blanche en basse fréquence de valeur&nbsp;: −109.2 dBV/√Hz + 3 dB = −106.2 dBV/√Hz</p>
+<p><em>Effet en sortie V2&nbsp;:</em> −66.2 dBV/√Hz</p>
+<!-- p. 136 -->
+<p><em>Amplificateur de prédémodulation</em></p>
+<p>Cet amplificateur permet d’isoler la paire venant du capteur, il est de gain unité (suiveur). La résistance de source correspond à l’impédance de sortie de l’amplificateur de tête pour A4, et à zéro pour A3&nbsp;: elle est donc négligeable dans les deux cas.</p>
+<ul>
+<li>Chacun des amplificateurs génère en sortie démodulée&nbsp;: (voir Annexe 2)
+<ul>
+<li>un bruit blanc lié au bruit à la fréquence porteuse,</li>
+<li>un bruit basse fréquence lié au fait que chaque amplificateur n’intervient que sur la moitié du signal</li>
+</ul></li>
+<li>Sources de bruit intervenant (équivalent en entrée de A3 ou A4)&nbsp;:
+<ul>
+<li>thermique&nbsp;: négligeable</li>
+<li>à la fréquence porteuse <span class="math inline">\(f_e\)</span>&nbsp;: tension&nbsp;: <span class="math inline">\(e_n\)</span> = 3 nV/√Hz (amplificateur OP 27)&nbsp;; courant&nbsp;: négligeable</li>
+<li>basse fréquence&nbsp;: tension&nbsp;: <span class="math inline">\(e_n\)</span> = 16 nV/√Hz à 10 s (bruit en «&nbsp;1/f&nbsp;») (+ 3 nV/√Hz blanc)&nbsp;; courant&nbsp;: négligeable</li>
+</ul></li>
+</ul>
+<!-- p. 137 -->
+<p>En utilisant les résultats du 2.2.2.3, l’effet en sortie démodulée après filtrage est le suivant&nbsp;:</p>
+<ul>
+<li><p>Transformée du bruit blanc&nbsp;:</p>
+<p><span class="math display">\[
+e_n \to e_n\times\underbrace{\frac{\sqrt2}{2}\cdot\frac{2}{\pi}}_{\text{transposition de fréquence}}
+\times\underbrace{\frac{\pi}{2}}_{\text{gain de démodulation}}
+\times\underbrace{\sqrt2}_{\text{2 sources bruyantes}}
+\]</span></p></li>
+<li><p>Transformée de bruit basse-fréquence&nbsp;:</p>
+<p><span class="math display">\[
+e_n \to e_n\times\frac{1}{2}\times\frac{\pi}{2}\times\sqrt2
+\]</span></p>
+<p>soit 3 nV/√Hz environ de bruit blanc, 17 nV/√Hz environ à 10 s de bruit en 1/f</p></li>
+</ul>
+<p>leur effet en sortie V1 est donc négligeable.</p>
+<!-- p. 138 -->
+<p><em>Portes analogiques&nbsp;:</em></p>
+<p>Leur contribution au bruit est inconnue. Elles peuvent intervenir par le mécanisme d’un bruit en amplitude ou d’un bruit en phase (cf.&nbsp;parag. «&nbsp;autres sources de bruit — Bruit de l’oscillateur&nbsp;»).</p>
+<p><em>Amplificateur différentiel&nbsp;:</em> (cf.&nbsp;Figure 3.2.3)</p>
+<p>Les résistances de source <span class="math inline">\(R_{s-}\)</span> et <span class="math inline">\(R_{s+}\)</span> correspondent chacune à la mise en parallèle de deux résistances de 4.99 kΩ.</p>
+<p><em>Sources de bruit&nbsp;:</em></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Bruit thermique</th>
+<th>Amplificateur&nbsp;: bruit en tension</th>
+<th>Amplificateur&nbsp;: bruit en courant</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(R_{th}\)</span> = 4.99 kΩ</td>
+<td></td>
+<td><span class="math inline">\(R_s\)</span> = 4.99 kΩ</td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>16 nV/√Hz</td>
+<td><span class="math inline">\(\approx\)</span> 80 nV/√Hz</td>
+<td>Bruit «&nbsp;1/f&nbsp;» valeur à 10 s</td>
+</tr>
+<tr class="odd">
+<td>9 nV/√Hz</td>
+<td>3 nV/√Hz</td>
+<td><span class="math inline">\(\approx\)</span> 2 nV/√Hz</td>
+<td>Bruit blanc</td>
+</tr>
+</tbody>
+</table>
+<p><em>Effet en sortie V1&nbsp;:</em></p>
+<p>Le bruit est multiplié par <span class="math inline">\(\approx\)</span> <span class="math inline">\(\pi\)</span>/2</p>
+<ul>
+<li>bruit 1/f (10 s)&nbsp;: 126 nV/√Hz ou −138 dB V/√Hz</li>
+<li>bruit blanc&nbsp;: 15 nV/√Hz négligeable</li>
+</ul>
+<p><em>Effet en sortie V2&nbsp;:</em> −98 dB V/√Hz en 1/f à 10 s</p>
+<!-- p. 139 -->
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../figures/generees/fig-3-2-3.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Figure 3.2.3 — Schéma de l’amplificateur différentiel (gain unité) et du filtre de post-démodulation (2è ordre&nbsp;; G = 1.57&nbsp;; f_{coupure} = 10.8 Hz (10.9 Hz)&nbsp;; \xi = 0.707)."><img src="../figures/generees/fig-3-2-3.svg" class="img-fluid figure-img" style="width:50.0%" data-fig-scap="Figure 3.2.3 — Schéma de l'amplificateur différentiel" alt="Figure 3.2.3 — Schéma de l’amplificateur différentiel (gain unité) et du filtre de post-démodulation (2è ordre&nbsp;; G = 1.57&nbsp;; f_{coupure} = 10.8 Hz (10.9 Hz)&nbsp;; \xi = 0.707)."></a></p>
+<figcaption><strong>Figure 3.2.3</strong> — Schéma de l’amplificateur différentiel (gain unité) et du filtre de post-démodulation (2<sup>è</sup> ordre&nbsp;; <span class="math inline">\(G\)</span> = 1.57&nbsp;; <span class="math inline">\(f_{coupure}\)</span> = 10.8 Hz (10.9 Hz)&nbsp;; <span class="math inline">\(\xi\)</span> = 0.707).</figcaption>
+</figure>
+</div>
+<!-- p. 140 -->
+<p><em>Filtre de post-démodulation</em> (figure 3.2.3)</p>
+<p>Étude simplifiée</p>
+<p><em>Sources de bruit&nbsp;:</em></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>bruit thermique</th>
+<th>bruit en tension</th>
+<th>bruit en courant</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>/</td>
+<td>16 nV/√Hz</td>
+<td>(<span class="math inline">\(Z_S\)</span> = 4 kΩ) 64 nV/√Hz</td>
+<td>bruit en 1/f, valeur à 10 s</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\leq\)</span> 8 nV/√Hz</td>
+<td>3 nV/√Hz</td>
+<td><span class="math inline">\(\leq\)</span> 1 nV/√Hz</td>
+<td>bruit blanc</td>
+</tr>
+</tbody>
+</table>
+<p><em>Effet en sortie V1&nbsp;:</em></p>
+<p>Le bruit est multiplié par <span class="math inline">\(\dfrac{\pi}{2}\)</span> ce qui donne&nbsp;:</p>
+<ul>
+<li>pour le bruit en 1/f <span class="math inline">\(\approx\)</span> 104 nV/√Hz à 10 s</li>
+<li>pour le bruit blanc une valeur <span class="math inline">\(\leq\)</span> 12 nV/√Hz donc négligeable.</li>
+</ul>
+<p><em>NB</em> — Cas d’un filtre 10.8 Hz&nbsp;:</p>
+<p>Dans le cas du filtre 10.8 Hz, les valeurs des résistances intervenant sur l’entrée + de l’amplificateur sont multipliées par 10.</p>
+<p><span class="math display">\[
+Z_{s+} = \left(33~\text{k}\Omega /\!/ \frac{1}{2\pi f\cdot 1~\mu\text{F}} + 6.6~\text{k}\Omega\right) /\!/ \frac{1}{2\pi f\cdot 1~\mu\text{F}} \leq 40~\text{k}\Omega
+\]</span></p>
+<p>Le bruit 1/f en sortie V1 passe alors à <span class="math inline">\(\approx\)</span> 1 µV/√Hz à 10 s (−120 dB V/√Hz en sortie V1 et −80 dB V/√Hz en sortie V2 à 10 s)</p>
+<!-- p. 141 -->
+<p><em>Filtre de sortie&nbsp;:</em></p>
+<p><em>Simplification du modèle pour le bruit thermique et le bruit en courant&nbsp;:</em></p>
+<p>Si on néglige l’impédance de sortie de l’étage précédent, le bruit thermique et la contribution du bruit en courant (pour l’entrée + de l’amplificateur) sont identiques à ceux du dipole <span class="math inline">\(Z_+\)</span> de la figure 3.2.4.</p>
+<ul>
+<li><p><em>Le bruit thermique</em> peut, pour simplifier, être majoré par celui associé à la résistance <span class="math inline">\(|Z_+|\)</span> (au lieu de Re(<span class="math inline">\(Z\)</span>)). On obtient asymptotiquement à l’entrée + de l’amplificateur&nbsp;:</p>
+<p><span class="math display">\[
+e_{th}^*(Z_+) \approx
+\begin{cases}
+e_{th}^*(6.36~\text{M}\Omega)\ \text{pour } f &lt; \dfrac{1}{400~\text{s}}, &amp; \text{soit } 310~\text{nV}/\sqrt{\text{Hz}} \\[8pt]
+e_{th}^*(15~\text{k}\Omega)\ \text{pour } 1.1~\text{Hz} &lt; f &lt; 100~\text{Hz}, &amp; \text{soit } 15~\text{nV}/\sqrt{\text{Hz}}
+\end{cases}
+\]</span></p></li>
+</ul>
+<!-- p. 142 -->
+<p>On doit adjoindre à ce bruit la contribution de la branche</p>
+<p><span class="math display">\[
+  e_{th}^*(Z_-) = e_{th}^*(15~\text{k}\Omega) \quad\text{soit } 15~\text{nV}/\sqrt{\text{Hz}}
+  \]</span></p>
+<p>On mesurera au total en sortie&nbsp;:</p>
+<ul>
+<li><p>15 nV/√Hz × √2 × 100 = 2.1 µV/√Hz entre 100 Hz et 1 Hz (−113 dB V/√Hz)</p></li>
+<li><p>100 × 310 nV/√Hz = 31 µV/√Hz pour <span class="math inline">\(f &lt; \dfrac{1}{400~\text{s}}\)</span> (<span class="math inline">\(\approx\)</span> −90 dB V/√Hz)</p></li>
+<li><p><em>Bruit de l’amplificateur</em></p>
+<p><em>courant&nbsp;:</em> En majorant <span class="math inline">\(Z_+\)</span> par son maximum <span class="math inline">\(\approx\)</span> 6 MΩ, on obtient une contribution maximale du bruit en courant ne dépassant pas 2.5 nV/√Hz en entrée de l’amplificateur, donc complètement négligeable.</p>
+<p><em>tension&nbsp;:</em> Le bruit en sortie est en «&nbsp;1/f&nbsp;» de valeur à 10 s&nbsp;: 300 nV/√Hz × 100 = 30 µV/√Hz correspondant à −90 dB V/√Hz à 10 s. On obtiendra à 400 s environ −74 dB V/√Hz.</p></li>
+</ul>
+<!-- p. 143 -->
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../figures/generees/fig-3-2-4.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Figure 3.2.4 — Étage de sortie (schéma&nbsp;; transmittance \left(1 + \frac{R_f}{R_-}\right)\left[\frac{R_1C_1s}{(1+R_2C_2s)(1+R_1C_1s)+R_1C_2s}\right]&nbsp;; courbe de réponse asymptotique&nbsp;; impédance |Z|&nbsp;; dipole du modèle de bruit Z_+)."><img src="../figures/generees/fig-3-2-4.svg" class="img-fluid figure-img" style="width:60.0%" data-fig-scap="Figure 3.2.4 — Étage de sortie" alt="Figure 3.2.4 — Étage de sortie (schéma&nbsp;; transmittance \left(1 + \frac{R_f}{R_-}\right)\left[\frac{R_1C_1s}{(1+R_2C_2s)(1+R_1C_1s)+R_1C_2s}\right]&nbsp;; courbe de réponse asymptotique&nbsp;; impédance |Z|&nbsp;; dipole du modèle de bruit Z_+)."></a></p>
+<figcaption><strong>Figure 3.2.4</strong> — Étage de sortie (schéma&nbsp;; transmittance <span class="math inline">\(\left(1 + \frac{R_f}{R_-}\right)\left[\frac{R_1C_1s}{(1+R_2C_2s)(1+R_1C_1s)+R_1C_2s}\right]\)</span>&nbsp;; courbe de réponse asymptotique&nbsp;; impédance <span class="math inline">\(|Z|\)</span>&nbsp;; dipole du modèle de bruit <span class="math inline">\(Z_+\)</span>).</figcaption>
+</figure>
+</div>
+<!-- p. 144 -->
+<p><em>Autres sources de bruit&nbsp;:</em></p>
+<p>Cette partie s’efforce d’évaluer les autres sources de bruit intervenant, en général, par des mécanismes plus complexes.</p>
+<p><em>Bruit des références de tension&nbsp;:</em></p>
+<p>Ce type de bruit, modulé lors du hachage des références, transite dans la chaîne avec la porteuse, il subit une atténuation et un déphasage variable suivant la position du LVDT avant d’être démodulé au niveau de la sortie. Le rapport signal/bruit des références est inchangé entre la source et la sortie continue V1 de la chaîne.</p>
+<p>Estimation numérique&nbsp;: tension de bruit Zener d’une LM 129/329 (National Semi Conductor)&nbsp;: <span class="math inline">\(e_n\)</span> = 75 nV/√Hz à 100 Hz pour 6.9 V et fréquence de coude vers 10 Hz</p>
+<p>rapport signal sur densité spectrale de bruit = 159 dB réf. 1 V/(1 V/√Hz) à 100 Hz.</p>
+<p>Même en basse-fréquence (<span class="math inline">\(T\)</span> = 10 s), ce bruit restera négligeable en boucle ouverte <span class="math inline">\(\approx\)</span> −99 dB V/√Hz en sortie V2 pour un niveau continu de 1 V en sortie V1.</p>
+<p><em>NB</em>&nbsp;: Bien que généré «&nbsp;en dehors&nbsp;» de la boucle d’asservissement, on montrerait que pour une même tension en sortie, ce type de bruit subit une atténuation analogue à celle d’un bruit généré dans la boucle. (Pour une variation <span class="math inline">\(\Delta V_I\)</span> de la tension primaire <span class="math inline">\(V_I\)</span>, la variation en sortie <span class="math inline">\(\Delta V\)</span> de la tension de sortie <span class="math inline">\(V\)</span>, est en boucle fermée <span class="math inline">\(\dfrac{\Delta V}{V} \approx \left(\dfrac{1}{1+L_0}\right)\dfrac{\Delta V_I}{V_I}\)</span>).</p>
+<!-- p. 145 -->
+<p><em>Bruit des filtres de mise en forme de l’excitation&nbsp;:</em></p>
+<p>Ces filtres génèrent, en sortie continue, un bruit basse-fréquence (blanc) correspondant au bruit à la fréquence d’excitation. De plus, là encore, ce bruit traversant le LVDT, son niveau en sortie dépendra de la position du noyau (proportionnel à la tension récupérée au secondaire).</p>
+<p>Cependant, du fait des valeurs relativement faibles des impédances de source et compte-tenu de l’amplificateur utilisé, la contribution de ces bruits en sortie sera négligeable grâce à l’importante atténuation (<span class="math inline">\(V_{II}/V_I\)</span>) amenée par le LVDT.</p>
+<p>Considérons pour simplifier le modèle de bruit d’un OP 27 de gain unité chargé par 10 kΩ de résistance pure (soit un bruit de 14 nV/√Hz), plaçons nous dans le cas défavorable de 10 V en sortie continue V1 (<span class="math inline">\(4\times10^5\)</span> V/m), l’atténuation amenée par le LVDT est alors de <span class="math inline">\(\dfrac{10~\text{V}}{4\cdot10^5~\text{V/m}}\times 128~V_{II}/\text{m}/V_I\)</span> soit <span class="math inline">\(3\times10^{-3}~V_{II}/V_I\)</span>. On constate que même dans ce cas défavorable, la contribution de ce bruit (30 nV/√Hz en sortie continue V1 ou −110 dB V/√Hz en sortie V2) sera tout à fait négligeable.</p>
+<p><em>NB</em>&nbsp;: La non linéarité de la fonction <span class="math inline">\(U_{II}(U_I, x(U_I))\)</span> étant à priori négligeable pour le fonctionnement en boucle fermée, ce type de bruit sera atténué de manière analogue au bruit généré dans la boucle.</p>
+<!-- p. 146 -->
+<p><em>Bruit de l’oscillateur&nbsp;:</em></p>
+<p>Deux types de bruit peuvent intervenir principalement pour l’oscillateur&nbsp;:</p>
+<ul>
+<li>bruit en amplitude&nbsp;: Du fait du type d’oscillateur utilisé, il correspondra pratiquement au bruit des références de tension.</li>
+<li>bruit de phase&nbsp;: Ce type de bruit, délicat à modéliser, n’a pas été étudié en détail.</li>
+</ul>
+<p>Cependant, il est vraisemblable que la stabilité en fréquence de l’oscillateur, ainsi que sa pureté spectrale, agissent sur le niveau de bruit observé.</p>
+<p>Ainsi, lors de toutes premières expérimentations menées au LDG pour la conception de la chaîne de mesure, le remplacement de l’oscillateur classique par un oscillateur à Quartz avait permis de réduire les niveaux de bruit mesuré. De ce fait, il apparaît qu’un bruit de phase de l’oscillateur, lié à l’existence des bandes latérales, pourrait expliquer les phénomènes de bruit observé.</p>
+<p><em>Bruit de l’impédance de contre-réaction&nbsp;:</em></p>
+<p>Le bruit thermique de l’impédance de contre-réaction est susceptible d’amener des accélérations de contre-réaction (et donc du bruit en sortie) pour un fonctionnement en boucle fermée.</p>
+<p>Pour ce bruit, il est plus facile de calculer son équivalent en entrée sismique (accélération).</p>
+<p>Soit <span class="math inline">\(Z_c = Z_f + Z_b\)</span>, l’impédance de la branche de contre-réaction&nbsp;:</p>
+<p>le bruit en tension généré est&nbsp;:</p>
+<p><span class="math display">\[
+e^{*2} = 4kT\Delta f\,\mathrm{Re}(Z_c)
+\]</span></p>
+<p>et en courant&nbsp;:</p>
+<p><span class="math display">\[
+i^{*2} = 4kT\Delta f\,\frac{\mathrm{Re}(Z_c)}{|Z_c|^2}
+\]</span></p>
+<!-- p. 147 -->
+<p>On peut donc majorer le bruit en courant par&nbsp;:</p>
+<p><span class="math display">\[
+i^{*2} \leq \frac{4kT\Delta f}{|Z_c|} \quad\left(\leq \frac{4kT\Delta f}{\mathrm{Re}(Z_c)}\right)
+\]</span></p>
+<p>Le bruit équivalent en entrée est donné par&nbsp;:</p>
+<p><span class="math display">\[
+\gamma^* = \frac{B\ell_b\,r_b}{Mr_G}\,\beta_m\,i^*
+\]</span></p>
+<p>En utilisant le modèle suivant&nbsp;:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../figures/generees/fig-3-2-modele.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-10" title="Modèle de la branche de contre-réaction."><img src="../figures/generees/fig-3-2-modele.svg" class="img-fluid figure-img" style="width:40.0%" data-fig-scap="Modèle de la branche de contre-réaction" alt="Modèle de la branche de contre-réaction."></a></p>
+<figcaption>Modèle de la branche de contre-réaction.</figcaption>
+</figure>
+</div>
+<p><span class="math inline">\(1/|Z_c|\)</span> peut être approché par&nbsp;:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../figures/generees/fig-3-2-zc.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-11" title="Approximation asymptotique de 1/|Z_c|."><img src="../figures/generees/fig-3-2-zc.svg" class="img-fluid figure-img" style="width:55.0%" data-fig-scap="Approximation asymptotique de $1/|Z_c|$" alt="Approximation asymptotique de 1/|Z_c|."></a></p>
+<figcaption>Approximation asymptotique de <span class="math inline">\(1/|Z_c|\)</span>.</figcaption>
+</figure>
+</div>
+<!-- p. 148 -->
+<p>Sachant que pour le capteur considéré on a&nbsp;:</p>
+<p><span class="math display">\[
+R_f = 150~\text{k}\Omega \qquad \frac{B\ell_b\,r_b}{M\,r_G}\cdot\beta_m = 15~\text{m s}^{-2}/\text{A}
+\]</span></p>
+<p>le bruit en basse fréquence (<span class="math inline">\(T &gt; T_f \approx 1.4\)</span> s) est alors&nbsp;:</p>
+<ul>
+<li><span class="math inline">\(i^* \leq\)</span> 0.32 pA/√Hz</li>
+<li><span class="math inline">\(\gamma^* \leq 4.8\times10^{-12}\)</span> m s<span class="math inline">\(^{-2}\)</span>/√Hz (−226 dB ref 1 m s<span class="math inline">\(^{-2}\)</span>/√Hz)</li>
+</ul>
+<p>et aux fréquences élevées, par exemple à <span class="math inline">\(f\)</span> = 100 Hz&nbsp;:</p>
+<ul>
+<li><span class="math inline">\(|Z_c| \approx\)</span> 1 kΩ</li>
+<li><span class="math inline">\(i^* \leq\)</span> 4 pA/√Hz</li>
+<li><span class="math inline">\(\gamma^* \leq 6\times10^{-11}\)</span> m s<span class="math inline">\(^{-2}\)</span>/√Hz (−204 dB ref 1 m s<span class="math inline">\(^{-2}\)</span>/√Hz)</li>
+</ul>
+<p>On verra que ce bruit peut être négligé.</p>
+<p>Outre le bruit thermique, la contre-réaction peut amener un bruit excédentaire basse-fréquence du fait de la polarisation de la résistance, lorsque le système est excentré (bruit excédentaire de niveau variable avec celui de la sortie continue). Cependant, une rapide évaluation va montrer que ce bruit est négligeable dans le cas de notre capteur.</p>
+<p>Considérons une tension continue de 1 V en sortie de boucle. Plaçons nous à 0.1 Hz, dans ce cas <span class="math inline">\(Z_c\)</span> est assimilable à <span class="math inline">\(R_f + R_c\)</span>. Considérons un indice de bruit (Noise Index) IB = −30 dB&nbsp;; la densité spectrale de bruit en tension aux bornes de <span class="math inline">\(R_f + R_c\)</span> est alors donnée par&nbsp;:</p>
+<p><span class="math display">\[
+U^* = \frac{0.66\times10^{-6}}{f^{1/2}}\cdot\text{IB}\times V_{continu}
+\]</span></p>
+<!-- p. 149 -->
+<p>soit <span class="math inline">\(6.6\times10^{-8}\)</span> V/√Hz (−144 dB ref 1 V/√Hz)</p>
+<p>le bruit ramené en accélération est alors&nbsp;:</p>
+<p><span class="math display">\[
+\gamma^* = \frac{U^*}{Z_f + Z_b}\cdot\left(\frac{B\ell_B\,r_b}{M\,r_G}\cdot\beta_m\right)
+\]</span></p>
+<p><span class="math inline">\(\gamma^* \approx\)</span> −204 dB ref. 1 m s<span class="math inline">\(^{-2}\)</span>/√Hz à 0,1 Hz</p>
+<!-- p. 150 -->
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../figures/generees/fig-3-2-5.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-12" title="Figure 3.2.5 — Analyse théorique du bruit électronique dans la bande, en boucle ouverte. Sortie V2 — Gain de tête 54.3 dB (non standard). Carte de test de bruit (gain de sortie&nbsp;: 100). * excitation 4.4 V_{RMS} (= 12.9 dB V_{RMS}) à 4 kHz."><img src="../figures/generees/fig-3-2-5.svg" class="img-fluid figure-img" style="width:90.0%" data-fig-scap="Figure 3.2.5 — Analyse théorique du bruit électronique dans la bande, en boucle ouverte" alt="Figure 3.2.5 — Analyse théorique du bruit électronique dans la bande, en boucle ouverte. Sortie V2 — Gain de tête 54.3 dB (non standard). Carte de test de bruit (gain de sortie&nbsp;: 100). * excitation 4.4 V_{RMS} (= 12.9 dB V_{RMS}) à 4 kHz."></a></p>
+<figcaption><strong>Figure 3.2.5</strong> — Analyse théorique du bruit électronique dans la bande, en boucle ouverte. Sortie V2 — Gain de tête 54.3 dB (non standard). Carte de test de bruit (gain de sortie&nbsp;: 100). * excitation 4.4 V<span class="math inline">\(_{RMS}\)</span> (= 12.9 dB V<span class="math inline">\(_{RMS}\)</span>) à 4 kHz.</figcaption>
+</figure>
+</div>
+<!-- p. 151 -->
+</section>
+<section id="bruit-excédentaire-du-lvdt" class="level3">
+<h3 class="anchored" data-anchor-id="bruit-excédentaire-du-lvdt">3.2.3 Bruit excédentaire du LVDT</h3>
+<p>La figure 3.2.5 représente les principales sources de bruit de l’étude précédente et leur contribution pour une analyse en boucle ouverte.</p>
+<p>La vérification de cette analyse théorique a été faite à partir d’une analyse, capteur bloqué (Fig. 3.2.6-A). On observe que les résultats de l’analyse, capteur bloqué, font apparaître un fort bruit excédentaire en 1/f, alors que le bruit blanc est pratiquement égal au bruit théorique calculé (+ 2 dB).</p>
+<p>Plusieurs analyses spectrales ont permis de voir que&nbsp;:</p>
+<ul>
+<li>ce bruit en 1/f est pratiquement indépendant de la position du noyau,</li>
+<li>ce bruit est proportionnel aux gains situés après le LVDT,</li>
+<li>ce bruit excédentaire en 1/f disparaît lorsqu’on remplace le secondaire du LVDT par une impédance égale à l’impédance de source présentée par le LVDT,</li>
+<li>ce bruit augmente avec l’excitation (plus précisément, le rapport du bruit en sortie à l’excitation croît très légèrement avec l’excitation).</li>
+</ul>
+<p>Ceci montre que <em>le LVDT présente un bruit «&nbsp;intrinsèque&nbsp;» excédentaire en 1/f</em>, dont la valeur ramenée en entrée est pratiquement invariable avec les caractéristiques de l’électronique (nous verrons au parag. 3.3 que ce bruit dépend cependant du niveau et de la fréquence d’excitation).</p>
+<p>Bien qu’aucun modèle du bruit excédentaire n’ait été présenté, ce bruit pourrait s’expliquer par l’existence d’un bruit de bande latérale amené par l’oscillateur, ou par un bruit généré par un mécanisme de dissipation au niveau du circuit magnétique (bruit des ferrites …)</p>
+<!-- p. 152 -->
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../figures/generees/fig-3-2-6.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-13" title="Figure 3.2.6 — Analyses spectrales LVDT bloqué. A — LVDT faible bruit (cf.&nbsp;parag. 3.3)&nbsp;; B — LVDT standard."><img src="../figures/generees/fig-3-2-6.svg" class="img-fluid figure-img" style="width:80.0%" data-fig-scap="Figure 3.2.6 — Analyses spectrales LVDT bloqué" alt="Figure 3.2.6 — Analyses spectrales LVDT bloqué. A — LVDT faible bruit (cf.&nbsp;parag. 3.3)&nbsp;; B — LVDT standard."></a></p>
+<figcaption><strong>Figure 3.2.6</strong> — Analyses spectrales LVDT bloqué. A — LVDT faible bruit (cf.&nbsp;parag. 3.3)&nbsp;; B — LVDT standard.</figcaption>
+</figure>
+</div>
+<!-- p. 153 -->
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../figures/generees/fig-3-2-7.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-14" title="Figure 3.2.7 — Bruit en boucle fermée — sortie V2 (Gain de sortie 100). * excitation = 4.4 V_{RMS} (12.9 dB V_{RMS})."><img src="../figures/generees/fig-3-2-7.svg" class="img-fluid figure-img" style="width:90.0%" data-fig-scap="Figure 3.2.7 — Bruit en boucle fermée — sortie V2" alt="Figure 3.2.7 — Bruit en boucle fermée — sortie V2 (Gain de sortie 100). * excitation = 4.4 V_{RMS} (12.9 dB V_{RMS})."></a></p>
+<figcaption><strong>Figure 3.2.7</strong> — Bruit en boucle fermée — sortie V2 (Gain de sortie 100). * excitation = 4.4 V<span class="math inline">\(_{RMS}\)</span> (12.9 dB V<span class="math inline">\(_{RMS}\)</span>).</figcaption>
+</figure>
+</div>
+<!-- p. 154 -->
+<p>Lors des premières analyses effectuées sur un <em>LVDT standard</em>, avec les paramètres suivants&nbsp;:</p>
+<ul>
+<li>excitation&nbsp;: 1 kHz — 4 Vcc pseudo sinusoïdal</li>
+<li>gain de tête&nbsp;: G <span class="math inline">\(\approx\)</span> 280 (LVDT SHAEVITZ 050 HR)</li>
+</ul>
+<p>le bruit excédentaire s’établissait à <span class="math inline">\(\approx\)</span> −26 dB V/√Hz à 10 s correspondant à un bruit ramené en entrée de <em>−178 dB référés à 1 m/√Hz</em> (ou 1 m²/Hz) (cf.&nbsp;fig.&nbsp;3.2.6-B).</p>
+<p>La figure 3.2.7 montre la contribution des sources de bruit pour un fonctionnement en boucle fermée. On remarque en particulier, que le bruit du filtre de sortie (voie V2) devient prépondérant en boucle fermée.</p>
+</section>
+</section>
+<section id="analyse-du-bruit-propre-du-lvdt" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="analyse-du-bruit-propre-du-lvdt">3.3 Analyse du bruit propre du LVDT</h2>
+<p>Comme nous l’avons déjà signalé lors de l’introduction, les analyses de bruit dans la gamme de fréquence étudiée ici, de <em>2.5 mHz</em> à 100 Hz, imposent des mesures extrêmement longues&nbsp;: les spectres de bruit sont obtenus par un estimateur moyenneur à partir d’analyses sur des fenêtres temporelles de 400 (ou 800) s. Afin d’obtenir des spectres «&nbsp;lissés&nbsp;», il est indispensable de procéder à une moyenne sur un grand nombre de fenêtres temporelles. Par ailleurs, une période de stabilisation de quelques heures est, la plupart du temps, nécessaire pour éliminer les dérives continues résiduelles lors des modifications de paramètre, ou même, plus simplement, lors de l’ouverture du coffret-contrôle pour vérification des signaux. D’autre part, l’électronique n’étant pas totalement insensible aux perturbations externes, de nombreuses mesures «&nbsp;incertaines&nbsp;» ont dû être vérifiées. On conçoit, de ce fait, que les résultats présentés sont assez peu nombreux, voire parcellaires&nbsp;: chaque résultat est le fruit d’une nuit, voire même plusieurs nuits de mesures.</p>
+<!-- p. 155 -->
+<section id="influence-des-paramètres-de-base-niveau-et-fréquence-dexcitation" class="level3">
+<h3 class="anchored" data-anchor-id="influence-des-paramètres-de-base-niveau-et-fréquence-dexcitation">3.3.1 Influence des paramètres de base — niveau et fréquence d’excitation</h3>
+<p>Les résultats présentés dans cette partie proviennent d’analyses effectuées dans une première phase de l’étude, à partir du LVDT SCHAEVITZ 050 HR associé à une électronique différente de celle présentée au parag. 3.2 (version initiale non «&nbsp;optimisée&nbsp;» — démodulation par composant intégré OPA 201 …).</p>
+<p>Les résultats ne sont pas présentés sous la forme brute, mais sous la forme de bruit ramené en entrée (i.e.&nbsp;sous forme de densité spectrale de déplacement) dans la figure 3.3.1.</p>
+<p>Il ressort de ceci que&nbsp;:</p>
+<ul>
+<li>à un faible niveau d’excitation, le bruit ramené en entrée est pratiquement constant avec l’excitation. Au-delà d’un certain niveau, le bruit excédentaire équivalent en entrée augmente (ceci correspondant probablement à un phénomène de «&nbsp;saturation&nbsp;»),</li>
+<li>lorsqu’on augmente la fréquence, le phénomène de saturation semble s’atténuer.</li>
+</ul>
+<p><em>Remarques&nbsp;:</em></p>
+<ul>
+<li>La mesure à 9.6 kHz, semblant aller à l’encontre de cette interprétation, pourrait être expliquée par des incertitudes de mesures ou, plus vraisemblablement, par l’apparition des limites de l’électronique (distorsion des signaux, due au manque de rapidité des composants, génératrice de «&nbsp;bruits&nbsp;»).</li>
+</ul>
+<!-- p. 156 -->
+<ul>
+<li>Ces résultats, obtenus à 10 s, ne peuvent pas être extrapolés dans toute la bande, du fait de l’occultation du bruit en 1/f par le bruit blanc électronique aux faibles niveaux d’excitation. Ce phénomène devient plus sensible lorsqu’on accroît la fréquence d’excitation&nbsp;: l’augmentation des impédances (terme inductif) qui en résulte provoque une augmentation sensible du bruit blanc issu de la transposition du bruit à la fréquence porteuse (augmentation du bruit <span class="math inline">\(Z(f_e)\cdot i^*(f_e)\)</span>).</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../figures/generees/fig-3-3-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-15" title="Figure 3.3.1 — LVDT SCHAEVITZ 050 HR (standard). Bruit ramené en entrée à 10 s en dB réf. 1 m/√Hz, en fonction de la fréquence (kHz) et du niveau d’excitation (V_{cc}, V_{RMS})."><img src="../figures/generees/fig-3-3-1.svg" class="img-fluid figure-img" style="width:80.0%" data-fig-scap="Figure 3.3.1 — LVDT SCHAEVITZ 050 HR" alt="Figure 3.3.1 — LVDT SCHAEVITZ 050 HR (standard). Bruit ramené en entrée à 10 s en dB réf. 1 m/√Hz, en fonction de la fréquence (kHz) et du niveau d’excitation (V_{cc}, V_{RMS})."></a></p>
+<figcaption><strong>Figure 3.3.1</strong> — LVDT SCHAEVITZ 050 HR (standard). Bruit ramené en entrée à 10 s en dB réf. 1 m/√Hz, en fonction de la fréquence (kHz) et du niveau d’excitation (V<span class="math inline">\(_{cc}\)</span>, V<span class="math inline">\(_{RMS}\)</span>).</figcaption>
+</figure>
+</div>
+<!-- p. 157 -->
+<p><strong>Étude sommaire de l’influence des caractéristiques du LVDT&nbsp;:</strong></p>
+<p>Les mesures précédentes ayant mis en lumière un phénomène pouvant être identifié comme un phénomène de saturation, il nous a semblé judicieux de tenter de remplacer le noyau standard d’un alliage Fe-Ni par un matériau présentant de meilleures caractéristiques de saturation magnétique. De même, l’enveloppe métallique externe en acier inoxydable nous ayant semblé être une origine probable du phénomène, nous avons effectué des mesures&nbsp;:</p>
+<ul>
+<li>en remplaçant le noyau standard par un noyau ferrite,</li>
+<li>en remplaçant l’enveloppe acier par une enveloppe cuivre</li>
+</ul>
+<p><em>Caractéristiques du nouveau noyau&nbsp;:</em></p>
+<p>Ferrite doux «&nbsp;Ferrinox&nbsp;» B30 GT 4.1 × 2 × 12.5</p>
+<p>1500 <span class="math inline">\(\leq\)</span> µi <span class="math inline">\(\leq\)</span> 2000 entre 0 et 50 °C, faibles pertes</p>
+<p>Remarque&nbsp;: le noyau adopté est de dimensions différentes du noyau initial.</p>
+<p><em>Caractéristiques du blindage cuivre&nbsp;:</em></p>
+<ul>
+<li>épaisseur radiale <span class="math inline">\(\approx\)</span> 2.5 mm</li>
+<li>épaisseur aux extrémités <span class="math inline">\(\approx\)</span> 8 mm</li>
+</ul>
+<!-- p. 158 -->
+<p><em>Résultats concernant le bruit</em> (<span class="math inline">\(f_e\)</span> = 10 kHz)</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Enveloppe \ Noyau</th>
+<th style="text-align: center;">Standard</th>
+<th style="text-align: center;">Ferrite</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Standard</td>
+<td style="text-align: center;">− 185 ± 3 dB</td>
+<td style="text-align: center;">− 205 ± 3 dB</td>
+</tr>
+<tr class="even">
+<td>Cuivre</td>
+<td style="text-align: center;">− 183 ± 3 dB</td>
+<td style="text-align: center;">− 210 ± 3 dB</td>
+</tr>
+</tbody>
+</table>
+<p>Bruit en dB réf. 1 m/√Hz à 10 s</p>
+<!-- p. 159 -->
+<p><strong>REMARQUES&nbsp;:</strong></p>
+<p><em>Effet des paramètres fréquence et niveau d’excitation — type de noyau et d’enveloppe&nbsp;:</em></p>
+<p>Les résultats présentés ne permettent pas de dégager clairement d’optimum pour ces paramètres du fait de l’imprécision des mesures de bruit&nbsp;:</p>
+<ul>
+<li><p>En effet, les paramètres fréquence et niveau d’excitation ne peuvent être modifiés que dans une plage assez faible sans refonte de l’électronique compte-tenu des contraintes concernant le bruit électronique intrinsèque.</p></li>
+<li><p>Par ailleurs, toute modification de fréquence nécessite la refonte des filtres (mise en forme de l’excitation + amplificateur de tête) et donc modifie les gains et niveaux d’excitation.</p></li>
+<li><p>De plus, tous les paramètres (autres que le niveau d’excitation) modifient de manière non prévisible la sensibilité qui est mesurée avec de fortes incertitudes.</p>
+<p>Ces incertitudes, auxquelles on doit ajouter l’incertitude propre de la mesure de bruit, peuvent être évaluées de la manière suivante&nbsp;:</p></li>
+</ul>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Causes d’incertitude</th>
+<th style="text-align: right;">Valeur</th>
+<th>Remarques</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Incertitude sur la sensibilité</td>
+<td style="text-align: right;">10 %</td>
+<td>→ Difficulté de mesure due au gain. Linéarité inconnue.</td>
+</tr>
+<tr class="even">
+<td>Incertitude sur l’excitation</td>
+<td style="text-align: right;">5 %</td>
+<td>→ Mesure rendue délicate par le manque de pureté spectrale</td>
+</tr>
+<tr class="odd">
+<td>Incertitude sur la mesure de bruit</td>
+<td style="text-align: right;">25 %</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><strong>TOTAL</strong></td>
+<td style="text-align: right;"><span class="math inline">\(\approx\)</span> 40 % i.e.&nbsp;3 dB</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<!-- p. 160 -->
+</section>
+<section id="analyses-affinées-autour-dun-lvdt-optimisé-faible-bruit" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="analyses-affinées-autour-dun-lvdt-optimisé-faible-bruit">3.3.2 Analyses affinées autour d’un LVDT optimisé faible bruit</h3>
+<p>Les mesures précédentes ont montré l’intérêt du choix d’une fréquence d’excitation assez élevée, cependant les mesures à 10 kHz n’ayant pas montré de gain significatif (peut être du fait des déformations des signaux provenant du manque de rapidité des amplificateurs utilisés, et également des couplages parasites augmentant avec la fréquence), les caractéristiques adoptées pour une étude affinée ont été les suivantes&nbsp;:</p>
+<ul>
+<li>excitation à la fréquence <span class="math inline">\(f_e\)</span> = 4 kHz</li>
+<li>LVDT Shaevitz 050 HR avec enveloppe cuivre et noyau ferrite.</li>
+</ul>
+<p>Une refonte de l’électronique a été menée de manière à minimiser les déformations des signaux, et à conserver un bruit constant dans toute la dynamique (ce qui n’était pas le cas avec la première version de l’électronique utilisée, pour les résultats présentés au 3.3.1). Les améliorations ont porté, principalement, sur le remplacement d’un composant de démodulation intégré par un système amplificateur différentiel/porte analogique, l’adoption d’une excitation symétrique, et l’optimisation des caractéristiques de bruit de l’électronique.</p>
+<p>La nouvelle électronique (déjà présentée au 3.2.1.) a permis d’obtenir une quasi constance du bruit dans la plage dynamique du capteur (figure 3.3.2), ce qui n’était pas le cas pour la première réalisation. Cette figure montre, par ailleurs, que le déphasage, introduit entre la commande de démodulation et le signal d’excitation&nbsp;:</p>
+<!-- p. 161 -->
+<ul>
+<li>est pratiquement sans influence sur le bruit lorsqu’on se place vers le minimum de la dynamique,</li>
+<li>et devient légèrement sensible lorsqu’on atteint le maximum de la dynamique&nbsp;: pour des signaux de 20 Vcc en sortie de gain de tête, et pour une démodulation en quadrature par rapport à la démodulation nominale, le bruit en sortie est supérieur de 5 à 10 dB environ au bruit dans les conditions nominales.</li>
+</ul>
+<p><em>NB</em>&nbsp;: Cette mesure n’est toutefois pas significative, puisqu’elle correspond à une réponse du LVDT totalement non linéaire.</p>
+<!-- p. 162 -->
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../figures/generees/fig-3-3-2.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-16" title="Figure 3.3.2 — Nouvelle électronique&nbsp;: vérification de la constance du bruit dans la dynamique."><img src="../figures/generees/fig-3-3-2.svg" class="img-fluid figure-img" style="width:90.0%" data-fig-scap="Figure 3.3.2 — Nouvelle électronique" alt="Figure 3.3.2 — Nouvelle électronique&nbsp;: vérification de la constance du bruit dans la dynamique."></a></p>
+<figcaption><strong>Figure 3.3.2</strong> — Nouvelle électronique&nbsp;: vérification de la constance du bruit dans la dynamique.</figcaption>
+</figure>
+</div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>Courbes V, O</td>
+<td>Analyses au voisinage de la position zéro (PROM nominale et PROM nominale + déphasage de <span class="math inline">\(\pi\)</span>/2). Analyse vers le maximum de la dynamique (à 10 Vc en sortie de l’amplificateur de tête).</td>
+</tr>
+<tr class="even">
+<td>Courbe M</td>
+<td>Analyse vers le maximum de la PROM nominale</td>
+</tr>
+<tr class="odd">
+<td>Courbe R</td>
+<td>Analyse vers le maximum de la PROM nominale + déphasage de <span class="math inline">\(\pi\)</span>/2.</td>
+</tr>
+</tbody>
+</table>
+<p><em>NB</em>&nbsp;: Seules les courbes V et M correspondent à des conditions de mesures significatives pour une mesure de déplacement.</p>
+<!-- p. 163 -->
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../figures/generees/fig-3-3-3.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-17" title="Figure 3.3.3 — Analyse spectrale LVDT bloqué."><img src="../figures/generees/fig-3-3-3.svg" class="img-fluid figure-img" style="width:90.0%" data-fig-scap="Figure 3.3.3 — Analyse spectrale LVDT bloqué" alt="Figure 3.3.3 — Analyse spectrale LVDT bloqué."></a></p>
+<figcaption><strong>Figure 3.3.3</strong> — Analyse spectrale LVDT bloqué.</figcaption>
+</figure>
+</div>
+<!-- p. 164 -->
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../figures/generees/fig-3-3-4.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-18" title="Figure 3.3.4 — Analyse spectrale LVDT primaire court-circuité à la masse. Analyse spectrale LVDT primaire court-circuité sur l’excitation."><img src="../figures/generees/fig-3-3-4.svg" class="img-fluid figure-img" style="width:90.0%" data-fig-scap="Figure 3.3.4 — Analyse spectrale LVDT primaire court-circuité à la masse" alt="Figure 3.3.4 — Analyse spectrale LVDT primaire court-circuité à la masse. Analyse spectrale LVDT primaire court-circuité sur l’excitation."></a></p>
+<figcaption><strong>Figure 3.3.4</strong> — Analyse spectrale LVDT primaire court-circuité à la masse. Analyse spectrale LVDT primaire court-circuité sur l’excitation.</figcaption>
+</figure>
+</div>
+<!-- p. 165 -->
+<p><a href="../figures/generees/fig-3-3-5.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-19"><img src="../figures/generees/fig-3-3-5.svg" class="img-fluid" style="width:85.0%" alt="fig-3-3-5 (partie 1)"></a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../figures/generees/fig-3-3-5b.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-20" title="Figure 3.3.5 — LVDT simulé par un pont diviseur."><img src="../figures/generees/fig-3-3-5b.svg" class="img-fluid figure-img" style="width:90.0%" data-fig-scap="Figure 3.3.5 — LVDT simulé par un pont diviseur" alt="Figure 3.3.5 — LVDT simulé par un pont diviseur."></a></p>
+<figcaption><strong>Figure 3.3.5</strong> — LVDT simulé par un pont diviseur.</figcaption>
+</figure>
+</div>
+<!-- p. 166 -->
+<p><strong>Étude affinée pour la sélection de la fréquence&nbsp;:</strong></p>
+<p>Cette étude vise à confirmer les résultats déjà obtenus à partir du LVDT standard, sur l’influence de la fréquence d’excitation, dans le cas du LVDT avec enveloppe cuivre et noyau ferrite. Ces résultats ont été obtenus à partir de la carte présentée au parag. 3.2.</p>
+<p>Quatre analyses ont été effectuées à deux niveaux de fréquence, 3.9 kHz et 7.8 kHz, avec deux niveaux d’excitation dans chaque cas.</p>
+<p>Les analyses, Fig. 3.2.6, sont interprétées à partir du tableau de la figure 3.3.7. Les niveaux d’excitation, pour chaque fréquence, ont dû être choisis différents, car pour les plus faibles valeurs, le bruit en 1/f est occulté par le bruit blanc de l’étage de tête&nbsp;; pour les fortes valeurs, l’excitation a dû être limitée à 4 kHz par l’impédance d’entrée du LVDT<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> (la carte utilisée ne disposait pas de buffer permettant des courants supérieurs à 30 mA environ<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>).</p>
+<!-- p. 167 -->
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;320 Ω environ à 4 kHz + 2 × 51 Ω de résistance de liaison.</p></div><div id="fn2"><p><sup>2</sup>&nbsp;dans le cas d’une charge par LVDT, la valeur de 20 mA n’a pû être dépassée même en utilisant des amplificateurs triés.</p></div></div><div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../figures/generees/fig-3-3-6.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-21" title="Figure 3.3.6 — Influence de la fréquence sur les analyses spectrales (f_e = 3.9 kHz, gain de tête 54 dB, excitations 12.9 et 5.2 dBV_{RMS}&nbsp;; f_e = 7.8 kHz, gain de tête 52.7 dB, excitations 17.7 et 13.9 dBV_{RMS})."><img src="../figures/generees/fig-3-3-6.svg" class="img-fluid figure-img" style="width:80.0%" data-fig-scap="Figure 3.3.6 — Influence de la fréquence sur les analyses spectrales" alt="Figure 3.3.6 — Influence de la fréquence sur les analyses spectrales (f_e = 3.9 kHz, gain de tête 54 dB, excitations 12.9 et 5.2 dBV_{RMS}&nbsp;; f_e = 7.8 kHz, gain de tête 52.7 dB, excitations 17.7 et 13.9 dBV_{RMS})."></a></p>
+<figcaption><strong>Figure 3.3.6</strong> — Influence de la fréquence sur les analyses spectrales (<span class="math inline">\(f_e\)</span> = 3.9 kHz, gain de tête 54 dB, excitations 12.9 et 5.2 dBV<span class="math inline">\(_{RMS}\)</span>&nbsp;; <span class="math inline">\(f_e\)</span> = 7.8 kHz, gain de tête 52.7 dB, excitations 17.7 et 13.9 dBV<span class="math inline">\(_{RMS}\)</span>).</figcaption>
+</figure>
+</div>
+<!-- p. 168 -->
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Fréquence</th>
+<th>Excitation dB V<span class="math inline">\(_{RMS}\)</span></th>
+<th>Gain de tête</th>
+<th>Bruit mesuré asymptotique dB(V/√Hz) à 100 s (réel à 10 s)</th>
+<th>Sensib. en sortie V2 dB (V/m)</th>
+<th>Bruit équival. en entrée à 100 s (réel à 10 s)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>3.9 kHz</td>
+<td>5.2 dBV</td>
+<td>54 dB</td>
+<td>−56 (−63)</td>
+<td>147.5</td>
+<td>−203.5 (−210.5)</td>
+</tr>
+<tr class="even">
+<td>3.9 kHz</td>
+<td>12.9 dBV</td>
+<td>54 dB</td>
+<td>−47 (−58)</td>
+<td>155</td>
+<td>−202 (−213)</td>
+</tr>
+<tr class="odd">
+<td>7.8 kHz</td>
+<td>13.9 dBV</td>
+<td>52.7</td>
+<td>−53 (−61)</td>
+<td>154.5</td>
+<td>−207.5 (−215.5)</td>
+</tr>
+<tr class="even">
+<td>7.8 kHz</td>
+<td>17.7 dBV</td>
+<td>52.7</td>
+<td>−46 (−57)</td>
+<td>158.5</td>
+<td>−204.5 (−215.5)</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td>± 1 dB</td>
+<td></td>
+<td>± 1 dB environ</td>
+</tr>
+</tbody>
+</table>
+<p>sensibilité identique 128 V/m/V<span class="math inline">\(_I\)</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../figures/generees/fig-3-3-7.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-22" title="Figure 3.3.7 — Influence de la fréquence et de l’excitation (bruit équivalent en entrée, dB réf. 1 m/√Hz, en fonction de l’excitation en dB V_{RMS})."><img src="../figures/generees/fig-3-3-7.svg" class="img-fluid figure-img" style="width:70.0%" data-fig-scap="Figure 3.3.7 — Influence de la fréquence et de l'excitation" alt="Figure 3.3.7 — Influence de la fréquence et de l’excitation (bruit équivalent en entrée, dB réf. 1 m/√Hz, en fonction de l’excitation en dB V_{RMS})."></a></p>
+<figcaption><strong>Figure 3.3.7</strong> — Influence de la fréquence et de l’excitation (bruit équivalent en entrée, dB réf. 1 m/√Hz, en fonction de l’excitation en dB V<span class="math inline">\(_{RMS}\)</span>).</figcaption>
+</figure>
+</div>
+<!-- p. 169 -->
+<p><strong>Conclusion partielle&nbsp;:</strong></p>
+<p>Au vu des résultats présentés, il apparaît que pour réduire le niveau de bruit (équivalent en terme de déplacement) des capteurs LVDT, on peut&nbsp;:</p>
+<ul>
+<li>augmenter la fréquence d’excitation (réduction du bruit 1/f),</li>
+<li>augmenter, de manière contrôlée, le niveau d’excitation de manière à réaliser le compromis entre&nbsp;:
+<ul>
+<li>la contribution du bruit blanc (provenant principalement de l’étage de tête) qui varie en raison inverse du niveau d’excitation,</li>
+<li>le bruit excédentaire de saturation (1/f) qui croît lorsque le niveau d’excitation augmente au dessus du «&nbsp;seuil de saturation&nbsp;».</li>
+</ul></li>
+</ul>
+<p>Les autres facteurs intervenant en limitation, proviennent&nbsp;:</p>
+<ul>
+<li>du courant d’excitation consommé par le LVDT (lié bien sûr au niveau d’excitation, à l’impédance d’entrée du LVDT, donc à la fréquence, mais aussi au choix de l’amplificateur d’excitation),</li>
+<li>du niveau des tensions d’alimentation,</li>
+<li>de la rapidité des amplificateurs (produit gain × bande, slew-rate …), essentiellement pour l’amplificateur de tête et les composants de démodulation.</li>
+</ul>
+<p>Une autre limitation apparaît dans le fonctionnement en boucle fermée, en longue période&nbsp;; elle provient du bruit des amplificateurs situés en sortie de boucle (cf.&nbsp;Fig. 3.2.7) (ces éléments sont d’autant plus critiques que le gain de la chaîne directe est plus faible ou que les impédances de source des amplificateurs sont élevées). C’est, actuellement, l’étage de sortie qui amène la limitation en terme de rapport signal/bruit électronique pour un fonctionnement du capteur (en longue période), en boucle fermée.</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-agnew1978" class="csl-entry" role="listitem">
+Agnew, D. C., et J. Berger. 1978. <span>«&nbsp;Vertical seismic noise at very low frequencies&nbsp;»</span>. <em>J. Geophys. Res.</em> 83: 5420‑24.
+</div>
+<div id="ref-brune1959" class="csl-entry" role="listitem">
+Brune, J. N., et J. E. Olivier. 1959. <span>«&nbsp;The seismic noise at the Earth’s surface&nbsp;»</span>. <em>Bull. Seismol. Soc. Amer.</em> 49: 349‑53.
+</div>
+<div id="ref-fix1973" class="csl-entry" role="listitem">
+Fix, J. E. 1973. <span>«&nbsp;Theoretical and observed noise in a high sensivity long-period seismogram&nbsp;»</span>. <em>Bull. Seismol. Soc. Amer.</em> 63: 1979‑98.
+</div>
+<div id="ref-fouquet1986" class="csl-entry" role="listitem">
+Fouquet, D. 1986. <em>Compte-rendu de la mission d’installation de la station longue période de Pamatai</em>. Rapport interne. Laboratoire de Détection et de Géophysique.
+</div>
+<div id="ref-herbin1982" class="csl-entry" role="listitem">
+Herbin, E. 1982. <span>«&nbsp;The resolution of seismic instruments in treaty verification research&nbsp;»</span>. <em>Bull. Seismol. Soc. Amer.</em> 72: 561‑67.
+</div>
+<div id="ref-iris1984" class="csl-entry" role="listitem">
+IRIS. 1984. <em>Science plan for a new Global Seismographic Network</em>. Incorporated Research Institutions for Seismology.
+</div>
+<div id="ref-melton1971" class="csl-entry" role="listitem">
+Melton, B. S. 1971. <span>«&nbsp;The <span>LaCoste</span> suspension: principles and practice&nbsp;»</span>. <em>Geophys. J. Roy. astr. Soc.</em> 22: 521‑43.
+</div>
+<div id="ref-melton1976" class="csl-entry" role="listitem">
+Melton, B. S. 1976. <span>«&nbsp;The sensivity and dynamic range of inertial seismographs&nbsp;»</span>. <em>Revs. Geophys. Space Phys.</em> 14: 93‑116.
+</div>
+<div id="ref-usher1978" class="csl-entry" role="listitem">
+Usher, M. J., C. Guralp, et R. F. Burch. 1978. <span>«&nbsp;The design of miniature wideband seismometers&nbsp;»</span>. <em>Geophys. J. Roy. astr. Soc.</em> 55: 605‑13.
+</div>
+<div id="ref-weinstein1965" class="csl-entry" role="listitem">
+Weinstein, M. D. 1965. <span>«&nbsp;Flexure pivot bearings&nbsp;»</span>. <em>Mach. Des.</em> 37: 136‑57.
+</div>
+<div id="ref-wielandt1982" class="csl-entry" role="listitem">
+Wielandt, E., et G. Strieckeisen. 1982. <span>«&nbsp;The leaf-spring seismometer: design and performance&nbsp;»</span>. <em>Bull. Seismol. Soc. Amer.</em> 72: 2349‑67.
+</div>
+</div>
+</section>
+</section>
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copié");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copié");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapitres/02-elements-theoriques.html" class="pagination-link" aria-label="Éléments d'analyse théorique">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Éléments d’analyse théorique</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapitres/04-application.html" class="pagination-link" aria-label="Application des améliorations obtenues et performances avec les capteurs L.D.G. (LPH-A et LPZ-A)">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Application des améliorations obtenues et performances avec les capteurs L.D.G. (LPH-A et LPZ-A)</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

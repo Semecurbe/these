@@ -1,0 +1,39 @@
+# Références bibliographiques
+
+<!-- p. 214 -->
+
+::: {.references-list}
+
+Agnew, D.C., and J. Berger, Vertical seismic noise at very low frequencies,
+*J. Geophys. Res.*, 83, 5420-5424, 1978.
+
+Brune, J.N., and J.E. Olivier, The seismic noise at the Earth's surface,
+*Bull. Seismol. Soc. Amer.*, 49, 349-353, 1959.
+
+Fouquet, D., Compte-rendu de la mission d'installation de la station longue
+période de Pamatai, Rapport interne LDG — 1986 —
+
+Fix, J.E., Theoretical and observed noise in a high sensivity long-period
+seismogram, *Bull. Seismol. Soc. Amer.*, 63, 1979-1998, 1973.
+
+Herbin, E., The resolution of seismic instruments in treaty verification
+research, *Bull. Seismol. Soc. Amer.*, 72, 561-567, 1982.
+
+IRIS, Science plan for a new Global Seismographic Network, Incorp. Res. Instit.
+for Seismol., Washington, D.C., 1984.
+
+Melton, B.S., The Lacoste suspension : principles and practice, *Geophys. J.
+Roy. astr. Soc.*, 22, 521-543, 1971.
+
+Melton, B.S., The sensivity and dynamic range of inertial seismographs, *Revs.
+Geophys. Space Phys.*, 14, 93-116, 1976.
+
+Usher, M.J., C. Guralp, and R.F. Burch, The design of miniature wideband
+seismometers, *Geophys. J. Roy. astr. Soc.*, 55, 605-613, 1978.
+
+Weinstein, M.D., Flexure pivot bearings, *Mach. Des.*, 37, 136-157, 1965.
+
+Wielandt, E., and G. Strieckeisen, The leaf-spring seismometer : design and
+performance, *Bull. Seismol. Soc. Amer.*, 72, 2349-2367, 1982.
+
+:::

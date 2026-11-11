@@ -1,0 +1,38 @@
+\input{_preambule}
+\begin{document}
+\begin{tikzpicture}[font=\small]
+  \node[somme] (s) at (0,0) {};
+  \node[bloc] (h) at (1.6,0) {$H_m$};
+  \pic (t) at (3.3,0) {transducteur}; \node[above=2.5mm] at (3.3,0) {$\alpha_0$};
+  \node[gain] (a) at (4.6,0) {$A$};
+  \node[bloc, minimum width=3.6cm, minimum height=2.4cm] (cor) at (7.7,0) {};
+  \begin{scope}[shift={(6.1,-0.75)}]
+    \draw[->] (0,0) -- (3.0,0) node[above, font=\scriptsize] {$f$};
+    \draw (0.1,1.05) -- (0.7,1.05) -- (2.0,0.25) -- (2.8,0.25);
+    \draw[dashed] (0.7,0) -- (0.7,1.05) (2.0,0) -- (2.0,0.25);
+    \node[above, font=\scriptsize] at (0.3,1.05) {$G$};
+    \node[font=\scriptsize, anchor=west] at (1.4,0.95) {$-20$ dB/déc.};
+    \node[above, font=\scriptsize] at (2.45,0.25) {0 dB};
+    \node[below, font=\scriptsize] at (0.7,0) {$f_i^-$}; \node[below, font=\scriptsize] at (2.0,0) {$f_i^+$};
+  \end{scope}
+  \node[above, font=\footnotesize] at (cor.north) {$|H_{\text{correcteur}}|$};
+  \node[gain] (v1) at (10.6,0) {};
+  \node[gain] (v2) at (10.6,1.9) {};
+  \draw[->] (-1.2,0) node[left] {$\gamma_i$} -- (s) node[above left, pos=0.85] {\scriptsize$-$};
+  \draw[->] (s) -- (h); \draw (h) -- node[above] {$x$} (t-o); \draw[->] (t-e) -- (a);
+  \draw[->] (a) -- (cor); \node[above] at (5.6,0) {$U$};
+  \fill (5.75,0) circle (1.4pt);
+  \draw[->] (5.75,0) |- (v2);
+  \draw[->] (cor) -- (v1);
+  \draw (v1.east) -- ++(0.4,0) node[right] {$V_1$};
+  \draw (v2.east) -- ++(0.4,0) node[right] {$V_2$};
+  % contre-réaction
+  \coordinate (n) at (9.85,0); \fill (n) circle (1.4pt);
+  \node[bloc, minimum width=2.0cm, minimum height=1.3cm] (rc) at (6.0,-2.3) {};
+  \RparC{(6.0,-2.3)}{2.0}{0.65}
+  \pic (b) at (2.3,-2.3) {transducteur}; \node[above=2.5mm] at (2.3,-2.3) {$\beta_m$};
+  \draw[->] (n) |- (rc.east);
+  \draw[->] (rc.west) -- node[above] {$i_f$} (b-e);
+  \draw[->] (b-o) -| (s.south) node[below right, pos=0.95] {\scriptsize$+$};
+\end{tikzpicture}
+\end{document}

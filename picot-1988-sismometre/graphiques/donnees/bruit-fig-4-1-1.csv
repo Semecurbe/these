@@ -1,0 +1,15 @@
+courbe,periode_s,db
+Bruit blanc (gain de tête),0.01,-107
+Bruit blanc (gain de tête),10,-221
+1/f : LBH-A,0.01,-130
+1/f : LBH-A,10,-220
+1/f : LPZ-A,0.01,-134.5
+1/f : LPZ-A,7,-219.5
+Bruit blanc (non légendé sur l'original),0.1,-189
+Bruit blanc (non légendé sur l'original),0.9,-220
+1/f : étage de sortie,1,-220
+1/f : étage de sortie,1000,-190
+1/f : LVDT LBH-A,20,-220.5
+1/f : LVDT LBH-A,1000,-203.5
+1/f : LVDT LPZ-A,70,-219
+1/f : LVDT LPZ-A,1000,-207.5

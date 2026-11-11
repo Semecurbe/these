@@ -1,0 +1,2674 @@
+# Éléments d'analyse théorique
+
+<!-- p. 12 -->
+
+## 2.0 Théorie du sismomètre ou accéléromètre
+
+### 2.0.1 Courbe de réponse typique d'un sismomètre — Analyse du sismomètre linéaire
+
+Un sismomètre ou accéléromètre est un capteur de déplacement relatif,
+permettant de mesurer les mouvements de son support, lequel est supposé
+solidaire du sol. Dans une réalisation purement mécanique, il peut être
+représenté par le schéma suivant (fig. 2.0.1) valable dans le cas du capteur
+« linéaire » (par opposition à rotatif).
+
+![**Figure 2.0.1** — Schéma de principe mécanique d'un sismomètre ou accéléromètre. $z$ = position absolue de la masse ; $z_e$ = position absolue du bâti (mouvement d'entraînement) ; $\ell$ = longueur du ressort ; $-x$ = allongement du ressort par rapport à l'équilibre ; $m$ = masse du mobile suspendu ; $k$ = raideur du ressort ; $\beta$ = coefficient de frottement visqueux.](../figures/generees/fig-2-0-1){width=100% fig-scap="Figure 2.0.1 — Schéma de principe mécanique d'un sismomètre ou accéléromètre"}
+
+<!-- p. 13 -->
+
+**Mise en équation :**
+
+On se réfère ici au cas du capteur « vertical »
+
+$$
+m\ddot z = k(\ell - \ell_0) + \beta\dot\ell - mg
+$$
+
+Condition d'équilibre :
+
+$$
+mg = k(\ell_{eq} - \ell_0)
+$$
+
+En posant $x = \ell_{eq} - \ell$, il vient :
+
+$$
+m\ddot z = -kx - \beta\dot x
+$$
+
+$$
+\ddot z = -\frac{k}{m}x - \frac{\beta}{m}\dot x
+$$
+
+en choisissant en outre l'origine du repère $z_e$ au point d'équilibre
+$z = z_e + x$
+
+d'où
+
+$$
+\boxed{\ddot z_e = -\left(\frac{k}{m}x + \frac{\beta}{m}\dot x + \ddot x\right)}
+$$
+
+En régime harmonique $z_e = z_{e0}\cos\omega t$ on aura
+
+$$
+x(t) = \frac{z_{e0}\,r^2}{\sqrt{(1-r^2)^2 + 4\xi^2 r^2}}\cos(\omega t - \varphi)
+$$
+
+<!-- p. 14 -->
+
+où
+
+$$
+r = \omega/\omega_m \qquad
+\omega_m = \sqrt{\frac{k}{m}} \qquad
+T_m = \frac{2\pi}{\omega_m} \qquad
+\xi = \frac{\beta}{2m\,\omega_m}
+$$
+
+et $\varphi$ tel que $\operatorname{tg}\varphi = \dfrac{2\xi r}{1-r^2}$.
+
+$T_m$ et $\xi$ représentent respectivement la période nominale ou période propre
+et le coefficient d'amortissement réduit.
+
+**Utilisation en accéléromètre :**
+
+L'accéléromètre est un capteur dont la pulsation propre est très supérieure aux
+pulsations correspondant aux mouvements à mesurer
+
+$$
+f \ll f_m \quad\text{de sorte que}\quad x \simeq -\frac{T_m^2}{4\pi^2}\,\ddot z_e
+$$
+
+la mesure est proportionnelle à l'accélération (d'où le nom).
+
+**Utilisation en sismomètre :**
+
+Un sismomètre est un capteur dont la pulsation propre est inférieure aux
+pulsations correspondant aux mouvements à mesurer :
+
+$$
+\text{pour } f \gg f_m \text{ on aura}\quad \ddot x \simeq -\ddot z_e,
+\qquad x \simeq -z_e
+$$
+
+et si les conditions initiales sont nulles ($\dot x(0) = \dot z(0)$, et
+$x(0) = z(0)$), alors : $x(t) \simeq -z_e(t)$.
+
+<!-- p. 15 -->
+
+**Généralisation — Courbe de réponse typique :**
+
+Plus généralement, on verra qu'un capteur sismique (accéléromètre ou
+sismomètre) est un oscillateur mécanique, dont le déplacement (relatif) $x$ de
+la partie mobile est relié à l'accélération du sol $\gamma_i = \ddot z_e$ par une
+courbe de réponse mécanique en régime harmonique de type 2^ème^ ordre, telle
+que :
+
+- pour $f \gg f_m$ (fréquence propre mécanique) $x$ proportionnel au
+  déplacement absolu $z_e$ du support (déphasé de $\pi$)
+- pour $f \ll f_m$ le déplacement relatif $x$ est proportionnel à
+  $\dfrac{-T_m^2}{4\pi^2}$ fois l'accélération $\ddot z_e$ du support
+
+$$
+\ddot z_e = -\frac{1}{\alpha_m}\left(\omega_m^2 x + 2\xi\omega_m\dot x + \ddot x\right)
+$$
+
+Le coefficient de proportionnalité $\alpha_m$ est assimilable à un « gain
+mécanique » (dans le cas simple linéaire $\alpha_m = 1$).
+
+L'allure des courbes de réponse aux accélérations ou déplacements du sol est
+indiquée par la figure 2.0.2. La réponse est en outre caractérisée au voisinage
+de la fréquence propre par le coefficient d'amortissement $\xi$.
+
+<!-- p. 16 -->
+
+![**Figure 2.0.2** — Réponse d'un capteur sismique en régime harmonique (gain mécanique $\alpha_m = 1$). En haut : $|x/\ddot z_e| = H_m(j\omega)$ ; en bas : $|x/z_e|$. Courbe (1) : $\xi = 0.05$ ; courbe (2) : $\xi = 0.707$.](../figures/generees/fig-2-0-2){width=100% fig-scap="Figure 2.0.2 — Réponse d'un capteur sismique en régime harmonique"}
+
+**Remarques :**
+
+(1) L'amortissement réduit $\xi$ est choisi de sorte que la résonance soit
+atténuée et que les approximations asymptotiques soient valables dans une plage
+la plus large possible, par suite $\beta$ est en général choisi pour avoir
+$\xi = 1/\sqrt 2 \approx 0.707$ (courbe 2 : amortissement « optimum »).
+
+On verra cependant que l'amortissement d'origine mécanique doit être à priori
+minimisé (car générateur de « bruit »). L'amortissement sera en général obtenu
+par l'utilisation d'un dispositif annexe d'amortissement.
+
+<!-- p. 17 -->
+
+(2) Notation de Laplace :
+
+En utilisant la notation de Laplace, la relation différentielle exprimant la
+réponse du système s'écrit :
+
+$$
+\frac{x(s)}{\ddot z_e(s)} = \frac{-\alpha_m}{s^2 + 2\xi\,\omega_m s + \omega_m^2} = -H_m(s)
+$$
+
+(on note pour simplifier $y(s)$ la transformée de Laplace d'un signal $y(t)$).
+
+Ce type de notation sera largement utilisé par la suite.
+
+(3) La pseudo pulsation des oscillations en régime libre est donnée par :
+
+$$
+\omega_p = \omega_n\sqrt{1-\xi^2}
+$$
+
+où $\omega_n$ correspond à la pulsation propre en régime libre avec
+amortissement nul.
+
+<!-- p. 18 -->
+
+### 2.0.2 Conséquences importantes pour la conception d'un capteur
+
+La résolution mécanique intrinsèque du transducteur (déplacement ou vitesse)
+étant limitée, elle intervient en limitant les signaux détectables suivant la
+courbe de réponse.
+
+- La résolution en haute fréquence sera directement limitée par celle du
+  transducteur
+
+  $$
+  |\delta z_{sol}| = \frac{1}{\alpha}\,|\delta x_{transducteur}|
+  $$
+
+- La résolution en basse fréquence sera d'autant meilleure que la période
+  propre du capteur sera plus élevée.
+
+  $$
+  |\delta \ddot z_{sol}| = \frac{4\pi^2}{\alpha\,T_m^2}\cdot|\delta x_{transducteur}|
+  $$
+
+  Nous verrons ultérieurement que la résolution sera identique dans le cas d'un
+  capteur asservi (idéal) si $T_m$ désigne, non plus la période nominale en
+  régime asservi, mais la période propre du capteur en régime libre (non
+  asservi).
+
+De ce fait, pour résoudre une accélération de $10^{-10}$ m s$^{-2}$ en continu,
+une résolution de $10^{-10}$ m sera nécessaire avec un capteur de période 6 s
+contre $10^{-12}$ m pour un capteur de 0.6 s.
+
+Ces considérations s'appliquant à la « résolution » du capteur, sont également
+valables pour les bruits, comme on le verra au paragraphe 2.3.2.
+
+En conséquence, *le choix de période propre* se fixera, à priori,
+sur la valeur maximale compatible avec les dimensions et la stabilité du
+capteur.
+
+<!-- p. 19 -->
+
+**Nécessité d'une « suspension » non linéaire :**
+
+On a vu, au parag. 2.0.1. que la période d'un capteur linéaire est donnée par
+$T = 2\pi\sqrt{\dfrac{m}{k}}$
+
+et que la relation d'équilibre s'écrit $mg = k(\ell_{eq} - \ell_0)$
+
+en réintroduisant la relation d'équilibre, il vient :
+
+$$
+T = 2\pi\sqrt{\frac{\ell_{eq} - \ell_0}{g}}
+$$
+
+L'obtention d'une période de 6 s nécessite de ce fait un allongement à
+l'équilibre $\ell_{eq} - \ell_0 = 8.9$ m, ce qui rend impossible toute
+réalisation de suspension de ce type pour des périodes de cet ordre.
+
+De ce fait, pour l'obtention de périodes de cet ordre, on utilisera des
+suspensions basées sur le principe des pendules composés (sismomètres
+rotatifs).
+
+<!-- p. 20 -->
+
+- Dans le cas d'une application large bande, le capteur devra permettre des
+  mesures dans le domaine des « hautes » fréquences ; de ce fait, la conception
+  du capteur devra veiller à *« éliminer » les résonances parasites*
+  de la bande de fréquence d'intérêt : les modes parasites susceptibles d'être
+  excités devront être rejetés vers les hautes fréquences (ceci nécessite entre
+  autre une grande rigidité mécanique des éléments du bâti).
+
+- L'observation de la courbe de réponse permet de voir que l'amplitude des
+  déplacements (relatifs) de la masse est au maximum (excepté au voisinage de la
+  résonance) égale à celle des déplacements du sol.
+
+En longue période ($T > T_m$), les déplacements de la masse sont encore atténués
+dans le rapport $\left(\dfrac{T}{T_m}\right)^2$ de sorte que ces déplacements
+seront encore plus faibles.
+
+On conçoit, de ce fait, que les caractéristiques de stabilité doivent également
+correspondre au niveau de mesure extrêmement faible. Ainsi, toute dérive,
+mouvement parasite de la masse, déformation du bâti ou dilatation thermique
+pourront occulter les mouvements mesurés, voire même provoquer la sortie de la
+zone linéaire dans le cas d'un capteur non asservi.
+
+<!-- p. 21 -->
+
+Par conséquent, la conception mécanique du capteur devra intégrer les éléments
+fondamentaux suivants :
+
+- grande stabilité des caractéristiques,
+- compensation en température ayant pour but de minimiser, non seulement les
+  dérives dues aux dilatations, mais aussi les dérives provenant des variations
+  du module d'élasticité (ceci est important pour les éléments de faible
+  rigidité : ressorts, éléments élastiques, etc ...),
+- protection contre les perturbations externes visant à filtrer les effets
+  parasites résiduels (isolation thermique — protection électromagnétique —
+  isolation des variations de pression externes ...)
+
+<!-- p. 22 -->
+
+### 2.0.3 Analyse mécanique générale des sismomètres rotatifs
+
+Un sismomètre rotatif est généralement constitué d'une masse mobile, pivotant
+librement autour d'une articulation sans frottement, et suspendue grâce à un
+dispositif mécanique assurant un équilibre du système avec rappel
+visco-élastique autour de la position d'équilibre (schéma Fig. 2.0.3).
+
+![**Figure 2.0.3** — Sismomètre rotatif vertical (pendule composé). $\varphi$ : angle d'inclinaison du bras $\Omega G$ par rapport à l'horizontale.](../figures/generees/fig-2-0-3){width=100% fig-scap="Figure 2.0.3 — Sismomètre rotatif vertical"}
+
+La mise en équation par les théorèmes généraux de la mécanique conduit à :
+
+$$
+I_\Omega\,\ddot\varphi + m r_G\,\ddot z_e =
+\underbrace{-mg\,r_G\cos\varphi}_{(a)}
+\;\underbrace{-\,C\cdot(\varphi-\varphi_0)}_{(b)}
+\;\underbrace{-\,\Phi\,\dot\varphi}_{(c)}
+\;+\underbrace{M}_{(d)}
+$$
+
+(a) moment de la force de gravité ; (b) rappel élastique vers une position
+$\varphi = \varphi_0$ ; (c) couple d'amortissement ; (d) moment des autres forces
+et autres termes de couple.
+
+<!-- p. 23 -->
+
+où $I_\Omega = I_G + m r_G^2$ représente l'inertie du bras par rapport à l'axe de
+son pivot ($I_G$ étant l'inertie du bras par rapport à l'axe passant par son
+centre de masse).
+
+**Équation d'équilibre :**
+
+$\varphi = \varphi_e$ position d'équilibre (pour $\ddot z_e = 0$) conduit à :
+
+$$
+m\cdot g\cdot r_G\cdot\cos\varphi_e = -C\cdot(\varphi_e - \varphi_0) + M(\varphi_e)
+$$
+
+**Équation dynamique linéarisée autour de $\varphi = \varphi_e$ :**
+(on pose : $\varphi = \varphi_e + \epsilon$)
+
+$$
+I_\Omega\,\ddot\epsilon + \Phi\,\dot\epsilon
++ \underbrace{C\epsilon - \left(\frac{dM}{d\varphi}\right)_{\varphi_e}\epsilon
+- \left(m g r_G \sin\varphi_e\right)\epsilon}_{\text{terme de rappel élastique autour de } \varphi_e \;=\; +C^*\epsilon}
+= -m r_G\,\ddot z_e
+$$
+
+En projetant sur la perpendiculaire à la direction d'équilibre (axe sensible du
+capteur) $x_G = r_G\,\epsilon$
+
+il vient en utilisant la notation de Laplace :
+
+$$
+\frac{x_G}{\ddot z_e} = \frac{-m r_G^2}{I_\Omega s^2 + \Phi s + C^*}
+$$
+
+<!-- p. 24 -->
+
+Cette relation, analogue à celle du parag. 2.0.1, fait apparaître :
+
+- la pulsation mécanique
+
+  $$
+  \omega_m = \sqrt{\frac{C^*}{I_\Omega}}
+  $$
+
+- l'amortissement réduit
+
+  $$
+  \xi = \frac{\Phi}{2\,I_\Omega\,\omega_m}
+  $$
+
+- un coefficient assimilable à un « gain mécanique »
+
+  $$
+  \alpha_{1m} = \frac{m r_G^2}{I_\Omega}
+  $$
+
+Dans le cas général, la période est ainsi donnée par :
+
+$$
+T = 2\pi\cdot\sqrt{\frac{I_\Omega}{C - \left(\dfrac{dM}{d\varphi}\right)_{\varphi_e} - m g r_G\cdot\sin\varphi_e}}
+$$
+
+$C$ correspond à un rappel élastique simple, par exemple au couple de rappel
+d'un pivot élastique.
+
+$\dfrac{(dM)}{(d\varphi)}$ représente le terme de 1^er^ ordre du couple exercé,
+par exemple, par le système de suspension élastique.
+
+Le signe − indique un couple de rappel ($\frac{dM}{d\varphi} \leq 0$)
+
+<!-- p. 25 -->
+
+Le 3^ème^ terme montre la contribution du moment de la gravité (rappel lorsque
+la position d'équilibre du centre de masse est située sous le pivot). Dans le
+cas d'un sismomètre « vertical », on doit avoir $\varphi_e = 0$ et de ce fait,
+ce terme s'annule.
+
+**Cas du capteur parfait vertical :**
+
+$$
+\varphi_e = 0 \qquad C = 0
+$$
+
+La relation d'équilibre donne :
+
+$$
+m\cdot g\cdot r_G = M(0)
+$$
+
+$$
+T = 2\pi\cdot\sqrt{\frac{I_\Omega}{-\left(\dfrac{dM}{d\varphi}\right)_0}}
+$$
+
+en réintroduisant la relation d'équilibre :
+
+$$
+T = 2\cdot\pi\cdot\sqrt{\frac{I_\Omega}{m r_G^2}}\cdot\sqrt{\frac{r_G}{g}}\cdot
+\sqrt{\frac{M}{-\left(\dfrac{dM}{d\varphi}\right)_0}}
+$$
+
+<!-- p. 26 -->
+
+### 2.0.4 Interprétation et conclusions
+
+Réintroduisons la relation d'équilibre dans l'expression de la période du
+capteur vertical :
+
+$$
+T = 2\cdot\pi\cdot\sqrt{\frac{I_\Omega}{m r_G^2}}\cdot\sqrt{\frac{r_G}{g}}\cdot
+\sqrt{\frac{M}{-\left(\dfrac{dM}{d\varphi}\right)_0}}
+$$
+
+Comme en général $I_\Omega \approx m r_G^2$, cette relation montre que la
+période dépend de deux paramètres principaux :
+
+- un facteur dimensionnel $\sqrt{r_G}$
+- un facteur lié uniquement à la caractéristique (de couple) du ressort
+  $\sqrt{\dfrac{M}{-\frac{dM}{d\varphi}}}$ exprimant le degré de constance du
+  couple (le signe − sous le radical impose un couple de rappel autour de la
+  position d'équilibre).
+
+<!-- p. 27 -->
+
+Cette relation indique que la réalisation d'une suspension longue période
+miniature impose une caractéristique de couple du ressort ayant un très fort
+degré de constance :
+
+Pour $T = 6$ s et $R_G = 100$ mm, on trouve par exemple :
+
+$$
+\frac{\frac{d}{d\varphi}\,\text{Couple}}{\text{Couple}} \approx \frac{1}{90~\text{rad}}
+\approx 2\times10^{-4}/\text{deg} \quad (\text{i.e. } 0.2~‰ \text{ par degré})
+$$
+
+Ici encore, ces résultats mettent en lumière la grande difficulté de conception
+et de réalisation d'une suspension longue période. Ils montrent, de plus,
+l'incidence de la « stabilité » mécanique (phénomènes du 2^ème^ ordre).
+
+<!-- p. 28 -->
+
+## 2.1 Analyse mécanique des suspensions verticales
+
+**Introduction :**
+
+Cette partie vise à effectuer une évaluation comparée des sismomètres verticaux
+utilisant le pendule de Lacoste, et des suspensions à lame pour la réalisation
+d'une suspension de période propre élevée, afin d'éclairer le choix d'une
+suspension pour le capteur large bande.
+
+Elle présente des résultats généraux concernant la suspension de Lacoste, des
+résultats numériques originaux concernant une suspension à lame du type du
+capteur Wielandt pour laquelle aucuns résultats généraux n'ont été publiés.
+Cependant, faute de temps, ces résultats sont encore incomplets.
+
+### 2.1.1 Pendule ou suspension de Lacoste
+
+Ce système est bien connu et assez couramment décrit dans la littérature (par
+exemple par @melton1971) sous sa forme classique. Il est basé sur une
+possibilité d'astatisme (i.e. d'équilibre indifférent) du système lié à des
+propriétés géométriques particulières, apparaissant lorsque l'on utilise un
+ressort dit « de longueur nulle », c'est-à-dire dont la force de rappel est
+proportionnelle à la longueur du ressort. Une telle caractéristique peut être
+obtenue dans une plage limitée en appliquant au ressort une précontrainte
+ajustée.
+
+<!-- p. 29 -->
+
+![**Figure 2.1.1** — Principe de la suspension de Lacoste. En haut : suspension de Lacoste (forme généralisée), le ressort utilisé doit être idéalement de « longueur nulle ». En bas : caractéristique d'un ressort de « longueur nulle » comparée au ressort classique ($l_j$ = longueur du ressort spires jointives ; $l_0$ = longueur « résiduelle » du ressort).](../figures/generees/fig-2-1-1){width=85% fig-scap="Figure 2.1.1 — Principe de la suspension de Lacoste"}
+
+La figure 2.1.1 schématise la suspension de Lacoste sous sa forme la plus
+générale, $\Omega$ et $O$ sont des pivots parfaits liés au bâti, $K$ est un pivot
+parfait liant le ressort de longueur nulle au bras.
+
+La figure 2.1.1 présente également la caractéristique d'un ressort classique (1)
+et celle d'un ressort « de longueur nulle » (0). La caractéristique réelle est
+celle pour $\ell > \ell_j$ (longueur spire jointive).
+
+<!-- p. 30 -->
+
+**Principe : étude sommaire**
+
+On montre que le couple exercé par le ressort de longueur nulle est :
+
+$$
+k\,\overrightarrow{\Omega H}\cdot\overrightarrow{KO} = -k\,a_1 a_2\sin(\alpha-\varphi)
+\qquad\text{où}\quad \alpha = (\Omega K, \Omega O)
+$$
+
+Le couple créé par la gravité est :
+
+$$
+mg\,r_G\cos\varphi
+$$
+
+où $\varphi$ désigne l'angle entre l'horizontale d'équilibre du bras et
+$\Omega G$.
+
+![**Figure 2.1.2** — Modélisation de la suspension de Lacoste. $k$ = raideur du ressort ; $a_1 = \Omega K$ ; $a_2 = \Omega O$ ; $\varphi$ = angle de $\Omega G$ avec l'horizontale.](../figures/generees/fig-2-1-2){width=85% fig-scap="Figure 2.1.2 — Modélisation de la suspension de Lacoste"}
+
+L'équation dynamique s'écrit pour les oscillations libres :
+
+$$
+I_\Omega\,\ddot\varphi = -k\,a_1 a_2\sin(\alpha-\varphi) + mg\,r_G\cos\varphi
+\tag{1}
+$$
+
+<!-- p. 31 -->
+
+On équilibre le bras de telle sorte que $\varphi = 0$ soit position d'équilibre :
+
+$$
+\text{Soit}\quad \boxed{k\,a_1 a_2\sin\alpha = mg\,r_G}
+\tag{2}
+$$
+
+ce qui conduit à l'équation dynamique linéarisée au 2^ème^ ordre
+
+$$
+I_\Omega\,\ddot\varphi = -k\,a_1 a_2(\cos\alpha)\,\varphi
+$$
+
+les termes du 2^ème^ ordre sont nuls, d'où :
+
+$$
+T = 2\pi\sqrt{\frac{I_\Omega}{k\,a_1 a_2\cos\alpha}}
+\tag{3}
+$$
+
+en réintroduisant l'équation d'équilibre, il vient :
+
+$$
+\boxed{T = 2\pi\sqrt{\frac{I_\Omega\cdot\operatorname{tg}\alpha}{mg\,r_G}}}
+\tag{4}
+$$
+
+On voit que l'angle $\alpha$ permet de régler la période (théoriquement de 0 à
+l'infini).
+
+**Cas limite astatique :**
+
+Pour $\alpha = 90°$ puisque $\sin(\alpha-\varphi) = \cos\varphi$, on voit que la
+relation d'équilibre $k\,a_1 a_2 = mg\,r_G$ implique l'équilibre indifférent du
+système (le 2^ème^ membre de (1) devient identiquement nul).
+
+<!-- p. 32 -->
+
+**Remarques :**
+
+- On pourrait introduire assez simplement, comme dans le paragraphe 2.1.1, les
+  forces d'inertie ou les sollicitations externes de même que les couples
+  d'amortissement dissipatif.
+- Par ailleurs, l'étude précédente suppose que la condition de « longueur
+  nulle » du ressort est bien réalisée.
+
+**Quelques propriétés fondamentales du pendule de Lacoste :**
+
+Cas idéal (longueur nulle)
+
+- Pour une position d'équilibre du bras non horizontale $\varphi = \varphi_0$
+
+  (2) devient[^errata-32]
+
+  $$
+  mg\,r_G\cos\varphi_0 = k\,a_1 a_2\sin(\alpha-\varphi_0)
+  $$
+
+  et la période devient :
+
+  $$
+  T = 2\pi\sqrt{\frac{I_\Omega}{mg\,r_G}\,\frac{\sin(\alpha-\varphi_0)}{\cos\alpha}}
+  $$
+
+  $$
+  T = 2\pi\sqrt{\frac{I_\Omega}{k\,a_1 a_2}\,\frac{\cos\varphi_0}{\cos\alpha}}
+  $$
+
+[^errata-32]: Corrigé selon l'errata : $mgd$ remplacé par $mgr_G$.
+
+<!-- p. 33 -->
+
+Cette relation permet de montrer par linéarisation (voir Annexe) :
+
+→ Une rotation du bâti $\epsilon$ sans rééquilibrage du bras
+
+- ne modifie pas au 1^er^ ordre la position d'équilibre relative au bâti :
+
+  $$
+  \Delta\varphi_0 = +\epsilon + \varphi_0\,\epsilon \qquad
+  \Delta\theta/\text{bâti} \approx -\varphi_0\,\epsilon
+  $$
+
+- la période est modifiée au 1^er^ ordre :
+
+  $$
+  \frac{\Delta T_m}{T_m} = \frac{1}{2}\,\frac{\epsilon}{\delta}
+  $$
+
+![**Figure 2.1.3** — Propriétés de la suspension de Lacoste (rotation du bâti sans équilibrage ; rotation du bras par équilibrage).](../figures/generees/fig-2-1-3){width=75% fig-scap="Figure 2.1.3 — Propriétés de la suspension de Lacoste"}
+
+<!-- p. 34 -->
+
+→ Une faible variation de l'angle d'équilibre mécanique de 0 à $\epsilon$ par
+équilibrage, ne provoque qu'une faible variation du couple d'équilibre et une
+faible variation de la période propre :
+
+$$
+\frac{\Delta\, mg\,r_G}{mg\,r_G} \approx -\operatorname{tg}\delta\,\operatorname{tg}\epsilon
+$$
+
+$$
+\frac{\Delta T_m}{T_m} \approx -\left(\frac{\epsilon}{2}\operatorname{tg}\delta + \frac{\epsilon^2}{4}\right)
+$$
+
+pour un équilibrage sans modifier la position du centre de masse (apport de
+surcharge).
+
+**Influence de la « longueur nulle »**
+
+*Résultats théoriques :*
+
+Les calculs exacts sont non linéaires. Même en procédant par un développement
+limité, les calculs restent très lourds.
+
+On retiendra les résultats suivants :
+
+- La linéarisation fait apparaître, outre les termes classiques du 1^er^ ordre,
+  des termes non linéaires du 2^ème^ ordre qui ne s'annulent généralement que
+  lorsque la condition de « longueur nulle » est satisfaite.
+- Lorsque $\alpha = 90°$, l'astatisme n'est plus réalisé.
+
+<!-- p. 35 -->
+
+*Résultats expérimentaux :*
+
+Expérimentalement, on constate que la longueur nulle est critique lorsque l'on
+cherche à obtenir des périodes élevées (apparition de non linéarités
+importantes).
+
+**Discussion de ces résultats — Intérêt et limitation de cette suspension**
+
+Les principaux points qui pèsent en faveur de ce type de suspension sont les
+suivants :
+
+- Facilité de réglage par inclinaison du bâti et équilibrage.
+- Possibilité « facile » de prévision du comportement du système.
+- Bonne linéarité (y compris pour les longues périodes) et stabilité correcte.
+
+Cependant, ces principaux inconvénients proviennent de la difficulté de mise en
+oeuvre à des périodes élevées :
+
+- Difficulté de compensation en température
+- Difficulté de réglage de la « longueur nulle »
+- Nécessité de réaliser 3 pivots « parfaits » (cf. parag. 2.1.3).
+
+En outre, la réalisation d'un capteur large bande se heurte à l'existence d'une
+fréquence de résonance parasite en général relativement basse correspondant à un
+mode propre de battement latéral du ressort (fréquence propre de 7 Hz sur les
+suspensions Lacoste LP du LDG).
+
+<!-- p. 36 -->
+
+### 2.1.2 Suspension à lame
+
+#### 2.1.2.1 Généralités
+
+L'utilisation d'un ressort à lame pour des suspensions longue période a été
+suggérée par différents auteurs ; notamment Willmore (1966) Unterreitmeier
+(1974), cependant la première réalisation longue période a été faite par
+@wielandt1982. La suspension est schématisée sur la figure 2.1.4. La lame est
+réalisée avec une simple lame élastique, droite en l'absence d'effort ; elle est
+encastrée au point $O$ dans le bâti et au point $K$ dans le bras mobile autour du
+pivot $\Omega$ ; sa déformation doit la maintenir dans le domaine élastique.
+
+![**Figure 2.1.4** — Schéma d'une suspension à lame.](../figures/generees/fig-2-1-4){width=80% fig-scap="Figure 2.1.4 — Schéma d'une suspension à lame"}
+
+<!-- p. 37 -->
+
+Bien que particulièrement simple par sa structure, la conception d'une telle
+suspension est complexe : l'approche purement expérimentale est hasardeuse, pour
+obtenir une position de quasi astatisme (on peut cependant mettre en évidence
+l'existence de points d'instabilité). Par ailleurs, le calcul théorique n'est
+pas simple :
+
+- Une approche mathématique exacte du problème statique du calcul de la
+  déformée conduit à des intégrales elliptiques, mais ne permet pas d'obtenir de
+  formulation explicite en fonction des paramètres géométriques.
+
+- Une approche utilisant les éléments finis a été adaptée. Cependant, l'approche
+  des éléments finis classiques est ici inadaptée car :
+  - elle suppose pour le calcul des contraintes (et donc des efforts) que la
+    déformée est assimilable à la géométrie initiale et, de ce fait, elle ne
+    permet pas de rendre compte correctement du problème,
+  - les conditions aux limites sont du type « déplacements imposés » conduisant
+    à un problème inverse.
+
+La méthode numérique retenue est celle des « éléments finis en grands
+déplacements ».
+
+La théorie des grands déplacements (cf. Batoz 81) s'applique, en particulier,
+lorsque une dimension du corps subissant les déformations est très grande devant
+les autres, de telle sorte que de petites déformations du corps peuvent produire
+de grands déplacements et que la géométrie déformée n'est plus assimilable à la
+géométrie initiale du corps. La méthode, plus générale que la méthode linéaire,
+tient compte du terme du « 2^è^ ordre » non linéaire :
+
+<!-- p. 38 -->
+
+$$
+\frac{\partial u_i}{\partial x_i}\cdot\frac{\partial u_j}{\partial x_j}
+$$
+
+classiquement négligé dans l'écriture du tenseur des déformations
+$\epsilon_{ij}$.
+
+$$
+2\,\epsilon_{ij} = \frac{\partial u_i}{\partial x_j} + \frac{\partial u_j}{\partial x_i}
++ \frac{\partial u_i}{\partial x_i}\,\frac{\partial u_j}{\partial x_j}
+\qquad\text{(relation déformation déplacement)}
+$$
+
+($u$ = vecteur déplacement)
+
+L'étude numérique du problème étant délicate et nécessitant une bonne expérience
+des problèmes d'éléments finis, cette étude a été conduite, pour la partie
+numérique, par Compiègne Science Industrie (C.S.I) qui a adapté un logiciel
+développé par l'Université Technologique de Compiègne. L'élément de poutre
+utilisé est un élément à 8 degrés de liberté, basé sur une formulation
+Lagrangienne totale avec l'hypothèse de « conservation des normales » (cf.
+rapport C.S.I. Lebouvier 1986).
+
+On a eu recours, pour le problème dynamique, à une méthode « quasi-statique »
+permettant de calculer les variations des efforts exercés par la lame pour de
+petits déplacements imposés autour de la position d'équilibre, et par suite la
+loi de couple $M(\varphi)$ du paragraphe 2.0.3.
+
+#### 2.1.2.2 Exploitation du modèle
+
+La suspension modélisée est représentée à la figure 2.1.5 qui précise également
+les données numériques utilisées pour la modélisation.
+
+Le « noyau » du modèle en « grands déplacements » permet la détermination des
+efforts correspondant à une déformée, imposée à partir des conditions aux
+limites.
+
+Le modèle permet également de calculer les modes parasites de la déformée de la
+lame (sans toutefois tenir compte de l'état de contrainte de la lame).
+
+<!-- p. 39 -->
+
+![](../figures/generees/fig-2-1-5a){width=85% fig-alt="fig-2-1-5 (partie 1)"}
+
+![**Figure 2.1.5** — Suspension modélisée, et cheminement pour l'obtention de la géométrie déformée. Caractéristiques géométriques : $\Omega G$ = 46 mm ± 10 % ; $L$ = 186 mm ± 1 (longueur de la lame au repos) ; $b$ = 65 mm ; $h$ = 0.25 mm ; $A$ = 16.25 mm² (aire) ; $I$ = 8.4635 × 10^−2^ mm$^4$ (inertie). Caractéristiques mécaniques : $E$ = 180 000 N/mm² ; $\sigma_e$ = 450 N/mm² (limite élastique) ; $\rho$ = 8 g/mm³ (masse volumique) ; $M$ = 760 g ± 10 %.](../figures/generees/fig-2-1-5b){width=75% fig-scap="Figure 2.1.5 — Suspension modélisée, et cheminement pour l'obtention de la géométrie déformée"}
+
+<!-- p. 40 -->
+
+*Calcul statique :*
+
+Le calcul statique utilise trois étapes pour l'obtention de la déformée (fig.
+2.1.5).
+
+- Étape A : Imposition du déplacement suivant $X$ (le chargement suivant $Y$ est
+  calculé pas à pas pour obtenir $X_k = X_{k\,final}$)
+- Étape B : Imposition du déplacement suivant $Y$ en maintenant
+  $X = X_{k\,final}$ (i.e. en supprimant le degré de liberté $U_k$ associé à
+  $X_k$).
+- Étape C : Imposition de la rotation $\Theta_k = \Theta_{k\,final}$ en
+  supprimant les degrés de liberté $U_k$ et $V_k$ associés aux déplacements
+  suivants $X_k$ et $Y_k$.
+
+  Cette étape permet l'obtention des efforts exercés par la lame dans sa
+  position déformée. Elle permet également d'accéder aux contraintes ainsi qu'à
+  la déformée de la lame.
+
+<!-- p. 41 -->
+
+*Approches du problème dynamique :*
+
+**MODE FONDAMENTAL :**
+
+La méthode retenue correspond à une approche quasi-statique : elle consiste à
+calculer la « constante de rappel » du ressort (associée au déplacement imposé
+de l'extrémité mobile). Ce calcul est réalisé par linéarisation au 1^er^ ordre
+du terme de couple.
+
+- *Approche directe :*
+
+  On prend deux points de la trajectoire associés à $\varphi$ et
+  $\varphi + \epsilon$ ($\epsilon \to 0$) et on calcule la configuration
+  statique correspondant à $\varphi + \epsilon$. On en déduit le coefficient
+  linéaire de couple.
+
+  Cette approche ne permet pas de déterminer de point de pivot « optimal ».
+
+- *Approche par linéarisation et calcul de la matrice Jacobienne (= dérivée)
+  des efforts.*
+
+  Cette approche est obtenue grâce à l'utilisation de trois configurations
+  statiques auxiliaires correspondant à des variations des paramètres
+  $\Delta X_k$, $\Delta Y_k$, $\Delta\Theta_k$ (variations des degrés de
+  liberté de l'extrémité mobile de la lame).
+
+  Ces configurations auxiliaires sont chacunes calculées conformément à la
+  méthode statique exposée auparavant.
+
+<!-- p. 42 -->
+
+On peut ainsi calculer la matrice Jacobienne (matrice des dérivées partielles
+des efforts, par rapport aux degrés de liberté de l'extrémité de la lame :
+
+$$
+\left(\frac{\partial\Phi_i}{\partial x_j}\right)_{x_\ell = \text{cte pour } \ell \neq j}
+$$
+
+on notera
+
+$$
+\left[\frac{\partial\underline{\Phi}_k}{\partial\underline{X}_k}\right]
+\quad\text{la matrice Jacobienne}
+$$
+
+où
+
+$$
+\underline{\Phi}_k = \begin{bmatrix} F_X \\ F_Y \\ M_k \end{bmatrix}
+\quad\text{représente le vecteur effort généralisé}
+$$
+
+$$
+\underline{X}_k = \begin{bmatrix} x_k \\ Y_k \\ \Phi_k \end{bmatrix}
+\quad\text{représente le vecteur position généralisée du point } K \text{ de la lame}
+$$
+
+<!-- p. 43 -->
+
+On calculera $\dfrac{\partial\underline{\Phi}_k}{\partial x_k}$, par exemple, en
+utilisant l'approximation au 1^er^ ordre :
+
+$$
+\left(\frac{\partial\underline{\Phi}_k}{\partial x_k}\right)_{Y_k,\,\Theta_k}
+= \frac{\underline{\Phi}_k(x_k + \Delta x_k, Y_k, \Phi_k) - \underline{\Phi}_k(x_k, Y_k, \Theta_k)}{\Delta x_k}
+$$
+
+On montre alors que le coefficient linéaire de couple pour une rotation autour
+d'un pivot quelconque de coordonnées $\begin{smallmatrix} X_\Omega \\ Y_\Omega\end{smallmatrix}$
+est donné par :
+
+$$
+-\frac{dM_\Omega}{d\varphi} = \underline{Z}^T
+\left[\frac{\partial\underline{\Phi}_k}{\partial\underline{X}_k}\right]\underline{Z}
++ \begin{bmatrix} F_{ky} & -F_{kz} & 0 \end{bmatrix}\underline{Z}
+$$
+
+$$
+\text{où}\quad \underline{Z} =
+\begin{bmatrix} R_b\sin\alpha \\ -R_b\cos\alpha \\ 1 \end{bmatrix}
+= \begin{bmatrix} -(Y_k - Y_\Omega) \\ (x_k - x_\Omega) \\ 1 \end{bmatrix}
+$$
+
+($\underline{Z}$ représente : $\dfrac{d\underline{K}_k}{d\varphi}$)
+
+La démonstration de l'expression de $\dfrac{dM_\Omega}{d\varphi}$ est donnée en
+annexe.
+
+Cette relation montre que la constante de couple est une fonction quadratique
+des coordonnées du point du pivot.
+
+<!-- p. 44 -->
+
+En reprenant la relation du parag. 2.0.3, la période des oscillations est donnée
+par :
+
+$$
+T = 2\pi\sqrt{\frac{I_\Omega}{+Mg\,r_G\sin\varphi_e - \dfrac{dM_\Omega}{d\varphi}}}
+$$
+
+le signe de $Mg\,r_G\sin\varphi_e$ est modifié car le sens de la figure est
+différent.
+
+Pour un pendule en équilibre à l'horizontale :
+
+$$
+T = 2\pi\sqrt{\frac{I_\Omega}{-\dfrac{dM_\Omega}{d\varphi}}}
+$$
+
+Ainsi, il apparaît que pour une lame et une déformée fixées, si on admet que
+l'on rééquilibre le système en modifiant la géométrie du bras (tout en
+maintenant le centre de masse à l'horizontale du pivot), la période sera
+principalement fixée par la position du pivot (i.e. fixée par le paramètre
+$\underline{Z}$).
+
+Les courbes, lieux du point $\Omega$, correspondant à un coefficient linéaire de
+couple fixé (− courbes iso $\dfrac{dM_\Omega}{d\varphi}$ −) permettront de se
+faire une idée du comportement du système.
+
+<!-- p. 45 -->
+
+En particulier :
+
+- les courbes $\dfrac{dM_\Omega}{d\varphi} = 0$ mettent en évidence le lieu des
+  points de pivot où le rappel linéaire s'annule (astatisme local).
+- les zones correspondant à $\dfrac{dM_\Omega}{d\varphi} < 0$ caractériseront un
+  système *stable* et les courbes iso $-\dfrac{dM_\Omega}{d\varphi}$
+  se rapprocheront des courbes iso-périodes.
+- les zones en $\dfrac{dM_\Omega}{d\varphi} > 0$ correspondront à des systèmes
+  *instables* (coefficient de couple du ressort principal positif).
+
+La comparaison des résultats de l'approche directe et de l'approche par
+linéarisation donne une très bonne concordance. Cependant, cette dernière
+approche permet une prévision de l'influence de la position du point de pivot
+sur le comportement du système. De ce fait, cette approche sera utilisée
+préférentiellement.
+
+Des résultats concernant l'influence de la position du point de pivot (courbes
+iso $-\dfrac{dM_\Omega}{d\varphi}$) sont donnés au paragraphe suivant.
+
+<!-- p. 46 -->
+
+**PREMIERS MODES PARASITES**
+
+Les modes parasites sont calculés par analyse modale d'un système modélisant la
+déformée de la lame (sans tenir compte de l'état de contrainte de la lame à
+l'équilibre).
+
+Les résultats obtenus présentés au paragraphe suivant sont en bon accord avec
+les données expérimentales.
+
+Il est cependant intéressant de noter que la position du pivot est pratiquement
+sans effet sur les premiers modes parasites du système (ces modes sont analogues
+à ceux de la lame déformée bloquée à ses extrémités).
+
+*Remarques :* Le calcul du mode parasite de la lame ne nécessite que
+l'obtention de la déformée mais n'utilise pas les efforts.
+
+<!-- p. 47 -->
+
+#### 2.1.2.3 Résultats
+
+**Résultats statiques obtenus à partir des données nominales présentées :**
+
+- Déformée de la lame : la déformée est présentée à la figure 2.1.6
+
+- Efforts à l'équilibre : les efforts calculés équilibrant les contraintes de la
+  lame sont les suivants :
+
+  | | |
+  |---|--:|
+  | composante suivant X | − 4.159098 N |
+  | composante suivant Y | + 0.297250 N |
+  | moment au point K | 412.178578 N.mm |
+
+  Les efforts suivant X et Y exercés par la lame ont tendance à entraîner le
+  bras vers le bas et vers l'intérieur.
+
+  Le moment résultant au point de pivot est de 0.30734 Nm comparé au moment du
+  poids du bras estimé à 0.34396 Nm.
+
+**Résultats du problème dynamique obtenus à partir des données nominales :**
+
+- Mode parasite :
+
+  Le premier mode parasite est obtenu par $f$ = 74 Hz. Une représentation de ce
+  mode parasite est également donnée par la figure 2.1.7.
+
+<!-- p. 48 -->
+
+![**Figure 2.1.6** — Déformée statique de la lame : comparaison des déformées (expérience — numérique).](../figures/generees/fig-2-1-6){width=90% fig-scap="Figure 2.1.6 — Déformée statique de la lame"}
+
+<!-- p. 49 -->
+
+![**Figure 2.1.7** — 1^er^ mode parasite : 1^er^ mode propre de la lame (fréquence = 73.66 Hz).](../figures/generees/fig-2-1-7){width=90% fig-scap="Figure 2.1.7 — 1^er^ mode parasite"}
+
+- Mode fondamental
+  - approche directe
+
+    pas $\epsilon$ retenu : ± 0.5 degrés (schéma de différences centrées)
+
+    Ceci conduit à $\dfrac{dM_\Omega}{d\varphi} = -1.166\times10^{-2}$ Nm/rad
+
+    soit $T$ = 2.333 s en considérant une masse ponctuelle.
+
+  - approche linéarisée
+
+    pas utilisés : $\Delta X_k$ = 0.1 mm pour le calcul des configurations
+    auxiliaires ; $\Delta Y_k$ = 0.1 mm ; $\Delta\Phi_k$ = ± 1 mrad
+
+<!-- p. 50 -->
+
+La matrice $\dfrac{\partial\underline{\Phi}_k}{\partial\underline{X}_k}$ obtenue
+est égale à (unités SI) :
+
+$$
+\begin{bmatrix}
+381.144~\text{N/m} & -9.856~\text{N/m} & -12.0416~\text{N} \\[4pt]
+-10.0024~\text{N/m} & 74.664~\text{N/m} & 3.2070~\text{N} \\[4pt]
+-12.05~\text{N} & 3.1967~\text{N} & 0.67910~\text{N.m}
+\end{bmatrix}
+$$
+
+*Remarque :*
+
+Avec les données nominales
+$Z = \begin{bmatrix} 20 \\ -73 \\ 0 \end{bmatrix}$
+(i.e. $X_\Omega - X_k = 73$, $Y_\Omega - Y_k = 20$)
+
+on obtient un coefficient de couple
+$\dfrac{dM_\Omega}{d\varphi} = -1.146\times10^{-2}$ Nm/rad conduisant à une
+période $T$ = 2.425 s en bon accord avec la période calculée par l'approche
+directe.
+
+**Résultats de l'approche linéarisée mettant en évidence l'influence de la
+position du point de pivot :**
+
+La figure 2.1.8 présente les courbes iso $-\dfrac{dM_\Omega}{d\varphi}$ obtenues
+à partir de l'approche linéarisée présentée précédemment :
+
+<!-- p. 51 -->
+
+Les courbes iso $-\dfrac{dM_\Omega}{d\varphi}$ sont toutes des ellipses de même
+centre, axes et excentricité (en effet, l'équation donnant
+$\dfrac{dM_\Omega}{d\varphi}$ peut être écrite comme la somme d'une forme
+quadratique et d'une forme linéaire dont les coefficients sont obtenus à partir
+des efforts $\Phi_k$ et des coefficients de
+$\dfrac{d\underline{\Phi}_k}{d\underline{X}_k}$).
+
+**Étude de sensibilité sommaire :**
+
+*Épaisseur de la lame e, largeur b, module d'élasticité E :*
+
+*Épaisseur :*
+
+Une étude quasi-statique a permis de vérifier que les efforts ainsi que la
+matrice $\dfrac{d\underline{\Phi}_k}{d\underline{X}_k}$ étaient affectés,
+conformément aux résultats d'un problème de flexion :
+
+> Pour une modification d'épaisseur, si $e$ est multiplié par $\alpha$,
+> ($e' = \alpha e$), alors $I = \dfrac{be^3}{12}$ est multiplié par $\alpha^3$ ;
+>
+> le moment produit est proportionnel à $e^3$ (le moment de flexion est
+> proportionnel à $EI$)
+
+<!-- p. 52 -->
+
+Les résultats de l'analyse de sensibilité (cf. tableau 2.1) permettent de
+constater que :
+
+- $\underline{\Phi}_k$ est affecté comme $\alpha^3$
+- $\dfrac{d\underline{\Phi}_k}{d\underline{X}_k}$ est affecté comme $\alpha^3$
+
+et donc $\dfrac{dM_\Omega}{d\varphi}$ variera suivant $e^3$.
+
+De ce fait, pour une même géométrie de déformée, une modification de l'épaisseur
+de la lame impliquera une modification de $r_G$, pour respecter la relation
+d'équilibre. En raisonnant à partir d'une masse ponctuelle pour le calcul
+dynamique, la période propre donnée par :
+
+$$
+T = 2\pi\sqrt{\frac{Mr_G}{g}}\;\sqrt{\frac{M_\Omega}{-\dfrac{dM_\Omega}{d\varphi}}}
+$$
+
+devient proportionnelle à $\sqrt{Mr_G}$ et donc à $\sqrt{e^3}$ soit $e^{3/2}$.
+
+Table: **Tableau 2.1**
+
+| | $e$ = 0,25 | $e'$ = 0.255 | erreur relative d'estimation : $\left(\dfrac{\alpha^3\Phi_k}{\Phi_{k'}} - 1\right)$, $\alpha^3$ = 1.061208 |
+|---|--:|--:|--:|
+| $F_x$ | − 4.159098 | − 4.413691 | − 5.2 × 10^−6^ |
+| $F_y$ | 0.2972495 | 0.3154446 | − 3.3 × 10^−6^ |
+| $M_\Omega$ | 412.1786 | 437.4134 | − 1.4 × 10^−6^ |
+| *dérivées :* | | | |
+| $F_x, \varphi$ | 12.047 | 12.784 | + 2.9 × 10^−5^ |
+| $F_y, \varphi$ | 3.1967 | 3.3924 | − 1.1 × 10^−5^ |
+| $M_\Omega, \varphi$ | 0.679097 | 0.720678 | − 2.1 × 10^−5^ |
+| $F_x, x$ | 381.1437 | 404.4738 | − 3.6 × 10^−5^ |
+| $F_y, y$ | − 9.856 | − 10.4643 | − 4.8 × 10^−4^ |
+| $M_\Omega, \varphi$ | − 12.0416 | − 12.7791 | − 3.6 × 10^−5^ |
+
+<!-- p. 53 -->
+
+*Largeur — Module d'élasticité :*
+
+Il est vraisemblable que largeur et module d'élasticité agissent suivant des
+lois analogues à celle de la flexion et donc que :
+
+$$
+M_\Omega \sim E\cdot b\cdot e^3 \qquad\text{(le symbole} \sim \text{indiquant une proportionnalité).}
+$$
+
+$$
+\text{et}\quad \frac{dM_\Omega}{d\Phi} \sim E\cdot b\cdot e^3
+$$
+
+Il est donc vraisemblable que la période, pour un bras constitué d'une masse
+ponctuelle et pour une même géométrie de déformée, sera asymptotiquement
+proportionnelle à :
+
+$$
+E^{1/2}\,b^{1/2}\,e^{3/2}
+$$
+
+Malheureusement, ce résultat n'a pû être vérifié, faute de temps, pour $E$ et
+$b$.
+
+*Longueur de la lame :*
+
+L'influence du paramètre longueur a été étudiée par le biais d'une variation
+d'environ −0,5 % (passage de la longueur de lame de L = 186 à 185). Ce
+paramètre semble intervenir comme les autres paramètres géométriques du problème
+d'arc, de manière non linéaire, comme le montre le tableau suivant :
+
+<!-- p. 54 -->
+
+| L = 186 → L = 185 | $\dfrac{\Delta L}{L}$ | $\dfrac{\Delta F_x}{F_x}$ | $\dfrac{\Delta F_y}{F_y}$ | $\dfrac{\Delta M_k}{M_k}$ |
+|:--:|:--:|:--:|:--:|:--:|
+| % | − 0.54 | + 7.81 | + 4.07 | + 2.67 |
+
+(voir en annexe les valeurs des matrices
+$\dfrac{d\underline{\Phi}_k}{d\underline{X}_k}$)
+
+On verrait, de même, au niveau des dérivées (matrice
+$\dfrac{d\underline{\Phi}_k}{d\underline{X}_k}$), que les coefficients sont
+affectés de manière « indépendantes ». Ceci se traduira, au niveau des courbes
+iso $-\dfrac{dM_\Omega}{d\varphi}$ par une modification des paramètres du réseau
+d'ellipses (figures 2.1.8 et 2.1.9). En particulier, on constatera que pour L
+passant de 186 à 185, la zone instable s'élargit.
+
+<!-- p. 55 -->
+
+![**Figure 2.1.8** — Courbes iso $-\dfrac{dM_\Omega}{d\varphi}$ pour la suspension modélisée (L = 186).](../figures/generees/fig-2-1-8){width=90% fig-scap="Figure 2.1.8 — Courbes iso $-\dfrac{dM_\Omega}{d\varphi}$ pour la suspension modélisée"}
+
+Table: **Tableau 2.1.1**
+
+| Courbe | $\dfrac{dM_\Omega}{d\varphi}$ (N.m/rad) | Période \* (s) | Remarques |
+|:--:|:--:|:--:|---|
+| − 2 | 1.59 × 10^−2^ [^errata-55] | / | Non oscillatoire instable |
+| ∞ | 0 | ∞ | astatique |
+| 2 | − 1.59 × 10^−2^ | $\approx$ 2 | |
+| 1 | − 6.35 × 10^−2^ | $\approx$ 1 | |
+
+\* pour $I_\Omega = 1.61\times10^{-3}$ kg m² (c'est-à-dire que pour chaque point,
+la position du centre de masse et la masse sont adaptées en laissant le produit
+$Mr_G^2$ constant).
+
+[^errata-55]: Corrigé selon l'errata : $1.59\times10^{2}$ remplacé par $1.59\times10^{-2}$.
+
+<!-- p. 56 -->
+
+![**Figure 2.1.9** — Courbes iso $-\dfrac{dM_\Omega}{d\varphi}$ pour L = 185 (légende des courbes voir tableau 2.1.1).](../figures/generees/fig-2-1-9){width=90% fig-scap="Figure 2.1.9 — Courbes iso $-\dfrac{dM_\Omega}{d\varphi}$ pour L = 185"}
+
+<!-- p. 57 -->
+
+#### 2.1.2.4 Interprétation et méthodologie proposée pour la définition d'une suspension à lame
+
+Des résultats théoriques précédents il ressort que :
+
+- Comme dans le cas des suspensions de Lacoste, le problème de l'astatisme d'une
+  suspension à lame fait intervenir, de manière non linéaire, des paramètres
+  géométriques :
+  - pour la lame, il s'agit des paramètres fixant les « conditions aux
+    limites » du problème : longueur de la lame, orientation imposée des
+    extrémités, position du point de pivot.
+- Les autres paramètres dimensionnels ou mécaniques intervenant de manière quasi
+  « linéaire » (de manière analogue aux problèmes de flexion classique), ces
+  caractéristiques agissent sur les contraintes et le chargement supporté, ainsi
+  que sur la fréquence propre parasite.
+- Cependant, la méthode présentée ne permet pas directement la recherche des
+  caractéristiques géométriques d'une lame pour satisfaire à des conditions de
+  fonctionnement données.
+- Pour la fréquence parasite, la position du pivot n'intervient pas pour une
+  même déformée : la première fréquence parasite est proportionnelle à :
+
+  $$
+  E^{1/2}\cdot\rho^{-1/2}\cdot h
+  $$
+
+  $L$ intervient vraisemblablement (de même que la déformée) de manière non
+  linéaire.
+- Une étude expérimentale autour de ces résultats serait indispensable pour les
+  valider. Cependant, cette étude sera très délicate (quasi impossibilité de
+  mesure directe des efforts, précision nécessaire très grande pour une
+  vérification « fine » de la théorie ...) et devra intégrer le problème des
+  pivots.
+
+<!-- p. 58 -->
+
+![**Figure 2.1.10** — Schéma de la procédure de conception proposée pour un sismomètre à lames.](../figures/generees/fig-2-1-10){width=80% fig-scap="Figure 2.1.10 — Schéma de la procédure de conception proposée pour un sismomètre à lames"}
+
+<!-- p. 59 -->
+
+### 2.1.3 Constitution des pivots
+
+Le but de ce paragraphe est de présenter les possibilités qui s'offrent pour la
+réalisation de pivots se rapprochant le plus possible des « pivots parfaits » —
+i.e. de centre de rotation instantané fixe et n'introduisant pas de couple (en
+particulier pas de couple de rappel ni de frottement) et tel que le travail des
+efforts de liaison soit négligeable —.
+
+Deux types de solution permettent d'approcher ses conditions :
+
+**Pivot à « pointe et saphir » :**
+
+La liaison réalisée est une liaison unilatérale ponctuelle, schématisée à la
+figure 2.1.11.
+
+- Avantages :
+  - pas de couple de rappel et frottement négligeable du fait de l'absence de
+    déplacement du point de contact),
+  - centre de rotation bien défini,
+  - possibilité de rotations importantes sans couple parasite.
+- Inconvénients :
+  - nécessite une direction des efforts stables,
+  - fragilité, plus particulièrement aux chocs.
+
+![**Figure 2.1.11** — Pivot à « pointe et saphir ».](../figures/generees/fig-2-1-11){width=60% fig-scap="Figure 2.1.11 — Pivot à « pointe et saphir »"}
+
+<!-- p. 60 -->
+
+Cette solution, la plus proche du pivot parfait est celle retenue par le LDG
+pour la plupart de ces réalisations ; cependant, la fragilité aux chocs rend
+cette solution pratiquement inapte à une utilisation en puit.
+
+**Pivot à lames :**
+
+Ces pivots sont des pivots élastiques spécialement conçus pour obtenir des
+constantes de couples minimales.
+
+Ce type de pivot est celui retenu par pratiquement tous les constructeurs.
+
+On distingue plusieurs types de pivots à lames, suivant le nombre de lames
+constituant le pivot (figure 2.1.12).
+
+Ces pivots ont été étudiés par @weinstein1965.
+
+![**Figure 2.1.12** — Pivots à lames (pivot mono lame ; pivot bi-lames ; pivot tri-lames, à lames précontraintes).](../figures/generees/fig-2-1-12){width=50% fig-scap="Figure 2.1.12 — Pivots à lames"}
+
+<!-- p. 61 -->
+
+Le pivot mono-lame ne permet pas d'obtenir des constantes de couple suffisamment
+faibles pour des applications longues périodes, et le pivot tri-lames étant de
+réglage trop complexe, nous nous limiterons ici au pivot bi-lames. Nous ne
+présenterons ici que quelques éléments de l'analyse de Weinstein concernant le
+pivot bi-lames (dimensionnement des pivots à partir des efforts exercés, et du
+couple de rappel recherché).
+
+On retiendra que le couple élastique exercé par le pivot bi-lames dépend, bien
+entendu, de la géométrie des lames, mais également des efforts supportés par le
+pivot. En particulier, suivant la valeur et le sens de ces efforts, le couple
+peut être un couple de rappel ou au contraire un couple instable linéaire.
+
+**Analyse du pivot bi-lames :**
+
+*Constitution du pivot :*
+
+![**Figure 2.1.13** — Schéma du pivot bi-lames. Le pivot est constitué de 2 éléments de 2 lames.](../figures/generees/fig-2-1-13){width=90% fig-scap="Figure 2.1.13 — Schéma du pivot bi-lames"}
+
+<!-- p. 62 -->
+
+*Notations*
+
+| | |
+|---|---|
+| $L$ | longueur des éléments de lames croisées |
+| $e$ | épaisseur des lames |
+| $h/2$ | largeur d'un élément du demi pivot |
+| $E$ | module d'élasticité |
+| $I/2$ | inertie de surface d'une section de lame d'un demi pivot |
+| $\Theta$ | angle de rotation autour de la position neutre de repos |
+| $M_R$ | moment de rappel exercé par les lames ($M_R \geq 0$ pour un rappel stable) |
+| $P/2$ | chargement unitaire d'une lame (i.e. d'un élément de lame d'un demi pivot) |
+
+on notera $\lambda^2 = \dfrac{|P|}{EI}$
+
+*Hypothèse :*
+
+Le centre de rotation se situe au milieu de chacune des lames.
+
+*Principaux résultats :*
+
+- Le moment exercé par chaque élément de lame est alors donné par :
+
+  $$
+  \frac{M_R}{\Theta} = \frac{E.I.\lambda}{2}\cdot\left[\frac{L\lambda}{2} + \operatorname{cotg}\left(\frac{L\lambda}{2}\right)\right]
+  \quad\text{pour une lame en compression}
+  $$
+
+  $$
+  \frac{M_R}{\Theta} = \frac{E.I.\lambda}{2}\cdot\left[\frac{L\lambda}{2} - \operatorname{coth}\left(\frac{L\lambda}{2}\right)\right]
+  \quad\text{pour une lame en traction}
+  $$
+
+<!-- p. 63 -->
+
+  On vérifie qu'en l'absence de charge ($P = 0$), la constante de rappel est
+  donnée par le « classique » $\dfrac{EI}{L}$
+
+- La constante de couple globale est donnée par :
+
+  $$
+  \sum_i \frac{M_R}{\Theta}(P_i) \quad\text{(Somme pour les deux éléments de deux lames)}
+  $$
+
+![**Figure 2.1.14** — Constante de couple d'un élément de lame d'un pivot bi-lames. Convention de signe : une charge $P \geq 0$ correspond à une lame en traction.](../figures/generees/fig-2-1-14){width=85% fig-scap="Figure 2.1.14 — Constante de couple d'un élément de lame d'un pivot bi-lames"}
+
+<!-- p. 64 -->
+
+- Contraintes maximales :
+
+  La contrainte maximale dépendra du moment de flexion maximal supporté par un
+  élément de lame :
+
+  $$
+  M_{max} = \begin{cases}
+  \dfrac{EI\lambda}{2}\cdot\operatorname{cotg}\dfrac{L\lambda}{2} & \text{pour une lame en compression} \\[10pt]
+  \dfrac{EI\lambda}{2}\cdot\operatorname{coth}\dfrac{L\lambda}{2} & \text{pour une lame en traction}
+  \end{cases}
+  $$
+
+  La contrainte maximale sera donnée par :
+
+  $$
+  \sigma_{max} = \frac{M_{max}}{I}\cdot\frac{e}{2} + \frac{P}{e\cdot h}
+  $$
+
+*Dimensionnement des lames croisées :*
+
+Étant donné la difficulté de mesure des constantes de rappel, du fait de la
+dépendance liée au chargement et des très faibles valeurs recherchées ici, la
+vérification expérimentale de l'analyse précédente est très délicate dans le cas
+d'un sismomètre longue période.
+
+On devra veiller, lors du dimensionnement, à se situer nettement au-dessous de
+la limite d'élasticité proportionnelle, de manière à minimiser les problèmes
+d'hystérésis mécanique.
+
+<!-- p. 65 -->
+
+*Choix du matériau :*
+
+Le matériau utilisé pour la réalisation des lames élastiques doit être choisi
+pour avoir :
+
+- un faible coefficient de dilatation
+- un faible coefficient thermoélastique
+- un faible hystérésis
+
+Par exemple, on pourra utiliser un matériau type Durinval C (en veillant à
+conserver des contraintes ne dépassant pas 100 hbar pour conserver de bonnes
+caractéristiques d'hystérésis).
+
+*Montage :*
+
+Un soin particulier doit être apporté au montage mécanique afin de garantir un
+positionnement le plus précis possible.
+
+<!-- p. 66 -->
+
+## 2.2 Analyse électronique : généralités
+
+On rappelle que les courbes de réponse intrinsèque mécanique du sismomètre ont
+été introduites au paragraphe 2.0.1. La courbe de réponse réelle dépendra du
+type de transducteur. Afin de dégager l'intérêt du sismomètre asservi, nous
+allons le comparer au sismomètre conventionnel électrodynamique. Cependant,
+certaines conclusions de ce paragraphe ne seront tirées que dans l'approche des
+problèmes de bruit et de dynamique.
+
+### 2.2.0 Le sismomètre conventionnel
+
+Un tel capteur schématisé à la figure 2.2.1 utilise le dispositif bobine-aimant
+(bobine mobile dans le champ radial uniforme d'un aimant fixe) qui génère :
+
+- une mesure de la vitesse relative bobine-aimant (i.e. vitesse relative de la
+  masse mobile) qui est proportionnelle à la f.e.m. engendrée au niveau de la
+  bobine.
+- un amortissement électrodynamique dû au courant circulant dans la bobine. Ce
+  courant est le produit de l'action de la f.e.m. sur une résistance
+  d'amortissement placée à ses bornes.
+
+La résistance d'amortissement est choisie en général pour obtenir
+l'amortissement optimum $\xi = 1/\sqrt 2$.
+
+On notera que la courbe de réponse d'un tel capteur étant la dérivée de la
+courbe de réponse en déplacement (i.e. de la réponse d'un capteur équipé d'un
+transducteur déplacement), elle favorise plutôt les « hautes fréquences » (ou
+courtes périodes).
+
+<!-- p. 67 -->
+
+![](../figures/generees/fig-2-2-1a){width=85% fig-alt="fig-2-2-1 (partie 1)"}
+
+![**Figure 2.2.1** — Schéma du sismomètre conventionnel et courbe de réponse. ($V_0 = A\cdot\frac{R_{am}}{R_{am}+R_b}\cdot e_b$ ; $e_b = B\,l\,\dot x$ ; $F = B\,l\,i_b$ ; $i_b = \frac{e_b}{R_b + R_{am}}$.) Les corrections de l'errata sont appliquées : zone de mesure de la vitesse du sol aux fréquences supérieures à $f_n$, « réponse optimum » au lieu de « réponse critique ».](../figures/generees/fig-2-2-1b){width=95% fig-scap="Figure 2.2.1 — Schéma du sismomètre conventionnel et courbe de réponse"}
+
+<!-- p. 68 -->
+
+### 2.2.1 Principe du capteur à « *équilibre de force* » dit *sismomètre « asservi »*
+
+Le principe du sismomètre asservi est largement décrit dans la littérature,
+notamment par @melton1976 et @usher1978.
+
+Pour simplifier, avec un sismomètre conventionnel Longue Période, on mesure le
+mouvement du sol par rapport à une référence absolue fournie par l'inertie de la
+masse suspendue (qui est supposée rester fixe dans un référentiel absolu). À
+l'inverse, dans le sismomètre asservi, on oblige, par contre-réaction, la masse
+à suivre le mouvement du bâti (i.e. du sol). La mesure est alors fournie par la
+force nécessaire pour équilibrer l'accélération. Ce principe permet de réduire
+très largement l'amplitude des déplacements, et de ce fait, facilite la
+conception mécanique et améliore la linéarité.
+
+**Description :**
+
+Le schéma de principe d'un tel capteur apparaît figure 2.2.2. Le sismomètre est
+équipé d'un transducteur de déplacement qui mesure le déplacement relatif $x$ de
+la masse. La tension électrique générée est amplifiée (voire filtrée) puis
+renvoyée en contre-réaction : la tension est convertie en courant au travers
+d'une admittance complexe. Ce courant, renvoyé dans la bobine de
+contre-réaction, génère une force électromagnétique de contre-réaction qui
+stabilise le système.
+
+La contre-réaction générée comporte classiquement deux termes :
+
+- une force proportionnelle au déplacement de la masse (déterminée par la valeur
+  de la résistance $R_f$)
+- une force d'amortissement dynamique proportionnelle à la vitesse (fixée par la
+  valeur de la capacité $C_f$).
+
+<!-- p. 69 -->
+
+**Remarque :**
+
+Dans le cas du sismomètre asservi, l'amortissement dynamique de
+l'asservissement est non dissipatif — (L'énergie nécessaire n'est pas amenée
+par le système mécanique mais par l'énergie électrique fournie par
+l'électronique).
+
+**Fonction de transfert et courbe de réponse :**
+
+Soit $H_D$ la transmittance de la chaîne directe de la boucle
+
+Soit $H_F$ la transmittance de la chaîne de contre-réaction
+
+on montre que la courbe de réponse en boucle fermée est donnée par :
+
+$$
+H_{BF} = \frac{H_D}{1 + H_D H_F} = \frac{1}{\dfrac{1}{H_D} + H_F}
+$$
+
+*Approximation asymptotique :*
+
+Soit $L = H_D H_F$ le gain de boucle (complexe).
+
+On verra qu'en général $L$ est très grand devant 1 en basse fréquence et devient
+très petit devant 1 aux fréquences les plus élevées.
+
+Soit $f_c$ la fréquence telle que $|L| = 1$.
+
+<!-- p. 70 -->
+
+On aura asymptotiquement :
+
+- si $|L| \gg 1$ ($f \gg f_c$) : $\quad |H_{BF}| = \dfrac{1}{|H_F|}$
+
+  et alors $\dfrac{1}{|H_F|} \ll |H_D|$, le signal est atténué par rapport au
+  signal délivré en boucle ouverte et de plus, il est pratiquement déterminé par
+  la seule contre-réaction.
+
+- si $|L| \ll 1$ ($f \ll f_c$) : $\quad |H_{BF}| \approx |H_D|$, le signal n'est
+  pratiquement pas affecté par la contre-réaction et « égal » au signal délivré
+  en boucle ouverte.
+
+Le croisement des asymptotes est obtenu pour $f = f_c$ et à cette fréquence la
+courbe réelle de gain sera située au-dessus de la valeur
+
+$$
+\frac{|H_D(f_c)|}{2}
+\qquad\left(\text{car}\quad |H_{BF}| = \frac{|H_D|}{|1 + H_D H_F|} \geq \frac{|H_D|}{1 + |H_D H_F|}\right)
+$$
+
+*Remarque :*
+
+L'approximation asymptotique ne permet pas de décrire le comportement de la
+transmittance au voisinage de la fréquence $f_c$.
+
+<!-- p. 71 -->
+
+![**Figure 2.2.2** — Sismomètre « asservi » ou « à équilibre de force ».](../figures/generees/fig-2-2-2){width=95% fig-scap="Figure 2.2.2 — Sismomètre « asservi » ou « à équilibre de force »"}
+
+<!-- p. 72 -->
+
+**Théorie simplifiée du sismomètre asservi :**
+
+| Élément de la chaîne | Commentaire | Transmittance |
+|---|---|---|
+| Suspension mécanique | assimilable à un 2^ème^ ordre : de période propre $T_m = \frac{2\pi}{\omega_m}$, de coefficient d'amortissement réduit mécanique $\xi_m$. Notations : $M$ = masse suspendue ; $r_G$ = distance du centre de masse à l'axe ; $I_\Omega$ = inertie du bras de la suspension autour de l'axe du pivot ; $\alpha_{1m} = \frac{Mr_G^2}{I_\Omega}$ | $\dfrac{x_G}{\gamma_i} = \dfrac{-\frac{Mr_G^2}{I_\Omega}}{s^2 + 2\xi_m\omega_m s + \omega_m^2}$ |
+| Capteur de déplacement + Amplification (et filtrage) | Assimilé dans cette étude à un gain : $\alpha_{2m} = r_t/r_G$ = gain mécanique du capteur dépl. ; $\alpha_0$ = sensibilité intrinsèque du capteur déplacement ; $A$ = gain de l'amplificateur. On notera $\alpha_m = \alpha_{1m}\,\alpha_{2m}$ et $\alpha = \alpha_m\,\alpha_1$ | $\dfrac{x}{x_G} = \dfrac{r_t}{r_G} = \alpha_{2m}$ ; $\dfrac{U}{x} = \alpha_0 A = \alpha_1$ |
+| Réseau de contre-réaction et transducteur force | On suppose que l'impédance de la bobine est négligeable et que la conversion tension courant est parfaite. $r_f/r_G$ = gain mécanique du transducteur force ; $Y_f$ = admittance de contre-réaction | $\dfrac{\gamma_f}{U} = \beta_0(1 + s\tau_D)$ [^errata-72] ; $\dfrac{\gamma_f}{i_f} = \dfrac{B\,l_b\,r_f}{Mr_G} = \beta_m$ ; $\dfrac{i_f}{U} = Y_f = \dfrac{1}{R_f} + C_f s$ |
+
+[^errata-72]: Corrigé selon l'errata : $\tau_f$ remplacé par $\tau_D$ (pages 72 et 73).
+
+::: {layout-ncol=2}
+![Courbe de réponse de la suspension mécanique : $|x_G/\gamma_i|$ (−40 dB/décade au-delà de $\omega_m/2\pi$).](../figures/generees/tab-2-2-courbe1){fig-scap="Courbe de réponse de la suspension mécanique"}
+
+![Courbe de réponse de la contre-réaction : $|\gamma_f/U|$ (+20 dB/décade au-delà de $1/2\pi\tau_D$).](../figures/generees/tab-2-2-courbe2){fig-scap="Courbe de réponse de la contre-réaction"}
+:::
+
+<!-- p. 73 -->
+
+**Gain de boucle — stabilité**
+
+Le gain de boucle $L(s)$ est égal avec les hypothèses précédentes à :
+
+$$
+L(s) = \frac{\alpha\beta_0(1 + s\tau_D)}{s^2 + 2\xi_m\omega_m s + \omega_m^2}
+$$
+
+et on voit que le système bouclé est stable car on laisse le point critique −1,
+du lieu de $L(s)$, sur la gauche (critère du « Revers » pour les systèmes où
+$L(s)$ est à minimum de phase).
+
+![**Figure 2.2.3** — Allure de $L(f)$ (module et phase de $L(s)$, $s = j2\pi f$, pour $T_m$ = 12 s, $\xi_m$ = 0,05, $L(0)$ = 143 ; lieu de Nyquist et détail au voisinage du point critique).](../figures/generees/fig-2-2-3){width=95% fig-scap="Figure 2.2.3 — Allure de $L(f)$"}
+
+<!-- p. 74 -->
+
+Plus simplement, on voit en utilisant l'approche analytique que le système en
+boucle fermée est un second ordre, donc stable.
+
+**Approche analytique**
+
+On voit que dans ce cas la transmittance en boucle fermée est :
+
+$$
+\frac{V}{\gamma_i} = H_{BF} = \frac{\alpha}{s^2 + 2(\xi_m\omega_m + \alpha\beta_0\tau_D)\,s + (\alpha\beta_0 + \omega_m^2)}
+$$
+
+c'est-à-dire correspond à un second ordre dont la fréquence nominale
+$f_0 = \dfrac{\omega_0}{2\pi}$ et l'amortissement réduit $\xi_0$ sont tels que :
+
+$$
+\boxed{\omega_0^2 = \alpha\beta_0 + \omega_m^2}
+$$
+
+$$
+2\xi_0\omega_0 = 2\xi_m\omega_m + \alpha\beta_0\tau_D
+$$
+
+soit encore
+
+$$
+\xi_0 = \xi_m\frac{\omega_m}{\omega_0} + \frac{\alpha\beta_0\tau_D}{2\,\omega_0}
+$$
+
+En notant $T_D = 2\pi\tau_D$
+
+$$
+\boxed{\xi_0 = \xi_m\frac{T_0}{T_m} - \frac{1}{2}\left(\frac{T_0}{T_m}\right)\left(\frac{T_D}{T_m}\right) + \frac{1}{2}\,\frac{T_D}{T_0}}
+$$
+
+<!-- p. 75 -->
+
+Vu de la sortie, le sismomètre est assimilable à un sismomètre de fréquence
+propre $f_0$, d'amortissement $\xi_0$, et équipé d'un capteur de déplacement de
+sensibilité égale à celle du capteur réel.
+
+*Remarque :*
+
+Le gain en boucle fermée, en continu est :
+
+$$
+H_{BF}(0) = \frac{\alpha}{\alpha\beta_0 + \omega_m^2}
+$$
+
+Le gain en haute fréquence est $\displaystyle\lim_{s\to\infty} H_{BF}(s) = \frac{\alpha}{s^2}$
+
+![**Figure 2.2.4** — Sismomètre à équilibre de force : courbe de réponse (réponse en accélération).](../figures/generees/fig-2-2-4){width=80% fig-scap="Figure 2.2.4 — Sismomètre à équilibre de force"}
+
+<!-- p. 76 -->
+
+**Sensibilité aux caractéristiques mécaniques**
+
+En introduisant $L_0 = L(s = 0) = \dfrac{\alpha\beta_0}{\omega_m^2}$
+
+le gain de boucle en continu, on peut alors mettre $\omega_0$ et $\xi_0$ sous la
+forme :
+
+$$
+\omega_0^2 = (1 + L_0)\,\omega_m^2 \qquad \left(\text{i.e.}\quad T_0 = \frac{1}{\sqrt{1+L_0}}\,T_m\right)
+$$
+
+$$
+\xi_0 = \frac{\xi_m}{\sqrt{1+L_0}} + \frac{1}{1+L_0}\cdot\frac{1}{2}\,\frac{T_D}{T_0}
+$$
+
+On cherche en général à obtenir l'amortissement critique $\xi_0 = 0.707$ et on
+utilise en général des gains de boucle en continu $L_0$ élevés ($L_0 \gg 1$)
+d'où diminution importante de la période propre
+
+$$
+T_0 \approx \frac{T_m}{\sqrt{L_0}}
+$$
+
+Dans ce cas, $\xi_0 = \dfrac{1}{2}\,\dfrac{T_D}{T_0}$
+
+Si on modifie $\xi_m$ et $T_m$, on montre que :
+
+$$
+\frac{\Delta T_0}{T_0} = \frac{\Delta T_m}{T_m}\cdot\left(\frac{T_0}{T_m}\right)^2
+$$
+
+$$
+\Delta\xi_0 = \frac{T_0}{T_m}\left(\Delta\xi_m - \xi_m\frac{\Delta T_m}{T_m}\right) + \frac{\Delta T_0}{2T_0}\,\xi_0
+$$
+
+<!-- p. 77 -->
+
+Par ailleurs, le gain en boucle fermé en continu étant égal à
+
+$$
+H_{BF}(0) = \frac{\alpha}{\alpha\beta_0 + \omega_m^2} = \frac{\alpha}{\omega_m^2(1+L_0)} = \frac{1}{1+L_0}\cdot\frac{1}{\beta_0}
+$$
+
+$$
+\lim_{s\to\infty} H_{BF}(s) = \frac{\alpha}{s^2}
+$$
+
+Dans le cas $T_m$ = 12 s, $T_0$ = 1 s, $\xi_m$ = 0.05, $\xi_0$ = 0.707 :
+
+- $\dfrac{\Delta T_m}{T_m}$ = 10 % $\;\Rightarrow\;$ $\dfrac{\Delta T_0}{T_0}$ = 0.07 %,
+  $\Delta\xi_0 = -2\cdot10^{-4}$, $\dfrac{\Delta\xi_0}{\xi_0} \approx -3\cdot10^{-4} = -0.03$ %
+- $\dfrac{\Delta\xi_m}{\xi_m}$ = 10 % $\;\Rightarrow\;$ $\dfrac{\Delta T_0}{T_0} = 0$,
+  $\dfrac{\Delta\xi_0}{\xi_0} = -4\cdot10^{-4} = -0.004$ %
+
+Cet exemple numérique montre que *la courbe de réponse du capteur
+asservi* devient complètement insensible aux caractéristiques
+dynamiques du capteur mécanique (et d'autant mieux que le gain de boucle en
+continu $L_0$ est plus élevé).
+
+<!-- p. 78 -->
+
+**Cas réel : étude approfondie en tenant compte des « imperfections »**
+
+L'étude précédente a négligé plusieurs phénomènes :
+
+on avait supposé, pour simplifier, que :
+
+- l'impédance de la bobine est négligeable,
+- le transducteur courant/force est idéal.
+
+Dans le cas réel, on devra tenir compte de l'impédance de la bobine de
+contre-réaction et de la f.c.e.m. induite par le mouvement de la bobine.
+
+![**Figure 2.2.5** — Schéma électrique de la contre-réaction.](../figures/generees/fig-2-2-5){width=45% fig-scap="Figure 2.2.5 — Schéma électrique de la contre-réaction"}
+
+<!-- p. 79 -->
+
+*Mise en équations :*
+
+$$
+U = (Z_f + Z_b)\,i_f + e_f
+$$
+
+| | | |
+|---|---|---|
+| f.e.m. | : | $e_f = -B\ell\,\dfrac{r_f}{r_G}\,\dot x_G$ |
+| Force générée | : | $F_f = B\ell\,i_f$ |
+| Accélération résultante | : | $\gamma_f = \dfrac{F_f}{m}\cdot\dfrac{r_f}{r_G}$ |
+
+d'où
+
+$$
+\gamma_f = \left(\frac{r_f}{r_G}\cdot\frac{B\ell}{m}\right)\cdot\left(U + \frac{r_f}{r_G}\,B\ell\,\dot x_G\right)\cdot\frac{1}{z_f + z_b}
+$$
+
+en réintroduisant $U = \alpha\,x_G$
+
+$$
+\boxed{\gamma_f = \frac{r_f}{r_G}\cdot\frac{B\ell}{m}\cdot\frac{\alpha}{Z_f + Z_b}\left(1 + s\,\frac{B\ell\,r_f}{\alpha\,r_G}\right)x_G}
+$$
+
+On voit que l'accélération de contre-réaction comporte 2 termes
+
+- un terme classique provenant du signal du capteur de déplacement,
+- un terme « d'amortissement parasite » amené par la force contre
+  électromotrice générée par le mouvement de la masse.
+
+<!-- p. 80 -->
+
+Cependant, on utilise en général un gain de chaîne directe $\alpha x$ très
+élevé, aux fréquences considérées, devant le terme d'amortissement
+$B\ell\,\dot x$. De ce fait, on néglige en général ce terme.
+
+| | |
+|---|---|
+| Exemple numérique | $B\ell\,\dfrac{r_f}{r_G}$ = 40 N/A ; $\alpha = 4\cdot10^5$ V/m |
+| Fréquence de « coupure » | $f_c = \dfrac{\alpha\,r_G}{2\pi B\ell\,r_f} \approx$ 1.5 kHz |
+
+**Influence de l'impédance de la bobine**
+
+$$
+Y_f = \frac{1}{Z_f + Z_b} \qquad\text{représente le gain de conversion tension → courant}
+$$
+
+On a vu que l'on prend en général :
+
+$$
+\frac{1}{Z_f} = \frac{1}{R_f} + jC_f\omega
+\qquad
+Z_f(s) = R_f\cdot\frac{1}{1 + s\,R_f C_f}
+$$
+
+<!-- p. 81 -->
+
+$Z_b$ comprend un terme résistif et un terme inductif généralement négligeable.
+
+Avec $Z_b \approx R_b$
+
+$$
+Y = \frac{1}{R_f + R_b}\cdot\frac{1 + s(R_f C_f)}{1 + s\,(R_f /\!/ R_b)\,C_f}
+\qquad\text{où}\quad R_f /\!/ R_b = \frac{R_f\cdot R_b}{R_f + R_b}
+$$
+
+![**Figure 2.2.6** — Admittance de conversion tension courant ($f_D = \frac{1}{2\pi R_f C_f}$ ; $f'_D = \frac{1}{2\pi (R_f/\!/R_b) C_f}$).](../figures/generees/fig-2-2-6){width=60% fig-scap="Figure 2.2.6 — Admittance de conversion tension courant"}
+
+La fréquence $f'_D$ est en général grande devant $f_D$, ce qui rend la
+contribution de la bobine négligeable.
+
+On verra que ces paramètres n'influencent pas la courbe de réponse, mais peuvent
+amener des limitations dans la conception. D'autre part, leur influence sur le
+bruit peut être non négligeable.
+
+<!-- p. 82 -->
+
+A. Numérique : $R_b \approx$ 100 Ω ; $R_f \approx$ 150 kΩ ; $C_f \approx$ 1.5 µF
+$\quad\Rightarrow\quad f_d \approx$ 0.707 Hz ; $f'_d \approx$ 1 kHz
+
+### 2.2.2 Autres types de sismomètres asservis
+
+#### 2.2.2.1 Sismomètre avec correcteur de chaîne directe, type réseau à retard (ou pseudo proportionnel intégral)
+
+Un correcteur de type réseau à retard peut être intégré à l'asservissement au
+niveau de l'amplificateur de la bande suivant le schéma de la figure 2.2.7.
+
+![**Figure 2.2.7** — Sismomètre à correcteur type réseau à retard (Pseudo P + I).](../figures/generees/fig-2-2-7){width=95% fig-scap="Figure 2.2.7 — Sismomètre à correcteur type réseau à retard"}
+
+Deux cas peuvent se produire, suivant le rapport de la fréquence $f_i^+$ à la
+fréquence de coupure $f_c$ du sismomètre asservi classique (sans correcteur).
+
+<!-- p. 83 -->
+
+**Si $f_i^+ \ll f_c$ :**
+
+Le correcteur ne modifiera pratiquement pas la réponse du capteur (en sortie
+$V_1$), par rapport au sismomètre asservi classique ; car aux fréquences
+$f \ll f_c$, $|H_{BF}| \approx \dfrac{1}{|H_F|}$ la sortie $V_2$, si elle existe,
+sera une sortie filtrée auxiliaire par le filtre $1/H_{correcteur}$ (réponse
+plate en accélération entre $f_i^+$ et $f_0$, de même sensibilité que la sortie
+$V_1$).
+
+Le correcteur a pour but d'améliorer la « stabilité » apparente en longue
+période en atténuant les déplacements longue période de la masse. En effet, la
+masse verra ses déplacements atténués dans le rapport $G = H_{correcteur}(0)$
+aux fréquences inférieures à $f_i^-$.
+
+Pour conserver au système bouclé sa stabilité (au sens des asservissements),
+$f_i^+$ doit être suffisamment faible pour conserver une marge de gain positive
+(i.e. ne pas atteindre une phase de 180°).
+
+*NB* : Ce type de correcteur est utilisé par exemple sur le
+sismomètre GEOTECH 36000.
+
+<!-- p. 84 -->
+
+**Si $f_i^+ = f_c$ :**
+
+Le correcteur doit être calculé conjointement avec la contre réaction (car il
+modifie la courbe de réponse par rapport au capteur asservi classique au
+voisinage de $f_0$), de manière à assurer un amortissement correct.
+L'amortissement peut être introduit en utilisant ce type de correcteur, qui
+amène un supplément de gain au voisinage de $f_c$. Comme dans le cas précédent,
+le correcteur apporte également une réduction des déplacements de la masse en
+continu.
+
+*NB* : Un exemple de ce type de sismomètre est donné par le
+sismomètre Wilmore MK III.
+
+**Conséquence au niveau dynamique :**
+
+On verra que ce type de correcteur n'affecte généralement pas les signaux maxima
+admissibles (pour autant que la limitation soit d'origine électrique) car la
+dynamique maximale dépend, en général, de la seule courbe de réponse en boucle
+fermée. Cependant, comme il modifie les signaux admissibles par les éléments
+situés avant lui dans la boucle, il permet, en cas de limitation mécanique (type
+non linéarité), d'augmenter la dynamique maximale.
+
+De même, au niveau du bruit, pour autant que son bruit propre soit négligeable,
+la présence de ce type de correcteur ne modifie pas le bruit équivalent.
+
+<!-- p. 85 -->
+
+#### 2.2.2.2 Sismomètre large bande vitesse (sur-amorti)
+
+![**Figure 2.2.8 (1)** — Sismomètre large bande vitesse.](../figures/generees/fig-2-2-8a){width=75% fig-scap="Figure 2.2.8 (1) — Sismomètre large bande vitesse"}
+
+Un sismomètre sur-amorti peut permettre d'obtenir une courbe de réponse de type
+large bande vitesse (fig. 2.2.8 (2)).
+
+![**Figure 2.2.8 (2)** — Réponse large bande vitesse. (Correction de l'errata appliquée : $f_n$ au lieu de $f_m$.)](../figures/generees/fig-2-2-8b){width=75% fig-scap="Figure 2.2.8 (2) — Réponse large bande vitesse"}
+
+<!-- p. 86 -->
+
+#### 2.2.2.3 Sismomètre à contre réaction P.I.D.
+
+Ce type de sismomètre constitue une généralisation de ceux présentés au
+paragraphe 2.2.2.1. Ces capteurs sont des capteurs « asservis » (i.e.
+contre-réactionnés) pour lesquels la contre réaction est du type P.I.D. (Action
+Proportionnelle-Intégrale-Dérivée), c'est-à-dire que $H_F$ est de la forme :
+
+$$
+H_F = \left(K_p + \frac{1}{s\tau_i} + s\tau_b\right)\beta_0
+$$
+
+La boucle de contre réaction intégrale annule les déplacements de la masse en
+continu (si l'intégrateur est parfait) et réduit les déplacements en longue
+période.
+
+Plusieurs types de réalisations peuvent correspondre à ce capteur :
+
+- Un capteur du type de celui de la figure 2.2.7 (parag. 2.2.2.1) dont la
+  fréquence $f_i^-$ serait rejetée à zéro, en constituerait un exemple.
+- Une réalisation a été développée par @wielandt1982, elle consiste en un
+  capteur à deux boucles de contre réaction (fig 2.2.9), constitué :
+  - d'un capteur avec une boucle d'asservissement classique P + D
+  - d'une seconde boucle de contre réaction comportant un intégrateur actif (I).
+
+La « sommation » des actions de contre réaction est obtenue en utilisant deux
+transducteurs bobine-aimant (réalisant l'addition des forces de contre
+réaction).
+
+<!-- p. 87 -->
+
+**Incidence sur la dynamique :**
+
+On verra qu'en cas d'utilisation d'un intégrateur actif, *la dynamique maximale
+est inchangée* alors que la *dynamique minimale est
+dégradée* par la présence du bruit de l'intégrateur.
+
+En conséquence, la boucle d'action intégrale n'est à utiliser que si elle est
+indispensable du fait des performances mécaniques du capteur (par exemple pour
+obtenir sa stabilité mécanique).
+
+![**Figure 2.2.9** — Sismomètre PID à deux boucles de contre-réaction.](../figures/generees/fig-2-2-9){width=95% fig-scap="Figure 2.2.9 — Sismomètre PID à deux boucles de contre-réaction"}
+
+<!-- p. 88 -->
+
+![**Figure 2.2.9 (suite)** — Courbes de réponse.](../figures/generees/fig-2-2-9b){width=60% fig-scap="Figure 2.2.9 (suite) — Courbes de réponse"}
+
+<!-- p. 89 -->
+
+## 2.3 Bruit et dynamique
+
+### 2.3.0 Introduction
+
+Le problème de la dynamique et du bruit est d'une grande complexité, dans son
+ensemble, car il fait intervenir de nombreuses sources de bruit et des
+mécanismes assez complexes. On appellera « bruit » tout ce qui perturbe le
+signal (phénomène aléatoire ou non aléatoire). Concernant le bruit, il est
+indispensable de ne pas perdre de vue l'impossibilité de mesures directes, sur
+site, du bruit instrumental dans les conditions réelles de fonctionnement, du
+fait de l'existence du bruit sismique.
+
+De manière classique, on recourt, pour évaluer le bruit électronique d'un
+capteur, à une mesure capteur bloqué. Si cette méthode, appliquée à un capteur
+conventionnel électrodynamique, donne des résultats représentatifs du bruit
+électronique en fonctionnement normal, il n'en est pas de même pour le capteur
+asservi du fait de la boucle d'asservissement. En effet, l'asservissement
+modifiant la courbe de réponse du capteur, il affecte également les bruits. Pour
+un capteur asservi, une mesure capteur bloqué n'est représentative que du bruit
+de la chaîne de mesure des déplacements de la mesure.
+
+Par ailleurs, l'approche souvent retenue consistant à évaluer bruit sismique et
+instrumental, par autocorrélation des bruits observés sur deux capteurs, n'est
+pas totalement satisfaisante : en effet, le bruit « sismique », ainsi mis en
+lumière, peut faire intervenir des bruits découlant en réalité des sensibilités
+parasites (car ces sensibilités parasites peuvent produire des « bruits
+instrumentaux » (partiellement) cohérents).
+
+<!-- p. 90 -->
+
+### 2.3.1 Signaux admissibles par le capteur
+
+Généralement, les signaux maximaux admissibles sont liés à la courbe de réponse
+du capteur et la limitation s'opère au niveau du dernier étage d'amplification.
+De ce fait, les signaux maximaux en entrée ont la forme de l'inverse de la
+courbe de réponse.
+
+Pour le capteur asservi ne comportant pas d'éléments actifs dans la
+contre-réaction, le signal maximum admissible est fixé par la sensibilité en
+boucle fermée et en particulier par la fréquence nominale d'asservissement
+plutôt que par la fréquence propre naturelle. Ceci permet un accroissement de la
+dynamique, dans les longues périodes, de 40 dB, par décade de diminution de la
+période propre (par exemple, pour $T_m$ = 12 s et $T_0$ = 1 s, on permet un
+accroissement de $\left(\frac{12}{1}\right)^2 \sim$ 43 dB des signaux tolérables
+aux périodes supérieures à 12 s par rapport à un fonctionnement en régime
+libre).
+
+La figure 2.3.1 permet de comparer les signaux maximaux tolérés par un capteur
+classique électrodynamique et un capteur asservi.
+
+<!-- p. 91 -->
+
+![**Figure 2.3.1** — Comparaison des signaux maximaux admissibles tolérés par un capteur électrodynamique et un capteur asservi.](../figures/generees/fig-2-3-1){width=95% fig-scap="Figure 2.3.1 — Comparaison des signaux maximaux admissibles tolérés par un capteur électrodynamique et un…"}
+
+Le LPZ-12s est un capteur conventionnel Longue Période (période propre mécanique
+12 s, sortie corrigée électroniquement selon la réponse d'un capteur 60 s).
+
+Le LPH-A est un capteur asservi large bande (période propre mécanique 12 s,
+période nominale en régime asservi 1 s).
+
+La réponse de ces 2 capteurs est identique à 20 s : 1 V/mm.
+
+Le ZM 500 est un capteur conventionnel courte période (période propre 1 s) ; les
+2 courbes correspondent à deux valeurs de sensibilité (sortie « gain 1 » :
+$7.2\cdot10^5$ V/m$^{-1}$ et sortie « 1/512 » : 1400 V/m s$^{-1}$ aux
+fréquences supérieures à 1 Hz). La tension maximale prise en compte
+(4 V$_{CC}$) correspond au niveau des transmissions courte période utilisées au
+LDG.
+
+<!-- p. 92 -->
+
+### 2.3.2 Analyse de bruit
+
+#### 2.3.2.1 Quelques éléments théoriques sur la représentation des signaux aléatoires et des bruits
+
+Les quelques éléments présentés ici ne constituent pas une approche formelle.
+Nous nous contenterons du rappel (sans démonstration) de quelques notions et
+résultats importants pour une bonne compréhension des analyses de bruit.
+
+L'observation d'une source de bruit électronique révèle à la fois une
+irrégularité de détail et une certaine homogénéité. Pour parvenir à décrire de
+tels phénomènes, une représentation probabiliste s'impose. Pour cela, on
+considère non pas une unique source de bruit, mais l'ensemble $E$ infini des
+sources de bruit identiques placées dans les mêmes conditions. On peut alors
+voir chaque signal mesuré $x(t,i)$ — pour $i \in \{1, 2, 3 \ldots\}$ — comme le
+résultat d'un tirage aléatoire, parmi un ensemble probabilisé, de fonctions du
+temps. On appellera cet ensemble probabilisé un « processus aléatoire ».
+
+À chaque instant $t_1$ (fixé), on peut définir une densité de probabilité
+$p(\chi, t_1)$ de la variable aléatoire $x(t_1, E)$, ainsi que les différents
+moments $E\left[x^k(t_1)\right] = \int x^k\,p(\chi, t_1)\,d\chi$
+
+($E[v]$ désignant l'espérance de la variable aléatoire $v$, c'est-à-dire la
+moyenne statistique).
+
+- On supposera que les bruits sont des *processus aléatoires stationnaires
+  d'ordre 2*, c'est-à-dire que $p(\chi, t)$ et les deux moments
+  $E[x(t)]$ et $E[x^2(t)]$ sont indépendants du temps.
+
+<!-- p. 93 -->
+
+*Remarque :*
+
+Pratiquement, la plupart des processus stationnaires rencontrés sont
+« Gaussiens », c'est-à-dire que leur densité de probabilité est de la forme :
+
+$$
+p(\chi) = \frac{1}{\sqrt{2\pi}}\cdot\frac{1}{\sigma_x}\exp\left(-\frac{(\chi - E[x])^2}{2\sigma_x^2}\right)
+$$
+
+où $\sigma_x^2 = E\left[(x - E[x])^2\right]$ désigne la variance.
+
+- On supposera le processus « *ergodique* » : c'est-à-dire que les
+  moyennes d'ensemble $E[x^k]$ et les moyennes temporelles sur une réalisation
+  quelconque $i$
+
+  $$
+  \overline{x^k(t,i)} = \lim_{T\to\infty}\left(\frac{1}{T}\cdot\int_{-T/2}^{+T/2} x^k(t,i)\,dt\right)
+  $$
+
+  sont identiques ($k$ = 1 à 2).
+
+Cette propriété permet de réaliser des *analyses en utilisant*, non
+plus comme en théorie, $n$ systèmes ($n \to \infty$) identiques, mais *un seul
+système*.
+
+**Principales notions utilisées :**
+
+- Moyenne : notée $\bar x$ pour la moyenne temporelle (ou $E[x]$ pour la
+  moyenne statistique)
+
+  $E[x(t)] = \bar x$ si $x$ ergodique.
+
+<!-- p. 94 -->
+
+- Moyenne quadratique $\overline{x^2}$ :
+
+  Elle s'identifie à la variance $\sigma_x^2$ si la variable est centrée (i.e.
+  $\bar x = 0$). On utilise également la racine de la moyenne quadratique
+  $(\overline{x^2})^{1/2}$ dite valeur efficace du signal (ou valeur RMS).
+
+- Fonction d'autocorrélation :
+
+  Le processus étant stationnaire, la moyenne $E[x(t)\cdot x(t+\tau)]$ est
+  indépendante du temps $t$. Elle est appelée fonction d'autocorrélation et
+  notée $\Gamma_x(\tau)$.
+
+  Pour un processus ergodique :
+
+  $$
+  \Gamma_x(\tau) = \lim_{T\to\infty}\frac{1}{T}\int_{-T/2}^{T/2} x(t)\,x(t+\tau)\,dt
+  $$
+
+*Propriétés :*
+
+- la fonction d'autocorrélation est une fonction symétrique
+  ($\Gamma_x(-\tau) = \Gamma_x(\tau)$), continue et
+  $\Gamma_x(0) = \sigma_x^2 + (\bar x)^2$
+- Pour des processus aléatoires stationnaires $x_1$, $x_2$, et sans corrélation
+  mutuelle (i.e. indépendants), il y a additivité des fonctions
+  d'autocorrélation
+
+  $$
+  \Gamma_{(x_1 + x_2)}(t) = \Gamma_{x_1}(t) + \Gamma_{x_2}(t)
+  $$
+
+<!-- p. 95 -->
+
+- Analyse harmonique d'un processus stationnaire — Théorème de Wiener
+  Khintchine :
+
+  De même que pour les signaux déterministes, on associe à $x$ sa transformée de
+  Fourier notée $X(\nu)$ qui est une fonction aléatoire d'une variable réelle
+  $\nu$ (= fréquence) :
+
+  $$
+  X(\nu) = \mathrm{TF}(x)(\nu) = \int_{-\infty}^{+\infty}\exp(-2\pi j\,\nu t)\,x(t)\,dt
+  $$
+
+  $$
+  x(t) = \int_{-\infty}^{+\infty}\exp(2\pi j\,\nu t)\,X(\nu)\,d\nu
+  $$
+
+  *Le théorème de Wiener Khintchine* montre que la *transformée de
+  Fourier de la fonction d'autocorrélation* est égale à la moyenne
+  du carré du module de la transformée de Fourier du processus $x(t)$ :
+
+  $$
+  \mathrm{TF}(\Gamma_x)(\nu) = E\left[|X(\nu)|^2\right]
+  \quad\left(= \text{par définition } E\left[|\mathrm{TF}(x)(\nu)|^2\right]\right)
+  $$
+
+  C'est *la densité spectrale de puissance*.
+
+- Réponse à un filtre linéaire — Filtre formeur :
+
+  Soit un filtre linéaire de transmittance $H(s)$ et de réponse impulsionnelle
+  $h(t)$
+
+  ![Filtre linéaire : $y = x \circledast h$, où $\circledast$ représente le produit de convolution.](../figures/generees/fig-2-3-filtre){width=60% fig-scap="Filtre linéaire"}
+
+<!-- p. 96 -->
+
+  L'ensemble des réponses aux réalisations $x(t)$ du processus aléatoire
+  $x(t,E)$ sera un processus stationnaire de fonction d'autocorrélation :
+
+  $$
+  \Gamma_y(\tau) = \Gamma_x(\tau) * h(\tau) * h(-\tau)
+  $$
+
+  (où $*$ désigne le produit de convolution)
+
+  En passant aux transformées de Fourier notées TF( ) il vient :
+
+  $$
+  \mathrm{TF}(\Gamma_y)(\nu) = \mathrm{TF}(\Gamma_x)(\nu)\cdot|H(j2\pi\nu)|^2
+  $$
+
+  $$
+  \boxed{|Y(\nu)|^2 = |X(\nu)|^2\cdot|H(j2\pi\nu)|^2}
+  $$
+
+- On appelle bruit blanc, un bruit de densité spectrale constante pour toutes
+  les fréquences. Un bruit de densité spectrale quelconque peut être considéré
+  comme la transformation d'un bruit blanc par un filtre linéaire de
+  transmittance $H_{formeur}(s)$ tel que la relation précédente soit vérifiée.
+  Ce filtre est appelé filtre « Formeur ».
+
+*Remarques :*
+
+- En électronique, on utilise en général une densité spectrale de puissance
+  unilatère (dite encore monolatère) pour les seules fréquences $f$ positives :
+
+  ![Bruit de densité spectrale $S_x$ traversant un filtre $H(j2\pi f)$ : $S_y(f) = |H(j2\pi f)|\cdot S_x(f)$.](../figures/generees/fig-2-3-densite){width=60% fig-scap="Bruit de densité spectrale $S_x$ traversant un filtre $H(j2\pi f)$"}
+
+<!-- p. 97 -->
+
+  densité spectrale monolatère
+
+  $$
+  S_x(f) = 2\int_{-\infty}^{+\infty}\exp(-2\pi j f\tau)\,\Gamma_x(\tau)\,d\tau
+  \qquad\text{pour } f \geq 0
+  $$
+
+  $S_x(f)$ représente le double de la densité spectrale bilatère ; mais on ne
+  considère pas les fréquences négatives ($S_x(f) = 0$ pour $f < 0$).
+
+  Par suite, $\displaystyle\Gamma_x(\tau) = \int_0^\infty S_x(f)\cos(2\pi f\tau)\,df$
+
+- L'unité utilisée pour les signaux en tension sera 1 V²/Hz, soit encore pour
+  une échelle logarithmique en $10\log(S_x(f))$, des dB référés à 1 V²/Hz
+  (encore notés dB(V²/Hz) ou parfois dB(V/√Hz) en prenant une échelle
+  logarithmique se référant à des signaux et non à des puissances).
+
+- La transformée de Fourier étant linéaire, pour des processus indépendants, les
+  densités spectrales s'ajouteront de la même manière que les fonctions
+  d'autocorrélation (principe de superposition).
+
+<!-- p. 98 -->
+
+**Représentation d'un bruit bande étroite :**
+
+Ce type de représentation est utilisé lorsque l'on limite la bande de
+transmission dans les problèmes de modulation.
+
+On montre que dans ce cas, le bruit peut être mis sous la forme :
+
+$$
+n(t) = n_c(t)\cos\omega_0 t - n_s(t)\sin\omega_0 t
+$$
+
+(ou bien encore : $n(t) = \nu(t)\cos(\omega_0 t + \psi(t))$)
+
+où $n_c$ et $n_s$ sont des bruits basse fréquence indépendants.
+
+Si $n$ est gaussien, $n_c$ et $n_s$ le sont également.
+
+Si $n$ est centré, $n_c$ et $n_s$ le sont.
+
+$$
+\overline{n^2(t)} = \overline{n_c^2(t)} = \overline{n_s^2(t)}
+$$
+
+Si $n$ est un bruit de densité spectrale passe-bande rectangulaire $N_0/2$
+centré autour de $f_0$, les densités spectrales de $n_c$ et $n_s$ seront égales
+pour $f < B/2$ (figure 2.3.2)
+
+![**Figure 2.3.2** — Représentation d'un bruit bande étroite (bruit bande étroite et décomposition).](../figures/generees/fig-2-3-2){width=60% fig-scap="Figure 2.3.2 — Représentation d'un bruit bande étroite"}
+
+<!-- p. 99 -->
+
+#### 2.3.2.2 Quelques rappels concernant le bruit électronique
+
+On se contentera de citer, pour mémoire, les principaux résultats utilisés dans
+l'étude de bruit électronique. Dans ce paragraphe, la notion de bruit se
+référera toujours aux phénomènes aléatoires.
+
+Sauf spécification, toutes les densités spectrales représentées par la suite
+concerneront des densités spectrales monolatères.
+
+L'analyse électronique utilise deux types de représentation des sources de
+bruit :
+
+- générateur de tension de bruit $e_n^*$
+- générateur de courant de bruit $i_n^*$
+
+Ces générateurs seront parfois identifiés à leur valeur, notée simplement $e_n$
+ou $i_n$.
+
+Un dipole réel peut être représenté par un dipole idéal possédant en série un
+générateur de bruit $e_n^*$, ou un générateur de courant de bruit $i_n^*$ en
+parallèle. L'équivalence de représentation est donnée par
+$S_e(f) = |Z^2|\,S_i(f)$
+
+![**Figure 2.3.3** — Représentation du bruit d'un dipole ou quadripole.](../figures/generees/fig-2-3-3){width=75% fig-scap="Figure 2.3.3 — Représentation du bruit d'un dipole ou quadripole"}
+
+Un quadripole réel peut être représenté, suivant le schéma de la figure 2.3.3,
+comme un quadripole idéal disposant à son entrée :
+
+- d'un générateur de tension de bruit ($e_n^*$) placé « en série »
+- d'un générateur de courant de bruit ($i_n^*$) placé en parallèle.
+
+<!-- p. 100 -->
+
+**Principales sources de bruit** (composants passifs — composants actifs)
+
+- Bruit « thermique » (« Johnson Noise ») des résistances — Théorème de
+  Nyquist :
+
+  - Le générateur de bruit associé à une résistance pure $R$ est un générateur
+    de bruit blanc, de densité spectrale de courant (spectre monolatère)
+    $S_i(f) = \dfrac{4kT}{R}$
+
+    où $k$ = constante de Boltzmann $\approx 1.38\cdot10^{-23}$ J/K ; $T$ =
+    température absolue
+
+    Par exemple, la densité spectrale de tension d'une résistance de 1 kΩ est à
+    25 °C d'environ (4 nV/√Hz)²
+
+  - Toute admittance complexe $Y = G + j\beta$ engendre un bruit blanc de
+    densité spectrale identique à celle engendrée par la partie réelle $G$ de
+    $Y$ :
+
+    $$
+    S_i(f) = 4kGT
+    $$
+
+    En circuit, la densité spectrale de tension aux bornes de l'impédance
+    $Z = Y^{-1} = R + jX$ s'écrit
+
+    $$
+    S_e(f) = 4kT\,\mathrm{Re}(Z) = 4kRT
+    $$
+
+    (où Re désigne la partie réelle). La source de bruit thermique associée à
+    $Z$ sera notée $e_{th}^*(Z)$
+
+- Bruit des amplificateurs et bruit basse fréquence :
+
+  Outre l'existence de bruits thermiques, les amplificateurs, et autres
+  composants actifs, produisent des bruits de génération-recombinaison, et des
+  bruits de grenaille (blanc), et des bruits dits de « scintillation », de
+  densité spectrale variant approximativement en $1/f$.
+
+<!-- p. 101 -->
+
+![Exemple : bruit d'un amplificateur complet ($H_- = \left(\frac{Z_f}{Z_{s-}}\right)$ ; $H_+ = \left(1 + \frac{Z_f}{Z_{s-}}\right)$).](../figures/generees/fig-2-3-ampli){width=80% fig-scap="Exemple"}
+
+Bruit en sortie :
+
+$$
+\begin{aligned}
+e_{no}^2 ={}& \left(1 + \frac{Z_f}{Z_{s-}}\right)^2\cdot e_{th}^{*2}(Z_{s+})
++ \left(\frac{Z_f}{Z_{s-}}\right)^2 e_{th}^{*2}(Z_{s-}) + e_{th}^{*2}(Z_f) \\
+&+ \left(1 + \frac{Z_f}{Z_{s-}}\right)^2\cdot\left(e_n^2 + i_n^2\left(\frac{Z_f\,Z_{s-}}{Z_f + Z_{s-}}\right)^2 + i_n^2 Z_{s+}^2\right)
+\end{aligned}
+$$
+
+![**Figure 2.3.4** — Représentation des différentes sources de bruit ramenées en entrée, intervenant dans un amplificateur opérationnel.](../figures/generees/fig-2-3-4){width=75% fig-scap="Figure 2.3.4 — Représentation des différentes sources de bruit ramenées en entrée, intervenant dans un…"}
+
+<!-- p. 102 -->
+
+Le bruit des amplificateurs comporte une composante de bruit blanc et également
+une *composante basse fréquence* ayant une densité spectrale de
+puissance en $1/f$.
+
+C'est cette composante basse fréquence qui prédominera dans les applications
+« longue période ».
+
+- Bruit excédentaire des résistances :
+
+  C'est un bruit de type $1/f$ qui intervient pour les résistances assurant une
+  polarisation (i.e. parcourue par un courant continu). Son écart type est
+  proportionnel à la tension continue $V_c$ aux bornes de la résistance.
+
+  Densité spectrale de tension : $S_e(f)^{1/2} = \left(\dfrac{K}{f}\right)^{1/2} V_c$
+
+  On définit l'indice de bruit IB comme le rapport de l'écart type du bruit
+  généré à la tension continue, exprimé généralement en µV/V ou en décibel (20
+  fois le logarithme du rapport de tension).
+
+  On a alors : $S_e(f)^{1/2} = \dfrac{0.66\cdot\text{IB}}{f^{1/2}}\cdot V_c$
+
+  IB ou K caractérisent le type de résistances utilisées (IB varie grosso modo
+  suivant la technologie de 0 à −40 dB).
+
+- En général, les autres sources de bruits ne seront pas considérées.
+
+<!-- p. 103 -->
+
+#### 2.3.2.3 Résultats concernant la théorie de la modulation-démodulation
+
+Ces résultats seront utilisés lors de l'étude de bruit.
+
+On ne traite ici que le cas d'une « modulation sans porteuse » (modulation
+produit) et on supposera, pour simplifier, que la porteuse est sinusoïdale.
+
+![**Figure 2.3.5** — Schéma de la modulation-démodulation produit.](../figures/generees/fig-2-3-5){width=95% fig-scap="Figure 2.3.5 — Schéma de la modulation-démodulation produit"}
+
+| | |
+|---|---|
+| $s(t)$ | signal basse fréquence |
+| $m(t)$ | signal modulé (haute fréquence) $= s(t)\cdot p(t)$ |
+| $p(t)$ | porteuse de modulation $= A\cos\omega_0 t$, $\omega_0 = 2\pi f_0$ |
+| $m'(t)$ | signal modulé transformé $= B(t)\cos(\omega_0 t + \varphi(t))$ |
+| $p'(t)$ | porteuse de démodulation $= A'\cos(\omega_0 t)$ |
+| $d(t)$ | signal démodulé réel. |
+| $d_0(t)$ | $\dfrac{A'B(t)}{2}\cos\varphi + \dfrac{A'B(t)}{2}\cos(2\omega_0 t + \varphi)$ : signal démodulé idéal (sans bruit) |
+| $f(t)$ | signal démodulé filtré. |
+
+<!-- p. 104 -->
+
+Dans le cas où la transformation du signal se réduit à un gain $G$
+
+$$
+B(t) = A\cdot G\cdot s(t)
+$$
+
+on retrouvera en sortie, après filtrage passe-bas éliminant la composante de
+fréquence à $2f_0$, un signal à l'image du signal d'entrée :
+
+$$
+f(t) = \frac{AA'G}{2}\cos\varphi\cdot s(t)
+$$
+
+*Cas idéal :* La représentation spectrale des signaux est schématisée à la
+figure 2.3.6.
+
+![**Figure 2.3.6** — Module de la Transformée de Fourier des signaux (porteuse et signal d'entrée ; signal modulé ; signal démodulé).](../figures/generees/fig-2-3-6){width=90% fig-scap="Figure 2.3.6 — Module de la Transformée de Fourier des signaux"}
+
+La densité spectrale de puissance correspond au carré du module de la
+transformée de Fourier des signaux.
+
+<!-- p. 105 -->
+
+*Cas avec bruit :*
+
+Hypothèses :
+
+- Bruit blanc à l'entrée de la démodulation (additionnel) de densité spectrale
+  bilatère $\gamma_n = N_0/2$ (i.e. unilatère $N_0$).
+- On suppose qu'il y a préfiltrage passe-bas rectangulaire avant démodulation.
+
+  Dans ce cas, on a vu au paragraphe 2.3.2.1 que ce bruit peut être décomposé
+  sous la forme de :
+
+  $$
+  n(t) = n_c\cos\omega_0 t - n_s\sin\omega_0 t = \nu(t)\cdot\cos(\omega_0 t + \psi(t))
+  $$
+
+  où $n_c$ et $n_s$ ont des densités spectrales $\gamma_{nc}$ et $\gamma_{ns}$
+  identiques (cf. fig. 2.3.7).
+
+  Le signal démodulé s'écrit alors :
+
+  $$
+  d(t) = d_0(t) + \frac{A'}{2}\,n_c(t) + A_L\,\nu(t)\cos(4\pi f_0 t + \psi(t))
+  $$
+
+  On montre que l'on recueille alors en sortie filtrée une densité spectrale :
+
+  - de signal : $\gamma_f = \dfrac{A'^2\cos^2\varphi}{4}\,\gamma_B(f)\,|H_d(f)|^2$
+  - de bruit : $\gamma_{nf} = \dfrac{A'^2}{4}\,\gamma_{nc}\,|H_d(f)|^2$
+
+<!-- p. 106 -->
+
+![**Figure 2.3.7** — Décomposition d'un bruit bande étroite.](../figures/generees/fig-2-3-7){width=60% fig-scap="Figure 2.3.7 — Décomposition d'un bruit bande étroite"}
+
+**Application de ces résultats à l'étude de bruit du 3.2.2**
+
+![**Figure 2.3.8** — Application du modèle de bruit à l'électronique utilisée (amplificateur, démodulateur, filtre passe-bas).](../figures/generees/fig-2-3-8){width=85% fig-scap="Figure 2.3.8 — Application du modèle de bruit à l'électronique utilisée"}
+
+Considérons un bruit bande étroite, autour de la fréquence porteuse de densité
+spectrale bilatère $N_0/2$ (au point P) : avec les notations précédentes
+$A' = \dfrac{4}{\pi}$, $|H_d(0)| = \dfrac{\pi}{2}$
+
+la densité spectrale bilatère en sortie P' sera :
+
+$$
+\gamma_{nf} = \left(\frac{4}{\pi}\right)^2\cdot\frac{1}{4}\cdot\left(\frac{\pi}{2}\right)^2\cdot\gamma_{nc}
+= 2\cdot\left(\frac{N_0}{2}\right) = N_0
+$$
+
+La densité spectrale unilatère sera donc $2N_0$, soit le double de la valeur du
+bruit en sortie de l'amplificateur, à la fréquence porteuse (i.e. la densité
+spectrale est augmentée de 3 dB entre les points P et P').
+
+<!-- p. 107 -->
+
+#### 2.3.2.4 Bruit d'un capteur sismique
+
+De nombreux éléments interviennent pour limiter les mesures des capteurs
+sismiques tels que :
+
+- les signaux parasites générés par les sensibilités aux perturbations externes,
+  telles que température et pression,
+- les mécanismes de bruit proprement dits.
+
+D'un point de vue expérimental, on appellera « bruit » tout phénomène aléatoire
+ou non qui perturbe le signal sismique.
+
+Pour les mécanismes de bruit, reprenant les analyses de @melton1976, les
+limitations fondamentales à la sensibilité du sismomètre proviennent :
+
+- des bruits thermiques type « Johnson » provenant des mécanismes de
+  dissipation, tant au niveau électromécanique (résistance d'amortissement),
+  qu'au niveau purement mécanique,
+- des bruits électriques générés par la chaîne de mesure et ses transducteurs.
+
+Pour les sismomètres asservis, on retiendra que si l'on exclut le bruit propre
+des éléments de contre-réaction, *le bruit « ramené en entrée » des éléments de
+la chaîne directe n'est pas affecté par la contre-réaction* (voir
+fig. 2.3.9). En supposant, de plus, que le bruit propre de la contre-réaction
+est décorrélé du bruit de la chaîne directe, le bruit total est obtenu en
+utilisant le principe de superposition.
+
+<!-- p. 108 -->
+
+![**Figure 2.3.9** — Contribution des sources de bruit situées dans la chaîne directe et dans la contre réaction (capteur réel ; capteur idéal avec équivalent en entrée aux sources $\varepsilon_1^*, \varepsilon_2^*, \varepsilon_3^*$). Le bruit équivalent en entrée est obtenu très simplement en utilisant le principe de superposition.](../figures/generees/fig-2-3-9){width=95% fig-scap="Figure 2.3.9 — Contribution des sources de bruit situées dans la chaîne directe et dans la contre réaction"}
+
+<!-- p. 109 -->
+
+**Bruit de « Johnson »**
+
+De même que dans un capteur électronique la dissipation introduite par une
+résistance génère un bruit « thermique », dans le capteur sismique, les
+mécanismes de dissipation électromécanique ou mécanique associés au phénomène
+d'amortissement vont créer un bruit analogue. D'après @melton1976, la densité
+spectrale d'accélération équivalente à ce bruit blanc est donnée par :
+
+$$
+16\pi\,k_B T\left(\frac{\xi_d}{T_m M}\right)
+$$
+
+pour le sismomètre linéaire, où :
+
+| | |
+|---|---|
+| $k_B$ | constante de Boltzmann |
+| $T$ | température absolue |
+| $M$, $T_m$, $\xi_d$ | masse, période propre et coefficient d'amortissement dissipatif du sismomètre. |
+
+À $T$ = 290 K, $16\pi k_B T = 2{,}01\times10^{-19}$ kg m² s$^{-2}$
+
+Cependant, aucune démonstration n'a été proposée pour justifier que ce bruit a
+la densité spectrale d'un bruit « blanc ». L'analyse qui suit présente un essai
+de justification de ces résultats.
+
+*Modèle du bruit de Johnson d'origine électromécanique ou mécanique*
+
+La modélisation, schématisée à la figure 2.3.10, repose sur l'hypothèse de
+l'équivalence entre l'amortissement dissipatif mécanique et l'amortissement
+électromagnétique (utilisé dans les capteurs conventionnels). Le capteur amorti
+réel est assimilé à un capteur parfait, muni d'un transducteur bobine-aimant
+idéal, amorti par une résistance d'amortissement $R_{am}$. La mise en équation de
+ce modèle, réalisé pour une suspension mécanique type « sismomètre rotatif » est
+la suivante :
+
+<!-- p. 110 -->
+
+![**Figure 2.3.10** — Modèle du sismomètre rotatif pour le bruit de Johnson.](../figures/generees/fig-2-3-10){width=85% fig-scap="Figure 2.3.10 — Modèle du sismomètre rotatif pour le bruit de Johnson"}
+
+Le calcul direct de la transmittance en boucle fermée donne :
+
+$$
+\frac{x}{\gamma_i} = \frac{-\alpha_m}{s^2 + \omega_m^2 + \alpha_m\beta_m\beta'_m s}
+$$
+
+De sorte que l'équivalence du modèle avec le sismomètre réel est obtenue pour :
+
+$$
+2\xi_d\,\omega_m = \alpha_m\,\beta_m\,\beta'_m
+$$
+
+c'est-à-dire
+
+$$
+\beta_m^2 = \frac{2\xi_d\,\omega_m}{M}\cdot\frac{I_\Omega}{Mr_G^2}\cdot R_{am}
+$$
+
+Examinons l'effet d'un générateur de courant parasite $i_b^*$ (Fig. 2.3.11) sur
+le sismomètre :
+
+![**Figure 2.3.11** — Action d'un bruit en courant ($i_b^*$ de densité spectrale $4k_BT/R_{am}$).](../figures/generees/fig-2-3-11){width=70% fig-scap="Figure 2.3.11 — Action d'un bruit en courant"}
+
+<!-- p. 111 -->
+
+L'analyse élémentaire des transmittances montre que le déplacement généré par
+une telle source est donné par :
+
+$$
+\frac{x^*(s)}{i_b^*(s)} = \frac{\beta_m H_{mid}}{1 + H_{mid}\,\beta_m\,\beta'_m s} = \beta_m H_m
+$$
+
+De ce fait, cette source de bruit a le même effet qu'une accélération du sol :
+
+$$
+\gamma^*(s) = -\beta_m\,i_b^*(s)
+$$
+
+L'analyse de bruit du modèle idéal fait apparaître une unique source de bruit
+$R_{am}$, de densité spectrale de bruit en courant :
+
+$$
+S_i(f) = \frac{4k_BT}{R_{am}}
+$$
+
+Par suite, la densité spectrale de bruit équivalent en accélération est donnée
+par :
+
+$$
+S\gamma_{eq}(f) = |\beta_m|^2\,S_i(f)
+$$
+
+soit
+
+$$
+S\gamma_{eq} = \beta_m^2\,\frac{4k_BT}{R_{am}} = 8\xi_d\,\omega_m\,\frac{I_\Omega}{Mr_G^2}\,k_BT
+$$
+
+$$
+\boxed{S\gamma_{eq}(f) = 16\pi\,k_BT\,\frac{I_\Omega}{Mr_G^2}\cdot\frac{\xi_d}{MT_m}}
+$$
+
+Finalement, cette analyse permet donc de voir que le bruit généré par le
+mécanisme de dissipation est bien un bruit blanc et de calculer sa densité
+spectrale.
+
+<!-- p. 112 -->
+
+*Remarques :*
+
+- En reprenant les notations du 2.0.3, en notant $-\Phi_d\dot\varphi$ le couple
+  d'amortissement dissipatif total, et compte tenu de la relation
+  $\xi_d = \dfrac{\Phi_d}{2I_\Omega\omega_m}$, la relation précédente s'écrit :
+
+  $$
+  \boxed{S\gamma_{eq} = 4k_BT\cdot\frac{\Phi_d}{Mr_G^2}}
+  $$
+
+- Ceci montre que, *pour un couple d'amortissement dissipatif fixé*,
+  si on modifie la période propre (par exemple par inclinaison du capteur), la
+  densité spectrale de *bruit de Johnson* reste
+  *inchangée*.
+
+**Analyse des autres sources de bruit :**
+
+On utilisera la méthode illustrée à la figure 2.3.9 pour chacune des sources de
+bruit et on appliquera le principe de superposition.
+
+Comme le plus souvent en électronique, c'est le bruit des étages de tête qui
+prédominera dans les sismomètres. De ce fait, le type de capteur utilisé,
+vitesse-déplacement, sera déterminant pour la forme des courbes de bruit
+équivalent en entrée.
+
+On peut distinguer deux cas :
+
+<!-- p. 113 -->
+
+*Sismomètre conventionnel*
+
+Le bruit équivalent en entrée (accélération) est obtenu en divisant simplement
+la densité spectrale, par le carré du module de la réponse en accélération des
+éléments situés avant la source de bruit :
+
+$$
+S_\gamma^* = \left|\frac{s^2 + 2\xi\omega_m s + \omega_m^2}{s}\right|^2 S_{vitesse}^*
+$$
+
+*Sismomètre asservi*
+
+Suivant leur place à l'intérieur de la boucle, les sources de bruit auront un
+effet distinct en sortie (figure 2.3.9) en boucle ouverte et en boucle fermée.
+
+Examinons l'effet de 3 sources de bruit typiques :
+
+- bruit provenant du capteur de déplacement, de densité spectrale de
+  déplacement $S_x$ notée encore $(x^*)^2$
+- bruit provenant de la contre-réaction, de densité spectrale équivalente en
+  entrée de contre-réaction : $S_f$, notée encore $(\epsilon_f^*)^2$
+- bruit de l'étage de sortie (situé hors de la boucle), de densité spectrale en
+  entrée de l'étage : $S_0$, notée $(\epsilon_0^*)^2$ (bruit en tension).
+
+<!-- p. 114 -->
+
+La densité spectrale d'accélération équivalente $S_\gamma$, notée encore
+$(\gamma^*)^2$, sera alors donnée par :
+
+$$
+\begin{aligned}
+(\gamma^*)^2 ={}& \left|\frac{s^2 + 2\xi_m\omega_m s + \omega_m^2}{\alpha_m}\right|^2\cdot(x^*)^2 \\
+&+ |H_f|^2\cdot(\epsilon_f^*)^2 \\
+&+ \left|\frac{s^2 + 2\xi_0\omega_0 s + \omega_0^2}{\alpha}\right|^2\cdot(\epsilon_0^*)^2
+\end{aligned}
+$$
+
+- Pour minimiser le bruit, on recourra le plus souvent à une contre-réaction
+  passive (en général action proportionnelle + dérivée).
+- Pour réduire le bruit basse-fréquence, on utilisera une amplification du
+  signal modulé par une porteuse.
+- On remarquera que la contre-réaction atténue les valeurs RMS du bruit de
+  chaîne directe dans le rapport $\left(\dfrac{\omega_m}{\omega_0}\right)^2$ en
+  continu, ce qui nécessitera un soin très particulier pour les étages de sortie
+  (situés hors de la boucle).
+
+On trouvera, aux figures 2.3.13 et 4.1.1, l'illustration des courbes de bruit
+électronique.
+
+<!-- p. 115 -->
+
+**Sensibilités aux signaux parasites et perturbations :**
+
+Les sensibilités aux signaux parasites, même compensées, peuvent amener des
+dérives. Les mécanismes de ces dérives peuvent être complexes et difficiles à
+compenser directement. Pour une bonne interprétation des résultats de bruit, il
+est indispensable d'évaluer expérimentalement la sensibilité du capteur à ces
+perturbations et il serait souhaitable de mieux connaître, grâce à des capteurs
+de température et de pression disposés dans la cuve, le champ des perturbations
+auquel est soumis le capteur.
+
+On notera cependant, qu'il est possible de minimiser l'influence de ces
+perturbations en les « filtrant », c'est-à-dire en entourant le capteur de
+protections :
+
+- cuve rigide étanche → filtrage de la pression et la température
+- isolation thermique → filtrage de la température
+
+#### 2.3.2.5 Évaluations du bruit sismique minimal
+
+Outre le bruit instrumental, le bruit sismique est un facteur prépondérant pour
+l'utilisation et la conception d'un sismomètre à grande « sensibilité ». On
+recherchera naturellement, lors de la conception, à disposer d'un capteur dont
+le niveau de bruit instrumental se situe en-dessous du bruit sismique minimal.
+
+La littérature dans le domaine du bruit sismique est très étendue ;
+malheureusement on trouvera des différences considérables dans les résultats,
+suivant les sources. Citons parmi les sources @brune1959, @fix1973, @melton1976 et plus récemment, @agnew1978, @herbin1982
+et Wielandt (1983).
+
+Le bruit sismique minimal est mal connu, plus particulièrement aux très longues
+périodes. Ceci résulte principalement d'une mauvaise connaissance du bruit
+instrumental et des sensibilités du capteur aux efforts parasites, créées par
+les variations de température et pression. La figure 2.3.12 montre quelques
+courbes de bruit sismique dérivées de celles présentées par quelques auteurs
+cités. Ces courbes sont présentées en terme de densité spectrale (monolatère)
+d'accélération.
+
+<!-- p. 116 -->
+
+![**Figure 2.3.12** — Spectres de bruit sismique : densité spectrale d'accélération (= carré de l'accélération de bruit rapportée à une bande de fréquence de 1 Hz).](../figures/generees/fig-2-3-12){width=95% fig-scap="Figure 2.3.12 — Spectres de bruit sismique"}
+
+Les courbes m et M situent, d'après le rapport de l'IRIS [-@iris1984], le bruit sismique
+que l'on peut observer dans des stations sismiques — la courbe m n'étant
+observable que dans quelques sites calmes — La courbe QCAZ (Queen Creek
+Arizona), provenant des données de Fix (1972), correspond à des mesures dans
+une mine. La courbe « LAJITAS », transposée ici en accélération, résulte des
+observations de @herbin1982 dans la station particulièrement calme de
+Lajitas, Texas.
+
+<!-- p. 117 -->
+
+#### 2.3.2.6 Conséquences sur la conception d'un capteur large bande à grande dynamique
+
+La figure 2.3.13 regroupe quelques courbes de bruit typiques de capteurs
+conventionnels courte période et longue période et d'un capteur asservi ainsi
+que les courbes des signaux admissibles maximaux.
+
+Ces courbes montrent que :
+
+- Les capteurs électrodynamiques conventionnels sont inaptes à une utilisation
+  en longues périodes faible bruit (les considérations de stabilité et de
+  linéarité limitent très fortement les possibilités d'augmentation de la
+  période propre). Cependant, leurs performances sont bonnes en courtes
+  périodes.
+
+- Les capteurs asservis permettant de modifier la période nominale du capteur,
+  leur période propre mécanique peut être choisie suffisamment grande, sans
+  préjudice sur la linéarité et la dynamique maximale — fixée par la période
+  propre nominale en régime asservi — pour permettre d'excellentes
+  caractéristiques de bruits en longue période. Une limitation est cependant
+  apportée par la possibilité mécanique de réalisations mécaniques « stables »
+  (i.e. de caractéristiques constantes). De ce fait, le transducteur
+  déplacement utilisé devra avoir de très bonnes caractéristiques de bruit
+  propre. Pour les courtes périodes (au-dessus de quelques hertz), ce type de
+  capteur est par nature plus « bruyant » que le capteur conventionnel. Une
+  utilisation large bande nécessite là aussi un transducteur déplacement très
+  performant.
+
+<!-- p. 118 -->
+
+![**Figure 2.3.13** — Exemples de courbe de bruit et de dynamique maximale pour quelques sismomètres.](../figures/generees/fig-2-3-13){width=95% fig-scap="Figure 2.3.13 — Exemples de courbe de bruit et de dynamique maximale pour quelques sismomètres"}
+
+<!-- p. 119 -->
+
+Cette figure montre les spectres de bruit instrumental (échelle de droite) et
+les signaux maximaux admissibles (échelle de gauche), pour différents capteurs.
+Les niveaux horizontaux représentent des niveaux d'accélération équivalente,
+alors que les droites inclinées se réfèrent à des niveaux de déplacement
+équivalent. Les signaux, comme les bruits, sont tracés en termes de signal
+équivalent en entrée.
+
+Le ZM 500 est un capteur courte période vertical conventionnel, de période
+propre 1 s (la limitation haute des signaux représentée correspond au niveau
+toléré par les transmissions courte période 4 V$_{CC}$ ; et les signaux maximaux
+correspondant à deux valeurs de gain sont indiqués).
+
+Le LPZ 12s est un sismomètre longue période vertical conventionnel, de période
+propre 12 s, corrigé électroniquement à 60 s.
+
+Le LPH A est un sismomètre horizontal large bande asservi (période propre
+mécanique 12 s — période nominale 1 s) utilisant l'électronique large bande
+présentée au paragraphe 3.
+
+Pour chaque capteur, deux courbes (asymptotiques) de bruit sont tracées
+représentant l'accélération de bruit de Johnson, ainsi que le bruit
+électronique équivalent en entrée.

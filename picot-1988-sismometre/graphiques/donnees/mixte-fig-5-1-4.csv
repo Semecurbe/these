@@ -1,0 +1,22 @@
+courbe,type,periode_s,db
+"V2 : sortie 10⁴ V/(m s⁻¹)",signal,0.105,-20.5
+"V2 : sortie 10⁴ V/(m s⁻¹)",signal,1,-43.6
+"V2 : sortie 10⁴ V/(m s⁻¹)",signal,1036,-23
+"V1 : sortie accélération « gain 10 »",signal,0.0566,-20.5
+"V1 : sortie accélération « gain 10 »",signal,1,-60.2
+"V1 : sortie accélération « gain 10 »",signal,1000,-60.2
+"V2 : sortie 10⁶ V/(m s⁻¹)",signal,0.01,-44.3
+"V2 : sortie 10⁶ V/(m s⁻¹)",signal,1,-84.4
+"V2 : sortie 10⁶ V/(m s⁻¹)",signal,31,-60.2
+"V1 : bruit blanc et bruit excédentaire LVDT",bruit,0.01,-105
+"V1 : bruit blanc et bruit excédentaire LVDT",bruit,10,-219.8
+"V1 : bruit blanc et bruit excédentaire LVDT",bruit,12.8,-223.4
+"V1 : bruit blanc et bruit excédentaire LVDT",bruit,1036,-204.3
+"V2 : bruit propre",bruit,0.01,-144
+"V2 : bruit propre",bruit,1.25,-186.6
+"V2 : bruit propre",bruit,78.5,-134.2
+"V2 : bruit réjecté par V1",bruit,0.01,-150.5
+"V2 : bruit réjecté par V1",bruit,1.25,-187.3
+"V2 : bruit réjecté par V1",bruit,1036,-160.2
+"Bruit de Johnson",bruit,0.01,-220
+"Bruit de Johnson",bruit,1000,-220

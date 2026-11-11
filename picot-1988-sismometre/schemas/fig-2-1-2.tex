@@ -1,0 +1,36 @@
+\input{_preambule}
+\begin{document}
+\begin{tikzpicture}
+  \coordinate (W) at (0,0);
+  \coordinate (O) at (1.0,2.7);
+  \coordinate (K) at (-28:2.4);
+  \coordinate (K0) at (-36:2.4);
+  \coordinate (G) at (7:3.6);
+  % axes
+  \draw[axe] (0,-1.6) -- (0,3.5) node[above] {Verticale};
+  \draw[dash dot, ->] (-0.4,0) -- (5.3,0) node[right] {Horizontale};
+  % position de référence (phi = 0)
+  \draw[dashed] (W) -- (K0) -- (O);
+  % bras et ressort
+  \draw (W) -- (O);
+  \draw (W) -- (K);
+  \draw[line width=1.3pt] (W) -- (G);
+  \draw (O) -- (K);
+  \foreach \p/\n/\a in {W/\Omega/left, O/O/above right, K/K/right, G/G/right}
+    {\fill (\p) circle (1.5pt); \node[\a] at (\p) {$\n$};}
+  % angles
+  \draw[->] (0:2.9) arc (0:7:2.9);
+  \node at (3.5:3.1) {$\varphi$};
+  \draw[->] (-36:1.55) arc (-36:-28:1.55);
+  \node at (-32:1.85) {$\varphi$};
+  \draw[->] (-36:0.55) arc (-36:69.7:0.55);
+  \node at (40:0.85) {$\alpha$};
+  % légendes
+  \node[align=left, anchor=west] at (5.9,1.4)
+    {$k$ = raideur du ressort\\[2pt] $a_1 = \Omega K$\\[2pt] $a_2 = \Omega O$};
+  \node[align=left, anchor=north west] at (3.0,-1.2)
+    {Caractéristiques du bras\\
+     \quad $\Omega K = a_1$\\ \quad $\Omega O = a_2$\\
+     \quad $\varphi$ = angle de $\Omega G$ avec l'horizontale};
+\end{tikzpicture}
+\end{document}

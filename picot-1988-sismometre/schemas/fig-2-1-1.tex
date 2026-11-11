@@ -1,0 +1,66 @@
+\input{_preambule}
+\begin{document}
+\begin{tikzpicture}
+  % ---------- (a) suspension de Lacoste ----------
+  \begin{scope}
+    \draw[line width=1pt] (0,0) rectangle (5.0,5.0);
+    \coordinate (W) at (0.75,1.6);
+    \coordinate (O) at (1.6,4.6);
+    \coordinate (K) at (3.5,0.65);
+    \coordinate (G) at (4.4,1.6);
+    \draw (1.6,5.0) -- (O);
+    \draw (0,1.6) -- (W);
+    \draw[zigzag] (O) -- (K);
+    \draw[line width=1.3pt] (W) -- (G);
+    \draw[line width=0.9pt] (W) -- (K);
+    \fill ($(W)+(0,0.08)$) -- ($(W)+(0,-0.08)$) -- ($(W)!0.35!(K)$) -- cycle;
+    \fill (4.3,1.42) rectangle (4.5,1.78);
+    \foreach \p in {W,O,K} {\node[pivot] at (\p) {}; \fill (\p) circle (0.6pt);}
+    \draw ($(O)+(0.25,0.15)$) arc (30:-60:0.28);
+    \node[left] at ($(O)+(-0.1,0.05)$) {$O$};
+    \node[above left] at (W) {$\Omega$};
+    \node[right] at ($(K)+(0.12,0)$) {$K$};
+    \node[right] at (4.55,1.6) {$G$};
+    \draw (4.95,2.3) arc (15:-15:2.0);
+    \node (r) at (3.3,3.9) {ressort};
+    \draw[->] (r.west) -- (2.15,3.75);
+    \node (b) at (1.4,0.5) {bras};
+    \draw[->] (b.north) -- (2.0,1.15);
+    \node (bt) at (-1.4,3.4) {bâti};
+    \draw[->] (bt.east) -- (0,3.4);
+    \node[align=left, anchor=north west] at (-1.6,-0.25)
+      {Suspension de Lacoste (forme généralisée)\\
+       \quad Le ressort utilisé doit être idéalement de « longueur nulle »};
+  \end{scope}
+  % ---------- (b) caractéristique force–longueur ----------
+  \begin{scope}[shift={(1.1,-6.1)}]
+    \def\lj{1.3} \def\lo{2.3} \def\k{0.75}
+    \draw[axe] (-1.0,0) -- (4.3,0);
+    \node[anchor=north west, align=left] at (4.0,-0.05) {Longueur\\(OK pour suspension\\de Lacoste)};
+    \draw[axe] (0,-2.6) -- (0,3.2) node[left] {$-$Force};
+    \foreach \x in {-0.9,-0.7,...,1.2} \draw (\x,-0.2) -- (\x+0.25,0.2);
+    \fill (0,0) circle (1.4pt);
+    % ressort de longueur nulle (0)
+    \draw[dashed] (-0.6,-0.6*\k) -- (\lj,\lj*\k);
+    \draw[line width=1.1pt] (\lj,-0.5) -- (\lj,\lj*\k) -- (3.9,3.9*\k);
+    % ressort classique (1)
+    \draw[dashed] (-0.5,{-0.5*\k-\lo*\k}) -- (\lj,{(\lj-\lo)*\k});
+    \draw[dash dot, line width=0.9pt] (\lj,{(\lj-\lo)*\k}) -- (4.1,{(4.1-\lo)*\k});
+    \node[below] at (\lj+0.12,0) {$l_j$};
+    \node[below] at (\lo+0.12,0) {$l_0$};
+    \node[draw, circle, inner sep=1pt, font=\scriptsize] (c0) at (2.9,3.15) {0};
+    \draw (c0) -- (3.3,3.3*\k);
+    \node[above, align=center] at (2.4,3.4) {ressort de « longueur nulle »\\$l_0 = 0$};
+    \node[draw, circle, inner sep=1pt, font=\scriptsize] (c1) at (3.6,0.25) {1};
+    \draw (c1) -- (3.3,{(3.3-\lo)*\k});
+    \node[right, align=left] at (3.75,0.35) {ressort\\classique};
+    \node[right] at (4.3,2.5) {raideur $k = \dfrac{\Delta F}{\Delta l}$};
+    \node[align=center, below] at (\lj+0.7,-0.55) {plage d'utilisation\\du ressort};
+    \node[align=left, anchor=north west] at (0.6,-1.7)
+      {$l_j$ = longueur du ressort spires jointives\\
+       $l_0$ = longueur « résiduelle » du ressort};
+    \node[align=left, anchor=north west] at (-2.7,-2.8)
+      {Caractéristique d'un ressort de « longueur nulle » comparée au ressort classique};
+  \end{scope}
+\end{tikzpicture}
+\end{document}

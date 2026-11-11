@@ -1,0 +1,90 @@
+---
+title: "Étude d'un sismomètre vertical, miniature, asservi, large bande, à grande dynamique"
+subtitle: "Thèse présentée pour l'obtention du diplôme de Docteur Ingénieur à l'Université Pierre et Marie Curie (Paris 6) — Spécialité : Automatique"
+author: "Jean-Daniel Picot"
+date: "1988-01-13"
+date-format: "D MMMM YYYY"
+lang: fr
+abstract: |
+  Une synthèse des principes de conception des sismomètres verticaux,
+  miniatures, large bande, asservis, a été menée afin de réaliser un capteur
+  faible bruit à grande dynamique. L'étude mécanique comporte des résultats
+  concernant une suspension à lame. S'appuyant sur une discussion du bruit et de
+  la dynamique, nous proposons un nouveau type de capteur, le « sismomètre mixte
+  bi-capteurs ».
+
+  Une chaîne de mesure de déplacements (LVDT + électronique), faible bruit, a
+  été développée, mise en oeuvre sur des capteurs asservis. Les analyses
+  spectrales effectuées lors de son test, à la station sismique de Lormes, ont
+  permis de mettre en évidence un très faible niveau de bruit.
+keywords:
+  - sismomètre vertical miniature
+  - sismomètre asservi à grande dynamique
+  - sismomètre large bande
+  - sismomètre mixte bi-capteurs
+  - suspension à lame
+  - L.V.D.T. faible bruit
+  - bruit instrumental et sismique
+  - bruit longue période
+number-sections: false
+toc: true
+toc-depth: 3
+format:
+  html:
+    toc-location: left
+    html-math-method: mathjax
+    embed-resources: false
+    fig-align: center
+    default-image-extension: svg
+  pdf:
+    documentclass: report
+    papersize: a4
+    geometry: margin=2.5cm
+    pdf-engine: lualatex
+    toc-depth: 3
+    fig-align: center
+    default-image-extension: pdf
+    include-in-header:
+      text: |
+        \usepackage{caption}
+        \captionsetup[figure]{labelformat=empty}
+        \captionsetup[table]{labelformat=empty}
+---
+
+<!--
+Transcription en Quarto de la thèse de Docteur Ingénieur de Jean-Daniel Picot
+(Laboratoire de Détection et de Géophysique, Bruyères-le-Châtel), soutenue le
+13 janvier 1988 (cote BIUS Jussieu : T Paris 6 (1988) 480).
+
+Les commentaires « p. N » repèrent la pagination de l'original.
+
+Figures : générées hors de Quarto par `python3 construire_figures.py`
+(schémas TikZ dans schemas/, graphiques matplotlib dans graphiques/),
+écrites dans figures/generees/ (.pdf pour LaTeX, .svg pour le HTML).
+Les scans d'origine sont conservés dans figures/scans/.
+Les corrections de l'errata ont été reportées dans le texte.
+-->
+
+{{< include chapitres/00-liminaires.qmd >}}
+
+{{< include chapitres/01-introduction.qmd >}}
+
+{{< include chapitres/02-0-theorie-sismometre.qmd >}}
+
+{{< include chapitres/02-1-suspensions.qmd >}}
+
+{{< include chapitres/02-2-analyse-electronique.qmd >}}
+
+{{< include chapitres/02-3-bruit-dynamique.qmd >}}
+
+{{< include chapitres/03-transducteur.qmd >}}
+
+{{< include chapitres/04-application.qmd >}}
+
+{{< include chapitres/05-perspectives.qmd >}}
+
+{{< include chapitres/06-conclusions.qmd >}}
+
+{{< include chapitres/07-annexes.qmd >}}
+
+{{< include chapitres/08-references.qmd >}}

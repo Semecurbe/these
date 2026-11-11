@@ -1,0 +1,375 @@
+# Annexe 1 {.unnumbered}
+
+## 1.1 Analyse de sensibilité des suspensions de Lacoste
+
+![**Figure A.1.1** — Géométrie de la suspension de Lacoste ($\varphi$ = angle ($\Omega H$, $\Omega G$) ; $\alpha$ = angle ($\Omega H$, $\Omega O$)).](../figures/generees/fig-a1-1){width=80% fig-scap="Figure A.1.1 — Géométrie de la suspension de Lacoste"}
+
+*Hypothèses* : ressort de « longueur nulle ». Pour le calcul
+suivant, on se place dans le cas d'un bras de centre de masse $G$, situé sur
+l'axe $\Omega K$.
+
+*Rappel* des résultats déjà établis :
+
+Relation d'équilibre :
+
+$$
+mg\,r_G\cos\varphi_0 = k\,a_1 a_2\sin(\alpha - \varphi_0)
+\tag{1}
+$$
+
+Période :
+
+$$
+T = 2\pi\sqrt{\frac{I_\Omega\sin(\alpha - \varphi_0)}{mg\,r_G\cos\alpha}}
+\tag{2}
+$$
+
+En introduisant $\delta = \dfrac{\pi}{2} - \alpha$ angle avec la verticale
+($\Omega O$, $\Omega V$)
+
+$\beta = \alpha - \varphi_0$ angle sous lequel est vu le ressort à l'équilibre
+
+<!-- p. 202 -->
+
+Les relations (1) et (2) peuvent être mises sous la forme :
+
+$$
+mg\,r_G\cos\varphi_0 = k\,a_1 a_2\sin\beta
+\tag{1'}
+$$
+
+$$
+T = 2\pi\sqrt{\frac{I\cdot\sin\beta}{mg\,r_G\cdot\sin\delta}}
+\tag{2'}
+$$
+
+*NB* : Dans le cas particulier d'une masse ponctuelle, on aura la
+relation simplifiée :
+
+$$
+T = 2\pi\sqrt{\frac{r_G}{g}\cdot\frac{\sin\beta}{\sin\delta}}
+\tag{2''}
+$$
+
+*On considère que la suspension équilibrée sous un angle $\varphi_0$*
+(que l'on supposera modéré) *subit* :
+
+**CAS 1 : une *variation d'inclinométrie du bâti $\epsilon$***
+
+Les paramètres sont alors modifiés comme suit :
+
+$$
+\begin{aligned}
+\varphi_0 &\to \varphi = \varphi_0 + \Delta\varphi_0 && \Delta\varphi_0 \text{ inconnu} \\
+\beta &\to \beta + \Delta\beta && \\
+\delta &\to \delta + \Delta\delta && \Delta\delta = -\epsilon
+\end{aligned}
+$$
+
+On aura d'après les définitions
+$\Delta\beta = -\Delta\varphi_0 - \Delta\delta = -\Delta\varphi_0 + \epsilon$
+
+<!-- p. 203 -->
+
+*Influence sur la position d'équilibre :*
+
+Pour de faibles variations, en linéarisant la relation (1') :
+
+$$
+-mg\,r_G\sin\varphi_0\cdot\Delta\varphi_0 = k\,a_1 a_2\cos\beta\cdot\Delta\beta
+$$
+
+en réintroduisant (1')
+
+$$
+-\sin\varphi_0\,\Delta\varphi_0 = \frac{\cos\varphi_0}{\sin\delta}\cos\beta\,\Delta\beta
+$$
+
+d'où :
+
+$$
+\cos(\varphi_0 + \beta)\,\Delta\varphi_0 = \cos\varphi_0\cos\beta\,\epsilon
+$$
+
+$$
+\boxed{
+\begin{aligned}
+\Delta\varphi_0 &= \frac{\cos\varphi_0\cdot\cos\beta}{\cos(\varphi_0 + \beta)}\,\epsilon \\[6pt]
+\Delta\beta &= -\frac{\sin\varphi_0\sin\beta}{\cos(\varphi_0 + \beta)}\,\epsilon
+\end{aligned}
+}
+$$
+
+Pour de faibles valeurs des angles $\varphi_0$ et $\dfrac{\pi}{2} - \beta$ (cas
+des suspensions longues périodes) :
+
+la position d'équilibre relative au bâti est inchangée :
+
+$$
+\Delta\beta = -\frac{\sin\varphi_0\sin\beta}{\cos(\varphi_0 + \beta)}\,\epsilon \approx \underbrace{-\varphi_0\cdot\epsilon}_{\text{terme petit}}
+$$
+
+$$
+\Delta\varphi_0 = \epsilon + \underbrace{\varphi_0\,\epsilon}_{\text{terme correctif (nul dans le cas où } \varphi_0 = 0)}
+$$
+
+<!-- p. 204 -->
+
+*Influence sur la période :*
+
+En différenciant l'expression (2') de la période :
+
+$$
+\frac{\Delta T}{T} = \frac{1}{2}\,\frac{\cos\beta}{\sin\beta}\,\Delta\beta - \frac{1}{2}\,\frac{\cos\delta}{\sin\delta}\,\Delta\delta
+$$
+
+$$
+\Delta T = \frac{1}{2}\,T\left(\operatorname{cotg}\beta\,\Delta\beta - \operatorname{cotg}\delta\,\Delta\delta\right)
+$$
+
+Comme $\delta$ petit (et $\delta\beta \ll \Delta\delta$) alors que
+$\beta \approx \dfrac{\pi}{2}$, le premier terme est négligeable et on a :
+
+$$
+\frac{\Delta T}{T} \approx -\frac{1}{2}\operatorname{cotg}\delta\,\Delta\delta
+$$
+
+$$
+\boxed{\frac{\Delta T}{T} \approx \frac{1}{2}\,\frac{\epsilon}{\operatorname{tg}\delta}} \qquad \text{(au 1}^{\text{er}}\text{ ordre en } \epsilon)
+$$
+
+$$
+\boxed{\frac{\Delta T}{T} \approx \frac{1}{2}\,\frac{\epsilon}{\delta}}
+$$
+
+On retrouve le résultat suivant lequel la période est réglée en agissant sur
+l'inclinaison $\epsilon$ du bâti ($T$ croît avec $\epsilon$, tant que
+$\delta > 0$).
+
+<!-- p. 205 -->
+
+La relation $\Delta\beta = -\varphi_0\epsilon$ montre que ce type de réglage
+n'affecte pas au 1^er^ ordre la position d'équilibre relatif, si le bras est bien
+horizontal lors du début du réglage.
+
+**CAS 2 : *Une faible variation de l'angle d'équilibre mécanique par
+équilibrage* :**
+
+Les paramètres sont modifiés comme suit :
+
+$$
+\begin{aligned}
+\varphi_0 &\to \varphi_0 + \epsilon \\
+\beta &\to \beta - \epsilon \\
+\delta &\ \text{inchangé} \\
+mg\,r_G &\to (mg\,r_G) + \Delta(mg\,r_G)
+\end{aligned}
+$$
+
+par variation de $r_G$ ($m$ constant) cas A ; par variation de $m$ ($r_G$
+constant) cas B
+
+*Influence sur le couple d'équilibre :*
+
+$$
+mg\,r_G\cos\varphi_0 = k\,a_1 a_2\sin\beta
+$$
+
+en différenciant cette expression, il vient :
+
+$$
+-mg\,r_G\sin\varphi_0\,\Delta\varphi_0 + \Delta(mg\,r_G)\cos\varphi_0 = k\,a_1 a_2\cos\beta\,\Delta\beta
+\qquad\text{au 1}^{\text{er}}\text{ ordre en } \epsilon
+$$
+
+<!-- p. 206 -->
+
+$$
+\boxed{\frac{\Delta(mg\,r_G)}{mg\,r_G} = \left(-\operatorname{cotg}\beta + \operatorname{tg}\varphi_0\right)\epsilon}
+\qquad\text{au 1}^{\text{er}}\text{ ordre en } \epsilon
+$$
+
+On voit que la variation relative de $mg\,r_G$ est très faible, lorsque
+$\varphi_0$ est faible et lorsque la suspension est longue période
+($\operatorname{cotg}\beta \approx 0$ et $\operatorname{tg}\varphi_0 \approx 0$).
+
+*NB* : Le calcul exact en prenant $\varphi_0 = 0$ donne :
+
+$$
+\boxed{\frac{\Delta(mg\,r_G)}{mg\,r_G} = -\operatorname{cotg}\beta\cdot\operatorname{tg}\epsilon = -\operatorname{tg}\delta\cdot\operatorname{tg}\epsilon}
+$$
+
+*Influence sur la période propre :*
+
+Pour simplifier, on suppose que le bras est constitué d'une masse ponctuelle
+($\to I_\Omega = mr_G^2$)
+
+et
+
+$$
+T = 2\pi\sqrt{\frac{r_G}{g}\,\frac{\sin\beta}{\sin\delta}}
+$$
+
+Dans ce cas, $T$ passe de la valeur précédente à $T^*$ où
+
+$$
+T^* = 2\pi\sqrt{\frac{r_G^*}{g}\,\frac{\sin(\beta - \epsilon)}{\sin\delta}}
+$$
+
+<!-- p. 207 -->
+
+**Cas A**
+
+$$
+r_G^* = r_G \qquad m^* = m + \Delta m
+$$
+
+$$
+\to T^* = T\sqrt{\frac{\sin(\beta - \epsilon)}{\sin\beta}}
+$$
+
+$$
+T^* = T\sqrt{\cos\epsilon - \operatorname{cotg}\beta\sin\epsilon}
+$$
+
+$$
+\frac{T^*}{T} = \sqrt{1 - \operatorname{cotg}\beta\,\epsilon - \frac{\epsilon^2}{2}}
+\qquad\text{(au 2}^{\text{ème}}\text{ ordre en } \epsilon)
+$$
+
+$$
+\frac{T^*}{T} = 1 - \frac{1}{2}\operatorname{cotg}\beta\cdot\epsilon - \frac{\epsilon^2}{4}
+$$
+
+$$
+\boxed{\frac{\Delta T}{T} = -\frac{1}{2}\operatorname{tg}(\delta + \varphi_0)\,\epsilon - \frac{\epsilon^2}{4}}
+\qquad\text{(au 2}^{\text{è}}\text{ ordre en } \epsilon)
+$$
+
+Dans le cas d'une suspension verticale longue période : $\varphi_0 = 0$
+idéalement, et $\delta$ est faible, de sorte que les deux termes peuvent être du
+même ordre :
+
+$$
+\varphi_0 = 0 \qquad
+\boxed{\frac{\Delta T}{T} \approx -\frac{1}{2}\operatorname{tg}\delta\cdot\epsilon - \frac{\epsilon^2}{4}}
+\qquad\text{développement limité au 2}^{\text{è}}\text{ ordre en } \epsilon
+$$
+
+<!-- p. 208 -->
+
+**Cas B :**
+
+$$
+r_G^* = r_G\left(-\operatorname{cotg}\beta + \operatorname{tg}\varphi_0\right)\epsilon \qquad m^* = m
+$$
+
+Plaçons nous dans le cas où $\varphi_0 = 0$
+
+alors
+
+$$
+T^* = T\sqrt{\frac{\sin(\beta - \epsilon)}{\sin\beta}\left(1 - \operatorname{tg}\delta\operatorname{tg}\epsilon\right)}
+$$
+
+et comme alors $\beta = \dfrac{\pi}{2} - \delta$
+
+$$
+\begin{aligned}
+\frac{T^*}{T} &= \sqrt{\frac{\cos(\delta + \epsilon)}{\cos\delta}\left(1 - \operatorname{tg}\delta\operatorname{tg}\epsilon\right)} \\
+&= \sqrt{(\cos\epsilon - \sin\epsilon\operatorname{tg}\delta)\left(1 - \operatorname{tg}\delta\operatorname{tg}\epsilon\right)} \\
+&= \sqrt{\cos\epsilon\left(1 - \operatorname{tg}\delta\operatorname{tg}\epsilon\right)^2}
+\end{aligned}
+$$
+
+$$
+\frac{T^*}{T} = \sqrt{\cos\epsilon}\cdot\left(1 - \operatorname{tg}\delta\operatorname{tg}\epsilon\right)
+$$
+
+En utilisant un développement limité
+
+$$
+\frac{T^*}{T} = \left(1 - \frac{\epsilon^2}{2}\right)^{1/2}\times\left(1 - \operatorname{tg}\delta\,\epsilon\right)
+\approx 1 - \operatorname{tg}\delta\,\epsilon - \frac{\epsilon^2}{4}
+\qquad\text{au 2}^{\text{ème}}\text{ ordre}
+$$
+
+$$
+\boxed{\frac{\Delta T}{T} = -\operatorname{tg}\delta\cdot\epsilon - \frac{\epsilon^2}{4}}
+\qquad\text{(développement limité au 2}^{\text{è}}\text{ ordre)}
+$$
+
+<!-- p. 209 -->
+
+*Interprétation :*
+
+La période varie avec l'angle d'équilibre $\epsilon$
+
+$$
+\frac{\Delta T}{T} = -\operatorname{tg}\delta\cdot\epsilon - \frac{\epsilon^2}{4}
+$$
+
+Pour de très faibles variations, la période croit avec $\epsilon$. Cependant,
+compte tenu des faibles valeurs de $\delta$ pour les capteurs longues périodes,
+le terme du 2^è^ ordre $\dfrac{\epsilon^2}{4}$ deviendra non négligeable pour
+des valeurs significatives de $\epsilon$.
+
+Prenons, par exemple, le cas de la suspension de Lacoste du capteur vertical
+longue période du LDG :
+
+$$
+T = 12~\text{s} \qquad m \approx 2.5~\text{kg} \qquad r_G = 0.239~\text{m} \qquad I \approx mr_G^2
+$$
+
+$$
+\operatorname{tg}\delta = \frac{I}{mg\,r_G}\cdot\frac{4\pi^2}{T^2} \approx 6.68\times10^{-3}
+$$
+
+$$
+\delta \approx 6.7~\text{mrad} = 0.383~\text{deg.}
+$$
+
+Pour une variation de l'angle d'équilibre de ± 2 deg, on aura :
+
+$$
+\frac{\Delta\, mg\,r_G}{mg\,r_G} = -\operatorname{tg}\delta\operatorname{tg}\epsilon = \mp 2.3\times10^{-4}
+$$
+
+correspondant à l'apport d'une surcharge de 0.6 g seulement.
+
+<!-- p. 210 -->
+
+Les variations de la période
+$T = 2\pi\sqrt{\dfrac{\sin(\beta - \epsilon)}{mg\,r_G\cos\alpha}}$ sont données par
+le tableau suivant :
+
+| $\epsilon$ | − 2 | − 1 | 0 | 1 | 2 | $\delta$ |
+|---|:--:|:--:|:--:|:--:|:--:|:--:|
+| 90 − $\beta$ (deg) | − 1.62 | − 0.62 | 0.38 | 1.39 | 2.38 | 0 |
+| $T$ | 11.999 | 12.000 | $T_m$ = 12 | 11.998 | 11.995 | 12.000 |
+| $\dfrac{\Delta T}{T_m}$ | $-7\cdot10^{-5}$ | $-4\cdot10^{-5}$ | — | $-2\cdot10^{-4}$ | $-5\cdot10^{-4}$ | $+10^{-5}$ |
+
+On voit, de ce fait, que la période sera pratiquement vue comme maximale à
+l'horizontale.
+
+<!-- p. 211 -->
+
+## 1.2 Étude d'une suspension à lame
+
+Matrice $\dfrac{d\underline{\Phi}'_k}{d\underline{X}_k}$ pour une lame de
+L = 185 :
+
+$$
+\begin{bmatrix}
+398.412 & -10.34 & -12.37829 \\
+-9.990 & 77.70 & 3.25553 \\
+-12.384 & 3.245 & 0.6883
+\end{bmatrix}
+$$
+
+$$
+\underline{\Phi}_K = \begin{bmatrix} -4.483739 \\ +0.30936 \\ 423.19835 \end{bmatrix}
+$$
+
+<!-- p. 212 -->
+

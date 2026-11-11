@@ -1,0 +1,498 @@
+<!-- p. 66 -->
+
+## 2.2 — Analyse électronique : généralités
+
+On rappelle que les courbes de réponse intrinsèque mécanique du sismomètre ont
+été introduites au paragraphe 2.0.1. La courbe de réponse réelle dépendra du
+type de transducteur. Afin de dégager l'intérêt du sismomètre asservi, nous
+allons le comparer au sismomètre conventionnel électrodynamique. Cependant,
+certaines conclusions de ce paragraphe ne seront tirées que dans l'approche des
+problèmes de bruit et de dynamique.
+
+### 2.2.0 — Le sismomètre conventionnel
+
+Un tel capteur schématisé à la figure 2.2.1 utilise le dispositif bobine-aimant
+(bobine mobile dans le champ radial uniforme d'un aimant fixe) qui génère :
+
+- une mesure de la vitesse relative bobine-aimant (i.e. vitesse relative de la
+  masse mobile) qui est proportionnelle à la f.e.m. engendrée au niveau de la
+  bobine.
+- un amortissement électrodynamique dû au courant circulant dans la bobine. Ce
+  courant est le produit de l'action de la f.e.m. sur une résistance
+  d'amortissement placée à ses bornes.
+
+La résistance d'amortissement est choisie en général pour obtenir
+l'amortissement optimum $\xi = 1/\sqrt 2$.
+
+On notera que la courbe de réponse d'un tel capteur étant la dérivée de la
+courbe de réponse en déplacement (i.e. de la réponse d'un capteur équipé d'un
+transducteur déplacement), elle favorise plutôt les « hautes fréquences » (ou
+courtes périodes).
+
+<!-- p. 67 -->
+
+![](figures/generees/fig-2-2-1a){width=85% fig-alt="fig-2-2-1 (partie 1)"}
+
+![Fig. 2.2.1 — Schéma du sismomètre conventionnel et courbe de réponse. ($V_0 = A\cdot\frac{R_{am}}{R_{am}+R_b}\cdot e_b$ ; $e_b = B\,l\,\dot x$ ; $F = B\,l\,i_b$ ; $i_b = \frac{e_b}{R_b + R_{am}}$.) Les corrections de l'errata sont appliquées : zone de mesure de la vitesse du sol aux fréquences supérieures à $f_n$, « réponse optimum » au lieu de « réponse critique ».](figures/generees/fig-2-2-1b){width=95%}
+
+<!-- p. 68 -->
+
+### 2.2.1 — Principe du capteur à « [équilibre de force]{.underline} » dit [sismomètre « asservi »]{.underline}
+
+Le principe du sismomètre asservi est largement décrit dans la littérature,
+notamment par Melton (76) et Usher (78).
+
+Pour simplifier, avec un sismomètre conventionnel Longue Période, on mesure le
+mouvement du sol par rapport à une référence absolue fournie par l'inertie de la
+masse suspendue (qui est supposée rester fixe dans un référentiel absolu). À
+l'inverse, dans le sismomètre asservi, on oblige, par contre-réaction, la masse
+à suivre le mouvement du bâti (i.e. du sol). La mesure est alors fournie par la
+force nécessaire pour équilibrer l'accélération. Ce principe permet de réduire
+très largement l'amplitude des déplacements, et de ce fait, facilite la
+conception mécanique et améliore la linéarité.
+
+**Description :**
+
+Le schéma de principe d'un tel capteur apparaît figure 2.2.2. Le sismomètre est
+équipé d'un transducteur de déplacement qui mesure le déplacement relatif $x$ de
+la masse. La tension électrique générée est amplifiée (voire filtrée) puis
+renvoyée en contre-réaction : la tension est convertie en courant au travers
+d'une admittance complexe. Ce courant, renvoyé dans la bobine de
+contre-réaction, génère une force électromagnétique de contre-réaction qui
+stabilise le système.
+
+La contre-réaction générée comporte classiquement deux termes :
+
+- une force proportionnelle au déplacement de la masse (déterminée par la valeur
+  de la résistance $R_f$)
+- une force d'amortissement dynamique proportionnelle à la vitesse (fixée par la
+  valeur de la capacité $C_f$).
+
+<!-- p. 69 -->
+
+**Remarque :**
+
+Dans le cas du sismomètre asservi, l'amortissement dynamique de
+l'asservissement est non dissipatif — (L'énergie nécessaire n'est pas amenée
+par le système mécanique mais par l'énergie électrique fournie par
+l'électronique).
+
+**Fonction de transfert et courbe de réponse :**
+
+Soit $H_D$ la transmittance de la chaîne directe de la boucle
+
+Soit $H_F$ la transmittance de la chaîne de contre-réaction
+
+on montre que la courbe de réponse en boucle fermée est donnée par :
+
+$$
+H_{BF} = \frac{H_D}{1 + H_D H_F} = \frac{1}{\dfrac{1}{H_D} + H_F}
+$$
+
+*Approximation asymptotique :*
+
+Soit $L = H_D H_F$ le gain de boucle (complexe).
+
+On verra qu'en général $L$ est très grand devant 1 en basse fréquence et devient
+très petit devant 1 aux fréquences les plus élevées.
+
+Soit $f_c$ la fréquence telle que $|L| = 1$.
+
+<!-- p. 70 -->
+
+On aura asymptotiquement :
+
+- si $|L| \gg 1$ ($f \gg f_c$) : $\quad |H_{BF}| = \dfrac{1}{|H_F|}$
+
+  et alors $\dfrac{1}{|H_F|} \ll |H_D|$, le signal est atténué par rapport au
+  signal délivré en boucle ouverte et de plus, il est pratiquement déterminé par
+  la seule contre-réaction.
+
+- si $|L| \ll 1$ ($f \ll f_c$) : $\quad |H_{BF}| \approx |H_D|$, le signal n'est
+  pratiquement pas affecté par la contre-réaction et « égal » au signal délivré
+  en boucle ouverte.
+
+Le croisement des asymptotes est obtenu pour $f = f_c$ et à cette fréquence la
+courbe réelle de gain sera située au-dessus de la valeur
+
+$$
+\frac{|H_D(f_c)|}{2}
+\qquad\left(\text{car}\quad |H_{BF}| = \frac{|H_D|}{|1 + H_D H_F|} \geq \frac{|H_D|}{1 + |H_D H_F|}\right)
+$$
+
+*Remarque :*
+
+L'approximation asymptotique ne permet pas de décrire le comportement de la
+transmittance au voisinage de la fréquence $f_c$.
+
+<!-- p. 71 -->
+
+![Fig. 2.2.2 — Sismomètre « asservi » ou « à équilibre de force ».](figures/generees/fig-2-2-2){width=95%}
+
+<!-- p. 72 -->
+
+**Théorie simplifiée du sismomètre asservi :**
+
+| Élément de la chaîne | Commentaire | Transmittance |
+|---|---|---|
+| Suspension mécanique | assimilable à un 2^ème^ ordre : de période propre $T_m = \frac{2\pi}{\omega_m}$, de coefficient d'amortissement réduit mécanique $\xi_m$. Notations : $M$ = masse suspendue ; $r_G$ = distance du centre de masse à l'axe ; $I_\Omega$ = inertie du bras de la suspension autour de l'axe du pivot ; $\alpha_{1m} = \frac{Mr_G^2}{I_\Omega}$ | $\dfrac{x_G}{\gamma_i} = \dfrac{-\frac{Mr_G^2}{I_\Omega}}{s^2 + 2\xi_m\omega_m s + \omega_m^2}$ |
+| Capteur de déplacement + Amplification (et filtrage) | Assimilé dans cette étude à un gain : $\alpha_{2m} = r_t/r_G$ = gain mécanique du capteur dépl. ; $\alpha_0$ = sensibilité intrinsèque du capteur déplacement ; $A$ = gain de l'amplificateur. On notera $\alpha_m = \alpha_{1m}\,\alpha_{2m}$ et $\alpha = \alpha_m\,\alpha_1$ | $\dfrac{x}{x_G} = \dfrac{r_t}{r_G} = \alpha_{2m}$ ; $\dfrac{U}{x} = \alpha_0 A = \alpha_1$ |
+| Réseau de contre-réaction et transducteur force | On suppose que l'impédance de la bobine est négligeable et que la conversion tension courant est parfaite. $r_f/r_G$ = gain mécanique du transducteur force ; $Y_f$ = admittance de contre-réaction | $\dfrac{\gamma_f}{U} = \beta_0(1 + s\tau_D)$ [^errata-72] ; $\dfrac{\gamma_f}{i_f} = \dfrac{B\,l_b\,r_f}{Mr_G} = \beta_m$ ; $\dfrac{i_f}{U} = Y_f = \dfrac{1}{R_f} + C_f s$ |
+
+[^errata-72]: Corrigé selon l'errata : $\tau_f$ remplacé par $\tau_D$ (pages 72 et 73).
+
+::: {layout-ncol=2}
+![Courbe de réponse de la suspension mécanique : $|x_G/\gamma_i|$ (−40 dB/décade au-delà de $\omega_m/2\pi$).](figures/generees/tab-2-2-courbe1)
+
+![Courbe de réponse de la contre-réaction : $|\gamma_f/U|$ (+20 dB/décade au-delà de $1/2\pi\tau_D$).](figures/generees/tab-2-2-courbe2)
+:::
+
+<!-- p. 73 -->
+
+**Gain de boucle — stabilité**
+
+Le gain de boucle $L(s)$ est égal avec les hypothèses précédentes à :
+
+$$
+L(s) = \frac{\alpha\beta_0(1 + s\tau_D)}{s^2 + 2\xi_m\omega_m s + \omega_m^2}
+$$
+
+et on voit que le système bouclé est stable car on laisse le point critique −1,
+du lieu de $L(s)$, sur la gauche (critère du « Revers » pour les systèmes où
+$L(s)$ est à minimum de phase).
+
+![Fig. 2.2.3 — Allure de $L(f)$ (module et phase de $L(s)$, $s = j2\pi f$, pour $T_m$ = 12 s, $\xi_m$ = 0,05, $L(0)$ = 143 ; lieu de Nyquist et détail au voisinage du point critique).](figures/generees/fig-2-2-3){width=95%}
+
+<!-- p. 74 -->
+
+Plus simplement, on voit en utilisant l'approche analytique que le système en
+boucle fermée est un second ordre, donc stable.
+
+**Approche analytique**
+
+On voit que dans ce cas la transmittance en boucle fermée est :
+
+$$
+\frac{V}{\gamma_i} = H_{BF} = \frac{\alpha}{s^2 + 2(\xi_m\omega_m + \alpha\beta_0\tau_D)\,s + (\alpha\beta_0 + \omega_m^2)}
+$$
+
+c'est-à-dire correspond à un second ordre dont la fréquence nominale
+$f_0 = \dfrac{\omega_0}{2\pi}$ et l'amortissement réduit $\xi_0$ sont tels que :
+
+$$
+\boxed{\omega_0^2 = \alpha\beta_0 + \omega_m^2}
+$$
+
+$$
+2\xi_0\omega_0 = 2\xi_m\omega_m + \alpha\beta_0\tau_D
+$$
+
+soit encore
+
+$$
+\xi_0 = \xi_m\frac{\omega_m}{\omega_0} + \frac{\alpha\beta_0\tau_D}{2\,\omega_0}
+$$
+
+En notant $T_D = 2\pi\tau_D$
+
+$$
+\boxed{\xi_0 = \xi_m\frac{T_0}{T_m} - \frac{1}{2}\left(\frac{T_0}{T_m}\right)\left(\frac{T_D}{T_m}\right) + \frac{1}{2}\,\frac{T_D}{T_0}}
+$$
+
+<!-- p. 75 -->
+
+Vu de la sortie, le sismomètre est assimilable à un sismomètre de fréquence
+propre $f_0$, d'amortissement $\xi_0$, et équipé d'un capteur de déplacement de
+sensibilité égale à celle du capteur réel.
+
+*Remarque :*
+
+Le gain en boucle fermée, en continu est :
+
+$$
+H_{BF}(0) = \frac{\alpha}{\alpha\beta_0 + \omega_m^2}
+$$
+
+Le gain en haute fréquence est $\displaystyle\lim_{s\to\infty} H_{BF}(s) = \frac{\alpha}{s^2}$
+
+![Fig. 2.2.4 — Sismomètre à équilibre de force : courbe de réponse (réponse en accélération).](figures/generees/fig-2-2-4){width=80%}
+
+<!-- p. 76 -->
+
+**Sensibilité aux caractéristiques mécaniques**
+
+En introduisant $L_0 = L(s = 0) = \dfrac{\alpha\beta_0}{\omega_m^2}$
+
+le gain de boucle en continu, on peut alors mettre $\omega_0$ et $\xi_0$ sous la
+forme :
+
+$$
+\omega_0^2 = (1 + L_0)\,\omega_m^2 \qquad \left(\text{i.e.}\quad T_0 = \frac{1}{\sqrt{1+L_0}}\,T_m\right)
+$$
+
+$$
+\xi_0 = \frac{\xi_m}{\sqrt{1+L_0}} + \frac{1}{1+L_0}\cdot\frac{1}{2}\,\frac{T_D}{T_0}
+$$
+
+On cherche en général à obtenir l'amortissement critique $\xi_0 = 0.707$ et on
+utilise en général des gains de boucle en continu $L_0$ élevés ($L_0 \gg 1$)
+d'où diminution importante de la période propre
+
+$$
+T_0 \approx \frac{T_m}{\sqrt{L_0}}
+$$
+
+Dans ce cas, $\xi_0 = \dfrac{1}{2}\,\dfrac{T_D}{T_0}$
+
+Si on modifie $\xi_m$ et $T_m$, on montre que :
+
+$$
+\frac{\Delta T_0}{T_0} = \frac{\Delta T_m}{T_m}\cdot\left(\frac{T_0}{T_m}\right)^2
+$$
+
+$$
+\Delta\xi_0 = \frac{T_0}{T_m}\left(\Delta\xi_m - \xi_m\frac{\Delta T_m}{T_m}\right) + \frac{\Delta T_0}{2T_0}\,\xi_0
+$$
+
+<!-- p. 77 -->
+
+Par ailleurs, le gain en boucle fermé en continu étant égal à
+
+$$
+H_{BF}(0) = \frac{\alpha}{\alpha\beta_0 + \omega_m^2} = \frac{\alpha}{\omega_m^2(1+L_0)} = \frac{1}{1+L_0}\cdot\frac{1}{\beta_0}
+$$
+
+$$
+\lim_{s\to\infty} H_{BF}(s) = \frac{\alpha}{s^2}
+$$
+
+Dans le cas $T_m$ = 12 s, $T_0$ = 1 s, $\xi_m$ = 0.05, $\xi_0$ = 0.707 :
+
+- $\dfrac{\Delta T_m}{T_m}$ = 10 % $\;\Rightarrow\;$ $\dfrac{\Delta T_0}{T_0}$ = 0.07 %,
+  $\Delta\xi_0 = -2\cdot10^{-4}$, $\dfrac{\Delta\xi_0}{\xi_0} \approx -3\cdot10^{-4} = -0.03$ %
+- $\dfrac{\Delta\xi_m}{\xi_m}$ = 10 % $\;\Rightarrow\;$ $\dfrac{\Delta T_0}{T_0} = 0$,
+  $\dfrac{\Delta\xi_0}{\xi_0} = -4\cdot10^{-4} = -0.004$ %
+
+Cet exemple numérique montre que [la courbe de réponse du capteur
+asservi]{.underline} devient complètement insensible aux caractéristiques
+dynamiques du capteur mécanique (et d'autant mieux que le gain de boucle en
+continu $L_0$ est plus élevé).
+
+<!-- p. 78 -->
+
+**Cas réel : étude approfondie en tenant compte des « imperfections »**
+
+L'étude précédente a négligé plusieurs phénomènes :
+
+on avait supposé, pour simplifier, que :
+
+- l'impédance de la bobine est négligeable,
+- le transducteur courant/force est idéal.
+
+Dans le cas réel, on devra tenir compte de l'impédance de la bobine de
+contre-réaction et de la f.c.e.m. induite par le mouvement de la bobine.
+
+![Fig. 2.2.5 — Schéma électrique de la contre-réaction.](figures/generees/fig-2-2-5){width=45%}
+
+<!-- p. 79 -->
+
+*Mise en équations :*
+
+$$
+U = (Z_f + Z_b)\,i_f + e_f
+$$
+
+| | | |
+|---|---|---|
+| f.e.m. | : | $e_f = -B\ell\,\dfrac{r_f}{r_G}\,\dot x_G$ |
+| Force générée | : | $F_f = B\ell\,i_f$ |
+| Accélération résultante | : | $\gamma_f = \dfrac{F_f}{m}\cdot\dfrac{r_f}{r_G}$ |
+
+d'où
+
+$$
+\gamma_f = \left(\frac{r_f}{r_G}\cdot\frac{B\ell}{m}\right)\cdot\left(U + \frac{r_f}{r_G}\,B\ell\,\dot x_G\right)\cdot\frac{1}{z_f + z_b}
+$$
+
+en réintroduisant $U = \alpha\,x_G$
+
+$$
+\boxed{\gamma_f = \frac{r_f}{r_G}\cdot\frac{B\ell}{m}\cdot\frac{\alpha}{Z_f + Z_b}\left(1 + s\,\frac{B\ell\,r_f}{\alpha\,r_G}\right)x_G}
+$$
+
+On voit que l'accélération de contre-réaction comporte 2 termes
+
+- un terme classique provenant du signal du capteur de déplacement,
+- un terme « d'amortissement parasite » amené par la force contre
+  électromotrice générée par le mouvement de la masse.
+
+<!-- p. 80 -->
+
+Cependant, on utilise en général un gain de chaîne directe $\alpha x$ très
+élevé, aux fréquences considérées, devant le terme d'amortissement
+$B\ell\,\dot x$. De ce fait, on néglige en général ce terme.
+
+| | |
+|---|---|
+| Exemple numérique | $B\ell\,\dfrac{r_f}{r_G}$ = 40 N/A ; $\alpha = 4\cdot10^5$ V/m |
+| Fréquence de « coupure » | $f_c = \dfrac{\alpha\,r_G}{2\pi B\ell\,r_f} \approx$ 1.5 kHz |
+
+**Influence de l'impédance de la bobine**
+
+$$
+Y_f = \frac{1}{Z_f + Z_b} \qquad\text{représente le gain de conversion tension → courant}
+$$
+
+On a vu que l'on prend en général :
+
+$$
+\frac{1}{Z_f} = \frac{1}{R_f} + jC_f\omega
+\qquad
+Z_f(s) = R_f\cdot\frac{1}{1 + s\,R_f C_f}
+$$
+
+<!-- p. 81 -->
+
+$Z_b$ comprend un terme résistif et un terme inductif généralement négligeable.
+
+Avec $Z_b \approx R_b$
+
+$$
+Y = \frac{1}{R_f + R_b}\cdot\frac{1 + s(R_f C_f)}{1 + s\,(R_f /\!/ R_b)\,C_f}
+\qquad\text{où}\quad R_f /\!/ R_b = \frac{R_f\cdot R_b}{R_f + R_b}
+$$
+
+![Fig. 2.2.6 — Admittance de conversion tension courant ($f_D = \frac{1}{2\pi R_f C_f}$ ; $f'_D = \frac{1}{2\pi (R_f/\!/R_b) C_f}$).](figures/generees/fig-2-2-6){width=60%}
+
+La fréquence $f'_D$ est en général grande devant $f_D$, ce qui rend la
+contribution de la bobine négligeable.
+
+On verra que ces paramètres n'influencent pas la courbe de réponse, mais peuvent
+amener des limitations dans la conception. D'autre part, leur influence sur le
+bruit peut être non négligeable.
+
+<!-- p. 82 -->
+
+A. Numérique : $R_b \approx$ 100 Ω ; $R_f \approx$ 150 kΩ ; $C_f \approx$ 1.5 µF
+$\quad\Rightarrow\quad f_d \approx$ 0.707 Hz ; $f'_d \approx$ 1 kHz
+
+### 2.2.2 — Autres types de sismomètres asservis
+
+#### 2.2.2.1 — Sismomètre avec correcteur de chaîne directe, type réseau à retard (ou pseudo proportionnel intégral)
+
+Un correcteur de type réseau à retard peut être intégré à l'asservissement au
+niveau de l'amplificateur de la bande suivant le schéma de la figure 2.2.7.
+
+![Figure 2.2.7 — Sismomètre à correcteur type réseau à retard (Pseudo P + I).](figures/generees/fig-2-2-7){width=95%}
+
+Deux cas peuvent se produire, suivant le rapport de la fréquence $f_i^+$ à la
+fréquence de coupure $f_c$ du sismomètre asservi classique (sans correcteur).
+
+<!-- p. 83 -->
+
+**Si $f_i^+ \ll f_c$ :**
+
+Le correcteur ne modifiera pratiquement pas la réponse du capteur (en sortie
+$V_1$), par rapport au sismomètre asservi classique ; car aux fréquences
+$f \ll f_c$, $|H_{BF}| \approx \dfrac{1}{|H_F|}$ la sortie $V_2$, si elle existe,
+sera une sortie filtrée auxiliaire par le filtre $1/H_{correcteur}$ (réponse
+plate en accélération entre $f_i^+$ et $f_0$, de même sensibilité que la sortie
+$V_1$).
+
+Le correcteur a pour but d'améliorer la « stabilité » apparente en longue
+période en atténuant les déplacements longue période de la masse. En effet, la
+masse verra ses déplacements atténués dans le rapport $G = H_{correcteur}(0)$
+aux fréquences inférieures à $f_i^-$.
+
+Pour conserver au système bouclé sa stabilité (au sens des asservissements),
+$f_i^+$ doit être suffisamment faible pour conserver une marge de gain positive
+(i.e. ne pas atteindre une phase de 180°).
+
+[NB]{.underline} : Ce type de correcteur est utilisé par exemple sur le
+sismomètre GEOTECH 36000.
+
+<!-- p. 84 -->
+
+**Si $f_i^+ = f_c$ :**
+
+Le correcteur doit être calculé conjointement avec la contre réaction (car il
+modifie la courbe de réponse par rapport au capteur asservi classique au
+voisinage de $f_0$), de manière à assurer un amortissement correct.
+L'amortissement peut être introduit en utilisant ce type de correcteur, qui
+amène un supplément de gain au voisinage de $f_c$. Comme dans le cas précédent,
+le correcteur apporte également une réduction des déplacements de la masse en
+continu.
+
+[NB]{.underline} : Un exemple de ce type de sismomètre est donné par le
+sismomètre Wilmore MK III.
+
+**Conséquence au niveau dynamique :**
+
+On verra que ce type de correcteur n'affecte généralement pas les signaux maxima
+admissibles (pour autant que la limitation soit d'origine électrique) car la
+dynamique maximale dépend, en général, de la seule courbe de réponse en boucle
+fermée. Cependant, comme il modifie les signaux admissibles par les éléments
+situés avant lui dans la boucle, il permet, en cas de limitation mécanique (type
+non linéarité), d'augmenter la dynamique maximale.
+
+De même, au niveau du bruit, pour autant que son bruit propre soit négligeable,
+la présence de ce type de correcteur ne modifie pas le bruit équivalent.
+
+<!-- p. 85 -->
+
+#### 2.2.2.2 — Sismomètre large bande vitesse (sur-amorti)
+
+![Fig. 2.2.8 (1) — Sismomètre large bande vitesse.](figures/generees/fig-2-2-8a){width=75%}
+
+Un sismomètre sur-amorti peut permettre d'obtenir une courbe de réponse de type
+large bande vitesse (fig. 2.2.8 (2)).
+
+![Fig. 2.2.8 (2) — Réponse large bande vitesse. (Correction de l'errata appliquée : $f_n$ au lieu de $f_m$.)](figures/generees/fig-2-2-8b){width=75%}
+
+<!-- p. 86 -->
+
+#### 2.2.2.3 — Sismomètre à contre réaction P.I.D.
+
+Ce type de sismomètre constitue une généralisation de ceux présentés au
+paragraphe 2.2.2.1. Ces capteurs sont des capteurs « asservis » (i.e.
+contre-réactionnés) pour lesquels la contre réaction est du type P.I.D. (Action
+Proportionnelle-Intégrale-Dérivée), c'est-à-dire que $H_F$ est de la forme :
+
+$$
+H_F = \left(K_p + \frac{1}{s\tau_i} + s\tau_b\right)\beta_0
+$$
+
+La boucle de contre réaction intégrale annule les déplacements de la masse en
+continu (si l'intégrateur est parfait) et réduit les déplacements en longue
+période.
+
+Plusieurs types de réalisations peuvent correspondre à ce capteur :
+
+- Un capteur du type de celui de la figure 2.2.7 (parag. 2.2.2.1) dont la
+  fréquence $f_i^-$ serait rejetée à zéro, en constituerait un exemple.
+- Une réalisation a été développée par Wielandt (82), elle consiste en un
+  capteur à deux boucles de contre réaction (fig 2.2.9), constitué :
+  - d'un capteur avec une boucle d'asservissement classique P + D
+  - d'une seconde boucle de contre réaction comportant un intégrateur actif (I).
+
+La « sommation » des actions de contre réaction est obtenue en utilisant deux
+transducteurs bobine-aimant (réalisant l'addition des forces de contre
+réaction).
+
+<!-- p. 87 -->
+
+**Incidence sur la dynamique :**
+
+On verra qu'en cas d'utilisation d'un intégrateur actif, [la dynamique maximale
+est inchangée]{.underline} alors que la [dynamique minimale est
+dégradée]{.underline} par la présence du bruit de l'intégrateur.
+
+En conséquence, la boucle d'action intégrale n'est à utiliser que si elle est
+indispensable du fait des performances mécaniques du capteur (par exemple pour
+obtenir sa stabilité mécanique).
+
+![Figure 2.2.9 — Sismomètre PID à deux boucles de contre-réaction.](figures/generees/fig-2-2-9){width=95%}
+
+<!-- p. 88 -->
+
+![Figure 2.2.9 (suite) — Courbes de réponse.](figures/generees/fig-2-2-9b){width=60%}

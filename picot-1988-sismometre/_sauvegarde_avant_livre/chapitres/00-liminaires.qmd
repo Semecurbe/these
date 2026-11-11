@@ -1,0 +1,63 @@
+## Composition du jury {.unnumbered}
+
+Thèse soutenue le 13 janvier 1988 devant la commission composée de :
+
+| | |
+|---|---|
+| M. Garnier | Président |
+| M. Auvray | Examinateur |
+| M. Drouin | Examinateur |
+| M. Loyer | Examinateur |
+| M. Mechler | Examinateur |
+
+## Errata {.unnumbered}
+
+Les corrections suivantes, signalées dans l'errata joint à l'original, ont été
+reportées directement dans la présente transcription (les numéros de page
+renvoient à la pagination de l'original) :
+
+- page 23 : remplacer le double signe « − − » de l'équation linéarisée par un seul « − » ;
+- page 32 : remplacer $mgd$ par $mgr_G$ ;
+- page 55 : remplacer $1.59 \times 10^{2}$ par $1.59 \times 10^{-2}$ dans le tableau 2.1.1 (Courbe −2) ;
+- page 67 : Fig. 2.2.1 — Courbe de réponse :
+  - la flèche indiquant la zone de mesure de la vitesse du sol est mal située, elle doit correspondre aux fréquences supérieures à $f_n$ ;
+  - remplacer « Réponse critique » par « Réponse optimum » ;
+- pages 72, 73 : remplacer $\tau_f$ par $\tau_D$ ;
+- page 85 : remplacer dans la figure $f_m$ par $f_n$.
+
+Les figures ayant été redessinées, les deux corrections portant sur des figures
+(pages 67 et 85) y sont également appliquées.
+
+## Remerciements {.unnumbered}
+
+*Cette thèse est le fruit de plus de deux années de travail au Laboratoire de
+Détection et de Géophysique (L.D.G. — Bruyères-le-Châtel).*
+
+*Monsieur M. Loyer, Chef du L.D.G. a accepté de m'accueillir au sein de ce
+laboratoire et m'a fait l'honneur de participer au Jury : je l'en remercie très
+sincèrement.*
+
+*J'exprime ma gratitude à Monsieur le Professeur M. Garnier d'avoir accepté de
+diriger ces recherches, et le remercie vivement pour le temps qu'il m'a
+consacré.*
+
+*Je remercie Messieurs les Professeurs J. Auvray, M. Drouin, P. Mechler, de
+m'avoir fait l'honneur de participer au Jury.*
+
+*J'exprime ma reconnaissance au L.D.G. et au Groupe ETUDES pour leur
+participation dans cette étude. Je remercie, en particulier, Messieurs A. Le Roy,
+G. Claque et D. Fouquet pour le suivi qu'ils ont apporté à ce travail.*
+
+*Je remercie Monsieur F. Lebouvier (Compiègne Science Industrie) pour sa
+contribution à l'étude du capteur à lame.*
+
+*Que tous ceux qui m'ont aidé et soutenu, tout au long de ce travail, trouvent
+ici ma reconnaissance.*
+
+*J'exprime mes remerciements, tout particuliers, à Madame M. Botineau, pour sa
+patience et sa gentillesse dans le lourd travail de dactylographie de ce
+document, et à Monsieur F. Guillois pour sa contribution à la réalisation des
+figures.*
+
+*Enfin, je remercie Mademoiselle V. Picot pour le soin qu'elle a apporté dans la
+relecture de ce document.*

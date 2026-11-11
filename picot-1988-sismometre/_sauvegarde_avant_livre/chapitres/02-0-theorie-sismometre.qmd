@@ -1,0 +1,421 @@
+# 2 — Éléments d'analyse théorique
+
+<!-- p. 12 -->
+
+## 2.0 — Théorie du sismomètre ou accéléromètre
+
+### 2.0.1 — Courbe de réponse typique d'un sismomètre — Analyse du sismomètre linéaire
+
+Un sismomètre ou accéléromètre est un capteur de déplacement relatif,
+permettant de mesurer les mouvements de son support, lequel est supposé
+solidaire du sol. Dans une réalisation purement mécanique, il peut être
+représenté par le schéma suivant (fig. 2.0.1) valable dans le cas du capteur
+« linéaire » (par opposition à rotatif).
+
+![Fig. 2.0.1 — Schéma de principe mécanique d'un sismomètre ou accéléromètre. $z$ = position absolue de la masse ; $z_e$ = position absolue du bâti (mouvement d'entraînement) ; $\ell$ = longueur du ressort ; $-x$ = allongement du ressort par rapport à l'équilibre ; $m$ = masse du mobile suspendu ; $k$ = raideur du ressort ; $\beta$ = coefficient de frottement visqueux.](figures/generees/fig-2-0-1){width=100%}
+
+<!-- p. 13 -->
+
+**Mise en équation :**
+
+On se réfère ici au cas du capteur « vertical »
+
+$$
+m\ddot z = k(\ell - \ell_0) + \beta\dot\ell - mg
+$$
+
+Condition d'équilibre :
+
+$$
+mg = k(\ell_{eq} - \ell_0)
+$$
+
+En posant $x = \ell_{eq} - \ell$, il vient :
+
+$$
+m\ddot z = -kx - \beta\dot x
+$$
+
+$$
+\ddot z = -\frac{k}{m}x - \frac{\beta}{m}\dot x
+$$
+
+en choisissant en outre l'origine du repère $z_e$ au point d'équilibre
+$z = z_e + x$
+
+d'où
+
+$$
+\boxed{\ddot z_e = -\left(\frac{k}{m}x + \frac{\beta}{m}\dot x + \ddot x\right)}
+$$
+
+En régime harmonique $z_e = z_{e0}\cos\omega t$ on aura
+
+$$
+x(t) = \frac{z_{e0}\,r^2}{\sqrt{(1-r^2)^2 + 4\xi^2 r^2}}\cos(\omega t - \varphi)
+$$
+
+<!-- p. 14 -->
+
+où
+
+$$
+r = \omega/\omega_m \qquad
+\omega_m = \sqrt{\frac{k}{m}} \qquad
+T_m = \frac{2\pi}{\omega_m} \qquad
+\xi = \frac{\beta}{2m\,\omega_m}
+$$
+
+et $\varphi$ tel que $\operatorname{tg}\varphi = \dfrac{2\xi r}{1-r^2}$.
+
+$T_m$ et $\xi$ représentent respectivement la période nominale ou période propre
+et le coefficient d'amortissement réduit.
+
+**Utilisation en accéléromètre :**
+
+L'accéléromètre est un capteur dont la pulsation propre est très supérieure aux
+pulsations correspondant aux mouvements à mesurer
+
+$$
+f \ll f_m \quad\text{de sorte que}\quad x \simeq -\frac{T_m^2}{4\pi^2}\,\ddot z_e
+$$
+
+la mesure est proportionnelle à l'accélération (d'où le nom).
+
+**Utilisation en sismomètre :**
+
+Un sismomètre est un capteur dont la pulsation propre est inférieure aux
+pulsations correspondant aux mouvements à mesurer :
+
+$$
+\text{pour } f \gg f_m \text{ on aura}\quad \ddot x \simeq -\ddot z_e,
+\qquad x \simeq -z_e
+$$
+
+et si les conditions initiales sont nulles ($\dot x(0) = \dot z(0)$, et
+$x(0) = z(0)$), alors : $x(t) \simeq -z_e(t)$.
+
+<!-- p. 15 -->
+
+**Généralisation — Courbe de réponse typique :**
+
+Plus généralement, on verra qu'un capteur sismique (accéléromètre ou
+sismomètre) est un oscillateur mécanique, dont le déplacement (relatif) $x$ de
+la partie mobile est relié à l'accélération du sol $\gamma_i = \ddot z_e$ par une
+courbe de réponse mécanique en régime harmonique de type 2^ème^ ordre, telle
+que :
+
+- pour $f \gg f_m$ (fréquence propre mécanique) $x$ proportionnel au
+  déplacement absolu $z_e$ du support (déphasé de $\pi$)
+- pour $f \ll f_m$ le déplacement relatif $x$ est proportionnel à
+  $\dfrac{-T_m^2}{4\pi^2}$ fois l'accélération $\ddot z_e$ du support
+
+$$
+\ddot z_e = -\frac{1}{\alpha_m}\left(\omega_m^2 x + 2\xi\omega_m\dot x + \ddot x\right)
+$$
+
+Le coefficient de proportionnalité $\alpha_m$ est assimilable à un « gain
+mécanique » (dans le cas simple linéaire $\alpha_m = 1$).
+
+L'allure des courbes de réponse aux accélérations ou déplacements du sol est
+indiquée par la figure 2.0.2. La réponse est en outre caractérisée au voisinage
+de la fréquence propre par le coefficient d'amortissement $\xi$.
+
+<!-- p. 16 -->
+
+![Fig. 2.0.2 — Réponse d'un capteur sismique en régime harmonique (gain mécanique $\alpha_m = 1$). En haut : $|x/\ddot z_e| = H_m(j\omega)$ ; en bas : $|x/z_e|$. Courbe (1) : $\xi = 0.05$ ; courbe (2) : $\xi = 0.707$.](figures/generees/fig-2-0-2){width=100%}
+
+**Remarques :**
+
+(1) L'amortissement réduit $\xi$ est choisi de sorte que la résonance soit
+atténuée et que les approximations asymptotiques soient valables dans une plage
+la plus large possible, par suite $\beta$ est en général choisi pour avoir
+$\xi = 1/\sqrt 2 \approx 0.707$ (courbe 2 : amortissement « optimum »).
+
+On verra cependant que l'amortissement d'origine mécanique doit être à priori
+minimisé (car générateur de « bruit »). L'amortissement sera en général obtenu
+par l'utilisation d'un dispositif annexe d'amortissement.
+
+<!-- p. 17 -->
+
+(2) Notation de Laplace :
+
+En utilisant la notation de Laplace, la relation différentielle exprimant la
+réponse du système s'écrit :
+
+$$
+\frac{x(s)}{\ddot z_e(s)} = \frac{-\alpha_m}{s^2 + 2\xi\,\omega_m s + \omega_m^2} = -H_m(s)
+$$
+
+(on note pour simplifier $y(s)$ la transformée de Laplace d'un signal $y(t)$).
+
+Ce type de notation sera largement utilisé par la suite.
+
+(3) La pseudo pulsation des oscillations en régime libre est donnée par :
+
+$$
+\omega_p = \omega_n\sqrt{1-\xi^2}
+$$
+
+où $\omega_n$ correspond à la pulsation propre en régime libre avec
+amortissement nul.
+
+<!-- p. 18 -->
+
+### 2.0.2 — Conséquences importantes pour la conception d'un capteur
+
+La résolution mécanique intrinsèque du transducteur (déplacement ou vitesse)
+étant limitée, elle intervient en limitant les signaux détectables suivant la
+courbe de réponse.
+
+- La résolution en haute fréquence sera directement limitée par celle du
+  transducteur
+
+  $$
+  |\delta z_{sol}| = \frac{1}{\alpha}\,|\delta x_{transducteur}|
+  $$
+
+- La résolution en basse fréquence sera d'autant meilleure que la période
+  propre du capteur sera plus élevée.
+
+  $$
+  |\delta \ddot z_{sol}| = \frac{4\pi^2}{\alpha\,T_m^2}\cdot|\delta x_{transducteur}|
+  $$
+
+  Nous verrons ultérieurement que la résolution sera identique dans le cas d'un
+  capteur asservi (idéal) si $T_m$ désigne, non plus la période nominale en
+  régime asservi, mais la période propre du capteur en régime libre (non
+  asservi).
+
+De ce fait, pour résoudre une accélération de $10^{-10}$ m s$^{-2}$ en continu,
+une résolution de $10^{-10}$ m sera nécessaire avec un capteur de période 6 s
+contre $10^{-12}$ m pour un capteur de 0.6 s.
+
+Ces considérations s'appliquant à la « résolution » du capteur, sont également
+valables pour les bruits, comme on le verra au paragraphe 2.3.2.
+
+En conséquence, [le choix de période propre]{.underline} se fixera, à priori,
+sur la valeur maximale compatible avec les dimensions et la stabilité du
+capteur.
+
+<!-- p. 19 -->
+
+**Nécessité d'une « suspension » non linéaire :**
+
+On a vu, au parag. 2.0.1. que la période d'un capteur linéaire est donnée par
+$T = 2\pi\sqrt{\dfrac{m}{k}}$
+
+et que la relation d'équilibre s'écrit $mg = k(\ell_{eq} - \ell_0)$
+
+en réintroduisant la relation d'équilibre, il vient :
+
+$$
+T = 2\pi\sqrt{\frac{\ell_{eq} - \ell_0}{g}}
+$$
+
+L'obtention d'une période de 6 s nécessite de ce fait un allongement à
+l'équilibre $\ell_{eq} - \ell_0 = 8.9$ m, ce qui rend impossible toute
+réalisation de suspension de ce type pour des périodes de cet ordre.
+
+De ce fait, pour l'obtention de périodes de cet ordre, on utilisera des
+suspensions basées sur le principe des pendules composés (sismomètres
+rotatifs).
+
+<!-- p. 20 -->
+
+- Dans le cas d'une application large bande, le capteur devra permettre des
+  mesures dans le domaine des « hautes » fréquences ; de ce fait, la conception
+  du capteur devra veiller à [« éliminer » les résonances parasites]{.underline}
+  de la bande de fréquence d'intérêt : les modes parasites susceptibles d'être
+  excités devront être rejetés vers les hautes fréquences (ceci nécessite entre
+  autre une grande rigidité mécanique des éléments du bâti).
+
+- L'observation de la courbe de réponse permet de voir que l'amplitude des
+  déplacements (relatifs) de la masse est au maximum (excepté au voisinage de la
+  résonance) égale à celle des déplacements du sol.
+
+En longue période ($T > T_m$), les déplacements de la masse sont encore atténués
+dans le rapport $\left(\dfrac{T}{T_m}\right)^2$ de sorte que ces déplacements
+seront encore plus faibles.
+
+On conçoit, de ce fait, que les caractéristiques de stabilité doivent également
+correspondre au niveau de mesure extrêmement faible. Ainsi, toute dérive,
+mouvement parasite de la masse, déformation du bâti ou dilatation thermique
+pourront occulter les mouvements mesurés, voire même provoquer la sortie de la
+zone linéaire dans le cas d'un capteur non asservi.
+
+<!-- p. 21 -->
+
+Par conséquent, la conception mécanique du capteur devra intégrer les éléments
+fondamentaux suivants :
+
+- grande stabilité des caractéristiques,
+- compensation en température ayant pour but de minimiser, non seulement les
+  dérives dues aux dilatations, mais aussi les dérives provenant des variations
+  du module d'élasticité (ceci est important pour les éléments de faible
+  rigidité : ressorts, éléments élastiques, etc ...),
+- protection contre les perturbations externes visant à filtrer les effets
+  parasites résiduels (isolation thermique — protection électromagnétique —
+  isolation des variations de pression externes ...)
+
+<!-- p. 22 -->
+
+### 2.0.3 — Analyse mécanique générale des sismomètres rotatifs
+
+Un sismomètre rotatif est généralement constitué d'une masse mobile, pivotant
+librement autour d'une articulation sans frottement, et suspendue grâce à un
+dispositif mécanique assurant un équilibre du système avec rappel
+visco-élastique autour de la position d'équilibre (schéma Fig. 2.0.3).
+
+![Fig. 2.0.3 — Sismomètre rotatif vertical (pendule composé). $\varphi$ : angle d'inclinaison du bras $\Omega G$ par rapport à l'horizontale.](figures/generees/fig-2-0-3){width=100%}
+
+La mise en équation par les théorèmes généraux de la mécanique conduit à :
+
+$$
+I_\Omega\,\ddot\varphi + m r_G\,\ddot z_e =
+\underbrace{-mg\,r_G\cos\varphi}_{(a)}
+\;\underbrace{-\,C\cdot(\varphi-\varphi_0)}_{(b)}
+\;\underbrace{-\,\Phi\,\dot\varphi}_{(c)}
+\;+\underbrace{M}_{(d)}
+$$
+
+(a) moment de la force de gravité ; (b) rappel élastique vers une position
+$\varphi = \varphi_0$ ; (c) couple d'amortissement ; (d) moment des autres forces
+et autres termes de couple.
+
+<!-- p. 23 -->
+
+où $I_\Omega = I_G + m r_G^2$ représente l'inertie du bras par rapport à l'axe de
+son pivot ($I_G$ étant l'inertie du bras par rapport à l'axe passant par son
+centre de masse).
+
+**Équation d'équilibre :**
+
+$\varphi = \varphi_e$ position d'équilibre (pour $\ddot z_e = 0$) conduit à :
+
+$$
+m\cdot g\cdot r_G\cdot\cos\varphi_e = -C\cdot(\varphi_e - \varphi_0) + M(\varphi_e)
+$$
+
+**Équation dynamique linéarisée autour de $\varphi = \varphi_e$ :**
+(on pose : $\varphi = \varphi_e + \epsilon$)
+
+$$
+I_\Omega\,\ddot\epsilon + \Phi\,\dot\epsilon
++ \underbrace{C\epsilon - \left(\frac{dM}{d\varphi}\right)_{\varphi_e}\epsilon
+- \left(m g r_G \sin\varphi_e\right)\epsilon}_{\text{terme de rappel élastique autour de } \varphi_e \;=\; +C^*\epsilon}
+= -m r_G\,\ddot z_e
+$$
+
+En projetant sur la perpendiculaire à la direction d'équilibre (axe sensible du
+capteur) $x_G = r_G\,\epsilon$
+
+il vient en utilisant la notation de Laplace :
+
+$$
+\frac{x_G}{\ddot z_e} = \frac{-m r_G^2}{I_\Omega s^2 + \Phi s + C^*}
+$$
+
+<!-- p. 24 -->
+
+Cette relation, analogue à celle du parag. 2.0.1, fait apparaître :
+
+- la pulsation mécanique
+
+  $$
+  \omega_m = \sqrt{\frac{C^*}{I_\Omega}}
+  $$
+
+- l'amortissement réduit
+
+  $$
+  \xi = \frac{\Phi}{2\,I_\Omega\,\omega_m}
+  $$
+
+- un coefficient assimilable à un « gain mécanique »
+
+  $$
+  \alpha_{1m} = \frac{m r_G^2}{I_\Omega}
+  $$
+
+Dans le cas général, la période est ainsi donnée par :
+
+$$
+T = 2\pi\cdot\sqrt{\frac{I_\Omega}{C - \left(\dfrac{dM}{d\varphi}\right)_{\varphi_e} - m g r_G\cdot\sin\varphi_e}}
+$$
+
+$C$ correspond à un rappel élastique simple, par exemple au couple de rappel
+d'un pivot élastique.
+
+$\dfrac{(dM)}{(d\varphi)}$ représente le terme de 1^er^ ordre du couple exercé,
+par exemple, par le système de suspension élastique.
+
+Le signe − indique un couple de rappel ($\frac{dM}{d\varphi} \leq 0$)
+
+<!-- p. 25 -->
+
+Le 3^ème^ terme montre la contribution du moment de la gravité (rappel lorsque
+la position d'équilibre du centre de masse est située sous le pivot). Dans le
+cas d'un sismomètre « vertical », on doit avoir $\varphi_e = 0$ et de ce fait,
+ce terme s'annule.
+
+**Cas du capteur parfait vertical :**
+
+$$
+\varphi_e = 0 \qquad C = 0
+$$
+
+La relation d'équilibre donne :
+
+$$
+m\cdot g\cdot r_G = M(0)
+$$
+
+$$
+T = 2\pi\cdot\sqrt{\frac{I_\Omega}{-\left(\dfrac{dM}{d\varphi}\right)_0}}
+$$
+
+en réintroduisant la relation d'équilibre :
+
+$$
+T = 2\cdot\pi\cdot\sqrt{\frac{I_\Omega}{m r_G^2}}\cdot\sqrt{\frac{r_G}{g}}\cdot
+\sqrt{\frac{M}{-\left(\dfrac{dM}{d\varphi}\right)_0}}
+$$
+
+<!-- p. 26 -->
+
+### 2.0.4 — Interprétation et conclusions
+
+Réintroduisons la relation d'équilibre dans l'expression de la période du
+capteur vertical :
+
+$$
+T = 2\cdot\pi\cdot\sqrt{\frac{I_\Omega}{m r_G^2}}\cdot\sqrt{\frac{r_G}{g}}\cdot
+\sqrt{\frac{M}{-\left(\dfrac{dM}{d\varphi}\right)_0}}
+$$
+
+Comme en général $I_\Omega \approx m r_G^2$, cette relation montre que la
+période dépend de deux paramètres principaux :
+
+- un facteur dimensionnel $\sqrt{r_G}$
+- un facteur lié uniquement à la caractéristique (de couple) du ressort
+  $\sqrt{\dfrac{M}{-\frac{dM}{d\varphi}}}$ exprimant le degré de constance du
+  couple (le signe − sous le radical impose un couple de rappel autour de la
+  position d'équilibre).
+
+<!-- p. 27 -->
+
+Cette relation indique que la réalisation d'une suspension longue période
+miniature impose une caractéristique de couple du ressort ayant un très fort
+degré de constance :
+
+Pour $T = 6$ s et $R_G = 100$ mm, on trouve par exemple :
+
+$$
+\frac{\frac{d}{d\varphi}\,\text{Couple}}{\text{Couple}} \approx \frac{1}{90~\text{rad}}
+\approx 2\times10^{-4}/\text{deg} \quad (\text{i.e. } 0.2~‰ \text{ par degré})
+$$
+
+Ici encore, ces résultats mettent en lumière la grande difficulté de conception
+et de réalisation d'une suspension longue période. Ils montrent, de plus,
+l'incidence de la « stabilité » mécanique (phénomènes du 2^ème^ ordre).

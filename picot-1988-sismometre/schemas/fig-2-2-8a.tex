@@ -1,0 +1,16 @@
+\input{_preambule}
+\begin{document}
+\begin{tikzpicture}[font=\small]
+  \node[somme] (s) at (0,0) {};
+  \node[bloc, minimum width=2cm] (h) at (2.2,0) {$H_m$};
+  \pic (t) at (4.3,0) {transducteur}; \node[above=2.5mm] at (4.3,0) {$\alpha_0$};
+  \node[gain] (a) at (5.7,0) {$A$};
+  \draw[->] (-1.2,0) node[left] {$\gamma_i$} -- (s) node[above left, pos=0.85] {\scriptsize$-$};
+  \draw[->] (s) -- (h); \draw (h) -- node[above] {$x$} (t-o); \draw[->] (t-e) -- (a);
+  \draw (a.east) -- (7.6,0) node[circle, fill, inner sep=1.3pt] {} node[above] {$U$};
+  \node[bloc, minimum width=3.4cm, minimum height=1.1cm] (pd) at (3.4,-1.8) {$\beta_0(1+s\tau_f)$};
+  \node[below] at (pd.south) {P + D};
+  \draw[->] (6.8,0) |- (pd.east);
+  \draw[->] (pd.west) -| (s.south) node[below left, pos=0.95] {\scriptsize$+$};
+\end{tikzpicture}
+\end{document}

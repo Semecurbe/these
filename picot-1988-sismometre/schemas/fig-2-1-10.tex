@@ -1,0 +1,38 @@
+\input{_preambule}
+\begin{document}
+\begin{tikzpicture}[font=\small, node distance=8mm,
+    etape/.style={draw, minimum width=3.6cm, minimum height=8mm, align=center, fill=white},
+    test/.style={draw, diamond, aspect=2.4, inner sep=1pt, align=center, fill=white},
+    rond/.style={draw, circle, minimum size=2cm, align=center}]
+  \node[draw, rectangle split, rectangle split parts=2, minimum width=4.6cm, align=center]
+    (cfg) at (0,0) {Configuration géométrique \nodepart{two} Paramètres mécaniques};
+  \node[etape] (stat) at (0,-1.7) {ÉTUDE STATIQUE};
+  \node[test] (verif) at (0,-3.2) {Vérification\\des contraintes};
+  \node[etape] (freq) at (3.4,-4.8) {Calcul des fréquences\\parasites};
+  \node[test] (reso) at (3.4,-6.4) {résonance\\parasite};
+  \node[etape] (quasi) at (5.8,-7.9) {Étude quasi statique};
+  \node[etape] (choix) at (5.8,-8.9) {Choix du pivot};
+  \node[etape] (param) at (5.8,-9.9) {Étude paramétrique};
+  \node[rond] (regl) at (0.9,-9.9) {Méthode\\de\\réglage};
+  \node[test] (ana) at (5.8,-11.5) {Analyse\\des résultats};
+  \node[etape, minimum height=14mm] (eff) at (1.2,-13.4) {Calcul des efforts\\[4pt]Calcul du pivot};
+  \node[test] (res) at (1.2,-15.3) {Résultats\\satisfaisants};
+  \node[rond] (essai) at (5.6,-15.3) {Test de la\\solution};
+  % flux principal
+  \draw[->] (cfg) -- (stat); \draw[->] (stat) -- (verif);
+  \draw[->] (verif.east) -- node[above, pos=0.3] {correctes} (verif.east -| freq) -- (freq);
+  \draw[->] (freq) -- (reso);
+  \draw[->] (reso.east) -- node[above, pos=0.8] {satisfaisante} (reso.east -| quasi) -- (quasi);
+  \draw (quasi) -- (choix) (choix) -- (param);
+  \draw[->] (param) -- (ana);
+  \draw[->] (param.west) -- (regl.east);
+  \draw[->] (ana.east) -- node[below right, pos=0.1] {insuffisants} ++(0.9,0) |- (choix.east);
+  \draw[->] (ana.west) -- node[below, pos=0.45, align=center] {caractéristiques\\satisfaisantes} (ana.west -| eff) -- (eff);
+  \draw[->] (eff) -- (res);
+  \draw[->] (res.east) -- node[above] {oui} (essai);
+  % retours
+  \draw[->] (verif.west) -- node[above, pos=0.45, align=center] {trop\\fortes} (-3.4,-3.2) |- ([yshift=-1.5mm]cfg.west);
+  \draw[->] (reso.west) -- node[above, pos=0.3] {incorrecte} (-3.7,-6.4) |- (cfg.west);
+  \draw[->] (res.west) -- node[above] {non} (-4.0,-15.3) |- ([yshift=1.5mm]cfg.west);
+\end{tikzpicture}
+\end{document}

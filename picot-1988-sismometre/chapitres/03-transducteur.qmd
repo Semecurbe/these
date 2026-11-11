@@ -1,0 +1,1020 @@
+# Étude et réalisation d'un transducteur déplacement faible bruit et de son électronique associée
+
+<!-- p. 120 -->
+
+## 3.0 Introduction
+
+La première génération de capteurs asservis du L.D.G. (capteurs horizontaux
+asservis), développée autour d'un transducteur à LVDT standard, avait dégagé
+l'ossature d'une électronique faible bruit. Cependant, les études n'avaient pas
+permis une identification précise des sources de bruit. L'étude entreprise ici
+a conduit, dans un premier temps, à l'identification de chacune des sources de
+bruit, et a mis en lumière l'existence d'un bruit excédentaire en « 1/f »
+apporté par le LVDT proprement dit. L'amélioration du LVDT a amené un gain de
+plus de 30 dB sur ce bruit électronique Longue Période, et l'optimisation de
+l'électronique a permis, pour les bandes considérées, de conserver une
+amélioration du bruit électronique, en bande fermée, de 25 dB environ du continu
+jusqu'à quelques Hz.
+
+## 3.1 Analyse du LVDT
+
+Le LVDT (Linear Variable Differential Transformer) ou Transformateur
+Différentiel Variable Linéaire est un transducteur déplacement qui a pour
+intérêts : une facilité de mise en oeuvre, une bonne compacité, une électronique
+de traitement limité, une excellente linéarité, une excellente résolution, un
+hystérésis très faible et une sensibilité à l'environnement faible.
+
+<!-- p. 121 -->
+
+### 3.1.1 Analyse macroscopique
+
+Le LVDT est constitué de trois enroulements : un primaire central et deux
+secondaires identiques de part et d'autre, câblés en opposition, et d'un noyau
+mobile agissant sur l'équilibre des secondaires, suivant le schéma de la figure
+3.1.1. La tension recueillie pour le transformateur idéal serait exactement
+proportionnelle à la position ($r = 0$). Sur le transformateur réel, on constate
+que l'amplitude ne passe pas par zéro mais qu'il existe une tension résiduelle
+$rV_{I0}$. Ceci correspond à une tension en quadrature (capacités et couplages
+parasites...). Cette tension, qui limiterait la résolution (à $x \approx r/\alpha$)
+dans le cas d'une démodulation passive, est éliminée en procédant à une
+détection synchrone (en réalité avec un déphasage $\varphi$ par rapport au
+primaire).
+
+**Démodulation sinusoïdale :**
+
+Elle est réalisée en multipliant par $\cos(\omega t + \varphi)$ le signal issu
+des secondaires :
+
+$$
+\Delta V_{II} = V_{I0}\,\alpha x\cos(\omega t + \varphi) + r\,V_{I0}\sin(\omega t + \varphi)
+$$
+
+$$
+\begin{aligned}
+\frac{\Delta V_{II}}{V_{I0}}(x) &= \alpha x\cos^2(\omega t + \varphi) + r\cos(\omega t + \varphi)\sin(\omega t + \varphi) \\
+&= \underbrace{\frac{\alpha x}{2}}_{\text{composante linéaire}}
++ \underbrace{\frac{\alpha x}{2}\cdot\cos(2\omega t + 2\varphi) - \frac{1}{2}\,r\sin(2\omega t + 2\varphi)}_{\text{composante haute fréquence éliminée par filtrage passe-bas}}
+\end{aligned}
+$$
+
+<!-- p. 122 -->
+
+![**Figure 3.1.1** — Schéma de principe du LVDT. Cas idéal : $\Delta V_{II} = \alpha V_{I0}\,x\cos(\omega t + \varphi)$ ; cas réel : $\Delta V_{II} = \alpha V_{I0}\,x\cos(\omega t + \varphi) + rV_{I0}\sin(\omega t + \varphi)$.](../figures/generees/fig-3-1-1){width=85% fig-scap="Figure 3.1.1 — Schéma de principe du LVDT"}
+
+<!-- p. 123 -->
+
+**En pratique**, la démodulation est faite en multipliant le signal
+$\Delta V_{II}$ par le signal carré de période $T$ égal à ± 1, puis en filtrant
+(passe-bas) le signal :
+
+![Signal de démodulation (signal carré ± 1).](../figures/generees/fig-3-carre){width=35% fig-scap="Signal de démodulation"}
+
+dont le développement en série de Fourier est :
+
+$$
+\underbrace{\frac{4}{\pi}\cos(\omega(t+\tau))}_{\text{fondamental}}
+\underbrace{- \frac{1}{3}\cos(3\omega(t+\tau)) + \frac{1}{5}\cos(5\omega(t+\tau)) + \frac{(-1)^k}{2k+1}\cos((2k+1)\omega(t+\tau)) + \ldots}_{\text{Harmoniques}}
+$$
+
+(où $\tau = \pi/\omega$)
+
+Avec ce type de démodulation, toute fréquence autre que $f_e$, $3f_e$, $5f_e$,
+$(2k+1)f_e$ (harmoniques impaires) produira en sortie un battement haute
+fréquence, de valeur moyenne nulle, éliminée après filtrage passe-bas.
+
+On ne recueillera, après filtrage, que le fondamental et les harmoniques impairs
+(avec une atténuation proportionnelle à leur rang). Pour éliminer la
+contribution de ces harmoniques, on procèdera à une amplification sélective
+(avec filtrage passe-bas pour atténuer les harmoniques).
+
+<!-- p. 124 -->
+
+### 3.1.2 Constitution du LVDT (Référence E.E. Herceg (76))
+
+![**Figure 3.1.1** — Schéma du LVDT.](../figures/generees/fig-3-1-1b){width=70% fig-scap="Figure 3.1.1 — Schéma du LVDT"}
+
+On recherche, en général, une symétrisation la plus grande possible du système.
+
+**Constitution classique d'un LVDT :**
+
+- Le noyau cylindrique est constitué classiquement d'un alliage Fe-Ni.
+- L'enveloppe est généralement en acier inoxydable, à haute perméabilité. Elle
+  assure :
+  - un blindage magnétique,
+  - une réduction des courants de Foucault sur les éléments mécaniques,
+  - une réduction des tensions induites par des champs magnétiques externes et
+    une réduction des effets magnétiques externes du LVDT,
+  - une augmentation de la sensibilité et des tensions produites
+
+<!-- p. 125 -->
+
+### 3.1.3 Principales caractéristiques d'un LVDT
+
+- **Sensibilité** : Elle dépend des caractéristiques géométriques du LVDT, du
+  rapport de transformation I/II, des caractéristiques du noyau et du blindage,
+  et également de la fréquence d'excitation (en général, variations de
+  $\approx$ 10 % dans une plage allant de quelques centaines de Hz à 10 kHz). Elle
+  varie proportionnellement à l'excitation et est spécifiée pour une forte
+  résistance de charge.
+- **Linéarité** : La caractéristique d'un LVDT est, en général, quasi linéaire
+  dans une large plage mais elle s'incurve légèrement lorsqu'on élargit la
+  plage. Les valeurs typiques standards sont inférieures à 0,25 % de la plage
+  nominale.
+- **Résolution** : Le LVDT opérant par couplage magnétique, sa résolution est
+  idéalement quasi infinie, limitée en pratique par la résolution de
+  l'électronique associée. En pratique, la limite de résolution n'a pu être mise
+  en évidence et la résolution pratique est amenée par le bruit électronique.
+- **Tension de zéro (ou résiduelle)**
+
+  Elle peut provenir principalement de deux causes :
+
+  - tensions harmoniques : résultant de non linéarités ou d'imperfections
+    magnétiques, mais surtout de composantes harmoniques de l'excitation, qui ne
+    s'annulent pas en même temps que le fondamental.
+  - tensions de quadrature : résultant de différences d'angle de phase sur
+    chacun des secondaires (différence de capacité parasite entre chacun des
+    secondaires et le primaire, ou dissymétries).
+
+<!-- p. 126 -->
+
+  La valeur de cette tension est déterminante pour le choix du LVDT, dans le cas
+  du sismomètre ; en effet, on souhaite utiliser un gain important au niveau du
+  signal modulé, de manière à réduire la contribution du bruit en 1/f. Par
+  exemple, pour une excitation de $\approx$ 10 V$_{cc}$ avec un gain de tête de 500, pour
+  obtenir une tension résiduelle de 1 V$_{cc}$, on devra obtenir au moins un
+  rapport $\dfrac{\Delta U_{II}}{U_I}$ résid. de $2\times10^{-4}$ soit −74 dB.
+
+  En pratique, pour parvenir à de tels niveaux, il a fallu soigner la symétrie
+  du montage (y compris pour le noyau). On voit donc qu'à priori, il serait
+  meilleur de pratiquer un montage électrique symétrique, en amplifiant
+  symétriquement les tensions issues des secondaires grâce à un amplificateur
+  différentiel (cf. Fig. 3.1.3). Avec une mesure symétrique, un facteur
+  résiduel ($\dfrac{\Delta U_{II}}{U_I}$ résid.) bien meilleur (jusqu'à −95 dB
+  environ) a pu être obtenu. Malheureusement, un taux de réjection de mode
+  commun, aussi élevé pour des forts signaux à des fréquences de quelques kHz,
+  est très difficile à obtenir, du fait des non linéarités de l'amplificateur
+  pour les forts signaux (pour une application très faible bruit) ; et on a pu
+  observer une déformation importante du signal lors des essais avec
+  amplificateur différentiel. On pourrait y remédier en utilisant un
+  amplificateur différentiel alimenté par des tensions plus élevées, par exemple
+  ± 100 V.
+
+  Le montage adopté utilise donc un montage dissymétrique référé à la masse au
+  niveau du secondaire. On notera, par ailleurs, que la tension résiduelle
+  dépend de la fréquence d'excitation.
+
+<!-- p. 127 -->
+
+![**Figure 3.1.3** — Amplificateurs des signaux issus du LVDT (1 : montage symétrique ; 2 : montage dissymétrique).](../figures/generees/fig-3-1-3){width=85% fig-scap="Figure 3.1.3 — Amplificateurs des signaux issus du LVDT"}
+
+L'excitation est réalisée de manière symétrique pour optimiser les symétries.
+L'amplification peut être faite de manière symétrique pour respecter le maximum
+de symétrie (cas 1), le point milieu PM étant ou non relié à la masse. Dans ce
+cas, on amplifie chacun des deux signaux secondaires.
+
+Dans le cas 2, les secondaires sont opposés directement et le point milieu doit
+être laissé flottant. C'est directement le signal différentiel qui est amplifié,
+mais le montage est moins symétrique.
+
+<!-- p. 128 -->
+
+**Caractéristiques d'utilisation**
+
+*Fréquence d'excitation :*
+
+- Elle agit, faiblement, sur la sensibilité ainsi que sur la linéarité, et plus
+  sensiblement sur la tension de zéro.
+- Elle modifie l'angle de phase.
+- Elle est déterminante sur les impédances (pratiquement, les impédances
+  d'entrée et de sortie croissent avec la fréquence d'excitation).
+
+*Impédances du LVDT :*
+
+Impédance d'entrée :
+
+- Elle est importante car elle détermine le courant d'entrée. Le couplage
+  primaire/secondaire étant assez « lâche », ce sont principalement les
+  caractéristiques du primaire (nombre de tours, Ø du fil et matériaux) qui la
+  déterminent.
+
+Impédance du secondaire (impédance de source) :
+
+- Elle est liée principalement aux caractéristiques du secondaire et aux
+  caractéristiques du circuit magnétique. On verra qu'elle est importante pour
+  le bruit de l'amplificateur de tête.
+
+Au-dessus de quelques kHz, ces impédances sont principalement inductives.
+
+Dans la plage linéaire de variation du noyau, ces impédances sont pratiquement
+constantes.
+
+<!-- p. 129 -->
+
+## 3.2 Électronique de mesure associée au LVDT
+
+### 3.2.1 Principe et schéma
+
+La figure 3.2.1 montre le principe retenu pour l'électronique de mesure (et de
+contre-réaction) associée au LVDT.
+
+*Excitation :*
+
+Elle est assurée par un oscillateur à quartz dont la fréquence est ensuite
+divisée par 2^7^ = 128, au moyen d'un diviseur de fréquence. Ce type
+d'oscillateur a été choisi pour *sa bonne stabilité* (meilleure que
+$10^{-4}$ autour de 1 s) indispensable pour une application faible bruit.
+
+Les signaux carrés générés sont utilisés pour commuter des références de tension
+(nécessité d'un faible bruit en amplitude).
+
+Les signaux carrés sont mis en forme par filtrage second ordre passe-bas, dont la
+fréquence de coupure est fixée à $0{,}7\,f_e$.
+
+L'excitation est appliquée en symétrique au primaire du LVDT.
+
+*Amplification sélective :*
+
+Les signaux du LVDT proviennent des secondaires, câblés en opposition (un des
+secondaires étant référé à la masse, le point milieu étant conservé flottant).
+Ils sont amplifiés et filtrés (passe-bas 1^er^ ordre de fréquence de coupure
+$f_c = 1.25\,f_e$) par un amplificateur faible bruit (ampli OP 27) de gain à
+$f = f_e$ de 250 à 500.
+
+<!-- p. 130 -->
+
+![**Figure 3.2.1** — Principe de l'électronique de mesure et de contre-réaction associée au LVDT.](../figures/generees/fig-3-2-1){width=100% fig-scap="Figure 3.2.1 — Principe de l'électronique de mesure et de contre-réaction associée au LVDT"}
+
+<!-- p. 131 -->
+
+*Démodulation :*
+
+Le signal amplifié est démodulé, par une porte analogique (7512-A.D.), en
+commutant les sorties de l'amplificateur, sur les entrées d'un étage
+différentiel.
+
+Le signal logique de commande de démodulation provient d'une sortie d'une PROM
+adressée à partir des signaux d'horloge provenant des sorties du diviseur de
+fréquence ($f_{quartz}/2, \ldots, f_{quartz}/2^7$). La PROM permet de compenser
+les déphasages divers (filtres divers et angle de phase du LVDT). La résolution
+en phase ainsi obtenue est de $\dfrac{2\pi}{2^7}$, soit environ 2.8 deg.
+
+Ce type de commande a été préféré à la solution, plus classique, d'un signal de
+commande généré par un comparateur à partir du signal d'entrée du LVDT. En
+effet, cette solution élimine l'influence du bruit en amplitude, et permet de
+conserver la stabilité et le faible bruit en phase de l'oscillateur à quartz.
+
+Un filtrage passe-bas 2^ème^ ordre ($f_c$ = 108 Hz pour les capteurs LBH et
+10.8 Hz pour les LPZ) de gain $\frac{\pi}{2} \approx 1.57$, élimine la
+composante haute fréquence et achève la démodulation.
+
+Le schéma détaillé de l'électronique (incluant les éléments de sortie et de
+contre réaction) apparaît à la figure 3.2.2.
+
+<!-- p. 132 -->
+
+![**Figure 3.2.2** — Schéma de l'électronique (Laboratoire de Géophysique, carte SIS-ASSER, repère ET/CAP/LP/01586, 09/86).](../figures/generees/fig-3-2-2){width=100% fig-scap="Figure 3.2.2 — Schéma de l'électronique"}
+
+<!-- p. 133 -->
+
+### 3.2.2 Analyse du bruit instrumental
+
+On présentera ici l'analyse théorique du bruit de la chaîne de mesure de
+déplacement de la figure 3.2.2. Celle-ci sera confrontée aux mesures
+expérimentales au paragraphe suivant.
+
+Le gain de tête et le niveau d'excitation ne correspondent pas exactement aux
+valeurs standards des sismomètres en fonctionnement, mais correspondent aux
+valeurs des analyses spectrales présentées.
+
+Le LVDT pris en compte ici est le LVDT faible bruit, mis au point à l'issue de
+cette étude.
+
+**Caractéristiques de l'électronique :**
+
+| | | |
+|---|---|---|
+| | Fréquence d'excitation | 4 kHz |
+| | Gain de tête mesuré | G = 520 (54.3 dB) |
+| | Niveau d'excitation | 12.9 dBV$_{RMS}$ (4.4 V$_{RMS}$) |
+| LVDT | Impédance du LVDT à 4 kHz | 2,26 kΩ |
+| LVDT | Résistance ohmique du secondaire | 1,4 kΩ |
+| LVDT | Sensibilité approximative | 128 mV/mm/V au primaire |
+
+L'étude de bruit complète, rigoureuse, étant fastidieuse, on ne présentera les
+détails de celle-ci que pour les étages amenant les bruits les plus élevés en
+sortie. On supposera, de plus, que :
+
+- l'impédance de sortie de chaque étage est négligeable,
+- les sources de bruit sont supposées décorrélées.
+
+<!-- p. 134 -->
+
+Les caractéristiques de bruit des amplificateurs OP27-FJ et OPA111 BM sont
+résumées dans le tableau suivant :
+
+| | OP 27 - F typique | OP 27 - F maximum | OPA 111 BM typique | OPA 111 BM maximum |
+|---|---|---|---|---|
+| **Bruit en tension :** | | | | |
+| 1 kHz | 3 nV/√Hz | 3.8 nV/√Hz | 7 nV/√Hz | 12 nV/√Hz |
+| 10 s | $\approx$ 16 nV/√Hz | | 300 nV/√Hz | 600 nV/√Hz |
+| Fréquence de coude | 2.7 Hz | | $\approx$ 20 Hz | |
+| **Bruit en courant :** | | | | |
+| 1 kHz | 0.4 pA/√Hz | 0.6 pA/√Hz | 0.4 fA/√Hz | 0.6 fA/√Hz |
+| 10 s | 17 pA/√Hz | | 0.4 fA/√Hz | 0.6 fA/√Hz |
+| Fréquence de coude | $\approx$ 140 Hz | | > 0.1 Hz | |
+
+Les caractéristiques de bruit seront calculées à partir des valeurs typiques.
+
+<!-- p. 135 -->
+
+**BRUIT EN SORTIE DE CHAÎNE, EN BOUCLE OUVERTE**
+
+*Gain de tête*
+
+![Étage de tête : $R_-$ = 787 Ω ; $R_f$ = 715 kΩ ; $C_f$ = 47 pF ; gain effectif à 4 kHz : 520.](../figures/generees/fig-3-2-gaintete){width=45% fig-scap="Étage de tête"}
+
+| Source de bruit | Bruit équivalent en entrée | Bruit équivalent en sortie |
+|---|--:|--:|
+| *Bruit de Johnson* | | |
+| $R_-$ | | 1840 nV/√Hz |
+| Re($Z_f$) $\approx$ 417 kΩ | | 81 nV/√Hz |
+| Re($Z_+$) $\approx$ 1.42 kΩ | | 2480 nV/√Hz |
+| | 5.97 nV/√Hz | 3089 nV/√Hz |
+| *Bruit en courant* | | |
+| $Z_{s-}\,i_n$ = 0.4 pA × 787 Ω | 0.3 nV/√Hz | |
+| $Z_{s+}\,i_n$ = 0.4 pA × 2.26 kΩ | 0.9 nV/√Hz | |
+| *Bruit en tension* | 3 nV/√Hz | |
+
+Bruit total en sortie de l'étage : $\approx$ 3460 nV/√Hz (soit −109.2 dB réf. 1 V/√Hz)
+— bruit bande étroite autour de 4 kHz).
+
+*Effet en sortie V1 :*
+
+Gain de démodulation $\left(\dfrac{\pi}{2}\cdot\sqrt2\right)\cdot 1.57 = \sqrt2$
+
+Le bruit analysé en sortie V1 aura une densité spectrale blanche en basse
+fréquence de valeur : −109.2 dBV/√Hz + 3 dB = −106.2 dBV/√Hz
+
+*Effet en sortie V2 :* −66.2 dBV/√Hz
+
+<!-- p. 136 -->
+
+*Amplificateur de prédémodulation*
+
+Cet amplificateur permet d'isoler la paire venant du capteur, il est de gain
+unité (suiveur). La résistance de source correspond à l'impédance de sortie de
+l'amplificateur de tête pour A4, et à zéro pour A3 : elle est donc négligeable
+dans les deux cas.
+
+- Chacun des amplificateurs génère en sortie démodulée : (voir Annexe 2)
+  - un bruit blanc lié au bruit à la fréquence porteuse,
+  - un bruit basse fréquence lié au fait que chaque amplificateur n'intervient
+    que sur la moitié du signal
+- Sources de bruit intervenant (équivalent en entrée de A3 ou A4) :
+  - thermique : négligeable
+  - à la fréquence porteuse $f_e$ : tension : $e_n$ = 3 nV/√Hz (amplificateur
+    OP 27) ; courant : négligeable
+  - basse fréquence : tension : $e_n$ = 16 nV/√Hz à 10 s (bruit en « 1/f »)
+    (+ 3 nV/√Hz blanc) ; courant : négligeable
+
+<!-- p. 137 -->
+
+En utilisant les résultats du 2.2.2.3, l'effet en sortie démodulée après
+filtrage est le suivant :
+
+- Transformée du bruit blanc :
+
+  $$
+  e_n \to e_n\times\underbrace{\frac{\sqrt2}{2}\cdot\frac{2}{\pi}}_{\text{transposition de fréquence}}
+  \times\underbrace{\frac{\pi}{2}}_{\text{gain de démodulation}}
+  \times\underbrace{\sqrt2}_{\text{2 sources bruyantes}}
+  $$
+
+- Transformée de bruit basse-fréquence :
+
+  $$
+  e_n \to e_n\times\frac{1}{2}\times\frac{\pi}{2}\times\sqrt2
+  $$
+
+  soit 3 nV/√Hz environ de bruit blanc, 17 nV/√Hz environ à 10 s de bruit en
+  1/f
+
+leur effet en sortie V1 est donc négligeable.
+
+<!-- p. 138 -->
+
+*Portes analogiques :*
+
+Leur contribution au bruit est inconnue. Elles peuvent intervenir par le
+mécanisme d'un bruit en amplitude ou d'un bruit en phase (cf. parag. « autres
+sources de bruit — Bruit de l'oscillateur »).
+
+*Amplificateur différentiel :* (cf. Figure 3.2.3)
+
+Les résistances de source $R_{s-}$ et $R_{s+}$ correspondent chacune à la mise
+en parallèle de deux résistances de 4.99 kΩ.
+
+*Sources de bruit :*
+
+| Bruit thermique | Amplificateur : bruit en tension | Amplificateur : bruit en courant | |
+|---|---|---|---|
+| $R_{th}$ = 4.99 kΩ | | $R_s$ = 4.99 kΩ | |
+| | 16 nV/√Hz | $\approx$ 80 nV/√Hz | Bruit « 1/f » valeur à 10 s |
+| 9 nV/√Hz | 3 nV/√Hz | $\approx$ 2 nV/√Hz | Bruit blanc |
+
+*Effet en sortie V1 :*
+
+Le bruit est multiplié par $\approx$ $\pi$/2
+
+- bruit 1/f (10 s) : 126 nV/√Hz ou −138 dB V/√Hz
+- bruit blanc : 15 nV/√Hz négligeable
+
+*Effet en sortie V2 :* −98 dB V/√Hz en 1/f à 10 s
+
+<!-- p. 139 -->
+
+![**Figure 3.2.3** — Schéma de l'amplificateur différentiel (gain unité) et du filtre de post-démodulation (2^è^ ordre ; $G$ = 1.57 ; $f_{coupure}$ = 10.8 Hz (10.9 Hz) ; $\xi$ = 0.707).](../figures/generees/fig-3-2-3){width=50% fig-scap="Figure 3.2.3 — Schéma de l'amplificateur différentiel"}
+
+<!-- p. 140 -->
+
+*Filtre de post-démodulation* (figure 3.2.3)
+
+Étude simplifiée
+
+*Sources de bruit :*
+
+| bruit thermique | bruit en tension | bruit en courant | |
+|---|---|---|---|
+| / | 16 nV/√Hz | ($Z_S$ = 4 kΩ) 64 nV/√Hz | bruit en 1/f, valeur à 10 s |
+| $\leq$ 8 nV/√Hz | 3 nV/√Hz | $\leq$ 1 nV/√Hz | bruit blanc |
+
+*Effet en sortie V1 :*
+
+Le bruit est multiplié par $\dfrac{\pi}{2}$ ce qui donne :
+
+- pour le bruit en 1/f $\approx$ 104 nV/√Hz à 10 s
+- pour le bruit blanc une valeur $\leq$ 12 nV/√Hz donc négligeable.
+
+*NB* — Cas d'un filtre 10.8 Hz :
+
+Dans le cas du filtre 10.8 Hz, les valeurs des résistances intervenant sur
+l'entrée + de l'amplificateur sont multipliées par 10.
+
+$$
+Z_{s+} = \left(33~\text{k}\Omega /\!/ \frac{1}{2\pi f\cdot 1~\mu\text{F}} + 6.6~\text{k}\Omega\right) /\!/ \frac{1}{2\pi f\cdot 1~\mu\text{F}} \leq 40~\text{k}\Omega
+$$
+
+Le bruit 1/f en sortie V1 passe alors à $\approx$ 1 µV/√Hz à 10 s (−120 dB V/√Hz en
+sortie V1 et −80 dB V/√Hz en sortie V2 à 10 s)
+
+<!-- p. 141 -->
+
+*Filtre de sortie :*
+
+*Simplification du modèle pour le bruit thermique et le bruit en courant :*
+
+Si on néglige l'impédance de sortie de l'étage précédent, le bruit thermique et
+la contribution du bruit en courant (pour l'entrée + de l'amplificateur) sont
+identiques à ceux du dipole $Z_+$ de la figure 3.2.4.
+
+- *Le bruit thermique* peut, pour simplifier, être majoré par celui
+  associé à la résistance $|Z_+|$ (au lieu de Re($Z$)). On obtient
+  asymptotiquement à l'entrée + de l'amplificateur :
+
+  $$
+  e_{th}^*(Z_+) \approx
+  \begin{cases}
+  e_{th}^*(6.36~\text{M}\Omega)\ \text{pour } f < \dfrac{1}{400~\text{s}}, & \text{soit } 310~\text{nV}/\sqrt{\text{Hz}} \\[8pt]
+  e_{th}^*(15~\text{k}\Omega)\ \text{pour } 1.1~\text{Hz} < f < 100~\text{Hz}, & \text{soit } 15~\text{nV}/\sqrt{\text{Hz}}
+  \end{cases}
+  $$
+
+<!-- p. 142 -->
+
+  On doit adjoindre à ce bruit la contribution de la branche
+
+  $$
+  e_{th}^*(Z_-) = e_{th}^*(15~\text{k}\Omega) \quad\text{soit } 15~\text{nV}/\sqrt{\text{Hz}}
+  $$
+
+  On mesurera au total en sortie :
+
+  - 15 nV/√Hz × √2 × 100 = 2.1 µV/√Hz entre 100 Hz et 1 Hz (−113 dB V/√Hz)
+  - 100 × 310 nV/√Hz = 31 µV/√Hz pour $f < \dfrac{1}{400~\text{s}}$
+    ($\approx$ −90 dB V/√Hz)
+
+- *Bruit de l'amplificateur*
+
+  *courant :* En majorant $Z_+$ par son maximum $\approx$ 6 MΩ, on obtient une
+  contribution maximale du bruit en courant ne dépassant pas 2.5 nV/√Hz en
+  entrée de l'amplificateur, donc complètement négligeable.
+
+  *tension :* Le bruit en sortie est en « 1/f » de valeur à 10 s :
+  300 nV/√Hz × 100 = 30 µV/√Hz correspondant à −90 dB V/√Hz à 10 s. On obtiendra
+  à 400 s environ −74 dB V/√Hz.
+
+<!-- p. 143 -->
+
+![**Figure 3.2.4** — Étage de sortie (schéma ; transmittance $\left(1 + \frac{R_f}{R_-}\right)\left[\frac{R_1C_1s}{(1+R_2C_2s)(1+R_1C_1s)+R_1C_2s}\right]$ ; courbe de réponse asymptotique ; impédance $|Z|$ ; dipole du modèle de bruit $Z_+$).](../figures/generees/fig-3-2-4){width=60% fig-scap="Figure 3.2.4 — Étage de sortie"}
+
+<!-- p. 144 -->
+
+*Autres sources de bruit :*
+
+Cette partie s'efforce d'évaluer les autres sources de bruit intervenant, en
+général, par des mécanismes plus complexes.
+
+*Bruit des références de tension :*
+
+Ce type de bruit, modulé lors du hachage des références, transite dans la chaîne
+avec la porteuse, il subit une atténuation et un déphasage variable suivant la
+position du LVDT avant d'être démodulé au niveau de la sortie. Le rapport
+signal/bruit des références est inchangé entre la source et la sortie continue
+V1 de la chaîne.
+
+Estimation numérique : tension de bruit Zener d'une LM 129/329 (National Semi
+Conductor) : $e_n$ = 75 nV/√Hz à 100 Hz pour 6.9 V et fréquence de coude vers
+10 Hz
+
+rapport signal sur densité spectrale de bruit = 159 dB réf. 1 V/(1 V/√Hz) à
+100 Hz.
+
+Même en basse-fréquence ($T$ = 10 s), ce bruit restera négligeable en boucle
+ouverte $\approx$ −99 dB V/√Hz en sortie V2 pour un niveau continu de 1 V en sortie V1.
+
+*NB* : Bien que généré « en dehors » de la boucle d'asservissement,
+on montrerait que pour une même tension en sortie, ce type de bruit subit une
+atténuation analogue à celle d'un bruit généré dans la boucle. (Pour une
+variation $\Delta V_I$ de la tension primaire $V_I$, la variation en sortie
+$\Delta V$ de la tension de sortie $V$, est en boucle fermée
+$\dfrac{\Delta V}{V} \approx \left(\dfrac{1}{1+L_0}\right)\dfrac{\Delta V_I}{V_I}$).
+
+<!-- p. 145 -->
+
+*Bruit des filtres de mise en forme de l'excitation :*
+
+Ces filtres génèrent, en sortie continue, un bruit basse-fréquence (blanc)
+correspondant au bruit à la fréquence d'excitation. De plus, là encore, ce bruit
+traversant le LVDT, son niveau en sortie dépendra de la position du noyau
+(proportionnel à la tension récupérée au secondaire).
+
+Cependant, du fait des valeurs relativement faibles des impédances de source et
+compte-tenu de l'amplificateur utilisé, la contribution de ces bruits en sortie
+sera négligeable grâce à l'importante atténuation ($V_{II}/V_I$) amenée par le
+LVDT.
+
+Considérons pour simplifier le modèle de bruit d'un OP 27 de gain unité chargé
+par 10 kΩ de résistance pure (soit un bruit de 14 nV/√Hz), plaçons nous dans le
+cas défavorable de 10 V en sortie continue V1 ($4\times10^5$ V/m),
+l'atténuation amenée par le LVDT est alors de
+$\dfrac{10~\text{V}}{4\cdot10^5~\text{V/m}}\times 128~V_{II}/\text{m}/V_I$ soit
+$3\times10^{-3}~V_{II}/V_I$. On constate que même dans ce cas défavorable, la
+contribution de ce bruit (30 nV/√Hz en sortie continue V1 ou −110 dB V/√Hz en
+sortie V2) sera tout à fait négligeable.
+
+*NB* : La non linéarité de la fonction $U_{II}(U_I, x(U_I))$ étant
+à priori négligeable pour le fonctionnement en boucle fermée, ce type de bruit
+sera atténué de manière analogue au bruit généré dans la boucle.
+
+<!-- p. 146 -->
+
+*Bruit de l'oscillateur :*
+
+Deux types de bruit peuvent intervenir principalement pour l'oscillateur :
+
+- bruit en amplitude : Du fait du type d'oscillateur utilisé, il correspondra
+  pratiquement au bruit des références de tension.
+- bruit de phase : Ce type de bruit, délicat à modéliser, n'a pas été étudié en
+  détail.
+
+Cependant, il est vraisemblable que la stabilité en fréquence de l'oscillateur,
+ainsi que sa pureté spectrale, agissent sur le niveau de bruit observé.
+
+Ainsi, lors de toutes premières expérimentations menées au LDG pour la
+conception de la chaîne de mesure, le remplacement de l'oscillateur classique
+par un oscillateur à Quartz avait permis de réduire les niveaux de bruit mesuré.
+De ce fait, il apparaît qu'un bruit de phase de l'oscillateur, lié à l'existence
+des bandes latérales, pourrait expliquer les phénomènes de bruit observé.
+
+*Bruit de l'impédance de contre-réaction :*
+
+Le bruit thermique de l'impédance de contre-réaction est susceptible d'amener
+des accélérations de contre-réaction (et donc du bruit en sortie) pour un
+fonctionnement en boucle fermée.
+
+Pour ce bruit, il est plus facile de calculer son équivalent en entrée sismique
+(accélération).
+
+Soit $Z_c = Z_f + Z_b$, l'impédance de la branche de contre-réaction :
+
+le bruit en tension généré est :
+
+$$
+e^{*2} = 4kT\Delta f\,\mathrm{Re}(Z_c)
+$$
+
+et en courant :
+
+$$
+i^{*2} = 4kT\Delta f\,\frac{\mathrm{Re}(Z_c)}{|Z_c|^2}
+$$
+
+<!-- p. 147 -->
+
+On peut donc majorer le bruit en courant par :
+
+$$
+i^{*2} \leq \frac{4kT\Delta f}{|Z_c|} \quad\left(\leq \frac{4kT\Delta f}{\mathrm{Re}(Z_c)}\right)
+$$
+
+Le bruit équivalent en entrée est donné par :
+
+$$
+\gamma^* = \frac{B\ell_b\,r_b}{Mr_G}\,\beta_m\,i^*
+$$
+
+En utilisant le modèle suivant :
+
+![Modèle de la branche de contre-réaction.](../figures/generees/fig-3-2-modele){width=40% fig-scap="Modèle de la branche de contre-réaction"}
+
+$1/|Z_c|$ peut être approché par :
+
+![Approximation asymptotique de $1/|Z_c|$.](../figures/generees/fig-3-2-zc){width=55% fig-scap="Approximation asymptotique de $1/|Z_c|$"}
+
+<!-- p. 148 -->
+
+Sachant que pour le capteur considéré on a :
+
+$$
+R_f = 150~\text{k}\Omega \qquad \frac{B\ell_b\,r_b}{M\,r_G}\cdot\beta_m = 15~\text{m s}^{-2}/\text{A}
+$$
+
+le bruit en basse fréquence ($T > T_f \approx 1.4$ s) est alors :
+
+- $i^* \leq$ 0.32 pA/√Hz
+- $\gamma^* \leq 4.8\times10^{-12}$ m s$^{-2}$/√Hz (−226 dB ref 1 m s$^{-2}$/√Hz)
+
+et aux fréquences élevées, par exemple à $f$ = 100 Hz :
+
+- $|Z_c| \approx$ 1 kΩ
+- $i^* \leq$ 4 pA/√Hz
+- $\gamma^* \leq 6\times10^{-11}$ m s$^{-2}$/√Hz (−204 dB ref 1 m s$^{-2}$/√Hz)
+
+On verra que ce bruit peut être négligé.
+
+Outre le bruit thermique, la contre-réaction peut amener un bruit excédentaire
+basse-fréquence du fait de la polarisation de la résistance, lorsque le système
+est excentré (bruit excédentaire de niveau variable avec celui de la sortie
+continue). Cependant, une rapide évaluation va montrer que ce bruit est
+négligeable dans le cas de notre capteur.
+
+Considérons une tension continue de 1 V en sortie de boucle. Plaçons nous à
+0.1 Hz, dans ce cas $Z_c$ est assimilable à $R_f + R_c$. Considérons un indice
+de bruit (Noise Index) IB = −30 dB ; la densité spectrale de bruit en tension
+aux bornes de $R_f + R_c$ est alors donnée par :
+
+$$
+U^* = \frac{0.66\times10^{-6}}{f^{1/2}}\cdot\text{IB}\times V_{continu}
+$$
+
+<!-- p. 149 -->
+
+soit $6.6\times10^{-8}$ V/√Hz (−144 dB ref 1 V/√Hz)
+
+le bruit ramené en accélération est alors :
+
+$$
+\gamma^* = \frac{U^*}{Z_f + Z_b}\cdot\left(\frac{B\ell_B\,r_b}{M\,r_G}\cdot\beta_m\right)
+$$
+
+$\gamma^* \approx$ −204 dB ref. 1 m s$^{-2}$/√Hz à 0,1 Hz
+
+<!-- p. 150 -->
+
+![**Figure 3.2.5** — Analyse théorique du bruit électronique dans la bande, en boucle ouverte. Sortie V2 — Gain de tête 54.3 dB (non standard). Carte de test de bruit (gain de sortie : 100). \* excitation 4.4 V$_{RMS}$ (= 12.9 dB V$_{RMS}$) à 4 kHz.](../figures/generees/fig-3-2-5){width=90% fig-scap="Figure 3.2.5 — Analyse théorique du bruit électronique dans la bande, en boucle ouverte"}
+
+<!-- p. 151 -->
+
+### 3.2.3 Bruit excédentaire du LVDT
+
+La figure 3.2.5 représente les principales sources de bruit de l'étude
+précédente et leur contribution pour une analyse en boucle ouverte.
+
+La vérification de cette analyse théorique a été faite à partir d'une analyse,
+capteur bloqué (Fig. 3.2.6-A). On observe que les résultats de l'analyse,
+capteur bloqué, font apparaître un fort bruit excédentaire en 1/f, alors que le
+bruit blanc est pratiquement égal au bruit théorique calculé (+ 2 dB).
+
+Plusieurs analyses spectrales ont permis de voir que :
+
+- ce bruit en 1/f est pratiquement indépendant de la position du noyau,
+- ce bruit est proportionnel aux gains situés après le LVDT,
+- ce bruit excédentaire en 1/f disparaît lorsqu'on remplace le secondaire du
+  LVDT par une impédance égale à l'impédance de source présentée par le LVDT,
+- ce bruit augmente avec l'excitation (plus précisément, le rapport du bruit en
+  sortie à l'excitation croît très légèrement avec l'excitation).
+
+Ceci montre que *le LVDT présente un bruit « intrinsèque » excédentaire en
+1/f*, dont la valeur ramenée en entrée est pratiquement invariable
+avec les caractéristiques de l'électronique (nous verrons au parag. 3.3 que ce
+bruit dépend cependant du niveau et de la fréquence d'excitation).
+
+Bien qu'aucun modèle du bruit excédentaire n'ait été présenté, ce bruit pourrait
+s'expliquer par l'existence d'un bruit de bande latérale amené par
+l'oscillateur, ou par un bruit généré par un mécanisme de dissipation au niveau
+du circuit magnétique (bruit des ferrites ...)
+
+<!-- p. 152 -->
+
+![**Figure 3.2.6** — Analyses spectrales LVDT bloqué. A — LVDT faible bruit (cf. parag. 3.3) ; B — LVDT standard.](../figures/generees/fig-3-2-6){width=80% fig-scap="Figure 3.2.6 — Analyses spectrales LVDT bloqué"}
+
+<!-- p. 153 -->
+
+![**Figure 3.2.7** — Bruit en boucle fermée — sortie V2 (Gain de sortie 100). \* excitation = 4.4 V$_{RMS}$ (12.9 dB V$_{RMS}$).](../figures/generees/fig-3-2-7){width=90% fig-scap="Figure 3.2.7 — Bruit en boucle fermée — sortie V2"}
+
+<!-- p. 154 -->
+
+Lors des premières analyses effectuées sur un *LVDT standard*, avec
+les paramètres suivants :
+
+- excitation : 1 kHz — 4 Vcc pseudo sinusoïdal
+- gain de tête : G $\approx$ 280 (LVDT SHAEVITZ 050 HR)
+
+le bruit excédentaire s'établissait à $\approx$ −26 dB V/√Hz à 10 s correspondant à un
+bruit ramené en entrée de *−178 dB référés à 1 m/√Hz* (ou 1 m²/Hz)
+(cf. fig. 3.2.6-B).
+
+La figure 3.2.7 montre la contribution des sources de bruit pour un
+fonctionnement en boucle fermée. On remarque en particulier, que le bruit du
+filtre de sortie (voie V2) devient prépondérant en boucle fermée.
+
+## 3.3 Analyse du bruit propre du LVDT
+
+Comme nous l'avons déjà signalé lors de l'introduction, les analyses de bruit
+dans la gamme de fréquence étudiée ici, de *2.5 mHz* à 100 Hz,
+imposent des mesures extrêmement longues : les spectres de bruit sont obtenus
+par un estimateur moyenneur à partir d'analyses sur des fenêtres temporelles de
+400 (ou 800) s. Afin d'obtenir des spectres « lissés », il est indispensable de
+procéder à une moyenne sur un grand nombre de fenêtres temporelles. Par ailleurs,
+une période de stabilisation de quelques heures est, la plupart du temps,
+nécessaire pour éliminer les dérives continues résiduelles lors des
+modifications de paramètre, ou même, plus simplement, lors de l'ouverture du
+coffret-contrôle pour vérification des signaux. D'autre part, l'électronique
+n'étant pas totalement insensible aux perturbations externes, de nombreuses
+mesures « incertaines » ont dû être vérifiées. On conçoit, de ce fait, que les
+résultats présentés sont assez peu nombreux, voire parcellaires : chaque
+résultat est le fruit d'une nuit, voire même plusieurs nuits de mesures.
+
+<!-- p. 155 -->
+
+### 3.3.1 Influence des paramètres de base — niveau et fréquence d'excitation
+
+Les résultats présentés dans cette partie proviennent d'analyses effectuées dans
+une première phase de l'étude, à partir du LVDT SCHAEVITZ 050 HR associé à une
+électronique différente de celle présentée au parag. 3.2 (version initiale non
+« optimisée » — démodulation par composant intégré OPA 201 ...).
+
+Les résultats ne sont pas présentés sous la forme brute, mais sous la forme de
+bruit ramené en entrée (i.e. sous forme de densité spectrale de déplacement)
+dans la figure 3.3.1.
+
+Il ressort de ceci que :
+
+- à un faible niveau d'excitation, le bruit ramené en entrée est pratiquement
+  constant avec l'excitation. Au-delà d'un certain niveau, le bruit excédentaire
+  équivalent en entrée augmente (ceci correspondant probablement à un phénomène
+  de « saturation »),
+- lorsqu'on augmente la fréquence, le phénomène de saturation semble
+  s'atténuer.
+
+*Remarques :*
+
+- La mesure à 9.6 kHz, semblant aller à l'encontre de cette interprétation,
+  pourrait être expliquée par des incertitudes de mesures ou, plus
+  vraisemblablement, par l'apparition des limites de l'électronique (distorsion
+  des signaux, due au manque de rapidité des composants, génératrice de
+  « bruits »).
+
+<!-- p. 156 -->
+
+- Ces résultats, obtenus à 10 s, ne peuvent pas être extrapolés dans toute la
+  bande, du fait de l'occultation du bruit en 1/f par le bruit blanc
+  électronique aux faibles niveaux d'excitation. Ce phénomène devient plus
+  sensible lorsqu'on accroît la fréquence d'excitation : l'augmentation des
+  impédances (terme inductif) qui en résulte provoque une augmentation sensible
+  du bruit blanc issu de la transposition du bruit à la fréquence porteuse
+  (augmentation du bruit $Z(f_e)\cdot i^*(f_e)$).
+
+![**Figure 3.3.1** — LVDT SCHAEVITZ 050 HR (standard). Bruit ramené en entrée à 10 s en dB réf. 1 m/√Hz, en fonction de la fréquence (kHz) et du niveau d'excitation (V$_{cc}$, V$_{RMS}$).](../figures/generees/fig-3-3-1){width=80% fig-scap="Figure 3.3.1 — LVDT SCHAEVITZ 050 HR"}
+
+<!-- p. 157 -->
+
+**Étude sommaire de l'influence des caractéristiques du LVDT :**
+
+Les mesures précédentes ayant mis en lumière un phénomène pouvant être identifié
+comme un phénomène de saturation, il nous a semblé judicieux de tenter de
+remplacer le noyau standard d'un alliage Fe-Ni par un matériau présentant de
+meilleures caractéristiques de saturation magnétique. De même, l'enveloppe
+métallique externe en acier inoxydable nous ayant semblé être une origine
+probable du phénomène, nous avons effectué des mesures :
+
+- en remplaçant le noyau standard par un noyau ferrite,
+- en remplaçant l'enveloppe acier par une enveloppe cuivre
+
+*Caractéristiques du nouveau noyau :*
+
+Ferrite doux « Ferrinox » B30 GT 4.1 × 2 × 12.5
+
+1500 $\leq$ µi $\leq$ 2000 entre 0 et 50 °C, faibles pertes
+
+Remarque : le noyau adopté est de dimensions différentes du noyau initial.
+
+*Caractéristiques du blindage cuivre :*
+
+- épaisseur radiale $\approx$ 2.5 mm
+- épaisseur aux extrémités $\approx$ 8 mm
+
+<!-- p. 158 -->
+
+*Résultats concernant le bruit* ($f_e$ = 10 kHz)
+
+| Enveloppe \\ Noyau | Standard | Ferrite |
+|---|:--:|:--:|
+| Standard | − 185 ± 3 dB | − 205 ± 3 dB |
+| Cuivre | − 183 ± 3 dB | − 210 ± 3 dB |
+
+Bruit en dB réf. 1 m/√Hz à 10 s
+
+<!-- p. 159 -->
+
+**REMARQUES :**
+
+*Effet des paramètres fréquence et niveau d'excitation — type de noyau et
+d'enveloppe :*
+
+Les résultats présentés ne permettent pas de dégager clairement d'optimum pour
+ces paramètres du fait de l'imprécision des mesures de bruit :
+
+- En effet, les paramètres fréquence et niveau d'excitation ne peuvent être
+  modifiés que dans une plage assez faible sans refonte de l'électronique
+  compte-tenu des contraintes concernant le bruit électronique intrinsèque.
+- Par ailleurs, toute modification de fréquence nécessite la refonte des filtres
+  (mise en forme de l'excitation + amplificateur de tête) et donc modifie les
+  gains et niveaux d'excitation.
+- De plus, tous les paramètres (autres que le niveau d'excitation) modifient de
+  manière non prévisible la sensibilité qui est mesurée avec de fortes
+  incertitudes.
+
+  Ces incertitudes, auxquelles on doit ajouter l'incertitude propre de la mesure
+  de bruit, peuvent être évaluées de la manière suivante :
+
+| Causes d'incertitude | Valeur | Remarques |
+|---|--:|---|
+| Incertitude sur la sensibilité | 10 % | → Difficulté de mesure due au gain. Linéarité inconnue. |
+| Incertitude sur l'excitation | 5 % | → Mesure rendue délicate par le manque de pureté spectrale |
+| Incertitude sur la mesure de bruit | 25 % | |
+| **TOTAL** | $\approx$ 40 % i.e. 3 dB | |
+
+<!-- p. 160 -->
+
+### 3.3.2 Analyses affinées autour d'un LVDT optimisé faible bruit
+
+Les mesures précédentes ont montré l'intérêt du choix d'une fréquence
+d'excitation assez élevée, cependant les mesures à 10 kHz n'ayant pas montré de
+gain significatif (peut être du fait des déformations des signaux provenant du
+manque de rapidité des amplificateurs utilisés, et également des couplages
+parasites augmentant avec la fréquence), les caractéristiques adoptées pour une
+étude affinée ont été les suivantes :
+
+- excitation à la fréquence $f_e$ = 4 kHz
+- LVDT Shaevitz 050 HR avec enveloppe cuivre et noyau ferrite.
+
+Une refonte de l'électronique a été menée de manière à minimiser les
+déformations des signaux, et à conserver un bruit constant dans toute la
+dynamique (ce qui n'était pas le cas avec la première version de l'électronique
+utilisée, pour les résultats présentés au 3.3.1). Les améliorations ont porté,
+principalement, sur le remplacement d'un composant de démodulation intégré par un
+système amplificateur différentiel/porte analogique, l'adoption d'une excitation
+symétrique, et l'optimisation des caractéristiques de bruit de l'électronique.
+
+La nouvelle électronique (déjà présentée au 3.2.1.) a permis d'obtenir une quasi
+constance du bruit dans la plage dynamique du capteur (figure 3.3.2), ce qui
+n'était pas le cas pour la première réalisation. Cette figure montre, par
+ailleurs, que le déphasage, introduit entre la commande de démodulation et le
+signal d'excitation :
+
+<!-- p. 161 -->
+
+- est pratiquement sans influence sur le bruit lorsqu'on se place vers le
+  minimum de la dynamique,
+- et devient légèrement sensible lorsqu'on atteint le maximum de la dynamique :
+  pour des signaux de 20 Vcc en sortie de gain de tête, et pour une
+  démodulation en quadrature par rapport à la démodulation nominale, le bruit en
+  sortie est supérieur de 5 à 10 dB environ au bruit dans les conditions
+  nominales.
+
+*NB* : Cette mesure n'est toutefois pas significative, puisqu'elle
+correspond à une réponse du LVDT totalement non linéaire.
+
+<!-- p. 162 -->
+
+![**Figure 3.3.2** — Nouvelle électronique : vérification de la constance du bruit dans la dynamique.](../figures/generees/fig-3-3-2){width=90% fig-scap="Figure 3.3.2 — Nouvelle électronique"}
+
+| | |
+|---|---|
+| Courbes V, O | Analyses au voisinage de la position zéro (PROM nominale et PROM nominale + déphasage de $\pi$/2). Analyse vers le maximum de la dynamique (à 10 Vc en sortie de l'amplificateur de tête). |
+| Courbe M | Analyse vers le maximum de la PROM nominale |
+| Courbe R | Analyse vers le maximum de la PROM nominale + déphasage de $\pi$/2. |
+
+*NB* : Seules les courbes V et M correspondent à des conditions de
+mesures significatives pour une mesure de déplacement.
+
+<!-- p. 163 -->
+
+![**Figure 3.3.3** — Analyse spectrale LVDT bloqué.](../figures/generees/fig-3-3-3){width=90% fig-scap="Figure 3.3.3 — Analyse spectrale LVDT bloqué"}
+
+<!-- p. 164 -->
+
+![**Figure 3.3.4** — Analyse spectrale LVDT primaire court-circuité à la masse. Analyse spectrale LVDT primaire court-circuité sur l'excitation.](../figures/generees/fig-3-3-4){width=90% fig-scap="Figure 3.3.4 — Analyse spectrale LVDT primaire court-circuité à la masse"}
+
+<!-- p. 165 -->
+
+![](../figures/generees/fig-3-3-5){width=85% fig-alt="fig-3-3-5 (partie 1)"}
+
+![**Figure 3.3.5** — LVDT simulé par un pont diviseur.](../figures/generees/fig-3-3-5b){width=90% fig-scap="Figure 3.3.5 — LVDT simulé par un pont diviseur"}
+
+<!-- p. 166 -->
+
+**Étude affinée pour la sélection de la fréquence :**
+
+Cette étude vise à confirmer les résultats déjà obtenus à partir du LVDT
+standard, sur l'influence de la fréquence d'excitation, dans le cas du LVDT avec
+enveloppe cuivre et noyau ferrite. Ces résultats ont été obtenus à partir de la
+carte présentée au parag. 3.2.
+
+Quatre analyses ont été effectuées à deux niveaux de fréquence, 3.9 kHz et
+7.8 kHz, avec deux niveaux d'excitation dans chaque cas.
+
+Les analyses, Fig. 3.2.6, sont interprétées à partir du tableau de la figure
+3.3.7. Les niveaux d'excitation, pour chaque fréquence, ont dû être choisis
+différents, car pour les plus faibles valeurs, le bruit en 1/f est occulté par
+le bruit blanc de l'étage de tête ; pour les fortes valeurs, l'excitation a dû
+être limitée à 4 kHz par l'impédance d'entrée du LVDT[^lvdt-imp] (la carte
+utilisée ne disposait pas de buffer permettant des courants supérieurs à 30 mA
+environ[^lvdt-courant]).
+
+[^lvdt-imp]: 320 Ω environ à 4 kHz + 2 × 51 Ω de résistance de liaison.
+
+[^lvdt-courant]: dans le cas d'une charge par LVDT, la valeur de 20 mA n'a pû
+être dépassée même en utilisant des amplificateurs triés.
+
+<!-- p. 167 -->
+
+![**Figure 3.3.6** — Influence de la fréquence sur les analyses spectrales ($f_e$ = 3.9 kHz, gain de tête 54 dB, excitations 12.9 et 5.2 dBV$_{RMS}$ ; $f_e$ = 7.8 kHz, gain de tête 52.7 dB, excitations 17.7 et 13.9 dBV$_{RMS}$).](../figures/generees/fig-3-3-6){width=80% fig-scap="Figure 3.3.6 — Influence de la fréquence sur les analyses spectrales"}
+
+<!-- p. 168 -->
+
+| Fréquence | Excitation dB V$_{RMS}$ | Gain de tête | Bruit mesuré asymptotique dB(V/√Hz) à 100 s (réel à 10 s) | Sensib. en sortie V2 dB (V/m) | Bruit équival. en entrée à 100 s (réel à 10 s) |
+|---|---|---|---|---|---|
+| 3.9 kHz | 5.2 dBV | 54 dB | −56 (−63) | 147.5 | −203.5 (−210.5) |
+| 3.9 kHz | 12.9 dBV | 54 dB | −47 (−58) | 155 | −202 (−213) |
+| 7.8 kHz | 13.9 dBV | 52.7 | −53 (−61) | 154.5 | −207.5 (−215.5) |
+| 7.8 kHz | 17.7 dBV | 52.7 | −46 (−57) | 158.5 | −204.5 (−215.5) |
+| | | | ± 1 dB | | ± 1 dB environ |
+
+sensibilité identique 128 V/m/V$_I$
+
+![**Figure 3.3.7** — Influence de la fréquence et de l'excitation (bruit équivalent en entrée, dB réf. 1 m/√Hz, en fonction de l'excitation en dB V$_{RMS}$).](../figures/generees/fig-3-3-7){width=70% fig-scap="Figure 3.3.7 — Influence de la fréquence et de l'excitation"}
+
+<!-- p. 169 -->
+
+**Conclusion partielle :**
+
+Au vu des résultats présentés, il apparaît que pour réduire le niveau de bruit
+(équivalent en terme de déplacement) des capteurs LVDT, on peut :
+
+- augmenter la fréquence d'excitation (réduction du bruit 1/f),
+- augmenter, de manière contrôlée, le niveau d'excitation de manière à réaliser
+  le compromis entre :
+  - la contribution du bruit blanc (provenant principalement de l'étage de tête)
+    qui varie en raison inverse du niveau d'excitation,
+  - le bruit excédentaire de saturation (1/f) qui croît lorsque le niveau
+    d'excitation augmente au dessus du « seuil de saturation ».
+
+Les autres facteurs intervenant en limitation, proviennent :
+
+- du courant d'excitation consommé par le LVDT (lié bien sûr au niveau
+  d'excitation, à l'impédance d'entrée du LVDT, donc à la fréquence, mais aussi
+  au choix de l'amplificateur d'excitation),
+- du niveau des tensions d'alimentation,
+- de la rapidité des amplificateurs (produit gain × bande, slew-rate ...),
+  essentiellement pour l'amplificateur de tête et les composants de
+  démodulation.
+
+Une autre limitation apparaît dans le fonctionnement en boucle fermée, en longue
+période ; elle provient du bruit des amplificateurs situés en sortie de boucle
+(cf. Fig. 3.2.7) (ces éléments sont d'autant plus critiques que le gain de la
+chaîne directe est plus faible ou que les impédances de source des
+amplificateurs sont élevées). C'est, actuellement, l'étage de sortie qui amène
+la limitation en terme de rapport signal/bruit électronique pour un
+fonctionnement du capteur (en longue période), en boucle fermée.
